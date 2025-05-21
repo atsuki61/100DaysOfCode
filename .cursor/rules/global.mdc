@@ -1,0 +1,11 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+100DaysOfCode
+
+react next.js TypeScript tailwindCSS の勉強のために、毎日簡単なアプリを作りたい。
+
+
+リポジトリに変更があった場合、会話の最後にコミットメッセージ例を出力してください
