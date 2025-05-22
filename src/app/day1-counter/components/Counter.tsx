@@ -1,29 +1,57 @@
 'use client';
 import { useState } from 'react'; // 状態管理に使う useState を読み込む
+import Button from './ui/Button'; // 作成したButtonコンポーネントをインポート
+
 //コンポーネント本体を定義
 export default function Counter() {
-  // count: 現在の数値、setCount: 更新用関数
   const [count, setCount] = useState(0);
 
+  const increment = () => setCount(prevCount => prevCount + 1);
+  const decrement = () => setCount(prevCount => prevCount - 1);
+
   return (
-    //テキスト中央揃え　ボタン縦に1remの隙間
-    <div className="text-center space-y-4">
-      {/* サイズ5倍　前景(文字)色　太字*/}
-      <h2 className="text-5xl text-foreground font-bold">{count}</h2>
-      {/*ボタン同士を横方向に0.5rem 離す */}
-      <div className="space-x-2">
-        <button
-          className="px-4 py-2 bg-destructive text-destructive-foreground rounded" //横余白4, 縦余白2, 破壊的アクション背景, 破壊的アクション前景(文字), 角丸
-          onClick={() => setCount(count - 1)} // ボタンを押す　setCountをcount-1で更新
-        >
-          -1
-        </button>
-        <button
-          className="px-4 py-2 bg-primary text-primary-foreground rounded" //横余白4, 縦余白2, プライマリ背景, プライマリ前景(文字), 角丸
-          onClick={() => setCount(count + 1)} // ボタンを押す　setCountをcount+1で更新
-        >
-          +1
-        </button>
+    // --- カウンター表示とボタンをまとめる白いカード風の箱 ---
+    // bg-white dark:bg-gray-800: 背景色 (ライトモード: 白, ダークモード: 少し明るいグレー)
+    // p-6 sm:p-8: 内側の余白 (通常時は1.5rem, smサイズ以上の画面では2rem)
+    // rounded-xl: 角を大きく丸めます (extra large)
+    // shadow-xl: 大きな影をつけて立体的に見せます
+    // text-center: この要素内のテキストコンテンツを中央揃え
+    <div className="bg-white dark:bg-gray-800 p-6 sm:p-8 rounded-xl shadow-xl text-center">
+      {/* --- カウンターの数値を表示する部分 --- */}
+      {/* mb-8: 下方向へのマージン (2rem)。要素間のスペース作りのため。 */}
+      <div className="mb-8">
+        {/* --- カウンターの数値そのもの --- */}
+        {/* text-7xl: 文字のサイズを非常に大きくします。 */}
+        {/* font-bold: 文字を太字にします。 */}
+        {/* text-slate-700 dark:text-slate-200: 文字色を指定します。 */}
+        <span className="text-7xl font-bold text-slate-700 dark:text-slate-200">
+          {count}
+        </span>
+        {/* --- 「現在のカウント」という補助テキスト --- */}
+        {/* text-sm: 文字サイズを小さくします。 */}
+        {/* text-slate-500 dark:text-slate-400: 文字色を少し薄めにします。 */}
+        {/* mt-2: 上方向へのマージン (0.5rem)。数値との間隔調整。 */}
+        <p className="text-sm text-slate-500 dark:text-slate-400 mt-2">現在のカウント</p>
+      </div>
+
+      {/* --- ボタンをまとめる箱 --- */}
+      {/* flex: ボタンを横並びにするためにFlexboxを使います (smサイズ以上の画面で)。 */}
+      {/* flex-col: スマートフォンなどの小さい画面ではボタンを縦に並べます (これがデフォルト)。 */}
+      {/* sm:flex-row: smサイズ (640px) 以上の画面では、'flex-col' を上書きして横並び (row) にします。*/}
+      {/* space-y-4: 縦並びの時 (flex-col の時) に、ボタンの間に縦方向のスペースを設けます (1rem)。*/}
+      {/* sm:space-y-0: 横並びになるsmサイズ以上では、縦方向のスペースを0にします。 */}
+      {/* sm:space-x-4: 横並びの時 (sm:flex-row の時) に、ボタンの間に横方向のスペースを設けます (1rem)。 */}
+      <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+        {/* --- デクリメントボタン --- */}
+        {/* w-full sm:w-auto: モバイルでは幅いっぱい、sm以上では自動幅 */}
+        <Button onClick={decrement} variant="secondary" size="lg" className="w-full sm:w-auto">
+          減らす (-)
+        </Button>
+
+        {/* --- インクリメントボタン --- */}
+        <Button onClick={increment} variant="default" size="lg" className="w-full sm:w-auto">
+          増やす (+)
+        </Button>
       </div>
     </div>
   );
