@@ -173,7 +173,7 @@ alwaysApply: true
 ---
 
 ## タスク支援
-- **コミットメッセージ**: リポジトリに変更があった場合、会話の最後に日本語でコミットメッセージの提案を3つお願いします。可能な範囲で [Conventional Commits](https://www.conventionalcommits.org/) の形式（例: `feat: 新機能を追加`, `fix: バグを修正`, `docs: ドキュメントを更新`）を意識してください。
+- **コミットメッセージ**: リポジトリに変更があった場合、会話の最後に日本語でコミットメッセージの提案を3つお願いします。可能な範囲で [Conventional Commits](mdc:https:/www.conventionalcommits.org) の形式（例: `feat: 新機能を追加`, `fix: バグを修正`, `docs: ドキュメントを更新`）を意識してください。
 
 ## その他
 - このルールは、チャットおよび Command+K リクエストに常に適用されます。
