@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>100DaysOfCodeチャレンジ計画一覧</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* カスタムスタイル */
+        body {
+            font-family: 'Inter', sans-serif; /* Tailwindのデフォルトフォントに近いInterを指定 */
+        }
+        th, td {
+            vertical-align: top; /* セルの内容が長い場合に上揃えにする */
+            padding: 0.75rem; /* Tailwindの p-3 相当 */
+            font-size: 0.875rem; /* Tailwindの text-sm 相当 */
+            line-height: 1.25rem; /* Tailwindの leading-5 相当 */
+        }
+        th {
+            font-weight: 600; /* Tailwindの font-semibold 相当 */
+            background-color: #f3f4f6; /* Tailwindの bg-gray-100 相当 */
+        }
+        h1 {
+            font-size: 1.875rem; /* Tailwindの text-3xl 相当 */
+            line-height: 2.25rem;
+            font-weight: 700; /* Tailwindの font-bold 相当 */
+            text-align: center;
+            margin-bottom: 2rem; /* Tailwindの mb-8 相当 */
+            color: #1f2937; /* Tailwindの text-gray-800 相当 */
+        }
+        .table-container {
+            max-height: 80vh; /* テーブルの最大高さを画面の80%に設定 */
+            overflow-y: auto; /* 縦スクロールを可能にする */
+        }
+        /* モバイル表示用の調整 */
+        @media (max-width: 768px) {
+            th, td {
+                font-size: 0.75rem; /* text-xs */
+                padding: 0.5rem; /* p-2 */
+            }
+            h1 {
+                font-size: 1.5rem; /* text-2xl */
+                margin-bottom: 1.5rem; /* mb-6 */
+            }
+            .table-container {
+                 max-height: 75vh;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+    <div class="container mx-auto p-4 sm:p-6 lg:p-8">
+        <h1>
+            100DaysOfCodeチャレンジ：React/Next.js/TypeScript/TailwindCSS + Go言語バックエンド
+        </h1>
+
+        <div class="bg-white shadow-xl rounded-lg overflow-hidden">
+            <div class="overflow-x-auto table-container">
+                <table class="min-w-full divide-y divide-gray-300 border-collapse">
+                    <thead class="sticky top-0 z-10">
+                        <tr>
+                            <th scope="col" class="border border-gray-300">Day</th>
+                            <th scope="col" class="border border-gray-300">アプリ名/テーマ</th>
+                            <th scope="col" class="border border-gray-300">概要</th>
+                            <th scope="col" class="border border-gray-300">フロントエンド学習ポイント (React, Next.js, TS, Tailwind)</th>
+                            <th scope="col" class="border border-gray-300">バックエンド学習ポイント(Go)</th>
+                            <th scope="col" class="border border-gray-300">使用技術</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                        <tr>
+                            <td class="border border-gray-300">1</td>
+                            <td class="border border-gray-300">カウンターアプリ</td>
+                            <td class="border border-gray-300">ボタン操作で数値を増減できるシンプルなカウンター。</td>
+                            <td class="border border-gray-300">Reactの基本 (useStateによる状態管理、イベント処理)、TypeScriptの基本的な型付け</td>
+                            <td class="border border-gray-300">-</td>
+                            <td class="border border-gray-300">React, TypeScript, TailwindCSS</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">2</td>
+                            <td class="border border-gray-300">アニメ視聴リスト</td>
+                            <td class="border border-gray-300">アニメのタイトル一覧と「視聴済み」チェック機能。</td>
+                            <td class="border border-gray-300">リストレンダリング、useStateを用いた項目状態の更新、map関数の利用</td>
+                            <td class="border border-gray-300">-</td>
+                            <td class="border border-gray-300">React, TypeScript, TailwindCSS</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">3</td>
+                            <td class="border border-gray-300">BMI計算機</td>
+                            <td class="border border-gray-300">身長と体重からBMIを計算するフォーム。</td>
+                            <td class="border border-gray-300">フォーム入力の状態管理、単純な計算ロジック、入力値の型制御</td>
+                            <td class="border border-gray-300">-</td>
+                            <td class="border border-gray-300">React, TypeScript, TailwindCSS</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">4</td>
+                            <td class="border border-gray-300">ToDoリスト</td>
+                            <td class="border border-gray-300">タスクを追加・削除できるシンプルなToDoアプリ。</td>
+                            <td class="border border-gray-300">配列状態の管理（追加、削除）、フォーム入力とイベント処理、コンポーネント分割の基礎</td>
+                            <td class="border border-gray-300">-</td>
+                            <td class="border border-gray-300">React, TypeScript, TailwindCSS</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">5</td>
+                            <td class="border border-gray-300">じゃんけんゲーム</td>
+                            <td class="border border-gray-300">ユーザーとコンピュータが対戦するじゃんけんゲーム。</td>
+                            <td class="border border-gray-300">乱数生成、条件分岐によるゲームロジック、簡単なUIのインタラクション</td>
+                            <td class="border border-gray-300">-</td>
+                            <td class="border border-gray-300">React, TypeScript, TailwindCSS</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">6</td>
+                            <td class="border border-gray-300">ストップウォッチ</td>
+                            <td class="border border-gray-300">開始・停止・リセットができるタイマーアプリ。</td>
+                            <td class="border border-gray-300">useEffectを使ったタイマー処理（setInterval, clearInterval）、クリーンアップ関数、時間のフォーマット</td>
+                            <td class="border border-gray-300">-</td>
+                            <td class="border border-gray-300">React, TypeScript, TailwindCSS</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">7</td>
+                            <td class="border border-gray-300">単語フラッシュカード</td>
+                            <td class="border border-gray-300">TOEIC用英単語の暗記カード、クリックで意味を表示。</td>
+                            <td class="border border-gray-300">配列データの扱い、状態による表示切替、イベント処理、シンプルなデータ構造</td>
+                            <td class="border border-gray-300">-</td>
+                            <td class="border border-gray-300">React, TypeScript, TailwindCSS</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">8</td>
+                            <td class="border border-gray-300">アニメキャラ検索</td>
+                            <td class="border border-gray-300">アニメキャラクターのリストを名前でフィルタ検索。</td>
+                            <td class="border border-gray-300">リストフィルタリング、制御された入力(検索フィールドの状態管理)、文字列操作</td>
+                            <td class="border border-gray-300">-</td>
+                            <td class="border border-gray-300">React, TypeScript, TailwindCSS</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">9</td>
+                            <td class="border border-gray-300">アニメ名言ジェネレーター</td>
+                            <td class="border border-gray-300">毎回ランダムなアニメの名言を表示する（固定データまたは簡易APIモックから）。</td>
+                            <td class="border border-gray-300">APIからのデータ取得(fetch/axiosの基本、非同期処理Promise/async/awaitの基礎）、JSONデータの扱い、エラーハンドリングの基本</td>
+                            <td class="border border-gray-300">-</td>
+                            <td class="border border-gray-300">React, TypeScript, TailwindCSS</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">10</td>
+                            <td class="border border-gray-300">支出管理アプリ</td>
+                            <td class="border border-gray-300">簡易な家計簿として収支アイテムを追加・集計。</td>
+                            <td class="border border-gray-300">複数状態の管理、配列操作(追加・削除・集計)、数値入力の扱い</td>
+                            <td class="border border-gray-300">-</td>
+                            <td class="border border-gray-300">React, TypeScript, TailwindCSS</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">11</td>
+                            <td class="border border-gray-300">天気予報アプリ</td>
+                            <td class="border border-gray-300">都市名から現在の天気を表示するシンプルなアプリ（OpenWeatherMap APIなど利用）。</td>
+                            <td class="border border-gray-300">外部APIの利用(fetch/axios)、非同期処理と状態更新、APIキーの扱い（環境変数基礎）、TypeScriptでのAPIレスポンスの型定義</td>
+                            <td class="border border-gray-300">-</td>
+                            <td class="border border-gray-300">React, TypeScript, TailwindCSS</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">12</td>
+                            <td class="border border-gray-300">ダークモード切替アプリ</td>
+                            <td class="border border-gray-300">ボタンでサイトのライト/ダークテーマを切り替え可能。</td>
+                            <td class="border border-gray-300">Context APIによるグローバル状態管理、Tailwind CSSのダークモード機能の利用、localStorageによるテーマ永続化</td>
+                            <td class="border border-gray-300">-</td>
+                            <td class="border border-gray-300">React, TypeScript, TailwindCSS</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">13</td>
+                            <td class="border border-gray-300">電卓アプリ</td>
+                            <td class="border border-gray-300">四則演算ができるシンプルな電卓。</td>
+                            <td class="border border-gray-300">複数状態の管理(useState複数利用)、ボタンクリックによる計算ロジック、UIイベントの詳細な制御</td>
+                            <td class="border border-gray-300">-</td>
+                            <td class="border border-gray-300">React, TypeScript, TailwindCSS</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">14</td>
+                            <td class="border border-gray-300">英単語辞書アプリ</td>
+                            <td class="border border-gray-300">英単語を入力すると意味を表示する辞書アプリ(外部辞書API利用)。</td>
+                            <td class="border border-gray-300">外部辞書APIの利用、非同期データ取得、より複雑なJSONデータの表示、ローディング状態の管理</td>
+                            <td class="border border-gray-300">-</td>
+                            <td class="border border-gray-300">React, TypeScript, TailwindCSS</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">15</td>
+                            <td class="border border-gray-300">ワークアウトプランナー</td>
+                            <td class="border border-gray-300">トレーニング種目をリストに追加し管理するアプリ(簡易プラン作成)。</td>
+                            <td class="border border-gray-300">複数フィールドのフォーム処理、localStorageを使ったデータ永続化（複数項目）、入力バリデーションの基礎</td>
+                            <td class="border border-gray-300">-</td>
+                            <td class="border border-gray-300">React, TypeScript, TailwindCSS</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">16</td>
+                            <td class="border border-gray-300">音楽検索アプリ</td>
+                            <td class="border border-gray-300">アーティスト名や曲名で音楽を検索し、結果一覧を表示（iTunes APIなど利用）。</td>
+                            <td class="border border-gray-300">動的クエリによるAPI取得、JSON結果のリスト表示、ページネーションの概念</td>
+                            <td class="border border-gray-300">-</td>
+                            <td class="border border-gray-300">React, TypeScript, TailwindCSS</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">17</td>
+                            <td class="border border-gray-300">○×ゲーム</td>
+                            <td class="border border-gray-300">二人対戦の三目並べゲーム。勝敗判定付き。</td>
+                            <td class="border border-gray-300">二次元配列の状態管理、勝利条件の判定ロジック、状態リフトアップ、コンポーネント間の連携</td>
+                            <td class="border border-gray-300">-</td>
+                            <td class="border border-gray-300">React, TypeScript, TailwindCSS</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">18</td>
+                            <td class="border border-gray-300">学習進捗チャート</td>
+                            <td class="border border-gray-300">過去のTOEICスコア推移をグラフで表示する。</td>
+                            <td class="border border-gray-300">グラフライブラリの導入（例: Chart.js, Recharts）、データ可視化、配列データ操作と整形</td>
+                            <td class="border border-gray-300">-</td>
+                            <td class="border border-gray-300">React, TypeScript, TailwindCSS, (Chart.js or Recharts)</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">19</td>
+                            <td class="border border-gray-300">クイズアプリ</td>
+                            <td class="border border-gray-300">選択式のクイズを出題し、回答後に得点を表示する。(例:アニメクイズ)</td>
+                            <td class="border border-gray-300">useStateによる問題/スコア管理、配列からの選択肢表示、条件による結果表示、コンポーネントの再利用</td>
+                            <td class="border border-gray-300">-</td>
+                            <td class="border border-gray-300">React, TypeScript, TailwindCSS</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">20</td>
+                            <td class="border border-gray-300">神経衰弱ゲーム</td>
+                            <td class="border border-gray-300">カードをめくって同じ絵柄を当てる記憶ゲーム。</td>
+                            <td class="border border-gray-300">配列のシャッフル、複数要素の状態管理(選択カード)、一定時間後の裏返し処理(useEffect, setTimeout)、CSSアニメーション/トランジションの基礎</td>
+                            <td class="border border-gray-300">-</td>
+                            <td class="border border-gray-300">React, TypeScript, TailwindCSS</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">21</td>
+                            <td class="border border-gray-300">ショッピングカート</td>
+                            <td class="border border-gray-300">商品一覧からカートに追加・削除し、合計金額を表示。</td>
+                            <td class="border border-gray-300">Context APIまたはRedux Toolkit (簡易版) によるグローバル状態管理、複数コンポーネント間のデータ共有、合計計算、カート内商品の数量変更</td>
+                            <td class="border border-gray-300">-</td>
+                            <td class="border border-gray-300">React, TypeScript, TailwindCSS, (Context API or Redux Toolkit)</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">22</td>
+                            <td class="border border-gray-300">ブログ一覧サイト (Next.js導入)</td>
+                            <td class="border border-gray-300">静的なブログ記事一覧ページと記事詳細ページ。</td>
+                            <td class="border border-gray-300"><strong>Next.jsの基本ルーティング (pagesディレクトリ)</strong>、ファイルシステムルーティング、<code>Link</code>コンポーネント、<strong>getStaticProps</strong>による静的サイト生成(SSG)、Markdownファイルの読み込みとパース（例: <code>gray-matter</code>, <code>remark</code>）</td>
+                            <td class="border border-gray-300">-</td>
+                            <td class="border border-gray-300">React, <strong>Next.js</strong>, TypeScript, TailwindCSS</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">23</td>
+                            <td class="border border-gray-300">暗号通貨価格表示 (Next.js SSR)</td>
+                            <td class="border border-gray-300">暗号通貨の現在価格をサーバーサイドレンダリングで表示（CoinGecko APIなど）。</td>
+                            <td class="border border-gray-300">Next.jsの<strong>SSR (getServerSideProps)</strong>、APIキー等の環境変数管理 (<code>.env.local</code>)、動的なデータフェッチ</td>
+                            <td class="border border-gray-300">-</td>
+                            <td class="border border-gray-300">React, Next.js, TypeScript, TailwindCSS</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">24</td>
+                            <td class="border border-gray-300">ポケモン図鑑アプリ (Next.js 動的ルーティング)</td>
+                            <td class="border border-gray-300">ポケモン一覧を表示し、クリックで各ポケモンの詳細情報を閲覧。</td>
+                            <td class="border border-gray-300">Next.jsの<strong>動的ルーティング</strong>、<code>getStaticPaths</code> / <code>getStaticProps</code>による動的ページの静的生成、外部APIデータ取得と整形</td>
+                            <td class="border border-gray-300">-</td>
+                            <td class="border border-gray-300">React, Next.js, TypeScript, TailwindCSS</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">25</td>
+                            <td class="border border-gray-300">現在地マップ</td>
+                            <td class="border border-gray-300">現在位置を地図上に表示するアプリ。</td>
+                            <td class="border border-gray-300">Geolocation APIの利用、地図ライブラリ(Leaflet, Google Maps APIなど)のReactコンポーネントとしての統合、useEffectでのAPI呼び出し</td>
+                            <td class="border border-gray-300">-</td>
+                            <td class="border border-gray-300">React, Next.js, TypeScript, TailwindCSS, (Leaflet or Google Maps)</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">26</td>
+                            <td class="border border-gray-300">パスワードジェネレーター</td>
+                            <td class="border border-gray-300">指定した条件（長さ、文字種）でランダムなパスワードを生成する。</td>
+                            <td class="border border-gray-300">文字列操作と乱数、クリップボードAPIによるコピー機能、UIでのオプション選択</td>
+                            <td class="border border-gray-300">-</td>
+                            <td class="border border-gray-300">React, Next.js, TypeScript, TailwindCSS</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">27</td>
+                            <td class="border border-gray-300">タイピング速度テスト</td>
+                            <td class="border border-gray-300">出された文章を入力し、WPM(打鍵数/分)を計測。</td>
+                            <td class="border border-gray-300">キー入力イベント処理、タイマー (useEffect)による計測、速度と正確さの計算、入力テキストと課題テキストの比較</td>
+                            <td class="border border-gray-300">-</td>
+                            <td class="border border-gray-300">React, Next.js, TypeScript, TailwindCSS</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">28</td>
+                            <td class="border border-gray-300">画像ギャラリー (モーダル表示)</td>
+                            <td class="border border-gray-300">複数画像を一覧表示し、クリックで拡大表示(モーダル)。</td>
+                            <td class="border border-gray-300">グリッドレイアウト(Tailwind CSS Grid/Flexbox)、モーダルウィンドウの実装と状態管理、Next.jsの<code>next/image</code>コンポーネントによる画像最適化</td>
+                            <td class="border border-gray-300">-</td>
+                            <td class="border border-gray-300">React, Next.js, TypeScript, TailwindCSS</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">29</td>
+                            <td class="border border-gray-300">カレンダーアプリ</td>
+                            <td class="border border-gray-300">当月の日付をカレンダー形式で表示し、イベントの日を強調表示（イベントデータは固定）。</td>
+                            <td class="border border-gray-300">Date APIの利用、二次元配列でのカレンダー生成、条件付きレンダリング、UIコンポーネントの設計</td>
+                            <td class="border border-gray-300">-</td>
+                            <td class="border border-gray-300">React, Next.js, TypeScript, TailwindCSS</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">30</td>
+                            <td class="border border-gray-300">15パズルゲーム</td>
+                            <td class="border border-gray-300">数字タイルをスライドして並べ替えるパズルゲーム。</td>
+                            <td class="border border-gray-300">配列のシャッフル・並べ替えロジック、空白タイルとの位置交換アルゴリズム、クリア判定、インタラクティブなUI操作</td>
+                            <td class="border border-gray-300">Go言語環境構築、「A Tour of Go」開始 (Basics: Packages, Variables, Functions)</td>
+                            <td class="border border-gray-300">React, Next.js, TypeScript, TailwindCSS</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">31</td>
+                            <td class="border border-gray-300">Redux Toolkit ToDoアプリ</td>
+                            <td class="border border-gray-300">Redux Toolkitを用いてグローバルに状態管理するToDoリスト。</td>
+                            <td class="border border-gray-300"><strong>Redux Toolkit</strong>の基本 (createSlice, configureStore)、アクション/リデューサーによる状態更新、React-Redux連携 (<code>useSelector</code>, <code>useDispatch</code>)</td>
+                            <td class="border border-gray-300">A Tour of Go: Basics (Types, Type conversions, Constants)</td>
+                            <td class="border border-gray-300">React, Next.js, TS, TailwindCSS, <strong>Redux Toolkit</strong></td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">32</td>
+                            <td class="border border-gray-300">ユーザー登録フォーム (フロントエンドバリデーション)</td>
+                            <td class="border border-gray-300">入力値のバリデーション付きユーザー登録フォーム（React Hook Formなど利用）。</td>
+                            <td class="border border-gray-300">フォームライブラリ (<strong>React Hook Form</strong>など)の利用、入力値のリアルタイム検証、エラーメッセージ表示、Yup/Zodなどでのスキーマバリデーション</td>
+                            <td class="border border-gray-300">A Tour of Go: Flow control (For, If/Else, Switch, Defer)</td>
+                            <td class="border border-gray-300">React, Next.js, TS, TailwindCSS, <strong>React Hook Form</strong></td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">33</td>
+                            <td class="border border-gray-300">画像検索アプリ (無限スクロール)</td>
+                            <td class="border border-gray-300">キーワードで画像を検索し、スクロールで結果を追加読み込み（Unsplash APIなど）。</td>
+                            <td class="border border-gray-300">IntersectionObserver APIによる無限スクロール実装、APIクエリ処理（ページネーション管理）、非同期処理の制御</td>
+                            <td class="border border-gray-300">演習: 簡単なCLIツール作成（例：入力された数値の階乗を計算する、FizzBuzz問題を解くなど、Flow controlの練習）</td>
+                            <td class="border border-gray-300">React, Next.js, TS, TailwindCSS</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">34</td>
+                            <td class="border border-gray-300">英単語当てゲーム (ハングマン)</td>
+                            <td class="border border-gray-300">一文字ずつ英単語を推測するハングマンゲーム。</td>
+                            <td class="border border-gray-300">文字列・配列操作、ユーザー入力判定ロジック、残り回数によるゲーム管理、SVGなどを用いた簡単なグラフィック表示</td>
+                            <td class="border border-gray-300">A Tour of Go: More types (Pointers, Structs)</td>
+                            <td class="border border-gray-300">React, Next.js, TS, TailwindCSS</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">35</td>
+                            <td class="border border-gray-300">スネークゲーム</td>
+                            <td class="border border-gray-300">ヘビを操作してエサを食べるクラシックゲーム。</td>
+                            <td class="border border-gray-300">キーボードイベント処理、ゲームループのタイマー制御（<code>requestAnimationFrame</code>または<code>useEffect</code>）、座標管理と当たり判定、Canvas APIの基本（オプション）</td>
+                            <td class="border border-gray-300">A Tour of Go: More types (Arrays, Slices)</td>
+                            <td class="border border-gray-300">React, Next.js, TS, TailwindCSS, (Canvas API)</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">36</td>
+                            <td class="border border-gray-300">QRコード生成アプリ</td>
+                            <td class="border border-gray-300">入力したテキストからQRコード画像を生成する。</td>
+                            <td class="border border-gray-300">外部ライブラリ (QRコード生成ライブラリ for JS)の利用、Canvasへの描画またはSVG生成、画像データURLの扱い、入力フォーム</td>
+                            <td class="border border-gray-300">A Tour of Go: More types (Maps)</td>
+                            <td class="border border-gray-300">React, Next.js, TS, TailwindCSS, (JS QR Code library)</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">37</td>
+                            <td class="border border-gray-300">カード番号バリデータ</td>
+                            <td class="border border-gray-300">クレジットカード番号の妥当性をLuhnアルゴリズムでチェックする。</td>
+                            <td class="border border-gray-300">Luhnアルゴリズムの実装、文字列と数字の変換、リアルタイム入力検証、正規表現の利用</td>
+                            <td class="border border-gray-300">演習: 簡単なデータ構造を扱うCLIツール作成（例：単語の出現頻度をカウントする、構造体スライスをソートする）</td>
+                            <td class="border border-gray-300">React, Next.js, TS, TailwindCSS</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">38</td>
+                            <td class="border border-gray-300">お絵かきアプリ (簡易ペイント)</td>
+                            <td class="border border-gray-300">ブラウザ上でマウス描画できる簡易ペイントツール。</td>
+                            <td class="border border-gray-300">Canvas APIの操作（線描画、色変更、太さ変更）、マウスイベント処理（mousedown, mousemove, mouseup）、描画状態の管理</td>
+                            <td class="border border-gray-300">A Tour of Go: Methods (Methods, Receivers)</td>
+                            <td class="border border-gray-300">React, Next.js, TS, TailwindCSS, Canvas API</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">39</td>
+                            <td class="border border-gray-300">音楽プレーヤー</td>
+                            <td class="border border-gray-300">楽曲を再生/一時停止/スキップできる音楽プレーヤー（ローカルファイルまたは固定URL）。</td>
+                            <td class="border border-gray-300">HTMLAudio要素の制御 (<code>useRef</code>)、再生時間の状態管理、プログレスバー表示、ボタン操作イベント処理</td>
+                            <td class="border border-gray-300">A Tour of Go: Methods (Interfaces, Type assertions, Stringers)</td>
+                            <td class="border border-gray-300">React, Next.js, TS, TailwindCSS</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">40</td>
+                            <td class="border border-gray-300">ダッシュボード (複数API統合)</td>
+                            <td class="border border-gray-300">天気・ニュース・名言など複数APIの情報を一画面に表示。</td>
+                            <td class="border border-gray-300"><code>Promise.all</code>による複数API並行取得、コンポーネント分割とレイアウト、各APIのロード状態管理、エラーハンドリング（個別/全体）</td>
+                            <td class="border border-gray-300">演習: 簡単な図形（例：長方形、円）の面積や周長を計算するメソッドを持つ構造体を定義し、インターフェースを使って処理するプログラム作成</td>
+                            <td class="border border-gray-300">React, Next.js, TS, TailwindCSS</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">41</td>
+                            <td class="border border-gray-300">Go: 簡単なHTTPサーバー (net/http)</td>
+                            <td class="border border-gray-300">Goの標準ライブラリ<code>net/http</code>を使って、<code>/hello</code>にアクセスすると"Hello, Go!"と返すサーバーを作成。</td>
+                            <td class="border border-gray-300">Next.jsでこのGoサーバーにアクセスする簡単なページ作成</td>
+                            <td class="border border-gray-300"><strong>Go: <code>net/http</code>パッケージ入門</strong> (HandleFunc, ListenAndServe)、基本的なリクエストハンドリング</td>
+                            <td class="border border-gray-300">React, Next.js, TS, TailwindCSS, <strong>Go</strong></td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">42</td>
+                            <td class="border border-gray-300">Go: JSONレスポンスを返すAPI (net/http)</td>
+                            <td class="border border-gray-300"><code>/api/data</code>にアクセスすると固定のJSONデータを返すGoサーバーを作成。</td>
+                            <td class="border border-gray-300">Next.jsからこのAPIを叩き、取得したJSONデータを表示する。</td>
+                            <td class="border border-gray-300">Go: <code>encoding/json</code>パッケージ (Marshal)、HTTPヘッダー (Content-Type) の設定</td>
+                            <td class="border border-gray-300">React, Next.js, TS, TailwindCSS, Go</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">43</td>
+                            <td class="border border-gray-300">Go: Webフレームワーク導入 (Gin/Echo) - Hello World</td>
+                            <td class="border border-gray-300">GinまたはEchoフレームワークを導入し、<code>/hello-gin</code> (または <code>/hello-echo</code>) で挨拶を返すAPIを作成。</td>
+                            <td class="border border-gray-300">-</td>
+                            <td class="border border-gray-300"><strong>Go: Webフレームワーク (Gin/Echo) 導入</strong>、基本的なルーティング、コンテキストの理解</td>
+                            <td class="border border-gray-300">React, Next.js, TS, TailwindCSS, Go, (<strong>Gin</strong> or <strong>Echo</strong>)</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">44</td>
+                            <td class="border border-gray-300">Go: パスパラメータとクエリパラメータ (Gin/Echo)</td>
+                            <td class="border border-gray-300"><code>/users/:id</code> や <code>/search?q=keyword</code> のようなリクエストを処理するAPIをGoで作成。</td>
+                            <td class="border border-gray-300">Next.jsからこれらのAPIにリクエストを送信し、結果を表示する。</td>
+                            <td class="border border-gray-300">Go: パスパラメータの取得、クエリパラメータの取得、リクエストデータのバリデーション基礎</td>
+                            <td class="border border-gray-300">React, Next.js, TS, TailwindCSS, Go, (Gin or Echo)</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">45</td>
+                            <td class="border border-gray-300">Go: POSTリクエストとJSONボディ (Gin/Echo)</td>
+                            <td class="border border-gray-300">JSONリクエストボディを受け取り、処理してJSONレスポンスを返すAPI（例：簡単な計算API）をGoで作成。</td>
+                            <td class="border border-gray-300">Next.jsからPOSTリクエストでJSONデータを送信し、レスポンスを表示する。</td>
+                            <td class="border border-gray-300">Go: リクエストボディのバインディング、JSONレスポンスの生成</td>
+                            <td class="border border-gray-300">React, Next.js, TS, TailwindCSS, Go, (Gin or Echo)</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">46</td>
+                            <td class="border border-gray-300">Go: アニメ名言ジェネレーターAPI (Go版)</td>
+                            <td class="border border-gray-300">PDF Day9の「アニメ名言ジェネレーター」のAPI機能をGoで実装。固定データまたは外部APIをGo経由で呼び出す。</td>
+                            <td class="border border-gray-300">作成したGo APIをNext.jsフロントエンドから利用する。</td>
+                            <td class="border border-gray-300">Go: 外部APIの呼び出し (<code>net/http</code> Client)、エラーハンドリング、APIの構造化</td>
+                            <td class="border border-gray-300">React, Next.js, TS, TailwindCSS, Go, (Gin or Echo)</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">47</td>
+                            <td class="border border-gray-300">オフラインメモ帳(PWA基礎)</td>
+                            <td class="border border-gray-300">オフラインでも利用できるメモ帳アプリ（Service Worker, Manifest）。</td>
+                            <td class="border border-gray-300"><strong>PWA (Progressive Web Apps) の基本</strong>: Service Workerの登録とキャッシュ戦略（キャッシュファーストなど）、Web App Manifestファイルの作成と設定</td>
+                            <td class="border border-gray-300">A Tour of Go: Concurrency (Goroutines, Channels の基本)</td>
+                            <td class="border border-gray-300">React, Next.js, TS, TailwindCSS</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">48</td>
+                            <td class="border border-gray-300">大量リスト表示 (仮想レンダリング)</td>
+                            <td class="border border-gray-300">数千件のデータをパフォーマンス良くスクロール表示（react-windowなど利用）。</td>
+                            <td class="border border-gray-300"><strong>仮想リストレンダリング</strong> (<code>react-window</code> / <code>react-virtualized</code>) の導入と利用、パフォーマンス最適化の考え方</td>
+                            <td class="border border-gray-300">A Tour of Go: Concurrency (Buffered Channels, Range and Close)</td>
+                            <td class="border border-gray-300">React, Next.js, TS, TailwindCSS, <code>react-window</code></td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">49</td>
+                            <td class="border border-gray-300">多言語対応サイト (i18next)</td>
+                            <td class="border border-gray-300">日本語/英語で表示を切り替えられるWebサイト。</td>
+                            <td class="border border-gray-300"><code>i18next</code>または<code>next-i18next</code>の導入と設定、翻訳ファイルの管理、言語切り替えUIの実装、Next.jsの国際化ルーティング</td>
+                            <td class="border border-gray-300">演習: 簡単な並行処理プログラム作成（例：複数のURLから並行してデータを取得し、最初に成功した結果を表示する）</td>
+                            <td class="border border-gray-300">React, Next.js, TS, TailwindCSS, <code>i18next</code></td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">50</td>
+                            <td class="border border-gray-300">ポートフォリオサイト (デザイン・コンテンツ拡充)</td>
+                            <td class="border border-gray-300">これまでの成果物をまとめ、デザインを洗練させたポートフォリオサイトを構築。</td>
+                            <td class="border border-gray-300">UI/UXデザインの考慮、レスポンシブデザインの最終調整、コンテンツ作成、Next.jsの最適化機能（<code>next/image</code>, <code>next/font</code>など）の活用</td>
+                            <td class="border border-gray-300">Go: ミドルウェアの基本（Gin/Echo でロギングミドルウェアなどを作成・利用してみる）</td>
+                            <td class="border border-gray-300">React, Next.js, TS, TailwindCSS</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">51</td>
+                            <td class="border border-gray-300">Go+SQLite: メモ保存アプリ バックエンド (Create, Read)</td>
+                            <td class="border border-gray-300">Go (Gin/Echo) と SQLite を用いてメモを保存・取得するAPIを実装（GORM導入）。</td>
+                            <td class="border border-gray-300">-</td>
+                            <td class="border border-gray-300"><strong>Go: データベース基礎 (SQLite)</strong>、<strong>ORM (GORM) 導入</strong>、モデル定義、マイグレーション基礎、Create処理、Read (全件取得、ID指定取得)処理</td>
+                            <td class="border border-gray-300">React, Next.js, TS, TailwindCSS, Go, (Gin or Echo), <strong>SQLite</strong>, <strong>GORM</strong></td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">52</td>
+                            <td class="border border-gray-300">Next.js + Go API連携: メモ保存アプリ (表示)</td>
+                            <td class="border border-gray-300">Day 51で作成したGo APIをNext.jsフロントエンドから呼び出し、メモ一覧と詳細を表示する。</td>
+                            <td class="border border-gray-300">Next.jsから外部API(自作Go API)へのデータフェッチ、状態管理、取得データの表示、エラーハンドリング</td>
+                            <td class="border border-gray-300">Go: APIのデバッグ、レスポンス形式の調整</td>
+                            <td class="border border-gray-300">React, Next.js, TS, TailwindCSS, Go, (Gin or Echo), SQLite, GORM</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">53</td>
+                            <td class="border border-gray-300">Go+SQLite: メモ保存アプリ バックエンド (Update, Delete)</td>
+                            <td class="border border-gray-300">Day 51のAPIにメモの更新・削除機能を追加。</td>
+                            <td class="border border-gray-300">-</td>
+                            <td class="border border-gray-300">Go: GORMを用いたUpdate処理、Delete処理、エラーハンドリング</td>
+                            <td class="border border-gray-300">React, Next.js, TS, TailwindCSS, Go, (Gin or Echo), SQLite, GORM</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">54</td>
+                            <td class="border border-gray-300">Next.js + Go API連携: メモ保存アプリ (更新・削除機能)</td>
+                            <td class="border border-gray-300">Next.jsフロントエンドにメモの編集フォームと削除ボタンを実装し、Go APIと連携させる。</td>
+                            <td class="border border-gray-300">フォーム処理（編集用）、APIへのPUT/DELETEリクエスト送信、UIの更新反映</td>
+                            <td class="border border-gray-300">Go: APIの動作確認、バリデーションの追加検討</td>
+                            <td class="border border-gray-300">React, Next.js, TS, TailwindCSS, Go, (Gin or Echo), SQLite, GORM</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">55</td>
+                            <td class="border border-gray-300">Go APIテスト入門 (testingパッケージ)</td>
+                            <td class="border border-gray-300">Day 51-53で作成したGoのメモAPIの基本的なユニットテストを作成する。</td>
+                            <td class="border border-gray-300">-</td>
+                            <td class="border border-gray-300"><strong>Go: <code>testing</code>パッケージ</strong>を用いたユニットテストの基本（<code>TestXxx</code>関数、<code>*testing.T</code>、<code>t.Errorf</code>）、HTTPハンドラのテスト（<code>httptest</code>）</td>
+                            <td class="border border-gray-300">React, Next.js, TS, TailwindCSS, Go, (Gin or Echo), SQLite, GORM</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">56</td>
+                            <td class="border border-gray-300">アニメウォッチリスト (フルスタック) - API設計とDBモデル</td>
+                            <td class="border border-gray-300">アニメのお気に入りリストをDBに保存し、閲覧・更新できるアプリのバックエンド設計。</td>
+                            <td class="border border-gray-300">-</td>
+                            <td class="border border-gray-300">Go: 新しいプロジェクトのAPIエンドポイント設計、GORMでのデータモデル定義（Userモデル、Animeモデル、Watchlistモデルなど、リレーションの検討）</td>
+                            <td class="border border-gray-300">React, Next.js, TS, TailwindCSS, Go, (Gin or Echo), SQLite, GORM</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">57</td>
+                            <td class="border border-gray-300">アニメウォッチリスト (フルスタック) - Go API実装 (CRUD)</td>
+                            <td class="border border-gray-300">アニメの検索(外部API)、リストへの追加・削除、視聴ステータス変更などのAPIをGoで実装。</td>
+                            <td class="border border-gray-300">-</td>
+                            <td class="border border-gray-300">Go: 外部API連携、GORMでのCRUD操作（リレーション含む）、APIロジックの実装</td>
+                            <td class="border border-gray-300">React, Next.js, TS, TailwindCSS, Go, (Gin or Echo), SQLite, GORM</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">58</td>
+                            <td class="border border-gray-300">アニメウォッチリスト (フルスタック) - フロント実装</td>
+                            <td class="border border-gray-300">Next.jsでアニメ検索UI、ウォッチリスト表示UI、ステータス変更機能などを実装し、Go APIと連携。</td>
+                            <td class="border border-gray-300">API連携、UI/UXデザイン、状態管理（Redux ToolkitまたはContext APIの本格利用）</td>
+                            <td class="border border-gray-300">Go: APIの動作確認、フロントからのリクエストに合わせた調整</td>
+                            <td class="border border-gray-300">React, Next.js, TS, TailwindCSS, Go, (Gin or Echo), SQLite, GORM</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">59</td>
+                            <td class="border border-gray-300">ワークアウトログ (フルスタック) - API設計とDBモデル</td>
+                            <td class="border border-gray-300">日々のジムでの運動記録（種目、重量、回数、セット数、日付）を保存・確認できるアプリのバックエンド設計。</td>
+                            <td class="border border-gray-300">-</td>
+                            <td class="border border-gray-300">Go: APIエンドポイント設計、GORMでのデータモデル定義（User, WorkoutLog, Exerciseなど）、日付データの扱い</td>
+                            <td class="border border-gray-300">React, Next.js, TS, TailwindCSS, Go, (Gin or Echo), SQLite, GORM</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">60</td>
+                            <td class="border border-gray-300">ワークアウトログ (フルスタック) - Go API実装 (CRUD)</td>
+                            <td class="border border-gray-300">運動記録の登録・一覧取得・詳細取得・更新・削除APIをGoで実装。</td>
+                            <td class="border border-gray-300">-</td>
+                            <td class="border border-gray-300">Go: GORMでのCRUD操作、日付によるフィルタリング、APIロジック</td>
+                            <td class="border border-gray-300">React, Next.js, TS, TailwindCSS, Go, (Gin or Echo), SQLite, GORM</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">61</td>
+                            <td class="border border-gray-300">ワークアウトログ (フルスタック) - フロント実装</td>
+                            <td class="border border-gray-300">Next.jsで記録入力フォーム、カレンダー表示、ログ一覧・詳細表示などを実装し、Go APIと連携。</td>
+                            <td class="border border-gray-300">カレンダーUIライブラリ検討、フォームバリデーション、データ可視化の基礎</td>
+                            <td class="border border-gray-300">Go: APIの動作確認、フロントの要望に応じた調整</td>
+                            <td class="border border-gray-300">React, Next.js, TS, TailwindCSS, Go, (Gin or Echo), SQLite, GORM</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">62</td>
+                            <td class="border border-gray-300">Go: PostgreSQL導入とGORM設定変更</td>
+                            <td class="border border-gray-300">開発環境にPostgreSQLを導入し、これまでのGoプロジェクトのDBをSQLiteからPostgreSQLへ移行。</td>
+                            <td class="border border-gray-300">-</td>
+                            <td class="border border-gray-300"><strong>Go: PostgreSQLの基本</strong>、GORMでのDBドライバ変更、接続設定変更、マイグレーションの再実行</td>
+                            <td class="border border-gray-300">React, Next.js, TS, TailwindCSS, Go, (Gin or Echo), <strong>PostgreSQL</strong>, GORM</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">63</td>
+                            <td class="border border-gray-300">Go: 認証基礎 (JWT) - トークン生成と検証ロジック</td>
+                            <td class="border border-gray-300">GoでJWTを用いた認証の基本的な仕組みを学習。トークン生成関数と検証ミドルウェアの雛形を作成（<code>golang-jwt/jwt</code>）。</td>
+                            <td class="border border-gray-300">-</td>
+                            <td class="border border-gray-300"><strong>Go: JWT認証の概念</strong>、<code>golang-jwt/jwt</code>ライブラリの使い方、クレームの定義、署名と検証、パスワードハッシュ化 (<code>bcrypt</code>)</td>
+                            <td class="border border-gray-300">React, Next.js, TS, TailwindCSS, Go, (Gin or Echo), PostgreSQL, GORM, <code>golang-jwt/jwt</code></td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">64</td>
+                            <td class="border border-gray-300">Go API + JWT認証: ユーザー登録・ログインAPI実装</td>
+                            <td class="border border-gray-300">メモ保存アプリまたはアニメウォッチリストに、Goでユーザー登録APIとログインAPI（JWT発行）を実装。</td>
+                            <td class="border border-gray-300">-</td>
+                            <td class="border border-gray-300">Go: パスワードハッシュ化してDB保存、ログイン時にパスワード検証とJWT発行、認証エラー処理</td>
+                            <td class="border border-gray-300">React, Next.js, TS, TailwindCSS, Go, (Gin or Echo), PostgreSQL, GORM, <code>golang-jwt/jwt</code></td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">65</td>
+                            <td class="border border-gray-300">Next.js + JWT認証: 認証機能フロント実装 (登録・ログイン)</td>
+                            <td class="border border-gray-300">Next.jsでユーザー登録フォーム、ログインフォームを作成し、Day64のGo APIと連携。取得したJWTをローカルストレージ等に保存。</td>
+                            <td class="border border-gray-300">認証状態のグローバル管理（Context API/Redux Toolkit）、保護されたルートの概念、APIリクエストヘッダへのJWT付加</td>
+                            <td class="border border-gray-300">Go: 認証APIの動作確認、CORS設定確認</td>
+                            <td class="border border-gray-300">React, Next.js, TS, TailwindCSS, Go, (Gin or Echo), PostgreSQL, GORM, <code>golang-jwt/jwt</code></td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">66</td>
+                            <td class="border border-gray-300">Go API + JWT認証: 認証必須APIの実装</td>
+                            <td class="border border-gray-300">メモ保存アプリ等の既存APIを、JWT認証必須にする（認証ミドルウェアを適用）。</td>
+                            <td class="border border-gray-300">-</td>
+                            <td class="border border-gray-300">Go: Gin/EchoのミドルウェアとしてJWT検証処理を実装、保護されたエンドポイントへの適用</td>
+                            <td class="border border-gray-300">React, Next.js, TS, TailwindCSS, Go, (Gin or Echo), PostgreSQL, GORM, <code>golang-jwt/jwt</code></td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">67</td>
+                            <td class="border border-gray-300">Next.js + JWT認証: 認証必須APIの利用とログアウト</td>
+                            <td class="border border-gray-300">ログインユーザーのみがメモを閲覧・編集できるようにフロントエンドを修正。ログアウト機能（JWT削除）も実装。</td>
+                            <td class="border border-gray-300">APIリクエスト時のJWT付加の徹底、未認証時のリダイレクト処理、ログアウト処理</td>
+                            <td class="border border-gray-300">Go: 認証ミドルウェアの動作確認</td>
+                            <td class="border border-gray-300">React, Next.js, TS, TailwindCSS, Go, (Gin or Echo), PostgreSQL, GORM, <code>golang-jwt/jwt</code></td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">68</td>
+                            <td class="border border-gray-300">Go APIテスト応用 (testify)</td>
+                            <td class="border border-gray-300"><code>testify</code>ライブラリを導入し、既存のGo APIテストをより便利に記述（アサーション、スイートなど）。</td>
+                            <td class="border border-gray-300">-</td>
+                            <td class="border border-gray-300"><strong>Go: <code>testify/assert</code>, <code>testify/require</code></strong> の利用、テストの構造化 (<code>testify/suite</code>)、モックの基本概念</td>
+                            <td class="border border-gray-300">React, Next.js, TS, TailwindCSS, Go, (Gin or Echo), PostgreSQL, GORM, <code>testify</code></td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">69</td>
+                            <td class="border border-gray-300">画像アップロード機能 (フロントエンド)</td>
+                            <td class="border border-gray-300">プロフィール画像などをアップロードできるUIを作成（<code>&lt;input type="file"&gt;</code>、プレビュー表示）。</td>
+                            <td class="border border-gray-300"><code>FormData</code>オブジェクトの利用、ファイル選択イベントのハンドリング、画像プレビューの実装</td>
+                            <td class="border border-gray-300">Go: ファイルアップロードAPIの設計検討（保存先、ファイル名など）</td>
+                            <td class="border border-gray-300">React, Next.js, TS, TailwindCSS, Go, (Gin or Echo), PostgreSQL, GORM</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">70</td>
+                            <td class="border border-gray-300">Go API: 画像アップロード処理 (ローカル保存)</td>
+                            <td class="border border-gray-300">Goバックエンドで画像ファイルを受け取り、サーバーのローカルディレクトリに保存するAPIを実装。</td>
+                            <td class="border border-gray-300">-</td>
+                            <td class="border border-gray-300">Go: <code>multipart/form-data</code>の処理、ファイル保存処理 (<code>os.Create</code>, <code>io.Copy</code>)、ファイル名生成、エラーハンドリング、セキュリティ考慮（ファイルサイズ、種類制限の基礎）</td>
+                            <td class="border border-gray-300">React, Next.js, TS, TailwindCSS, Go, (Gin or Echo), PostgreSQL, GORM</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">71</td>
+                            <td class="border border-gray-300">お問い合わせフォーム (Go API + メール送信基礎)</td>
+                            <td class="border border-gray-300">Next.jsのフォームからGo API経由でメールを送信する（Goの<code>net/smtp</code>または外部ライブラリの調査）。</td>
+                            <td class="border border-gray-300">フォームバリデーション（Yup/Zod）、API連携</td>
+                            <td class="border border-gray-300">Go: メール送信ライブラリの選定と基本設定、環境変数からの認証情報読み込み、簡単なメールテンプレート</td>
+                            <td class="border border-gray-300">React, Next.js, TS, TailwindCSS, Go, (Gin or Echo), PostgreSQL, GORM, (Go Mail Library)</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">72</td>
+                            <td class="border border-gray-300">Go: WebSocket基礎 (gorilla/websocket)</td>
+                            <td class="border border-gray-300">Goで簡単なWebSocketサーバーを立て、クライアントからの接続を受け付け、メッセージをブロードキャストする。</td>
+                            <td class="border border-gray-300">JavaScriptのWebSocket APIを使ってGoサーバーに接続し、メッセージを送受信する簡単なクライアントページ作成。</td>
+                            <td class="border border-gray-300"><strong>Go: WebSocketプロトコルの理解</strong>、<code>gorilla/websocket</code>ライブラリの基本（Upgrader, Conn）、コネクション管理の基礎、メッセージの読み書き</td>
+                            <td class="border border-gray-300">React, Next.js, TS, TailwindCSS, Go, (Gin or Echo), <strong>gorilla/websocket</strong></td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">73</td>
+                            <td class="border border-gray-300">リアルタイムチャットアプリ (UI基礎 + WebSocket接続)</td>
+                            <td class="border border-gray-300">PDF Day59のチャットアプリ。Next.jsでチャットUIを作成し、Day72のGo WebSocketサーバーに接続。</td>
+                            <td class="border border-gray-300">チャットUIコンポーネント（メッセージリスト、入力フォーム）、WebSocketイベントハンドリング（接続、メッセージ受信、切断）</td>
+                            <td class="border border-gray-300">Go: 複数クライアントのコネクション管理（マップなど）、受信メッセージの全クライアントへのブロードキャスト</td>
+                            <td class="border border-gray-300">React, Next.js, TS, TailwindCSS, Go, (Gin or Echo), gorilla/websocket</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">74</td>
+                            <td class="border border-gray-300">リアルタイムチャットアプリ (ルーム機能基礎)</td>
+                            <td class="border border-gray-300">チャットルームの概念を導入。特定のルームに参加したユーザー間でのみメッセージがやり取りできるようにする。</td>
+                            <td class="border border-gray-300">ルーム選択UI、ルーム参加・退出処理</td>
+                            <td class="border border-gray-300">Go: ルームごとのクライアント管理、メッセージルーティングロジック</td>
+                            <td class="border border-gray-300">React, Next.js, TS, TailwindCSS, Go, (Gin or Echo), gorilla/websocket</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">75</td>
+                            <td class="border border-gray-300">Go: 並行処理の応用 (sync.WaitGroup, Mutex)</td>
+                            <td class="border border-gray-300">WebSocketサーバーでのクライアントごとの処理や、DBアクセスなどで並行処理を安全に行う方法を学習。</td>
+                            <td class="border border-gray-300">-</td>
+                            <td class="border border-gray-300"><strong>Go: <code>sync.WaitGroup</code></strong> で複数ゴルーチンの完了待ち、<strong><code>sync.Mutex</code> / <code>sync.RWMutex</code></strong> による共有リソースへの排他制御、チャネルのより高度な使い方（selectなど）</td>
+                            <td class="border border-gray-300">React, Next.js, TS, TailwindCSS, Go, (Gin or Echo), gorilla/websocket</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">76</td>
+                            <td class="border border-gray-300">Markdownメモ帳 (フルスタック)</td>
+                            <td class="border border-gray-300">Markdown形式でメモを記述し、リアルタイムプレビュー。DBに保存・編集・削除できる（Next.js + Go API）。</td>
+                            <td class="border border-gray-300">Markdownエディタライブラリ(例: <code>react-markdown</code> + <code>remark-gfm</code>)、リアルタイムプレビューの実装</td>
+                            <td class="border border-gray-300">Go: メモデータのCRUD API（Markdownテキストとして保存）、XSS対策の考慮</td>
+                            <td class="border border-gray-300">React, Next.js, TS, TailwindCSS, Go, (Gin or Echo), PostgreSQL, GORM, <code>react-markdown</code></td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">77</td>
+                            <td class="border border-gray-300">掲示板アプリ - API設計とDBモデル (スレッド、投稿)</td>
+                            <td class="border border-gray-300">PDF Day77の掲示板アプリ。スレッド作成、スレッド内への投稿機能を持つバックエンド設計。</td>
+                            <td class="border border-gray-300">-</td>
+                            <td class="border border-gray-300">Go: APIエンドポイント設計（スレッド一覧/作成、投稿一覧/作成など）、GORMデータモデル（User, Thread, Post）、親子関係の表現</td>
+                            <td class="border border-gray-300">React, Next.js, TS, TailwindCSS, Go, (Gin or Echo), PostgreSQL, GORM</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">78</td>
+                            <td class="border border-gray-300">掲示板アプリ - Go API実装 (スレッド・投稿CRUD)</td>
+                            <td class="border border-gray-300">スレッド作成、スレッド一覧取得、投稿作成、特定スレッドの投稿一覧取得APIなどをGoで実装。</td>
+                            <td class="border border-gray-300">-</td>
+                            <td class="border border-gray-300">Go: GORMでのリレーショナルクエリ、ページネーション処理、入力バリデーション</td>
+                            <td class="border border-gray-300">React, Next.js, TS, TailwindCSS, Go, (Gin or Echo), PostgreSQL, GORM</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">79</td>
+                            <td class="border border-gray-300">掲示板アプリ - フロント実装 (スレッド・投稿表示・作成)</td>
+                            <td class="border border-gray-300">Next.jsでスレッド一覧表示、スレッド作成フォーム、投稿表示、投稿フォームなどを実装しGo APIと連携。</td>
+                            <td class="border border-gray-300">動的ルーティング、フォーム処理、状態管理</td>
+                            <td class="border border-gray-300">Go: API動作確認、フロントからのリクエスト形式に合わせた調整</td>
+                            <td class="border border-gray-300">React, Next.js, TS, TailwindCSS, Go, (Gin or Echo), PostgreSQL, GORM</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">80</td>
+                            <td class="border border-gray-300">Go: ロギングライブラリ導入 (zap/logrus)</td>
+                            <td class="border border-gray-300">Goアプリケーションに構造化ロギングライブラリ（<code>zap</code>または<code>logrus</code>）を導入し、ログ出力を改善。</td>
+                            <td class="border border-gray-300">-</td>
+                            <td class="border border-gray-300"><strong>Go: ロギングの重要性</strong>、<code>zap</code>または<code>logrus</code>の基本設定、ログレベル、構造化ログの出力、ミドルウェアとしての利用</td>
+                            <td class="border border-gray-300">React, Next.js, TS, TailwindCSS, Go, (Gin or Echo), PostgreSQL, GORM, (<code>zap</code> or <code>logrus</code>)</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">81</td>
+                            <td class="border border-gray-300">Go: 設定管理 (Viper)</td>
+                            <td class="border border-gray-300">Goアプリケーションの設定をファイルや環境変数から読み込めるように<code>viper</code>ライブラリを導入。</td>
+                            <td class="border border-gray-300">-</td>
+                            <td class="border border-gray-300"><strong>Go: <code>viper</code>ライブラリ</strong>による設定ファイルの読み込み（JSON, YAMLなど）、環境変数からの読み込み、デフォルト値の設定</td>
+                            <td class="border border-gray-300">React, Next.js, TS, TailwindCSS, Go, (Gin or Echo), PostgreSQL, GORM, <code>viper</code></td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">82</td>
+                            <td class="border border-gray-300">Go: Dockerfile作成とコンテナ化</td>
+                            <td class="border border-gray-300">これまで作成したGoバックエンドアプリケーションをDockerコンテナで実行できるようにDockerfileを作成。</td>
+                            <td class="border border-gray-300">-</td>
+                            <td class="border border-gray-300"><strong>Go: Dockerの基本</strong>、Dockerfileの記述（ベースイメージ、WORKDIR, COPY, RUN, EXPOSE, CMD）、マルチステージビルドによる軽量化、ローカルでのビルドと実行</td>
+                            <td class="border border-gray-300">React, Next.js, TS, TailwindCSS, Go, (Gin or Echo), PostgreSQL, GORM, <strong>Docker</strong></td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">83</td>
+                            <td class="border border-gray-300">Next.jsアプリのDocker化 (おまけ)</td>
+                            <td class="border border-gray-300">Next.jsアプリケーションもDockerコンテナで実行できるようにする（<code>standalone</code>出力など）。</td>
+                            <td class="border border-gray-300">-</td>
+                            <td class="border border-gray-300">-</td>
+                            <td class="border border-gray-300">React, Next.js, TS, TailwindCSS, Docker</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">84</td>
+                            <td class="border border-gray-300">Docker Composeによる複数コンテナ管理</td>
+                            <td class="border border-gray-300">Next.jsフロントエンドコンテナ、Goバックエンドコンテナ、PostgreSQLコンテナをDocker Composeで連携・起動。</td>
+                            <td class="border border-gray-300">-</td>
+                            <td class="border border-gray-300"><strong>Go: Docker Composeの基本</strong>、<code>docker-compose.yml</code>の記述（services, volumes, networks, environment）、コンテナ間の通信設定</td>
+                            <td class="border border-gray-300">React, Next.js, TS, TailwindCSS, Go, (Gin or Echo), PostgreSQL, GORM, Docker, <strong>Docker Compose</strong></td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">85</td>
+                            <td class="border border-gray-300">Goバックエンドのデプロイ (Cloud Run / Fly.io 調査)</td>
+                            <td class="border border-gray-300">GoバックエンドアプリケーションをCloud RunまたはFly.ioにデプロイする方法を調査し、ドキュメントを読む。</td>
+                            <td class="border border-gray-300">-</td>
+                            <td class="border border-gray-300"><strong>Go: PaaS/FaaSの概念</strong>、Cloud Run / Fly.io の特徴、デプロイ手順の概要把握</td>
+                            <td class="border border-gray-300">React, Next.js, TS, TailwindCSS, Go, Docker</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">86</td>
+                            <td class="border border-gray-300"><strong>最終目標アプリDay1</strong>: プロジェクトセットアップと基本設計</td>
+                            <td class="border border-gray-300">提案した最終目標アプリ（例：リアルタイムチャット付きミニブログ）のプロジェクトセットアップ、DBスキーマ設計、APIエンドポイント設計。</td>
+                            <td class="border border-gray-300">Next.jsプロジェクト初期設定、Goプロジェクト初期設定、TailwindCSS設定など。</td>
+                            <td class="border border-gray-300">Go: Gin/Echoプロジェクト構造、GORMモデル定義、PostgreSQL準備</td>
+                            <td class="border border-gray-300">React, Next.js, TS, TailwindCSS, Go, Gin/Echo, PostgreSQL, GORM, Docker, Docker Compose</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">87</td>
+                            <td class="border border-gray-300"><strong>最終目標アプリDay2</strong>: ユーザー認証API実装 (Go)</td>
+                            <td class="border border-gray-300">ユーザー登録、ログイン、ログアウトAPIをJWT認証で実装。</td>
+                            <td class="border border-gray-300">-</td>
+                            <td class="border border-gray-300">Go: 認証ロジックの実装、パスワードハッシュ、JWT発行・検証ミドルウェア</td>
+                            <td class="border border-gray-300">React, Next.js, TS, TailwindCSS, Go, Gin/Echo, PostgreSQL, GORM, <code>golang-jwt/jwt</code></td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">88</td>
+                            <td class="border border-gray-300"><strong>最終目標アプリDay3</strong>: ユーザー認証フロント実装 (Next.js)</td>
+                            <td class="border border-gray-300">登録・ログインフォーム作成、認証状態管理、保護ルート設定。</td>
+                            <td class="border border-gray-300">API連携、状態管理 (Context API/Redux Toolkit/Zustand)、UI作成</td>
+                            <td class="border border-gray-300">Go: 認証APIのテストとデバッグ</td>
+                            <td class="border border-gray-300">React, Next.js, TS, TailwindCSS, Go, Gin/Echo, PostgreSQL, GORM</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">89</td>
+                            <td class="border border-gray-300"><strong>最終目標アプリDay4</strong>: コア機能API実装 (Go) - 例:投稿機能</td>
+                            <td class="border border-gray-300">ミニブログなら投稿作成・取得・削除API。プロジェクト管理ならタスク作成・取得API。</td>
+                            <td class="border border-gray-300">-</td>
+                            <td class="border border-gray-300">Go: CRUD API実装、GORMでのデータ操作、入力バリデーション</td>
+                            <td class="border border-gray-300">React, Next.js, TS, TailwindCSS, Go, Gin/Echo, PostgreSQL, GORM</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">90</td>
+                            <td class="border border-gray-300"><strong>最終目標アプリDay5</strong>: コア機能フロント実装 (Next.js) - 例:投稿</td>
+                            <td class="border border-gray-300">投稿フォーム、投稿一覧表示、自分の投稿管理UIなど。</td>
+                            <td class="border border-gray-300">API連携、UIコンポーネント作成、データ表示</td>
+                            <td class="border border-gray-300">Go: APIのテストとデバッグ</td>
+                            <td class="border border-gray-300">React, Next.js, TS, TailwindCSS, Go, Gin/Echo, PostgreSQL, GORM</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">91</td>
+                            <td class="border border-gray-300"><strong>最終目標アプリDay6</strong>: 付加機能API実装 (Go) - 例:いいね機能</td>
+                            <td class="border border-gray-300">ミニブログなら「いいね」機能のAPI。プロジェクト管理ならコメント機能API。</td>
+                            <td class="border border-gray-300">-</td>
+                            <td class="border border-gray-300">Go: リレーションを考慮したAPI実装、トランザクション処理（必要なら）</td>
+                            <td class="border border-gray-300">React, Next.js, TS, TailwindCSS, Go, Gin/Echo, PostgreSQL, GORM</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">92</td>
+                            <td class="border border-gray-300"><strong>最終目標アプリDay7</strong>: 付加機能フロント実装 (Next.js) - 例:いいね</td>
+                            <td class="border border-gray-300">いいねボタンの設置、いいね数の表示、リアルタイム更新の準備。</td>
+                            <td class="border border-gray-300">UIインタラクション、API連携</td>
+                            <td class="border border-gray-300">Go: APIのテストとデバッグ</td>
+                            <td class="border border-gray-300">React, Next.js, TS, TailwindCSS, Go, Gin/Echo, PostgreSQL, GORM</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">93</td>
+                            <td class="border border-gray-300"><strong>最終目標アプリDay8</strong>: リアルタイム機能実装 (WebSocket)</td>
+                            <td class="border border-gray-300">WebSocketを使ったチャット機能またはリアルタイム通知機能の実装開始。</td>
+                            <td class="border border-gray-300">WebSocketクライアント処理</td>
+                            <td class="border border-gray-300">Go: WebSocketサーバーの実装、コネクション管理、メッセージングロジック</td>
+                            <td class="border border-gray-300">React, Next.js, TS, TailwindCSS, Go, Gin/Echo, PostgreSQL, GORM, gorilla/websocket</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">94</td>
+                            <td class="border border-gray-300"><strong>最終目標アプリDay9</strong>: リアルタイム機能連携とテスト</td>
+                            <td class="border border-gray-300">フロントエンドとバックエンドのリアルタイム機能を連携させ、動作確認。</td>
+                            <td class="border border-gray-300">UIでのリアルタイムな更新表示</td>
+                            <td class="border border-gray-300">Go: WebSocketサーバーの安定化、エラー処理</td>
+                            <td class="border border-gray-300">React, Next.js, TS, TailwindCSS, Go, Gin/Echo, PostgreSQL, GORM, gorilla/websocket</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">95</td>
+                            <td class="border border-gray-300"><strong>最終目標アプリDay10</strong>: テスト拡充 (Go API)</td>
+                            <td class="border border-gray-300">作成したGo APIに対してユニットテスト、インテグレーションテスト（基礎）を追加。カバレッジ向上を目指す。</td>
+                            <td class="border border-gray-300">-</td>
+                            <td class="border border-gray-300">Go: <code>testing</code>パッケージ、<code>testify</code>ライブラリの活用、テストケースの追加、DBを使ったテストの注意点（テスト用DB、トランザクションロールバックなど）</td>
+                            <td class="border border-gray-300">React, Next.js, TS, TailwindCSS, Go, Gin/Echo, PostgreSQL, GORM, <code>testify</code></td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">96</td>
+                            <td class="border border-gray-300"><strong>最終目標アプリDay11</strong>: UI/UX改善とリファクタリング</td>
+                            <td class="border border-gray-300">アプリ全体のUI/UXを見直し、改善。コードのリファクタリング（フロントエンド・バックエンド）。</td>
+                            <td class="border border-gray-300">コンポーネントの共通化、可読性の向上、パフォーマンス改善点の洗い出し</td>
+                            <td class="border border-gray-300">Go: コードの可読性向上、パフォーマンス改善点の洗い出し、エラーハンドリングの一貫性</td>
+                            <td class="border border-gray-300">React, Next.js, TS, TailwindCSS, Go, Gin/Echo, PostgreSQL, GORM</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">97</td>
+                            <td class="border border-gray-300"><strong>最終目標アプリDay12</strong>: フロントエンドデプロイ (Vercel等)</td>
+                            <td class="border border-gray-300">Next.jsフロントエンドアプリケーションをVercelやNetlifyにデプロイ。</td>
+                            <td class="border border-gray-300">デプロイ手順の学習、環境変数の設定</td>
+                            <td class="border border-gray-300">-</td>
+                            <td class="border border-gray-300">React, Next.js, TS, TailwindCSS</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">98</td>
+                            <td class="border border-gray-300"><strong>最終目標アプリDay13</strong>: Goバックエンドデプロイ (Cloud Run等)</td>
+                            <td class="border border-gray-300">Goバックエンドアプリケーション（Dockerコンテナ）をCloud RunやFly.ioにデプロイ。PostgreSQLもクラウドDBを利用検討。</td>
+                            <td class="border border-gray-300">-</td>
+                            <td class="border border-gray-300">Go: デプロイプラットフォームの設定、環境変数の設定、DB接続情報の管理、CI/CDの概念学習</td>
+                            <td class="border border-gray-300">React, Next.js, TS, TailwindCSS, Go, Gin/Echo, PostgreSQL, GORM, Docker, (Cloud Run or Fly.io)</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">99</td>
+                            <td class="border border-gray-300"><strong>最終目標アプリDay14</strong>: 総合テストとバグ修正</td>
+                            <td class="border border-gray-300">デプロイ環境での総合的な動作テスト、見つかったバグの修正。</td>
+                            <td class="border border-gray-300">様々なブラウザやデバイスでの動作確認</td>
+                            <td class="border border-gray-300">Go: ログの確認、パフォーマンスモニタリングツールの概要調査</td>
+                            <td class="border border-gray-300">React, Next.js, TS, TailwindCSS, Go, Gin/Echo, PostgreSQL, GORM, Docker</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">100</td>
+                            <td class="border border-gray-300"><strong>最終目標アプリDay15</strong>: 完成、ドキュメント作成、振り返り</td>
+                            <td class="border border-gray-300">アプリケーションの完成。簡単な使い方ドキュメント（READMEなど）作成。100日間の学びと成果を振り返る。</td>
+                            <td class="border border-gray-300">-</td>
+                            <td class="border border-gray-300">Go: -</td>
+                            <td class="border border-gray-300">React, Next.js, TS, TailwindCSS, Go, Gin/Echo, PostgreSQL, GORM, Docker</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+         <p class="text-center text-sm text-gray-600 mt-8">
+            この計画表はスクロールして全体を確認できます。頑張ってください！
+        </p>
+    </div>
+</body>
+</html>

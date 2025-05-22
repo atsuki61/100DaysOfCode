@@ -112,9 +112,8 @@ alwaysApply: true
 
 ## 概要
 - **目的**: React, Next.js (App Router), TypeScript, Tailwind CSS の学習と実践。
-- **目標**: 毎日1つ、簡単なウェブアプリケーションを作成し、100日間継続する。
+- **目標**: [100DaysOfCode.html](mdc:src/app/100DaysOfCode.html)を参照し、毎日1つ、簡単なウェブアプリケーションを作成し、100日間継続する。
 - **現在のディレクトリ構造**: 各日のアプリは `src/app/dayX-appName/` の形式で管理。 (例: `src/app/day1-counter/`)
-
 ## AI への一般的な指示
 - **技術スタック**: 回答やコード生成は、主に以下の技術を前提としてください。
      - React
