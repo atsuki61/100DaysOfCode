@@ -8,7 +8,7 @@ export default function Counter() {
   return (
     //テキスト中央揃え　ボタン縦に1remの隙間
     <div className="text-center space-y-4">
-      {/* サイズ5倍　太字*/}
+      {/* サイズ5倍　黒文字　太字*/}
       <h2 className="text-5xl text-black font-bold">{count}</h2>
       {/*ボタン同士を横方向に0.5rem 離す */}
       <div className="space-x-2">
