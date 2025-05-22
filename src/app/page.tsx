@@ -21,10 +21,8 @@ export default function HomePage() {
           <ul className="space-y-4">
             {apps.map((app) => (
               <li key={app.id} className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-200">
-                <Link href={app.path} legacyBehavior>
-                  <a className="text-2xl font-medium text-blue-600 hover:text-blue-800 hover:underline">
-                    {app.id}: {app.name}
-                  </a>
+                <Link href={app.path} className="text-2xl font-medium text-blue-600 hover:text-blue-800 hover:underline">
+                  {app.id}: {app.name}
                 </Link>
               </li>
             ))}
