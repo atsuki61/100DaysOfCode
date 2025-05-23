@@ -8,7 +8,7 @@
 - Next.js: 15.3.2 (from package.json)
 - React: ^19.0.0 (from package.json)
 - Tailwind CSS: ^4 (from package.json, postcss.config.mjs)
-
+- shadcn/ui
 ## バックエンド
 - (特になし)
 

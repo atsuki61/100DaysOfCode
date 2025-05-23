@@ -14,7 +14,7 @@ export default function Day1Layout({ children }: Day1LayoutProps) {
     // flex-col: 子要素を縦方向に配置
     // min-h-screen: このdivの最小の高さを画面全体の高さに設定します。
     //               これにより、コンテンツの量に関わらずフッターが画面下部に配置されます。
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen  bg-slate-50">
       {/* ヘッダー */}
       {/* パディング4 */}
       <header className="p-4">

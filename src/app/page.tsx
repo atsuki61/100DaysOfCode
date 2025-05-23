@@ -13,11 +13,11 @@ export default function HomePage() {
     },
     {
       id: 'day2',
-      name: 'Day 2: (新しいアプリ名)',
-      path: '/day2-new-app',
+      name: 'Day 2: アニメ視聴リスト',
+      path: '/day2-anime-watchlist',
       imageUrl: null,
-      description: 'これは新しいアプリの説明です。機能Xと機能Yを実装しました。',
-      tags: ['React', 'Vite', 'JavaScript'],
+      description: 'アニメのタイトル一覧と視聴済みチェック機能を持つアプリです。リストレンダリングとmap関数の練習として作成しました。',
+      tags: ['Next.js', 'TypeScript', 'Tailwind CSS', 'React Hooks', 'useState'],
     },
     // ここに新しいアプリを追加していきます
   ];

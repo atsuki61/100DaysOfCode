@@ -119,7 +119,7 @@ alwaysApply: true
      - React
      - Next.js (App Router を使用)
      - TypeScript
-     - Tailwind CSS
+     - Tailwind CSS(shadcn/ui)
 - **コーディングスタイル**:
      - コンポーネントは、関心事の分離を意識し、再利用可能な形で作成してください。
      - Next.js の App Router の規約（`page.tsx`, `layout.tsx`, `loading.tsx`, `error.tsx` など）に従ってください。
