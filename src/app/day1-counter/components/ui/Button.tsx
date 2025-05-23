@@ -3,7 +3,7 @@ import React from 'react';
 // Buttonコンポーネントのpropsの型定義
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'default' | 'destructive' | 'outline' | 'secondary' | 'ghost' | 'link';
-  size?: 'default' | 'sm' | 'lg' | 'icon';
+  size?: 'default' | 'sm' | 'lg' | 'icon' | 'xl';
   children?: React.ReactNode;
 }
 
@@ -60,6 +60,9 @@ const Button: React.FC<ButtonProps> = ({
       break;
     case 'lg':
       sizeClasses = "h-11 px-8";
+      break;
+    case 'xl':
+      sizeClasses = "h-14 px-10 text-lg";
       break;
     case 'icon':
       sizeClasses = "h-10 w-10";

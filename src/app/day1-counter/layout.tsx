@@ -23,7 +23,7 @@ export default function Day1Layout({ children }: Day1LayoutProps) {
           {/* 戻るボタンを左上に配置 */}
           <BackToHomeButton className="self-start" />
           {/* タイトルを戻るボタンの下に配置, 文字サイズ5xl, 太字, 中央寄せ, プライマリカラー */}
-          <h1 className="text-5xl font-bold text-center text-primary">my counter app</h1>
+          <h1 className="text-5xl font-bold text-center text-primary">My Counter App</h1>
         </div>
       </header>
 
@@ -41,7 +41,7 @@ export default function Day1Layout({ children }: Day1LayoutProps) {
       {/* main要素がflex-1で伸びるため、フッターは自然とmainの下、つまりコンテナの一番下に配置される */}
       {/* 背景ミューテッド, テキストを中央揃え, パディング2, 文字小さく */}
       <footer className="bg-muted text-muted-foreground text-center p-2 text-sm">
-        <p>© 2025 MyApp</p>
+        <p>© 2025 My Counter App</p>
       </footer>
     </div>
   );

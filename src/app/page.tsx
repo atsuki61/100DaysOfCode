@@ -26,7 +26,7 @@ export default function HomePage() {
     <div className="min-h-screen bg-background py-12 flex flex-col items-center text-foreground">
       <header className="mb-12">
         <h1 className="text-5xl font-bold text-center text-primary">
-          Projects
+        100 Days Of Code Projects
         </h1>
       </header>
       <main className="w-full max-w-5xl px-4">
