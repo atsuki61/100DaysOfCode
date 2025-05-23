@@ -16,7 +16,7 @@ export default function Header({ title, showHomeLink = true }: HeaderProps) {
 
           </div>
           <div className="flex items-center"> {/* フレックス, 垂直中央寄せ */}
-            <h1 className="text-xl font-bold text-purple-800"> {/* 大きい文字, 太字, 紫文字 */}
+            <h1 className="text-xl font-bold text-black-800"> {/* 大きい文字, 太字, 紫文字 */}
               {title}
             </h1>
           </div>
