@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react'; // 状態管理に使う useState を読み込む
-import Button from '../../../components/Button'; // 共通のButtonコンポーネントをインポート
+import Button from './ui/Button'; // 共通のButtonコンポーネントをインポート
 
 //コンポーネント本体を定義
 export default function Counter() {
