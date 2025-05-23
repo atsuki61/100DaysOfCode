@@ -5,10 +5,15 @@ interface BackToHomeButtonProps {
 }
 
 export default function BackToHomeButton({ className = '' }: BackToHomeButtonProps) {
+  // スタイルを「白背景、黒テキスト、黒枠線、ホバー時薄いグレー」に変更
+  const baseStyle = "inline-flex items-center gap-2 px-4 py-2 bg-white text-black border border-black hover:bg-gray-100 rounded-lg transition-colors duration-200 font-medium";
+  
+  const combinedClassName = `${baseStyle} ${className}`.trim();// スタイルを結合して、余分なスペースを削除
+
   return (
     <Link 
       href="/" 
-      className={`inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground hover:bg-primary/90 rounded-lg transition-colors duration-200 font-medium ${className}`} // インライン要素, アイテム中央, ギャップ2, 横パディング4, 縦パディング2, プライマリ背景, プライマリ前景色, ホバー時薄く, 角丸, トランジション, フォント中太
+      className={combinedClassName}
     >
       {/* 戻るアイコン */}
       <svg 
@@ -16,7 +21,7 @@ export default function BackToHomeButton({ className = '' }: BackToHomeButtonPro
         className="h-4 w-4" // 高さ4, 幅4
         fill="none" 
         viewBox="0 0 24 24" 
-        stroke="currentColor" 
+        stroke="currentColor" // text-black を継承してアイコンも黒になります
         strokeWidth="2"
       >
         <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
@@ -24,4 +29,4 @@ export default function BackToHomeButton({ className = '' }: BackToHomeButtonPro
       Projectsへ
     </Link>
   );
-} 
+}
