@@ -7,7 +7,7 @@ export default function HomePage() {
       id: 'day1',
       name: 'Day 1: カウンターアプリ',
       path: '/day1-counter',
-      imageUrl: '/images/day1-counter-app.png',
+      imageUrl: null,
       description: 'シンプルなカウンターアプリです。ReactのuseStateフックの練習を目的として作成しました。',
       tags: ['Next.js', 'TypeScript', 'Tailwind CSS', 'React Hooks'],
     },
