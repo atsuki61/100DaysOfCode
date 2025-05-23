@@ -7,7 +7,7 @@ export default function Day2Layout({
 }) {
   return (
     <div>
-      <Header title="Day 2: アニメ視聴リスト" /> {/* 共通ヘッダーを使用 */}
+      <Header title="Day 2: アニメ視聴リスト" /> 
 
       {/* メインコンテンツ */}
       <main>
