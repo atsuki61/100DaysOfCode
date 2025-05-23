@@ -3,8 +3,13 @@ import Counter from './components/Counter'; // Counterコンポーネントを�
 
 export default function HomePage() { //ページの中身を定義
   return (
-    // h-full: 親要素の高さ全体を使用 (layout.tsxのmainがflex-1なので、メインコンテンツ領域全体)
-    <div className="flex justify-center items-center h-full">
+    // コンテナ: 縦フレックス、全高、中央寄せ、パディング
+    <div className="flex flex-col items-center justify-center h-full space-y-8">
+      {/* ページタイトル: 大文字、太字、濃いグレー */}
+      <h1 className="text-4xl font-bold text-slate-800 dark:text-slate-100">
+        カウンターアプリ
+      </h1>
+      
       <Counter />
     </div>
   );
