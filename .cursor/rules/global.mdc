@@ -151,13 +151,14 @@ alwaysApply: true
 ## 重要なプロジェクトファイル (常に意識してください)
 - プロジェクト全体のルートレイアウト: `src/app/layout.tsx`
 - グローバルなスタイルシート: `src/app/globals.css`
-- Tailwind CSS 設定ファイル: `tailwind.config.ts` (または `.js`)
+- 全体共通のコンポーネント(header、ボタンなど):`src/components`
+- Tailwind CSS 設定ファイル: tailwindv4の為ありません。
 - TypeScript 設定ファイル: `tsconfig.json`
 - Next.js 設定ファイル: `next.config.ts` (または `.js`)
 - 各アプリのルートページ: `src/app/dayX-appName/page.tsx`
 - 各アプリのレイアウト: `src/app/dayX-appName/layout.tsx` (もしあれば)
 - 各アプリのコンポーネント: `src/app/dayX-appName/components/`
-
+1
 ---
 #### **プロジェクト構成情報**
 以下のファイルはプロジェクトのルートディレクトリに配置されています。
