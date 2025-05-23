@@ -56,19 +56,19 @@ const Button: React.FC<ButtonProps> = ({
   let sizeClasses = "";
   switch (size) {
     case 'sm':
-      sizeClasses = "h-9 px-3";
+      sizeClasses = "h-9 px-3"; // 高さ9, 横パディング3
       break;
     case 'lg':
-      sizeClasses = "h-11 px-8";
+      sizeClasses = "h-11 px-8"; // 高さ11, 横パディング8
       break;
-    case 'xl':
-      sizeClasses = "h-14 px-10 text-lg";
+    case 'xl': // xlサイズ定義
+      sizeClasses = "h-14 px-10 text-lg"; // 高さ14, 横パディング10, 文字サイズlg
       break;
     case 'icon':
-      sizeClasses = "h-10 w-10";
+      sizeClasses = "h-10 w-10"; // 高さ10, 幅10
       break;
     default: // 'default' size (標準の大きさのボタン)
-      sizeClasses = "h-10 py-2 px-4";
+      sizeClasses = "h-10 py-2 px-4"; // 高さ10, 縦パディング2, 横パディング4
       break;
   }
 
@@ -84,4 +84,4 @@ const Button: React.FC<ButtonProps> = ({
   );
 };
 
-export default Button;
+export default Button; 
