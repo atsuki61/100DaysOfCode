@@ -1,7 +1,7 @@
 'use client';
 import Counter from './components/Counter'; // Counterコンポーネントをインポート
 
-export default function HomePage() { //ページの中身を定義
+export default function Day1Page() { //ページの中身を定義
   return (
     // コンテナ: 縦フレックス、全高、中央寄せ、パディング
     <div className="flex flex-col items-center justify-center h-full space-y-8">
