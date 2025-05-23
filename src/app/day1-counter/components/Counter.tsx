@@ -11,10 +11,13 @@ export default function Counter() {
   const reset = () => setCount(0); // リセット関数を追加
 
   return (
+    
     // カウンター表示エリア: 白カード、パディング、角丸、影、中央揃え
     <div className="bg-white dark:bg-gray-800 p-8 sm:p-12 rounded-xl shadow-xl text-center">
       {/* カウンター数値表示エリア */}
+      
       <div className="mb-10"> {/* 下マージン */}
+        
         {/* カウンター数値: 超大文字、太字、グレー */}
         <span className="text-9xl font-bold text-slate-700 dark:text-slate-200">
           {count}

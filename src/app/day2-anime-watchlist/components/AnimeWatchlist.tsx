@@ -30,18 +30,18 @@ export default function AnimeWatchlist() {
   const [animeList, setAnimeList] = useState<Anime[]>(initialAnimeList)
 
   // 視聴済み状態を切り替える関数
-  const toggleWatched = (id: number) => {
-    setAnimeList(prevList =>
-      prevList.map(anime =>
-        anime.id === id ? { ...anime, watched: !anime.watched } : anime
+  const toggleWatched = (id: number) => {//idはアニメのid
+    setAnimeList(prevList =>//prevListはアニメリストの前の状態
+      prevList.map(anime =>//animeはアニメリストの各アニメ
+        anime.id === id ? { ...anime, watched: !anime.watched } : anime//idが一致するアニメのwatchedを切り替える
       )
     )
   }
 
   // 統計情報を計算
-  const totalAnime = animeList.length
-  const watchedCount = animeList.filter(anime => anime.watched).length
-  const watchedPercentage = Math.round((watchedCount / totalAnime) * 100)
+  const totalAnime = animeList.length//totalAnimeはアニメリストの総数
+  const watchedCount = animeList.filter(anime => anime.watched).length//watchedCountは視聴済みのアニメの数
+  const watchedPercentage = Math.round((watchedCount / totalAnime) * 100)//watchedPercentageは視聴率
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-4xl"> {/* コンテナ, 中央寄せ, パディング, 最大幅制限 */}
