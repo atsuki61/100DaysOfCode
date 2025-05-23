@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import BackToHomeButton from '../../components/BackToHomeButton';
 
 // RootLayout コンポーネントの props 型定義
 type Day1LayoutProps = {
@@ -15,10 +16,15 @@ export default function Day1Layout({ children }: Day1LayoutProps) {
     //               これにより、コンテンツの量に関わらずフッターが画面下部に配置されます。
     <div className="flex flex-col min-h-screen">
       {/* ヘッダー */}
-      {/* 背景プライマリ, 文字プライマリ前景, パディング4 */}
-      <header className="bg-primary text-primary-foreground p-4">
-        {/*文字サイズ特大(extra large)*/}
-        <h1 className="text-xl">my counter app</h1>
+      {/* パディング4 */}
+      <header className="p-4">
+        {/* 縦方向レイアウト, ギャップ4 */}
+        <div className="flex flex-col gap-4">
+          {/* 戻るボタンを左上に配置 */}
+          <BackToHomeButton className="self-start" />
+          {/* タイトルを戻るボタンの下に配置, 文字サイズ5xl, 太字, 中央寄せ, プライマリカラー */}
+          <h1 className="text-5xl font-bold text-center text-primary">my counter app</h1>
+        </div>
       </header>
 
       {/* メイン領域（各ページの children がここに入る） */}
