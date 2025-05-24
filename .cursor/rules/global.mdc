@@ -116,10 +116,10 @@ alwaysApply: true
 - **現在のディレクトリ構造**: 各日のアプリは `src/app/dayX-appName/` の形式で管理。 (例: `src/app/day1-counter/`)
 ## AI への一般的な指示
 - **技術スタック**: 回答やコード生成は、主に以下の技術を前提としてください。
-     - React
-     - Next.js (App Router を使用)
-     - TypeScript
-     - Tailwind CSS(shadcn/ui)
+     - Next.js: 15.3.2 (from package.json)
+     - React: ^19.0.0 (from package.json)
+     - Tailwind CSS: ^4 (from package.json, postcss.config.mjs)
+     - shadcn/ui
 - **コーディングスタイル**:
      - コンポーネントは、関心事の分離を意識し、再利用可能な形で作成してください。
      - Next.js の App Router の規約（`page.tsx`, `layout.tsx`, `loading.tsx`, `error.tsx` など）に従ってください。
@@ -171,7 +171,6 @@ alwaysApply: true
   * このファイルには、プロジェクトの主要なディレクトリ構造と、各ディレクトリの役割についての説明が記載されています。
 
 ---
-
 ## タスク支援
 - **コミットメッセージ**: リポジトリに変更があった場合、会話の最後に日本語でコミットメッセージの提案を3つお願いします。可能な範囲で [Conventional Commits](mdc:https:/www.conventionalcommits.org) の形式（例: `feat: 新機能を追加`, `fix: バグを修正`, `docs: ドキュメントを更新`）を意識してください。
 
