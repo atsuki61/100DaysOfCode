@@ -20,14 +20,14 @@ export default function HomePage() {
       description: 'アニメのタイトル一覧と視聴済みチェック機能を持つアプリです。リストレンダリングとmap関数の練習として作成しました。',
       tags: ['React, Next.js, TypeScript, TailwindCSS'],
     },
-    // {
-    //   id: 'day3',
-    //   name: 'Day 3: BMI計算機',
-    //   path: '/day3-bmi-calculator',
-    //   imageUrl: '/images/day3-bmi-calculator.png',
-    //   description: 'BMI計算機です。身長と体重を入力するとBMI値が計算されます。フォーム入力の状態管理、単純な計算ロジック、入力値の型制御を練習しました。',
-    //   tags: ['React, Next.js, TypeScript, TailwindCSS'],
-    // },
+    {
+      id: 'day3',
+      name: 'Day 3: BMI計算機',
+      path: '/day3-bmi-calculator',
+      imageUrl: '/images/day3-bmi-calculator.png',
+      description: 'BMI計算機です。身長と体重を入力するとBMI値が計算されます。フォーム入力の状態管理、単純な計算ロジック、入力値の型制御を練習しました。',
+      tags: ['React, Next.js, TypeScript, TailwindCSS'],
+    },
     // {
     //   id: 'day4',
     //   name: 'Day 4: ToDoリスト',

@@ -27,31 +27,31 @@ const initialAnimeList: Anime[] = [
 ]
 
 export default function AnimeWatchlist() {
-  const [animeList, setAnimeList] = useState<Anime[]>(initialAnimeList)
+  const [animeList, setAnimeList] = useState<Anime[]>(initialAnimeList) //animeListはinitialAnimeListの初期値を持つ,setAnimeListはanimeListの値を更新する関数
 
   // 視聴済み状態を切り替える関数
   const toggleWatched = (id: number) => {//idはアニメのid
     setAnimeList(prevList =>//prevListはアニメリストの前の状態
-      prevList.map(anime =>//animeはアニメリストの各アニメ
-        anime.id === id ? { ...anime, watched: !anime.watched } : anime//idが一致するアニメのwatchedを切り替える
+      prevList.map(anime =>//.mapでアニメリストの各アニメを処理, mapは配列の各要素に対して関数を適用して新しい配列を生成する
+        anime.id === id ? { ...anime, watched: !anime.watched } : anime//もしアニメのidがidと一致する場合は、アニメのwatchedを!anime.watchedで切り替える
       )
     )
   }
 
   // 統計情報を計算
-  const totalAnime = animeList.length//totalAnimeはアニメリストの総数
-  const watchedCount = animeList.filter(anime => anime.watched).length//watchedCountは視聴済みのアニメの数
-  const watchedPercentage = Math.round((watchedCount / totalAnime) * 100)//watchedPercentageは視聴率
+  const totalAnime = animeList.length//totalAnimeはアニメリストの
+  const watchedCount = animeList.filter(anime => anime.watched).length//filterは条件に一致する要素をフィルタリング,視聴済みのアニメの総数を返す
+  const watchedPercentage = Math.round((watchedCount / totalAnime) * 100)//math.roundは小数点以下を四捨五入,視聴率/総数*100で視聴率を計算
 
   return (
-    <div className="container mx-auto px-4 py-8 max-w-4xl"> {/* コンテナ, 中央寄せ, パディング, 最大幅制限 */}
+    <div className="container mx-auto px-4 py-8 max-w-4xl"> {/* コンテナ, 中央寄せ, パディング=上下左右の余白, 最大幅制限 */}
       {/* ヘッダー部分 */}
-      <div className="text-center mb-8"> {/* 中央寄せ, 下マージン */}
+      <div className="text-center mb-8"> {/* 中央寄せ, 下マージン8(マージンは上下の余白) */}
         <h2 className="text-3xl font-bold text-gray-800 mb-4"> {/* 大きい文字, 太字, 濃いグレー文字 */}
           🎬 アニメ視聴リスト
         </h2>
         <div className="bg-white rounded-lg shadow-md p-6"> {/* 白背景, 角丸, 影, パディング */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center"> {/* グリッドレイアウト, レスポンシブ列数, 間隔, 中央寄せ */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center"> {/* グリッドレイアウト, 1列, 最大3列, 間隔, 中央寄せ */}
             <div className="p-4 bg-purple-50 rounded-lg"> {/* パディング, 紫背景, 角丸 */}
               <div className="text-2xl font-bold text-purple-800">{totalAnime}</div> {/* 大きい文字, 太字, 紫文字 */}
               <div className="text-sm text-gray-600">総作品数</div> {/* 小さい文字, グレー文字 */}
@@ -69,14 +69,15 @@ export default function AnimeWatchlist() {
       </div>
 
       {/* アニメリスト */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"> {/* グリッドレイアウト, レスポンシブ列数, 間隔 */}
-        {animeList.map(anime => (
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"> {/* グリッドレイアウト, スマホ1列, タブレット2列, デスクトップ3列, 間隔 */}
+        {animeList.map(anime => ( //map関数でanimeListの各アニメを処理,animeはアニメのデータ
           <div
-            key={anime.id}
+            key={anime.id}//keyはReactでリストの各要素を識別するための一意のキー
+//白背景, 角丸, 影, パディング, 変化アニメーション, ホバー効果200ms, 影の幅, 左境界線の幅
             className={`bg-white rounded-lg shadow-md p-6 transition-all duration-200 hover:shadow-lg border-l-4 ${
               anime.watched 
-                ? 'border-l-green-500 bg-green-50' 
-                : 'border-l-gray-300 hover:border-l-purple-400'
+                ? 'border-l-green-500 bg-green-50' //視聴済みの場合は緑
+                : 'border-l-gray-300 hover:border-l-purple-400' //未視聴の場合はグレー,ホバー効果=マウスを乗せた時に緑に変化
             }`} /* 白背景, 角丸, 影, パディング, 変化アニメーション, ホバー効果, 左境界線, 条件付きスタイル */
           >
             <div className="flex items-start justify-between mb-3"> {/* フレックス, 上寄せ, 両端寄せ, 下マージン */}
@@ -98,9 +99,9 @@ export default function AnimeWatchlist() {
               </div>
               <label className="flex items-center cursor-pointer ml-4"> {/* フレックス, アイテム中央寄せ, ポインターカーソル, 左マージン */}
                 <input
-                  type="checkbox"
-                  checked={anime.watched}
-                  onChange={() => toggleWatched(anime.id)}
+                  type="checkbox"//チェックボックス
+                  checked={anime.watched}//checkedはチェックボックスの状態,anime.watchedはアニメの視聴済み状態
+                  onChange={() => toggleWatched(anime.id)}//onChangeはチェックボックスの状態が変化した時の処理,toggleWatchedは視聴済み状態を切り替える関数,anime.idはアニメのid
                   className="sr-only" // スクリーンリーダー専用（視覚的には隠す）
                 />
                 <div className={`w-6 h-6 rounded border-2 flex items-center justify-center transition-colors ${
