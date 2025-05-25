@@ -119,12 +119,14 @@ alwaysApply: true
      - Next.js: 15.3.2 (from package.json)
      - React: ^19.0.0 (from package.json)
      - Tailwind CSS: ^4 (from package.json, postcss.config.mjs)
-     - shadcn/ui
+     - shadcn/ui ([globals.css](mdc:src/app/globals.css)を参照。)
+
 - **コーディングスタイル**:
      - コンポーネントは、関心事の分離を意識し、再利用可能な形で作成してください。
      - Next.js の App Router の規約（`page.tsx`, `layout.tsx`, `loading.tsx`, `error.tsx` など）に従ってください。
      - TypeScript の型は正確に定義し、コードの安全性を高めてください。
      - Tailwind CSS はユーティリティファーストで記述し、インラインスタイルは避けてください。
+     - headerとfooterは全てのsrc/app/dayX-appName/layout.tsxに適切なタイトルで配置するようにしてください。
 - **Tailwind CSS クラスの注釈**:
      - あなたがコードを生成する際、または私が既存のコードについて質問した際、JSX/TSXファイル内でTailwind CSSのクラスが指定されている `className` プロパティに対して、その主な効果を日本語で非常に簡潔なコメントとして追記してください。
      - コメントは、該当行の行末に `// 説明` の形で記述するか、または該当行の直前に ` {/* 説明 */}` の形で記述してください。
@@ -173,6 +175,7 @@ alwaysApply: true
 ---
 ## タスク支援
 - **コミットメッセージ**: リポジトリに変更があった場合、会話の最後に日本語でコミットメッセージの提案を3つお願いします。可能な範囲で [Conventional Commits](mdc:https:/www.conventionalcommits.org) の形式（例: `feat: 新機能を追加`, `fix: バグを修正`, `docs: ドキュメントを更新`）を意識してください。
+
 
 ## その他
 - このルールは、チャットおよび Command+K リクエストに常に適用されます。

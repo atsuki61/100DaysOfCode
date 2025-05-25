@@ -1,4 +1,5 @@
 import Header from '../../components/common/Header'; // 共通ヘッダーをインポート
+import Footer from '../../components/common/Footer';
 
 export default function Day3Layout({
   children,
@@ -6,13 +7,15 @@ export default function Day3Layout({
   children: React.ReactNode
 }) {
   return (
-    <div>
+    <div className="min-h-screen flex flex-col">
       <Header title="Day 3: BMI計算機" /> 
 
       {/* メインコンテンツ */}
-      <main>
+      <main className="flex-1 pb-20">
         {children}
       </main>
+
+      <Footer currentDay={3} />
     </div>
   )
 } 

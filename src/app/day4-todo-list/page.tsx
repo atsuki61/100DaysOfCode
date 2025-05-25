@@ -22,7 +22,7 @@ export default function TodoListPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
+    <div className="bg-gray-50 py-8">
       <div className="max-w-2xl mx-auto px-4">
         <header className="text-center mb-8">
           <h1 className="text-4xl font-bold text-gray-800 mb-2">
@@ -67,12 +67,6 @@ export default function TodoListPage() {
             </div>
           )}
         </main>
-
-        <footer className="text-center mt-12 pt-8 border-t border-gray-200">
-          <p className="text-gray-500 text-sm">
-            100DaysOfCodeチャレンジ - Day 4 / 100
-          </p>
-        </footer>
       </div>
     </div>
   );

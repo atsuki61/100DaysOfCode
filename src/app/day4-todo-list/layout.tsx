@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Header from '../../components/common/Header';
+import Footer from '../../components/common/Footer';
 
 export const metadata: Metadata = {
   title: 'ToDoリスト | 100DaysOfCode Day 4',
@@ -13,9 +14,12 @@ export default function TodoListLayout({
   children: React.ReactNode;
 }) {
   return (
-    <main>
+    <div className="min-h-screen flex flex-col">
       <Header title="Day 4: ToDoリスト" />
-      {children}
-    </main>
+      <main className="flex-1 pb-20">
+        {children}
+      </main>
+      <Footer currentDay={4} />
+    </div>
   );
 }
