@@ -16,7 +16,7 @@ export default function TodoListLayout({
   return (
     <div className="min-h-screen flex flex-col">
       <Header title="Day 4: ToDoリスト" />
-      <main className="flex-1 pb-20">
+      <main className="flex-1 pb-20 bg-gray-50 py-8">
         {children}
       </main>
       <Footer currentDay={4} />

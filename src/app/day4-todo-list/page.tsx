@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Todo } from './types';
 import { TodoForm } from './components/TodoForm';
 import { TodoItem } from './components/TodoItem';
+import PageHeader from '../../components/common/PageHeader';
 
 export default function TodoListPage() {
   const [todos, setTodos] = useState<Todo[]>([]);
@@ -22,16 +23,13 @@ export default function TodoListPage() {
   };
 
   return (
-    <div className="bg-gray-50 py-8">
+    <div className="py-8">
       <div className="max-w-2xl mx-auto px-4">
-        <header className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-gray-800 mb-2">
-            📝 ToDoリスト
-          </h1>
-          <p className="text-gray-600">
-            Day 4: タスクを追加・削除できるシンプルなToDoアプリ
-          </p>
-        </header>
+        <PageHeader 
+          icon="📝"
+          title="ToDoリスト"
+          description="Day 4: タスクを追加・削除できるシンプルなToDoアプリ"
+        />
 
         <TodoForm onAdd={addTodo} />
 

@@ -5,6 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Input } from '@/components/ui/input' // 入力コンポーネント
 import { Button } from '@/components/ui/button' // ボタンコンポーネント
 import { Label } from '@/components/ui/label' // ラベルコンポーネント
+import PageHeader from '../../components/common/PageHeader'
 
 export default function BMICalculatorPage() {// BMI計算機のページ
   const [height, setHeight] = useState<string>('')// 身長の入力値
@@ -50,9 +51,16 @@ export default function BMICalculatorPage() {// BMI計算機のページ
   const isValidInput = height !== '' && weight !== '' && parseFloat(height) > 0 && parseFloat(weight) > 0//身長と体重が空でないかつ数値であるかつ0より大きい場合
 
   return (
+    
     <>
+    
       {/* 画面全体: 最小高さ100vh, 青系グラデーション背景, パディング4 */}
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4">
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4 py-12">
+        <PageHeader 
+          title="BMI計算機"
+          description="Day 3: 身長と体重を入力してBMIを計算できるシンプルなBMI計算機"
+        />
+
         {/* メインコンテナ: 最大幅大サイズ, 中央配置, 上パディング12 */}
         <div className="max-w-4xl mx-auto pt-12">
           {/* 2カラムレイアウト: デスクトップは横並び, モバイルは縦積み, 間隔8 */}

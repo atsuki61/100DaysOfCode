@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import PageHeader from '../../../components/common/PageHeader'
 
 // アニメの型定義
 interface Anime {
@@ -45,11 +46,14 @@ export default function AnimeWatchlist() {
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-4xl"> {/* コンテナ, 中央寄せ, パディング=上下左右の余白, 最大幅制限 */}
-      {/* ヘッダー部分 */}
+      <PageHeader 
+        icon="🎬"
+        title="アニメ視聴リスト"
+        description="Day 2: アニメのタイトル一覧と「視聴済み」チェック機能"
+      />
+      
+      {/* 統計情報部分 */}
       <div className="text-center mb-8"> {/* 中央寄せ, 下マージン8(マージンは上下の余白) */}
-        <h2 className="text-3xl font-bold text-gray-800 mb-4"> {/* 大きい文字, 太字, 濃いグレー文字 */}
-          🎬 アニメ視聴リスト
-        </h2>
         <div className="bg-white rounded-lg shadow-md p-6"> {/* 白背景, 角丸, 影, パディング */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center"> {/* グリッドレイアウト, 1列, 最大3列, 間隔, 中央寄せ */}
             <div className="p-4 bg-purple-50 rounded-lg"> {/* パディング, 紫背景, 角丸 */}
