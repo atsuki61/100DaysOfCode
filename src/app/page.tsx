@@ -28,14 +28,14 @@ export default function HomePage() {
       description: 'BMI計算機です。身長と体重を入力するとBMI値が計算されます。フォーム入力の状態管理、単純な計算ロジック、入力値の型制御を練習しました。',
       tags: ['React, Next.js, TypeScript, TailwindCSS'],
     },
-    // {
-    //   id: 'day4',
-    //   name: 'Day 4: ToDoリスト',
-    //   path: '/day4-todo-list',
-    //   imageUrl: '/images/day4-todo-list.png',
-    //   description: 'タスクを追加・削除できるシンプルなToDoアプリです。配列状態の管理（追加、削除）、フォーム入力とイベント処理、コンポーネント分割の基礎を練習しました。',
-    //   tags: ['React, Next.js, TypeScript, TailwindCSS'],
-    // },
+    {
+      id: 'day4',
+      name: 'Day 4: ToDoリスト',
+      path: '/day4-todo-list',
+      imageUrl: '/images/day4-todo-list.png',
+      description: 'タスクを追加・削除できるシンプルなToDoアプリです。配列状態の管理（追加、削除）、フォーム入力とイベント処理、コンポーネント分割の基礎を練習しました。',
+      tags: ['React, Next.js, TypeScript, TailwindCSS'],
+    },
     // {
     //   id: 'day5',
     //   name: 'Day 5: じゃんけんゲーム',
