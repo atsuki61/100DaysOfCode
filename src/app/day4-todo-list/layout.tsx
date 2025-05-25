@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Header from '../../components/common/Header';
 
 export const metadata: Metadata = {
   title: 'ToDoリスト | 100DaysOfCode Day 4',
@@ -11,5 +12,10 @@ export default function TodoListLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  return (
+    <main>
+      <Header title="Day 4: ToDoリスト" />
+      {children}
+    </main>
+  );
 }
