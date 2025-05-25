@@ -1,10 +1,10 @@
 'use client'
 
-import { useState } from 'react'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Input } from '@/components/ui/input'
-import { Button } from '@/components/ui/button'
-import { Label } from '@/components/ui/label'
+import { useState } from 'react' // 状態管理
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card' // カードコンポーネント
+import { Input } from '@/components/ui/input' // 入力コンポーネント
+import { Button } from '@/components/ui/button' // ボタンコンポーネント
+import { Label } from '@/components/ui/label' // ラベルコンポーネント
 
 export default function BMICalculatorPage() {// BMI計算機のページ
   const [height, setHeight] = useState<string>('')// 身長の入力値
