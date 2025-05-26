@@ -154,7 +154,7 @@ export default function BMICalculatorPage() {// BMI計算機のページ
                   {/* 低体重 */}
                   <div className="flex items-center justify-between p-3 rounded-lg bg-blue-50 border border-blue-200"> {/* フレックス, アイテム中央, 両端揃え, パディング3, 角丸大, 青背景, 青境界線 */}
                     <span className="font-medium text-blue-700">低体重</span> {/* 中太字, 青文字 */}
-                    <span className="text-sm text-blue-600">&lt; 18.5</span> {/* 小文字, 青文字 */}
+                    <span className="text-sm text-blue-600">18.5未満</span> {/* 小文字, 青文字 */}
                   </div>
                   
                   {/* 標準体重 */}
@@ -172,7 +172,7 @@ export default function BMICalculatorPage() {// BMI計算機のページ
                   {/* 肥満 */}
                   <div className="flex items-center justify-between p-3 rounded-lg bg-red-50 border border-red-200"> {/* フレックス, アイテム中央, 両端揃え, パディング3, 角丸大, 赤背景, 赤境界線 */}
                     <span className="font-medium text-red-700">肥満</span> {/* 中太字, 赤文字 */}
-                    <span className="text-sm text-red-600">&geq; 30.0</span> {/* 小文字, 赤文字 */}
+                    <span className="text-sm text-red-600">30.0以上</span> {/* 小文字, 赤文字 */}
                   </div>
 
                   {/* 注意事項 */}
