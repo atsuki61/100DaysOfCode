@@ -14,3 +14,15 @@
 **思ったこと**:TailwindCSS覚えられない！
 
 **リンク**:https://100-days-of-code-delta.vercel.app/day2-anime-watchlist
+
+### 3日目: 2025年5月23日（月）
+
+**思ったこと**:TailwindCSS覚えられない！
+
+**リンク**:https://100-days-of-code-delta.vercel.app/day3-bmi-calculator
+
+### 2日目: 2025年5月22日（月）
+
+**思ったこと**:TailwindCSS覚えられない！
+
+**リンク**:https://100-days-of-code-delta.vercel.app/day4-todo-list
