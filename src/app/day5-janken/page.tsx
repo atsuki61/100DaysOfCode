@@ -108,6 +108,10 @@ export default function JankenGame() {
 
   // 結果メッセージ
   const getResultMessage = () => {
+    if (isPlaying) {
+      return '🤔 コンピュータ思考中...'
+    }
+    
     switch (gameState.result) {
       case 'win':
         return '🎉 あなたの勝ち！'
@@ -122,6 +126,10 @@ export default function JankenGame() {
 
   // 結果の色
   const getResultColor = () => {
+    if (isPlaying) {
+      return 'text-blue-600'// 思考中は青色
+    }
+    
     switch (gameState.result) {
       case 'win':
         return 'text-green-600'
