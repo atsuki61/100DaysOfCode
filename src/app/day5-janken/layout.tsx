@@ -10,11 +10,7 @@ export default function Day5Layout({
   return (
     <>
       <Header title="100DaysOfCodeチャレンジ" />
-      <PageHeader 
-        icon="✂️" 
-        title="じゃんけんゲーム" 
-        description="ユーザーとコンピュータが対戦するじゃんけんゲーム" 
-      />
+      
       <main className="flex-1"> {/* flex-1: 残り空間を占有 */}
         {children}
       </main>

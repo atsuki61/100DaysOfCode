@@ -1,5 +1,6 @@
 'use client'
 
+import PageHeader from '@/components/common/PageHeader'
 import { useState } from 'react'
 
 type Choice = 'rock' | 'paper' | 'scissors'
@@ -128,6 +129,11 @@ export default function JankenGame() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 py-8 px-4"> {/* 最小高さ画面全体, グラデーション背景, 縦横余白 */}
       <div className="max-w-4xl mx-auto"> {/* 最大幅制限, 中央寄せ */}
+      <PageHeader
+        icon="✂️" 
+        title="じゃんけんゲーム" 
+        description="ユーザーとコンピュータが対戦するじゃんけんゲーム" 
+      />
         
         {/* スコアボード */}
         <div className="bg-white rounded-lg shadow-lg p-6 mb-8"> {/* 白背景, 角丸, 影, 内側余白, 下余白 */}
