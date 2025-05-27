@@ -36,15 +36,15 @@ export default function HomePage() {
       description: 'タスクを追加・削除できるシンプルなToDoアプリです。配列状態の管理（追加、削除）、フォーム入力とイベント処理、コンポーネント分割の基礎を練習しました。',
       tags: ['React, Next.js, TypeScript, TailwindCSS'],
     },
-    // {
-    //   id: 'day5',
-    //   name: 'Day 5: じゃんけんゲーム',
-    //   path: '/day5-janken-game',
-    //   imageUrl: '/images/day5-janken-game.png',
-    //   description: 'ユーザーとコンピュータが対戦するじゃんけんゲームです。乱数生成、条件分岐によるゲームロジック、簡単なUIのインタラクションを練習しました。',
-    //   tags: ['React, Next.js, TypeScript, TailwindCSS'],
-    // },
-    // {
+     {
+       id: 'day5',
+       name: 'Day 5: じゃんけんゲーム',
+       path: '/day5-janken',
+       imageUrl: '/images/day5-janken-game.png',
+       description: 'ユーザーとコンピュータが対戦するじゃんけんゲームです。乱数生成、条件分岐によるゲームロジック、簡単なUIのインタラクションを練習しました。',
+       tags: ['React, Next.js, TypeScript, TailwindCSS'],
+     },
+     //{
     //   id: 'day6',
     //   name: 'Day 6: ストップウォッチ',
     //   path: '/day6-stopwatch',

@@ -24,6 +24,7 @@ export default function Footer({
       2: '/day2-anime-watchlist',
       3: '/day3-bmi-calculator',
       4: '/day4-todo-list',
+      5: '/day5-janken',
       // 今後のdayを追加していく
     };
     
