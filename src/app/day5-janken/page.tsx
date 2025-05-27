@@ -64,15 +64,23 @@ export default function JankenGame() {
   const playGame = (userChoice: Choice) => {
     setIsPlaying(true)
     
+    // ユーザーの手をすぐに反映
+    setGameState(prevState => ({
+      ...prevState,// 前の状態を維持
+      userChoice,// ユーザーの手を設定
+      computerChoice: null, // コンピュータの手をリセット
+      result: null // 結果をリセット
+    }))
+    
     // 少し遅延を入れてドラマチックに
     setTimeout(() => {
       const computerChoice = getComputerChoice()
       const result = determineWinner(userChoice, computerChoice)
       
       setGameState(prevState => ({
-        userChoice,
-        computerChoice,
-        result,
+        ...prevState,// 前の状態を維持
+        computerChoice,// コンピュータの手を設定
+        result,// 結果を設定
         score: {
           user: prevState.score.user + (result === 'win' ? 1 : 0),// ユーザーが勝つ場合、スコアを1増やす
           computer: prevState.score.computer + (result === 'lose' ? 1 : 0),// コンピュータが負ける場合、スコアを1増やす
@@ -87,13 +95,13 @@ export default function JankenGame() {
   // ゲームリセット
   const resetGame = () => {
     setGameState({
-      userChoice: null,
-      computerChoice: null,
-      result: null,
+      userChoice: null,// 
+      computerChoice: null,// 
+      result: null,//
       score: {
-        user: 0,
-        computer: 0,
-        draws: 0
+        user: 0,// ユーザーのスコアを0にする
+        computer: 0,// コンピュータのスコアを0にする
+        draws: 0// 引き分けのスコアを0にする
       }
     })
   }
