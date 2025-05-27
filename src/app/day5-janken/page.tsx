@@ -19,8 +19,8 @@ interface GameState {
 
 const choices: { value: Choice; label: string; emoji: string }[] = [
   { value: 'rock', label: 'グー', emoji: '✊' },
+  { value: 'scissors', label: 'チョキ', emoji: '✌️' },
   { value: 'paper', label: 'パー', emoji: '✋' },
-  { value: 'scissors', label: 'チョキ', emoji: '✌️' }
 ]
 
 export default function JankenGame() {
