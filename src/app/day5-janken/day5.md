@@ -141,16 +141,24 @@ const determineWinner = (userChoice: Choice, computerChoice: Choice): Result => 
 const playGame = (userChoice: Choice) => {
   setIsPlaying(true)  // ゲーム実行中フラグをON
   
+  // ユーザーの手をすぐに反映
+  setGameState(prevState => ({
+    ...prevState,        // 前の状態を維持
+    userChoice,          // ユーザーの手を設定
+    computerChoice: null, // コンピュータの手をリセット
+    result: null         // 結果をリセット
+  }))
+  
   // 1秒後に結果を表示（ドラマチック演出）
   setTimeout(() => {
     const computerChoice = getComputerChoice()           // コンピュータの手を決定
     const result = determineWinner(userChoice, computerChoice)  // 勝敗判定
     
-    // 状態を更新
+    // 最終状態を更新
     setGameState(prevState => ({
-      userChoice,
-      computerChoice,
-      result,
+      ...prevState,      // 前の状態を維持
+      computerChoice,    // コンピュータの手を設定
+      result,           // 結果を設定
       score: {
         user: prevState.score.user + (result === 'win' ? 1 : 0),
         computer: prevState.score.computer + (result === 'lose' ? 1 : 0),
@@ -165,9 +173,11 @@ const playGame = (userChoice: Choice) => {
 
 
 
+- **即座の反映**: ユーザーの手をクリック直後に表示
+- **段階的更新**: 1回目でユーザーの手、2回目で結果を設定
 - **`setTimeout`**: 1秒の遅延でドラマチックな演出
 - **三項演算子**: `result === 'win' ? 1 : 0` で条件に応じてスコア加算
-- **関数型更新**: `prevState => ({...})` で前の状態を基に新しい状態を作成
+- **スプレッド演算子**: `...prevState` で既存の状態を維持しながら部分更新
 
 ## 7. 結果表示のロジック
 
@@ -176,6 +186,10 @@ const playGame = (userChoice: Choice) => {
 ```typescript
 // 結果メッセージ
 const getResultMessage = () => {
+  if (isPlaying) {
+    return '🤔 コンピュータ思考中...'
+  }
+  
   switch (gameState.result) {
     case 'win':
       return '🎉 あなたの勝ち！'
@@ -190,6 +204,10 @@ const getResultMessage = () => {
 
 // 結果の色
 const getResultColor = () => {
+  if (isPlaying) {
+    return 'text-blue-600'  // 思考中は青色
+  }
+  
   switch (gameState.result) {
     case 'win':
       return 'text-green-600'
@@ -205,8 +223,10 @@ const getResultColor = () => {
 
 
 
+- **状態優先**: `isPlaying`を最初にチェックして思考中表示
 - **`switch`文**: 複数の条件分岐を見やすく記述
 - **関数の分離**: メッセージと色の処理を別々の関数に分割
+- **視覚的フィードバック**: 青色で思考中であることを明示
 - **デフォルト値**: 想定外の状態にも対応
 
 ## 8. UIでの状態反映
@@ -238,6 +258,7 @@ const getResultColor = () => {
 
 
 - **条件付きレンダリング**: 状態に応じて表示内容を変更
+- **段階的表示**: ユーザーの手→思考中→結果の順で表示
 - **`disabled`属性**: ボタンの有効/無効を制御
 - **`find`メソッド**: 配列から条件に合う要素を検索
 
