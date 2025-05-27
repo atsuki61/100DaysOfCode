@@ -3,7 +3,7 @@
 import PageHeader from '@/components/common/PageHeader'
 import { useState } from 'react'
 
-type Choice = 'rock' | 'paper' | 'scissors'
+type Choice = 'rock' | 'scissors' | 'paper'
 type Result = 'win' | 'lose' | 'draw' | null
 
 interface GameState {
@@ -45,14 +45,14 @@ export default function JankenGame() {
 
   // 勝敗判定ロジック
   const determineWinner = (userChoice: Choice, computerChoice: Choice): Result => {
-    if (userChoice === computerChoice) {
+    if (userChoice === computerChoice) {// 引き分け
       return 'draw'
     }
     
     if (
-      (userChoice === 'rock' && computerChoice === 'scissors') ||
-      (userChoice === 'paper' && computerChoice === 'rock') ||
-      (userChoice === 'scissors' && computerChoice === 'paper')
+      (userChoice === 'rock' && computerChoice === 'scissors') ||// グーがチョキに勝つ
+      (userChoice === 'paper' && computerChoice === 'rock') ||// パーがグーに勝つ
+      (userChoice === 'scissors' && computerChoice === 'paper')// チョキがパーに勝つ
     ) {
       return 'win'
     }
@@ -74,13 +74,13 @@ export default function JankenGame() {
         computerChoice,
         result,
         score: {
-          user: prevState.score.user + (result === 'win' ? 1 : 0),
-          computer: prevState.score.computer + (result === 'lose' ? 1 : 0),
-          draws: prevState.score.draws + (result === 'draw' ? 1 : 0)
+          user: prevState.score.user + (result === 'win' ? 1 : 0),// ユーザーが勝つ場合、スコアを1増やす
+          computer: prevState.score.computer + (result === 'lose' ? 1 : 0),// コンピュータが負ける場合、スコアを1増やす
+          draws: prevState.score.draws + (result === 'draw' ? 1 : 0)// 引き分けの場合、スコアを1増やす
         }
       }))
       
-      setIsPlaying(false)
+      setIsPlaying(false)// 1秒後にゲームを終了する
     }, 1000)
   }
 
@@ -130,7 +130,7 @@ export default function JankenGame() {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 py-4 px-4 pb-24"> {/* 最小高さ画面全体, グラデーション背景, 縦横余白, 下余白でfooter回避 */}
       <div className="max-w-4xl mx-auto"> {/* 最大幅制限, 中央寄せ */}
         <PageHeader
-          icon="✂️" 
+          icon="👊" 
           title="じゃんけんゲーム" 
           description="ユーザーとコンピュータが対戦するじゃんけんゲーム" 
         />
