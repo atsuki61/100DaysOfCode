@@ -25,6 +25,7 @@ export default function Footer({
       3: '/day3-bmi-calculator',
       4: '/day4-todo-list',
       5: '/day5-janken',
+      6: '/day6-stopwatch',
       // 今後のdayを追加していく
     };
     
