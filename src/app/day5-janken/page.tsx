@@ -23,7 +23,7 @@ const choices: { value: Choice; label: string; emoji: string }[] = [
   { value: 'paper', label: 'パー', emoji: '✋' },
 ]
 
-export default function JankenGame() {
+export default function Day5JankenGame() {
   const [gameState, setGameState] = useState<GameState>({
     userChoice: null,
     computerChoice: null,
@@ -71,7 +71,7 @@ export default function JankenGame() {
       computerChoice: null, // コンピュータの手をリセット
       result: null // 結果をリセット
     }))
-    
+     
     // 少し遅延を入れてドラマチックに
     setTimeout(() => {
       const computerChoice = getComputerChoice()
