@@ -44,14 +44,14 @@ export default function HomePage() {
        description: 'ユーザーとコンピュータが対戦するじゃんけんゲームです。乱数生成、条件分岐によるゲームロジック、簡単なUIのインタラクションを練習しました。',
        tags: ['React, Next.js, TypeScript, TailwindCSS'],
      },
-     //{
-    //   id: 'day6',
-    //   name: 'Day 6: ストップウォッチ',
-    //   path: '/day6-stopwatch',
-    //   imageUrl: '/images/day6-stopwatch.png',
-    //   description: '開始・停止・リセットができるタイマーアプリです。useEffectを使ったタイマー処理（setInterval, clearInterval）、クリーンアップ関数、時間のフォーマットを練習しました。',
-    //   tags: ['React, Next.js, TypeScript, TailwindCSS'],
-    // },
+     {
+       id: 'day6',
+       name: 'Day 6: ストップウォッチ',
+       path: '/day6-stopwatch',
+       imageUrl: '/images/day6-stopwatch.png',
+       description: '開始・停止・リセットができるタイマーアプリです。useEffectを使ったタイマー処理（setInterval, clearInterval）、クリーンアップ関数、時間のフォーマットを練習しました。',
+       tags: ['React, Next.js, TypeScript, TailwindCSS'],
+     },
     // {
     //   id: 'day7',
     //   name: 'Day 7: 単語フラッシュカード',
