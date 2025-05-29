@@ -3,17 +3,17 @@
 import PageHeader from '@/components/common/PageHeader'
 import { useState } from 'react'
 
-type Choice = 'rock' | 'scissors' | 'paper'
-type Result = 'win' | 'lose' | 'draw' | null
+type Choice = 'rock' | 'scissors' | 'paper'// 手の型
+type Result = 'win' | 'lose' | 'draw' | null// 勝敗の型
 
 interface GameState {
-  userChoice: Choice | null
-  computerChoice: Choice | null
-  result: Result
-  score: {
-    user: number
-    computer: number
-    draws: number
+  userChoice: Choice | null// ユーザーの手
+  computerChoice: Choice | null// コンピュータの手
+  result: Result// 勝敗
+  score: {// スコア
+    user: number// ユーザーのスコア
+    computer: number// コンピュータのスコア
+    draws: number// 引き分けのスコア
   }
 }
 
@@ -108,11 +108,11 @@ export default function JankenGame() {
 
   // 結果メッセージ
   const getResultMessage = () => {
-    if (isPlaying) {
+    if (isPlaying) {//もしゲームが実行中なら
       return '🤔 コンピュータ思考中...'
     }
     
-    switch (gameState.result) {
+    switch (gameState.result) {// 結果を表示
       case 'win':
         return '🎉 あなたの勝ち！'
       case 'lose':

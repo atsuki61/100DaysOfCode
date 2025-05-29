@@ -15,4 +15,4 @@ export default function Day5Layout({
       <Footer currentDay={5} />
     </>
   )
-} 
+}
