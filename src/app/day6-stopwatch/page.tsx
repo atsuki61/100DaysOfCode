@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import Header from '../../components/common/Header';
 import PageHeader from '../../components/common/PageHeader';
 import Footer from '../../components/common/Footer';
-import { TimeDisplay, ControlButtons, StatusIndicator, LearningPoints } from './ui';
+import { TimeDisplay, ControlButtons, StatusIndicator } from './ui';
 
 export default function StopwatchPage() {
   const [time, setTime] = useState(0); // 経過時間（ミリ秒）
@@ -55,15 +55,6 @@ export default function StopwatchPage() {
     setTime(0);
   };
 
-  // 学習ポイントのデータ
-  const learningPoints = [
-    'useEffectによるタイマー処理',
-    'setInterval/clearIntervalの使用',
-    'クリーンアップ関数',
-    '時間のフォーマット',
-    'useRefによる値の保持'
-  ];
-
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
       {/* ヘッダー */}
@@ -108,15 +99,9 @@ export default function StopwatchPage() {
               isRunning={isRunning} 
               className="mb-6"
             />
-
-            {/* 学習ポイント */}
-            <LearningPoints 
-              dayNumber={6}
-              points={learningPoints}
-            />
           </div>
         </div>
-      </div>
+      </div> 
 
       {/* フッター */}
       <Footer 
