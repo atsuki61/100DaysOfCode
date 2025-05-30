@@ -160,6 +160,66 @@ alwaysApply: true
 - 各アプリのルートページ: `src/app/dayX-appName/page.tsx`
 - 各アプリのレイアウト: `src/app/dayX-appName/layout.tsx` (もしあれば)
 - 各アプリのコンポーネント: `src/app/dayX-appName/components/`
+
+## 各日のプロジェクトフォルダ構成 (dayX-appName)
+各日のプロジェクトは `src/app/dayX-appName/` 形式で管理され、以下の基本構成に従います：
+
+### 基本ファイル構成
+- **`page.tsx`** (必須): アプリのメインページコンポーネント
+- **`layout.tsx`** (推奨): そのアプリ専用のレイアウト設定（Header、Footer含む）
+- **`dayX.md`** (推奨): その日の学習記録、機能説明、実装メモ
+- **`types.ts`** (必要に応じて): TypeScript型定義
+
+### サブディレクトリ構成
+追加の機能やコンポーネントが必要な場合は、以下のフォルダを作成します：
+
+- **`components/`**: そのアプリ専用のReactコンポーネント
+- **`hooks/`**: カスタムフック
+- **`ui/`**: UI特化コンポーネント（表示用）
+- **`utils/`**: ユーティリティ関数
+- **`lib/`**: ライブラリやヘルパー関数
+
+### 構成例
+
+#### day4-todo-list （シンプル構成）
+```
+src/app/day4-todo-list/
+├── page.tsx          # メインページ
+├── layout.tsx        # レイアウト
+├── day4.md          # 学習記録
+├── types.ts         # Todo型定義
+└── components/      # アプリ専用コンポーネント
+    ├── TodoForm.tsx
+    └── TodoItem.tsx
+```
+
+#### day6-stopwatch （複合構成）
+```
+src/app/day6-stopwatch/
+├── page.tsx          # メインページ
+├── layout.tsx        # レイアウト
+├── day6.md          # 学習記録
+├── components/      # アプリ専用コンポーネント
+│   ├── Stopwatch.tsx
+│   └── index.ts
+├── hooks/           # カスタムフック
+│   ├── useStopwatch.ts
+│   └── index.ts
+└── ui/              # UI特化コンポーネント
+    ├── StatusIndicator.tsx
+    ├── TimeDisplay.tsx
+    ├── ControlButtons.tsx
+    ├── LearningPoints.tsx
+    └── index.ts
+```
+
+### 命名規則とベストプラクティス
+- フォルダ名: kebab-case（例: `day4-todo-list`）
+- ファイル名: PascalCase（例: `TodoForm.tsx`）
+- 各フォルダには必要に応じて `index.ts` を配置してエクスポートを整理
+- 関心事の分離を意識し、役割ごとにフォルダを分ける
+- 再利用可能なコンポーネントは適切に抽象化する
+
 1
 ---
 #### **プロジェクト構成情報**
