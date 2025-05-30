@@ -52,14 +52,14 @@ export default function HomePage() {
        description: '開始・停止・リセットができるタイマーアプリです。useEffectを使ったタイマー処理（setInterval, clearInterval）、クリーンアップ関数、時間のフォーマットを練習しました。',
        tags: ['React, Next.js, TypeScript, TailwindCSS'],
      },
-    // {
-    //   id: 'day7',
-    //   name: 'Day 7: 単語フラッシュカード',
-    //   path: '/day7-flashcard',
-    //   imageUrl: '/images/day7-flashcard.png',
-    //   description: 'TOEIC用英単語の暗記カードです。クリックで意味を表示します。配列データの扱い、状態による表示切替、イベント処理、シンプルなデータ構造を練習しました。',
-    //   tags: ['React, Next.js, TypeScript, TailwindCSS'],
-    // },
+     {
+       id: 'day7',
+       name: 'Day 7: 単語フラッシュカード',
+       path: '/day7-flashcard',
+       imageUrl: '/images/day7-flashcard.png',
+       description: 'TOEIC用英単語の暗記カードです。クリックで意味を表示します。配列データの扱い、状態による表示切替、イベント処理、シンプルなデータ構造を練習しました。',
+       tags: ['React, Next.js, TypeScript, TailwindCSS'],
+     },
     // {
     //   id: 'day8',
     //   name: 'Day 8: アニメキャラ検索',

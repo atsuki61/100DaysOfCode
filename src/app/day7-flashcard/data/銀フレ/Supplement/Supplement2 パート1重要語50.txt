@@ -1,0 +1,249 @@
+
+426	
+001 - face
+Supplement2 パート1重要語50
+
+
+427	
+002 - wear
+Supplement2 パート1重要語50
+
+
+428	
+003 - point
+Supplement2 パート1重要語50
+
+
+429	
+004 - shelf
+Supplement2 パート1重要語50
+
+
+430	
+005 - ladder
+Supplement2 パート1重要語50
+
+
+431	
+006 - examine
+Supplement2 パート1重要語50
+
+
+432	
+007 - greet
+Supplement2 パート1重要語50
+
+
+433	
+008 - sweep
+Supplement2 パート1重要語50
+
+
+434	
+009 - adjust
+Supplement2 パート1重要語50
+
+
+435	
+010 - head
+Supplement2 パート1重要語50
+
+
+436	
+011 - lean
+Supplement2 パート1重要語50
+
+
+437	
+012 - stool
+Supplement2 パート1重要語50
+
+
+438	
+013 - brick
+Supplement2 パート1重要語50
+
+
+439	
+014 - hang
+Supplement2 パート1重要語50
+
+
+440	
+015 - kneel
+Supplement2 パート1重要語50
+
+
+441	
+016 - walkway
+Supplement2 パート1重要語50
+
+
+442	
+017 - water
+Supplement2 パート1重要語50
+
+
+443	
+018 - mount
+Supplement2 パート1重要語50
+
+
+444	
+019 - place
+Supplement2 パート1重要語50
+
+
+445	
+020 - cast
+Supplement2 パート1重要語50
+
+
+446	
+021 - reach
+Supplement2 パート1重要語50
+
+
+447	
+022 - climb
+Supplement2 パート1重要語50
+
+
+448	
+023 - pour
+Supplement2 パート1重要語50
+
+
+449	
+024 - load
+Supplement2 パート1重要語50
+
+
+450	
+025 - board
+Supplement2 パート1重要語50
+
+
+451	
+026 - pot
+Supplement2 パート1重要語50
+
+
+452	
+027 - stack
+Supplement2 パート1重要語50
+
+
+453	
+028 - drawer
+Supplement2 パート1重要語50
+
+
+454	
+029 - instrument
+Supplement2 パート1重要語50
+
+
+455	
+030 - railing
+Supplement2 パート1重要語50
+
+
+456	
+031 - position
+Supplement2 パート1重要語50
+
+
+457	
+032 - lay out
+Supplement2 パート1重要語50
+
+
+458	
+033 - lead to
+Supplement2 パート1重要語50
+
+
+459	
+034 - lawn
+Supplement2 パート1重要語50
+
+
+460	
+035 - fountain
+Supplement2 パート1重要語50
+
+
+461	
+036 - platform
+Supplement2 パート1重要語50
+
+
+462	
+037 - dock
+Supplement2 パート1重要語50
+
+
+463	
+038 - exit
+Supplement2 パート1重要語50
+
+
+464	
+039 - workstation
+Supplement2 パート1重要語50
+
+
+465	
+040 - curb
+Supplement2 パート1重要語50
+
+
+466	
+041 - staircase
+Supplement2 パート1重要語50
+
+
+467	
+042 - spectator
+Supplement2 パート1重要語50
+
+
+468	
+043 - cookware
+Supplement2 パート1重要語50
+
+
+469	
+044 - overlook
+Supplement2 パート1重要語50
+
+
+470	
+045 - pedestrian
+Supplement2 パート1重要語50
+
+
+471	
+046 - occupied
+Supplement2 パート1重要語50
+
+
+472	
+047 - stroll
+Supplement2 パート1重要語50
+
+
+473	
+048 - rest
+Supplement2 パート1重要語50
+
+
+474	
+049 - rug
+Supplement2 パート1重要語50
+
+
+475	
+050 - browse
+Supplement2 パート1重要語50

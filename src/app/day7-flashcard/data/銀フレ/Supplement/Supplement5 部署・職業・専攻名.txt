@@ -1,0 +1,518 @@
+1067	
+001 - board of directors
+Supplement5 部署・職業・専攻名
+
+
+1068	
+002 - accounting department
+Supplement5 部署・職業・専攻名
+
+
+1069	
+003 - marketing department
+Supplement5 部署・職業・専攻名
+
+
+1070	
+004 - human resources department
+Supplement5 部署・職業・専攻名
+
+
+1071	
+005 - personnel department
+Supplement5 部署・職業・専攻名
+
+
+1072	
+006 - administrative department
+Supplement5 部署・職業・専攻名
+
+
+1073	
+007 - legal department
+Supplement5 部署・職業・専攻名
+
+
+1074	
+008 - sales department
+Supplement5 部署・職業・専攻名
+
+
+1075	
+009 - technology department
+Supplement5 部署・職業・専攻名
+
+
+1076	
+010 - security department
+Supplement5 部署・職業・専攻名
+
+
+1077	
+011 - purchasing department
+Supplement5 部署・職業・専攻名
+
+
+1078	
+012 - payroll department
+Supplement5 部署・職業・専攻名
+
+
+1079	
+013 - public relations department
+Supplement5 部署・職業・専攻名
+
+
+1080	
+014 - advertising department
+Supplement5 部署・職業・専攻名
+
+
+1081	
+015 - general affairs department
+Supplement5 部署・職業・専攻名
+
+
+1082	
+016 - plumber
+Supplement5 部署・職業・専攻名
+
+
+1083	
+017 - mechanic
+Supplement5 部署・職業・専攻名
+
+
+1084	
+018 - carpenter
+Supplement5 部署・職業・専攻名
+
+
+1085	
+019 - welder
+Supplement5 部署・職業・専攻名
+
+
+1086	
+020 - electrician
+Supplement5 部署・職業・専攻名
+
+
+1087	
+021 - civil engineering
+Supplement5 部署・職業・専攻名
+
+
+1088	
+022 - doctor
+Supplement5 部署・職業・専攻名
+
+
+1089	
+023 - physician
+Supplement5 部署・職業・専攻名
+
+
+1090	
+024 - dentist
+Supplement5 部署・職業・専攻名
+
+
+1091	
+025 - surgeon
+Supplement5 部署・職業・専攻名
+
+
+1092	
+026 - pharmacist
+Supplement5 部署・職業・専攻名
+
+
+1093	
+027 - veterinarian
+Supplement5 部署・職業・専攻名
+
+
+1094	
+028 - bakery
+Supplement5 部署・職業・専攻名
+
+
+1095	
+029 - florist
+Supplement5 部署・職業・専攻名
+
+
+1096	
+030 - cleaner’s
+Supplement5 部署・職業・専攻名
+
+
+1097	
+031 - locksmith
+Supplement5 部署・職業・専攻名
+
+
+1098	
+032 - moving company
+Supplement5 部署・職業・専攻名
+
+
+1099	
+033 - hardware store
+Supplement5 部署・職業・専攻名
+
+
+1100	
+034 - printer
+Supplement5 部署・職業・専攻名
+
+
+1101	
+035 - courier
+Supplement5 部署・職業・専攻名
+
+
+1102	
+036 - real estate agency
+Supplement5 部署・職業・専攻名
+
+
+1103	
+037 - accountant
+Supplement5 部署・職業・専攻名
+
+
+1104	
+038 - auditor
+Supplement5 部署・職業・専攻名
+
+
+1105	
+039 - anthropologist
+Supplement5 部署・職業・専攻名
+
+
+1106	
+040 - biologist
+Supplement5 部署・職業・専攻名
+
+
+1107	
+041 - botanist
+Supplement5 部署・職業・専攻名
+
+
+1108	
+042 - scientist
+Supplement5 部署・職業・専攻名
+
+
+1109	
+043 - chemist
+Supplement5 部署・職業・専攻名
+
+
+1110	
+044 - historian
+Supplement5 部署・職業・専攻名
+
+
+1111	
+045 - lawyer/attorney
+Supplement5 部署・職業・専攻名
+
+
+1112	
+046 - professor
+Supplement5 部署・職業・専攻名
+
+
+1113	
+047 - paralegal
+Supplement5 部署・職業・専攻名
+
+
+1114	
+048 - weather forecaster
+Supplement5 部署・職業・専攻名
+
+
+1115	
+049 - journalist
+Supplement5 部署・職業・専攻名
+
+
+1116	
+050 - announcer
+Supplement5 部署・職業・専攻名
+
+
+1117	
+051 - host
+Supplement5 部署・職業・専攻名
+
+
+1118	
+052 - correspondent
+Supplement5 部署・職業・専攻名
+
+
+1119	
+053 - editor
+Supplement5 部署・職業・専攻名
+
+
+1120	
+054 - proofreader
+Supplement5 部署・職業・専攻名
+
+
+1121	
+055 - writer
+Supplement5 部署・職業・専攻名
+
+
+1122	
+056 - reporter
+Supplement5 部署・職業・専攻名
+
+
+1123	
+057 - flight attendant
+Supplement5 部署・職業・専攻名
+
+
+1124	
+058 - travel agent
+Supplement5 部署・職業・専攻名
+
+
+1125	
+059 - tour guide
+Supplement5 部署・職業・専攻名
+
+
+1126	
+060 - concierge
+Supplement5 部署・職業・専攻名
+
+
+1127	
+061 - housekeeping
+Supplement5 部署・職業・専攻名
+
+
+1128	
+062 - conductor
+Supplement5 部署・職業・専攻名
+
+
+1129	
+063 - operator
+Supplement5 部署・職業・専攻名
+
+
+1130	
+064 - lifeguard
+Supplement5 部署・職業・専攻名
+
+
+1131	
+065 - architect
+Supplement5 部署・職業・専攻名
+
+
+1132	
+066 - photographer
+Supplement5 部署・職業・専攻名
+
+
+1133	
+067 - choreographer
+Supplement5 部署・職業・専攻名
+
+
+1134	
+068 - painter
+Supplement5 部署・職業・専攻名
+
+
+1135	
+069 - musician
+Supplement5 部署・職業・専攻名
+
+
+1136	
+070 - pianist
+Supplement5 部署・職業・専攻名
+
+
+1137	
+071 - violinist
+Supplement5 部署・職業・専攻名
+
+
+1138	
+072 - actor
+Supplement5 部署・職業・専攻名
+
+
+1139	
+073 - actress
+Supplement5 部署・職業・専攻名
+
+
+1140	
+074 - novelist
+Supplement5 部署・職業・専攻名
+
+
+1141	
+075 - librarian
+Supplement5 部署・職業・専攻名
+
+
+1142	
+076 - curator
+Supplement5 部署・職業・専攻名
+
+
+1143	
+077 - receptionist
+Supplement5 部署・職業・専攻名
+
+
+1144	
+078 - secretary
+Supplement5 部署・職業・専攻名
+
+
+1145	
+079 - spokesperson
+Supplement5 部署・職業・専攻名
+
+
+1146	
+080 - ambassador
+Supplement5 部署・職業・専攻名
+
+
+1147	
+081 - security guard
+Supplement5 部署・職業・専攻名
+
+
+1148	
+082 - cashier
+Supplement5 部署・職業・専攻名
+
+
+1149	
+083 - accounting
+Supplement5 部署・職業・専攻名
+
+
+1150	
+084 - architecture
+Supplement5 部署・職業・専攻名
+
+
+1151	
+085 - astronomy
+Supplement5 部署・職業・専攻名
+
+
+1152	
+086 - biology
+Supplement5 部署・職業・専攻名
+
+
+1153	
+087 - chemistry
+Supplement5 部署・職業・専攻名
+
+
+1154	
+088 - ecology
+Supplement5 部署・職業・専攻名
+
+
+1155	
+089 - economics
+Supplement5 部署・職業・専攻名
+
+
+1156	
+090 - education
+Supplement5 部署・職業・専攻名
+
+
+1157	
+091 - engineering
+Supplement5 部署・職業・専攻名
+
+
+1158	
+092 - fine arts
+Supplement5 部署・職業・専攻名
+
+
+1159	
+093 - history
+Supplement5 部署・職業・専攻名
+
+
+1160	
+094 - journalism
+Supplement5 部署・職業・専攻名
+
+
+1161	
+095 - law
+Supplement5 部署・職業・専攻名
+
+
+1162	
+096 - linguistics
+Supplement5 部署・職業・専攻名
+
+
+1163	
+097 - literature
+Supplement5 部署・職業・専攻名
+
+
+1164	
+098 - mathematics
+Supplement5 部署・職業・専攻名
+
+
+1165	
+099 - medicine
+Supplement5 部署・職業・専攻名
+
+
+1166	
+100 - philosophy
+Supplement5 部署・職業・専攻名
+
+
+1167	
+101 - physics
+Supplement5 部署・職業・専攻名
+
+
+1168	
+102 - psychology
+Supplement5 部署・職業・専攻名
+
+
+1169	
+103 - robotics
+Supplement5 部署・職業・専攻名
+
+
+1170	
+104 - sociology
+Supplement5 部署・職業・専攻名
