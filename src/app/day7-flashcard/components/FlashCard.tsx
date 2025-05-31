@@ -7,24 +7,49 @@ interface FlashCardProps {
 }
 
 export default function FlashCard({ word, isRevealed, onCardClick }: FlashCardProps) {
-  const getLevelColor = (level: string) => {
-    switch (level) {
-      case 'basic':
+  const getCategoryColor = (category: string) => {
+    switch (category) {
+      case '基礎の400語':
         return 'bg-green-100 text-green-800 border-green-200';
-      case 'intermediate':
+      case '頻出の300語':
+        return 'bg-blue-100 text-blue-800 border-blue-200';
+      case '必須の200語':
         return 'bg-yellow-100 text-yellow-800 border-yellow-200';
-      case 'advanced':
+      case '発展の100語':
         return 'bg-red-100 text-red-800 border-red-200';
+      case '設問に出る単語・表現':
+        return 'bg-purple-100 text-purple-800 border-purple-200';
+      case 'パート1重要語':
+        return 'bg-indigo-100 text-indigo-800 border-indigo-200';
       default:
         return 'bg-gray-100 text-gray-800 border-gray-200';
     }
   };
 
+  const getCategoryDisplay = (category: string) => {
+    switch (category) {
+      case '基礎の400語':
+        return '基礎';
+      case '頻出の300語':
+        return '頻出';
+      case '必須の200語':
+        return '必須';
+      case '発展の100語':
+        return '発展';
+      case '設問に出る単語・表現':
+        return '設問';
+      case 'パート1重要語':
+        return 'Part1';
+      default:
+        return 'その他';
+    }
+  };
+
   const getStatusIcon = (status: string) => {
     switch (status) {
-      case 'learned':
+      case 'mastered':
         return '✅';
-      case 'need_review':
+      case 'studying':
         return '📝';
       default:
         return '';
@@ -33,9 +58,9 @@ export default function FlashCard({ word, isRevealed, onCardClick }: FlashCardPr
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'learned':
+      case 'mastered':
         return 'bg-green-500 text-white';
-      case 'need_review':
+      case 'studying':
         return 'bg-orange-500 text-white';
       default:
         return 'bg-gray-400 text-white';
@@ -49,9 +74,9 @@ export default function FlashCard({ word, isRevealed, onCardClick }: FlashCardPr
     >
       <div className="bg-white rounded-2xl shadow-2xl p-8 min-h-[400px] flex flex-col justify-center items-center text-center transition-all duration-300 hover:shadow-3xl border-2 border-gray-100"> {/* 白背景, 大角丸, 大影, パディング8, 最小高さ400px, フレックス縦配置, 中央寄せ, ホバー時影拡大 */}
         
-        {/* 難易度レベルバッジ */}
-        <div className={`absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-semibold border ${getLevelColor(word.level)}`}> {/* 絶対位置, 右上, パディング, 角丸, 小文字, 太字, 枠線, 動的色 */}
-          {word.level.toUpperCase()}
+        {/* カテゴリバッジ */}
+        <div className={`absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-semibold border ${getCategoryColor(word.category)}`}> {/* 絶対位置, 右上, パディング, 角丸, 小文字, 太字, 枠線, 動的色 */}
+          {getCategoryDisplay(word.category)}
         </div>
 
         {/* 学習ステータスバッジ */}

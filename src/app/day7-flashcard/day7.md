@@ -1,138 +1,282 @@
-# Day 7: 単語フラッシュカードアプリ
+# Day 7: 銀フレ単語フラッシュカードアプリ
 
-## 📚 アプリ概要
+## 📚 概要
 
-TOEIC頻出単語を効率的に学習できるフラッシュカードアプリです。
+Day 7では、「銀フレ（TOEIC L&R TEST 出る単特急 銀のフレーズ）」の単語データを使用した**フラッシュカードアプリ**を作成しました。TOEIC 300-600点を目指す学習者向けの実用的な語彙学習ツールです。
 
-### 主な機能
-- **フラッシュカード表示**: 英単語 ⇔ 日本語意味の切り替え
-- **ナビゲーション**: 前後のカード移動
-- **シャッフル機能**: ランダムな順序で学習
-- **進捗表示**: 現在位置と学習進捗の可視化
-- **キーボード操作**: スペースキー、矢印キーでの操作
-- **レスポンシブデザイン**: PC・スマートフォン対応
+### 🎯 主な機能
 
-## 🎯 学習ポイント
+1. **単語カード表示**
+   - 英単語と日本語意味の切り替え表示
+   - 発音記号と例文の表示
+   - 銀フレのカテゴリ別バッジ表示
 
-### React の基本概念
-- **useState**: 複数の状態管理（カードインデックス、表示状態、データ配列）
-- **useEffect**: キーボードイベントリスナーの登録・削除
-- **配列操作**: Fisher-Yatesアルゴリズムによるシャッフル
-- **条件付きレンダリング**: カードの表面・裏面切り替え
-- **イベント処理**: クリック、キーボード操作
+2. **学習状態管理**
+   - マスター済み / 学習中 / 未学習の3段階管理
+   - リアルタイム進捗統計表示
+   - 学習データの永続化準備
 
-### TypeScript の型安全性
-- **interface定義**: WordCard、FlashcardState、Props型
-- **Generics**: useState<WordCard[]>による型推論
-- **型アノテーション**: イベントハンドラの型指定
+3. **フィルタリング機能**
+   - 全ての単語モード
+   - 学習中単語のみ表示モード
 
-### コンポーネント設計
-- **関心事の分離**: FlashCard、NavigationControls の分離
-- **Props の設計**: 適切なデータ受け渡し
-- **再利用性**: 汎用的なコンポーネント設計
+4. **ナビゲーション**
+   - 前後の単語への移動
+   - カードシャッフル機能
+   - キーボードショートカット対応
 
-## 🛠️ 技術実装
+### 🎮 操作方法
 
-### 1. データ構造設計
-```typescript
-interface WordCard {
-  id: number;
-  word: string;        // 英単語
-  meaning: string;     // 日本語の意味
-  pronunciation: string; // 発音記号
-  example: string;     // 例文
-  level: 'basic' | 'intermediate' | 'advanced'; // 難易度
-}
-```
-
-### 2. 状態管理パターン
-```typescript
-const [words, setWords] = useState<WordCard[]>(toeicWords);
-const [currentIndex, setCurrentIndex] = useState(0);
-const [isRevealed, setIsRevealed] = useState(false);
-```
-
-### 3. Fisher-Yatesシャッフルアルゴリズム
-```typescript
-const handleShuffle = () => {
-  const shuffledWords = [...words];
-  for (let i = shuffledWords.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [shuffledWords[i], shuffledWords[j]] = [shuffledWords[j], shuffledWords[i]];
-  }
-  setWords(shuffledWords);
-};
-```
-
-### 4. キーボードイベント処理
-```typescript
-useEffect(() => {
-  const handleKeyDown = (event: KeyboardEvent) => {
-    switch (event.code) {
-      case 'Space': handleCardClick(); break;
-      case 'ArrowLeft': handlePrevious(); break;
-      case 'ArrowRight': handleNext(); break;
-    }
-  };
-  
-  window.addEventListener('keydown', handleKeyDown);
-  return () => window.removeEventListener('keydown', handleKeyDown);
-}, [currentIndex, words.length, isRevealed]);
-```
-
-## 💡 設計の工夫
-
-### UX設計
-- **直感的操作**: クリック・キーボード両対応
-- **視覚的フィードバック**: カードの状態変化をアニメーションで表現
-- **進捗の可視化**: プログレスバーと統計情報
-- **アクセシビリティ**: キーボードナビゲーション対応
-
-### パフォーマンス最適化
-- **メモリ効率**: useEffectの依存配列による適切な再レンダリング制御
-- **イベントリスナー管理**: コンポーネントアンマウント時のクリーンアップ
-
-### データ設計
-- **実用的コンテンツ**: 実際のTOEIC頻出単語を使用
-- **段階的学習**: 難易度レベル（Basic/Intermediate/Advanced）
-- **包括的情報**: 発音記号・例文付きで実践的
-
-## 🎨 UI/UX デザイン
-
-### カラーパレット
-- **Basic**: 緑系（初級者向け）
-- **Intermediate**: 黄系（中級者向け）  
-- **Advanced**: 赤系（上級者向け）
-- **メイン**: 青・紫のグラデーション
-
-### インタラクション
-- **カードフリップ**: スムーズなトランジション
-- **ホバー効果**: ボタンとカードの反応
-- **プログレス表示**: リアルタイム進捗更新
-
-## 📊 データサンプル
-
-15個のTOEIC頻出単語を収録:
-- **ビジネス語彙**: revenue, budget, negotiate
-- **学術用語**: analyze, implement, strategy  
-- **日常業務**: schedule, conference, proposal
-
-## 🔄 今後の拡張可能性
-
-1. **学習記録**: 正答率・学習時間の記録
-2. **カテゴリ分け**: 分野別単語グループ
-3. **音声再生**: 発音確認機能
-4. **復習システム**: 間違った単語の再出題
-5. **難易度調整**: ユーザーレベルに応じた出題
-
-## 📚 参考・引用
-
-- **データソース**: TOEIC公式単語リスト参考
-- **UI参考**: 人気の語学学習アプリのUXパターン
-- **アルゴリズム**: Fisher-Yates shuffle（均等なランダム化）
+- **スペースキー / クリック**: カードを裏返す
+- **←/→ キー**: 前後のカードへ移動
+- **1キー**: マスター済みに設定（裏面時）
+- **2キー**: 学習中に設定（裏面時）
+- **Ctrl+S**: カードをシャッフル
 
 ---
 
-**開発時間**: 約3時間  
-**ファイル数**: 8ファイル（コンポーネント2、データ1、型定義1、レイアウト1、メインページ1、学習記録1、インデックス1）  
-**学習効果**: ⭐⭐⭐⭐☆
+## 🗃️ データ構造
+
+### WordCard（単語カード）
+```typescript
+interface WordCard {
+  id: number;
+  word: string;         // 英単語
+  meaning: string;      // 日本語の意味
+  pronunciation: string; // 発音記号
+  example: string;      // 例文
+  category: string;     // カテゴリ（基礎の400語など）
+  learningStatus: 'not_studied' | 'studying' | 'mastered';
+}
+```
+
+### 銀フレカテゴリ
+
+1. **基礎の400語**: TOEIC 300-450点レベル
+2. **頻出の300語**: TOEIC 450-550点レベル  
+3. **必須の200語**: TOEIC 550-600点レベル
+4. **発展の100語**: TOEIC 600点超レベル
+5. **設問に出る単語・表現**: リーディング対策
+6. **パート1重要語**: リスニング対策
+
+---
+
+## ⚛️ React の学習ポイント
+
+### 1. useState フック（状態管理の基礎）
+
+複数の状態を効率的に管理する方法を学習しました。
+
+```tsx
+// 複数の状態を管理
+const [words, setWords] = useState<WordCard[]>(toeicWords);
+const [currentIndex, setCurrentIndex] = useState(0);
+const [isRevealed, setIsRevealed] = useState(false);
+const [filterMode, setFilterMode] = useState<'all' | 'studying'>('all');
+```
+
+**ポイント**:
+- 各状態は独立して管理
+- TypeScriptでの型安全な状態管理
+- 初期値の適切な設定
+
+### 2. useMemo フック（計算結果のメモ化）
+
+パフォーマンス最適化のため、計算コストの高い処理をメモ化します。
+
+```tsx
+// フィルタリングされた単語リストをメモ化
+const filteredWords = useMemo(() => {
+  if (filterMode === 'studying') {
+    return words.filter(word => word.learningStatus === 'studying');
+  }
+  return words;
+}, [words, filterMode]);
+
+// 学習統計の計算をメモ化
+const learningStats = useMemo(() => {
+  const total = words.length;
+  const mastered = words.filter(word => word.learningStatus === 'mastered').length;
+  const studying = words.filter(word => word.learningStatus === 'studying').length;
+  const notStudied = words.filter(word => word.learningStatus === 'not_studied').length;
+  
+  return { total, mastered, studying, notStudied };
+}, [words]);
+```
+
+**ポイント**:
+- 依存配列で再計算のタイミングを制御
+- 不必要な再計算を防いでパフォーマンス向上
+- filter処理などの重い計算に有効
+
+### 3. useEffect フック（副作用の処理）
+
+コンポーネントのライフサイクルに応じて処理を実行します。
+
+```tsx
+// フィルターモード変更時の処理
+useEffect(() => {
+  setCurrentIndex(0);
+  setIsRevealed(false);
+}, [filterMode]);
+
+// キーボードイベントの設定と削除
+useEffect(() => {
+  const handleKeyDown = (event: KeyboardEvent) => {
+    // キーボード処理
+  };
+
+  window.addEventListener('keydown', handleKeyDown);
+  return () => {
+    window.removeEventListener('keydown', handleKeyDown);
+  };
+}, [currentIndex, filteredWords.length, isRevealed]);
+```
+
+**ポイント**:
+- イベントリスナーの適切な設定と削除
+- 依存配列による実行条件の制御
+- クリーンアップ関数でメモリリークを防止
+
+### 4. 配列フィルタリングと map 処理
+
+データの変換と状態更新を効率的に行います。
+
+```tsx
+// 配列フィルタリング
+const filteredWords = words.filter(word => 
+  word.learningStatus === 'studying'
+);
+
+// 配列の不変更新（map を使用）
+const updateWordStatus = (wordId: number, status: LearningStatus) => {
+  setWords(prevWords =>
+    prevWords.map(word =>
+      word.id === wordId ? { ...word, learningStatus: status } : word
+    )
+  );
+};
+```
+
+**ポイント**:
+- 元の配列を変更せず新しい配列を作成
+- スプレッド演算子による不変更新
+- 条件に基づく効率的なフィルタリング
+
+---
+
+## 🎨 UI/UX デザイン
+
+### Tailwind CSS の効果的な使用
+
+```tsx
+{/* カテゴリ別の色分け */}
+<div className={`px-3 py-1 rounded-full text-xs font-semibold border ${getCategoryColor(word.category)}`}>
+  {getCategoryDisplay(word.category)}
+</div>
+
+{/* ホバーアニメーション */}
+<div className="transition-all duration-300 hover:shadow-3xl">
+  {/* カード内容 */}
+</div>
+
+{/* レスポンシブグリッド */}
+<div className="grid grid-cols-2 gap-3">
+  {/* ボタン */}
+</div>
+```
+
+### アクセシビリティ対応
+
+- キーボード操作の完全サポート
+- 適切なaria属性の使用
+- 色だけに依存しない情報伝達
+
+---
+
+## 📊 データ管理
+
+### 1. 銀フレデータの構造化
+
+```typescript
+// カテゴリ別データの整理
+export const ginFrameCategories = {
+  basic: basicWords,        // 基礎の400語
+  frequent: frequentWords,  // 頻出の300語
+  essential: essentialWords, // 必須の200語
+  advanced: advancedWords,  // 発展の100語
+  questions: questionWords, // 設問語彙
+  part1: part1Words        // Part1語彙
+};
+
+// 統計情報の提供
+export const ginFrameStats = {
+  totalWords: allGinFrameWords.length,
+  basicCount: basicWords.length,
+  frequentCount: frequentWords.length,
+  // ...
+};
+```
+
+### 2. 型安全性の確保
+
+```typescript
+// カテゴリの型定義
+category: '基礎の400語' | '頻出の300語' | '必須の200語' | 
+          '発展の100語' | '設問に出る単語・表現' | 'パート1重要語' | 'Supplement';
+
+// 学習ステータスの型定義
+learningStatus: 'not_studied' | 'studying' | 'mastered';
+```
+
+---
+
+## 🚀 今後の拡張案
+
+### 1. データ永続化
+- LocalStorageへの学習進捗保存
+- インポート/エクスポート機能
+
+### 2. 学習機能の強化
+- 間隔反復学習（Spaced Repetition）
+- 学習履歴とグラフ表示
+- 弱点単語の自動抽出
+
+### 3. カスタマイズ機能
+- カテゴリ別学習モード
+- 学習時間の設定
+- 音声読み上げ機能
+
+### 4. ゲーミフィケーション
+- 学習ストリーク
+- 達成バッジシステム
+- 学習目標設定
+
+---
+
+## 💡 学習のまとめ
+
+Day 7を通じて、以下のスキルを習得しました：
+
+### React スキル
+- 複数状態の効率的な管理
+- パフォーマンス最適化（useMemo）
+- イベント処理とクリーンアップ
+- 条件付きレンダリングの活用
+
+### TypeScript スキル
+- 複雑な型定義の作成
+- ジェネリクスの適切な使用
+- 型安全な配列操作
+
+### UI/UX スキル
+- アクセシブルなインターフェース設計
+- アニメーションとトランジション
+- レスポンシブデザイン
+
+### データ設計スキル
+- 大規模データの構造化
+- 効率的なフィルタリング
+- 統計情報の計算
+
+このアプリは実用的なTOEIC学習ツールとして活用できるレベルに達しており、Reactの状態管理とデータ処理の実践的なスキルが身につきました！

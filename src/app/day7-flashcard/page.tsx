@@ -2,10 +2,10 @@
  * Day 7: 単語フラッシュカードアプリ（学習進捗管理機能付き）
  * 
  * 機能概要:
- * - TOEIC頻出単語のフラッシュカード表示
+ * - 銀フレTOEIC単語のフラッシュカード表示
  * - クリックで英単語と日本語意味を切り替え
- * - 覚えた・覚えてないの学習状態管理
- * - 復習モード（覚えてない単語のみ表示）
+ * - 覚えた・学習中の学習状態管理
+ * - 学習中モード（学習中の単語のみ表示）
  * - 前後ナビゲーション機能
  * - カードシャッフル機能
  * - 進捗・統計表示
@@ -30,12 +30,12 @@ export default function FlashcardPage() {
   const [words, setWords] = useState<WordCard[]>(toeicWords); // 単語データ
   const [currentIndex, setCurrentIndex] = useState(0); // 現在表示中のカードインデックス
   const [isRevealed, setIsRevealed] = useState(false); // カードの裏面表示状態
-  const [filterMode, setFilterMode] = useState<'all' | 'need_review'>('all'); // フィルターモード
+  const [filterMode, setFilterMode] = useState<'all' | 'studying'>('all'); // フィルターモード
 
   // === フィルタリングされた単語リスト ===
   const filteredWords = useMemo(() => {
-    if (filterMode === 'need_review') {
-      return words.filter(word => word.learningStatus === 'need_review');
+    if (filterMode === 'studying') {
+      return words.filter(word => word.learningStatus === 'studying');
     }
     return words;
   }, [words, filterMode]);
@@ -43,11 +43,11 @@ export default function FlashcardPage() {
   // === 学習統計の計算 ===
   const learningStats: LearningStats = useMemo(() => {
     const total = words.length;
-    const learned = words.filter(word => word.learningStatus === 'learned').length;
-    const needReview = words.filter(word => word.learningStatus === 'need_review').length;
+    const mastered = words.filter(word => word.learningStatus === 'mastered').length;
+    const studying = words.filter(word => word.learningStatus === 'studying').length;
     const notStudied = words.filter(word => word.learningStatus === 'not_studied').length;
     
-    return { total, learned, needReview, notStudied };
+    return { total, mastered, studying, notStudied };
   }, [words]);
 
   // === フィルター変更時の処理 ===
@@ -98,7 +98,7 @@ export default function FlashcardPage() {
   };
 
   // === フィルターモード切り替え ===
-  const handleFilterChange = (mode: 'all' | 'need_review') => {
+  const handleFilterChange = (mode: 'all' | 'studying') => {
     setFilterMode(mode);
   };
 
@@ -133,13 +133,13 @@ export default function FlashcardPage() {
         case 'Digit1':
           if (isRevealed) {
             event.preventDefault();
-            handleStatusChange('learned');
+            handleStatusChange('mastered');
           }
           break;
         case 'Digit2':
           if (isRevealed) {
             event.preventDefault();
-            handleStatusChange('need_review');
+            handleStatusChange('studying');
           }
           break;
       }
@@ -157,14 +157,14 @@ export default function FlashcardPage() {
       <div className="w-full max-w-2xl mx-auto">
         <PageHeader
           icon="📚"
-          title="TOEIC 単語フラッシュカード"
-          description="復習が必要な単語はありません！"
+          title="銀フレ 単語フラッシュカード"
+          description="学習中の単語はありません！"
           className="mb-8"
         />
         <div className="bg-white rounded-lg p-8 text-center shadow-md">
           <div className="text-6xl mb-4">🎉</div>
           <h2 className="text-2xl font-bold text-green-600 mb-4">おめでとうございます！</h2>
-          <p className="text-gray-600 mb-6">すべての単語を覚えました。</p>
+          <p className="text-gray-600 mb-6">学習中の単語がありません。</p>
           <button
             onClick={() => setFilterMode('all')}
             className="px-6 py-3 bg-blue-500 text-white rounded-lg font-semibold hover:bg-blue-600"
@@ -184,8 +184,8 @@ export default function FlashcardPage() {
       {/* ページヘッダー */}
       <PageHeader
         icon="📚"
-        title="TOEIC 単語フラッシュカード"
-        description={`${filterMode === 'all' ? '全ての単語' : '復習モード'} - クリックで意味を確認`}
+        title="銀フレ 単語フラッシュカード"
+        description={`${filterMode === 'all' ? '全ての単語' : '学習中モード'} - クリックで意味を確認`}
         className="mb-8"
       />
 
@@ -198,19 +198,11 @@ export default function FlashcardPage() {
 
       {/* フラッシュカードメインエリア */}
       <div className="space-y-6">
-        
-        {/* 現在のカード表示 */}
+        {/* フラッシュカード */}
         <FlashCard
           word={currentWord}
           isRevealed={isRevealed}
           onCardClick={handleCardClick}
-        />
-
-        {/* 学習状態選択ボタン */}
-        <LearningButtons
-          currentStatus={currentWord.learningStatus}
-          onStatusChange={handleStatusChange}
-          isRevealed={isRevealed}
         />
 
         {/* ナビゲーションコントロール */}
@@ -222,47 +214,22 @@ export default function FlashcardPage() {
           onShuffle={handleShuffle}
         />
 
-        {/* 操作ガイド */}
-        <div className="bg-white rounded-lg p-4 shadow-md">
-          <h3 className="text-lg font-semibold mb-3 text-gray-800">📖 操作方法</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm text-gray-600">
-            <div>• <strong>スペースキー:</strong> カードを裏返す</div>
-            <div>• <strong>1キー:</strong> 覚えた（裏面時）</div>
-            <div>• <strong>2キー:</strong> 要復習（裏面時）</div>
-            <div>• <strong>←/→ キー:</strong> 前/次のカードへ</div>
-            <div>• <strong>クリック:</strong> カードを裏返す</div>
-            <div>• <strong>Ctrl+S:</strong> カードをシャッフル</div>
-          </div>
-        </div>
+        {/* 学習ボタン（意味表示時のみ） */}
+        {isRevealed && (
+          <LearningButtons
+            onStatusChange={handleStatusChange}
+          />
+        )}
+      </div>
 
-        {/* 学習統計 */}
-        <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg p-4">
-          <h3 className="text-lg font-semibold mb-3 text-gray-800">📊 学習統計</h3>
-          <div className="grid grid-cols-4 gap-4 text-center">
-            <div>
-              <div className="text-2xl font-bold text-blue-600">{learningStats.total}</div>
-              <div className="text-sm text-gray-600">総数</div>
-            </div>
-            <div>
-              <div className="text-2xl font-bold text-green-600">{learningStats.learned}</div>
-              <div className="text-sm text-gray-600">習得済み</div>
-            </div>
-            <div>
-              <div className="text-2xl font-bold text-orange-600">{learningStats.needReview}</div>
-              <div className="text-sm text-gray-600">要復習</div>
-            </div>
-            <div>
-              <div className="text-2xl font-bold text-gray-600">{learningStats.notStudied}</div>
-              <div className="text-sm text-gray-600">未学習</div>
-            </div>
-          </div>
-          <div className="mt-3 text-center">
-            <div className="text-sm text-gray-600">
-              習得率: <span className="font-bold text-green-600">
-                {Math.round((learningStats.learned / learningStats.total) * 100)}%
-              </span>
-            </div>
-          </div>
+      {/* キーボードショートカット説明 */}
+      <div className="mt-8 bg-gray-50 rounded-lg p-4"> {/* 上マージン8, 薄灰背景, 角丸, パディング4 */}
+        <h3 className="text-sm font-semibold text-gray-700 mb-2">キーボードショートカット:</h3> {/* 小文字, 太字, 濃灰文字, 下マージン2 */}
+        <div className="grid grid-cols-2 gap-2 text-xs text-gray-600"> {/* グリッド2列, 間隔2, 極小文字, 薄灰文字 */}
+          <div>スペース: カード反転</div>
+          <div>←/→: 前後移動</div>
+          <div>1: マスター済み</div>
+          <div>2: 学習中</div>
         </div>
       </div>
     </div>

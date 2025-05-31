@@ -6,14 +6,14 @@ interface UseStopwatchOptions {
   onTimeChange?: (time: number) => void; // 時間変更時のコールバック
 }
 
-interface UseStopwatchReturn {
-  time: number;
-  isRunning: boolean;
-  start: () => void;
-  stop: () => void;
-  reset: () => void;
-  toggle: () => void;
-  formatTime: (showMilliseconds?: boolean) => string;
+interface UseStopwatchReturn {//戻り値の型
+  time: number;//時間
+  isRunning: boolean;//実行中かどうか
+  start: () => void;//開始
+  stop: () => void;//停止
+  reset: () => void;//リセット
+  toggle: () => void;//トグル
+  formatTime: (showMilliseconds?: boolean) => string;//時間をフォーマットする
 }
 
 export const useStopwatch = (options: UseStopwatchOptions = {}): UseStopwatchReturn => {

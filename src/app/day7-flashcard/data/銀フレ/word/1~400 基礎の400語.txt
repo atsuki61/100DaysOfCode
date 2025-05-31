@@ -1,0 +1,1997 @@
+1	
+001 - begin
+
+
+
+2	
+002 - work
+
+
+
+3	
+003 - company
+
+
+
+4	
+004 - order
+
+
+
+5	
+005 - employee
+
+
+
+6	
+006 - information
+
+
+
+7	
+007 - receive
+
+
+
+8	
+008 - last
+
+
+
+9	
+009 - need
+
+
+
+10	
+010 - travel
+
+
+
+11	
+011 - job
+
+
+
+12	
+012 - find
+
+
+
+13	
+013 - department
+
+
+
+14	
+014 - let
+
+
+
+15	
+015 - visit
+
+
+
+16	
+016 - also
+
+
+
+17	
+017 - sure
+
+
+
+18	
+018 - leave
+
+
+
+19	
+019 - sales
+
+
+
+20	
+020 - move
+
+
+
+21	
+021 - arrive
+
+
+
+22	
+022 - hold
+
+
+
+23	
+023 - return
+
+
+
+24	
+024 - opening
+
+
+
+25	
+025 - soon
+
+
+
+26	
+026 - sign
+
+
+
+27	
+027 - able
+
+
+
+28	
+028 - few
+
+
+
+29	
+029 - pay
+
+
+
+30	
+030 - trip
+
+
+
+31	
+031 - sell
+
+
+
+32	
+032 - several
+
+
+
+33	
+033 - hear
+
+
+
+34	
+034 - still
+
+
+
+35	
+035 - later
+
+
+
+36	
+036 - different
+
+
+
+37	
+037 - close
+
+
+
+38	
+038 - stay
+
+
+
+39	
+039 - already
+
+
+
+40	
+040 - present
+
+
+
+41	
+041 - factory
+
+
+
+42	
+042 - interested
+
+
+
+43	
+043 - cover
+
+
+
+44	
+044 - choose
+
+
+
+45	
+045 - apartment
+
+
+
+46	
+046 - paper
+
+
+
+47	
+047 - note
+
+
+
+48	
+048 - both
+
+
+
+49	
+049 - either
+
+
+
+50	
+050 - neither
+
+
+
+51	
+051 - ago
+
+
+
+52	
+052 - finish
+
+
+
+53	
+053 - hope
+
+
+
+54	
+054 - part
+
+
+
+55	
+055 - important
+
+
+
+56	
+056 - mail
+
+
+
+57	
+057 - once
+
+
+
+58	
+058 - run
+
+
+
+59	
+059 - bring
+
+
+
+60	
+060 - place
+
+
+
+61	
+061 - become
+
+
+
+62	
+062 - ready
+
+
+
+63	
+063 - closed
+
+
+
+64	
+064 - enter
+
+
+
+65	
+065 - happen
+
+
+
+66	
+066 - customer
+
+
+
+67	
+067 - past
+
+
+
+68	
+068 - same
+
+
+
+69	
+069 - early
+
+
+
+70	
+070 - join
+
+
+
+71	
+071 - decide
+
+
+
+72	
+072 - plant
+
+
+
+73	
+073 - pleased
+
+
+
+74	
+074 - enough
+
+
+
+75	
+075 - film
+
+
+
+76	
+076 - case
+
+
+
+77	
+077 - meal
+
+
+
+78	
+078 - someone
+
+
+
+79	
+079 - always
+
+
+
+80	
+080 - piece
+
+
+
+81	
+081 - carry
+
+
+
+82	
+082 - ship
+
+
+
+83	
+083 - reach
+
+
+
+84	
+084 - remember
+
+
+
+85	
+085 - field
+
+
+
+86	
+086 - dish
+
+
+
+87	
+087 - post
+
+
+
+88	
+088 - sound
+
+
+
+89	
+089 - break
+
+
+
+90	
+090 - seem
+
+
+
+91	
+091 - build
+
+
+
+92	
+092 - necessary
+
+
+
+93	
+093 - believe
+
+
+
+94	
+094 - grow
+
+
+
+95	
+095 - though
+
+
+
+96	
+096 - kind
+
+
+
+97	
+097 - miss
+
+
+
+98	
+098 - spend
+
+
+
+99	
+099 - busy
+
+
+
+100	
+100 - save
+
+
+
+101	
+101 - map
+
+
+
+102	
+102 - ride
+
+
+
+103	
+103 - almost
+
+
+
+104	
+104 - goods
+
+
+
+105	
+105 - quickly
+
+
+
+106	
+106 - wide
+
+
+
+107	
+107 - famous
+
+
+
+108	
+108 - power
+
+
+
+109	
+109 - book
+
+
+
+110	
+110 - wrong
+
+
+
+111	
+111 - play
+
+
+
+112	
+112 - usual
+
+
+
+113	
+113 - certain
+
+
+
+114	
+114 - difficult
+
+
+
+115	
+115 - store
+
+
+
+116	
+116 - clear
+
+
+
+117	
+117 - forget
+
+
+
+118	
+118 - rise
+
+
+
+119	
+119 - chance
+
+
+
+120	
+120 - draw
+
+
+
+121	
+121 - glad
+
+
+
+122	
+122 - warm
+
+
+
+123	
+123 - matter
+
+
+
+124	
+124 - useful
+
+
+
+125	
+125 - refer
+
+
+
+126	
+126 - safe
+
+
+
+127	
+127 - simple
+
+
+
+128	
+128 - discover
+
+
+
+129	
+129 - park
+
+
+
+130	
+130 - promise
+
+
+
+131	
+131 - proud
+
+
+
+132	
+132 - pretty
+
+
+
+133	
+133 - noise
+
+
+
+134	
+134 - perhaps
+
+
+
+135	
+135 - farm
+
+
+
+136	
+136 - product
+
+
+
+137	
+137 - invite
+
+
+
+138	
+138 - offer
+
+
+
+139	
+139 - provide
+
+
+
+140	
+140 - include
+
+
+
+141	
+141 - report
+
+
+
+142	
+142 - problem
+
+
+
+143	
+143 - likely
+
+
+
+144	
+144 - request
+
+
+
+145	
+145 - cost
+
+
+
+146	
+146 - complete
+
+
+
+147	
+147 - form
+
+
+
+148	
+148 - experience
+
+
+
+149	
+149 - attend
+
+
+
+150	
+150 - announce
+
+
+
+151	
+151 - position
+
+
+
+152	
+152 - repair
+
+
+
+153	
+153 - local
+
+
+
+154	
+154 - purpose
+
+
+
+155	
+155 - discuss
+
+
+
+156	
+156 - expect
+
+
+
+157	
+157 - increase
+
+
+
+158	
+158 - mention
+
+
+
+159	
+159 - tour
+
+
+
+160	
+160 - charge
+
+
+
+161	
+161 - discount
+
+
+
+162	
+162 - research
+
+
+
+163	
+163 - hire
+
+
+
+164	
+164 - recently
+
+
+
+165	
+165 - main
+
+
+
+166	
+166 - account
+
+
+
+167	
+167 - international
+
+
+
+168	
+168 - copy
+
+
+
+169	
+169 - probably
+
+
+
+170	
+170 - process
+
+
+
+171	
+171 - result
+
+
+
+172	
+172 - president
+
+
+
+173	
+173 - material
+
+
+
+174	
+174 - record
+
+
+
+175	
+175 - apply
+
+
+
+176	
+176 - detail
+
+
+
+177	
+177 - rate
+
+
+
+178	
+178 - industry
+
+
+
+179	
+179 - public
+
+
+
+180	
+180 - yet
+
+
+
+181	
+181 - possible
+
+
+
+182	
+182 - furniture
+
+
+
+183	
+183 - arrange
+
+
+
+184	
+184 - notice
+
+
+
+185	
+185 - create
+
+
+
+186	
+186 - serve
+
+
+
+187	
+187 - prepare
+
+
+
+188	
+188 - policy
+
+
+
+189	
+189 - package
+
+
+
+190	
+190 - agency
+
+
+
+191	
+191 - introduce
+
+
+
+192	
+192 - reserve
+
+
+
+193	
+193 - allow
+
+
+
+194	
+194 - press
+
+
+
+195	
+195 - weather
+
+
+
+196	
+196 - support
+
+
+
+197	
+197 - publish
+
+
+
+198	
+198 - describe
+
+
+
+199	
+199 - add
+
+
+
+200	
+200 - deliver
+
+
+
+201	
+201 - state
+
+
+
+202	
+202 - accept
+
+
+
+203	
+203 - accounting
+
+
+
+204	
+204 - based
+
+
+
+205	
+205 - own
+
+
+
+206	
+206 - develop
+
+
+
+207	
+207 - excellent
+
+
+
+208	
+208 - bill
+
+
+
+209	
+209 - produce
+
+
+
+210	
+210 - host
+
+
+
+211	
+211 - explain
+
+
+
+212	
+212 - less
+
+
+
+213	
+213 - passenger
+
+
+
+214	
+214 - successful
+
+
+
+215	
+215 - activity
+
+
+
+216	
+216 - lead
+
+
+
+217	
+217 - traffic
+
+
+
+218	
+218 - actually
+
+
+
+219	
+219 - follow
+
+
+
+220	
+220 - inform
+
+
+
+221	
+221 - prefer
+
+
+
+222	
+222 - final
+
+
+
+223	
+223 - professional
+
+
+
+224	
+224 - improve
+
+
+
+225	
+225 - medical
+
+
+
+226	
+226 - official
+
+
+
+227	
+227 - continue
+
+
+
+228	
+228 - total
+
+
+
+229	
+229 - branch
+
+
+
+230	
+230 - entrance
+
+
+
+231	
+231 - fair
+
+
+
+232	
+232 - attention
+
+
+
+233	
+233 - cleaning
+
+
+
+234	
+234 - expensive
+
+
+
+235	
+235 - seated
+
+
+
+236	
+236 - share
+
+
+
+237	
+237 - daily
+
+
+
+238	
+238 - instead
+
+
+
+239	
+239 - national
+
+
+
+240	
+240 - perform
+
+
+
+241	
+241 - remove
+
+
+
+242	
+242 - suggest
+
+
+
+243	
+243 - direction
+
+
+
+244	
+244 - express
+
+
+
+245	
+245 - amount
+
+
+
+246	
+246 - personal
+
+
+
+247	
+247 - publishing
+
+
+
+248	
+248 - view
+
+
+
+249	
+249 - wish
+
+
+
+250	
+250 - appear
+
+
+
+251	
+251 - arrangement
+
+
+
+252	
+252 - manage
+
+
+
+253	
+253 - direct
+
+
+
+254	
+254 - paid
+
+
+
+255	
+255 - agree
+
+
+
+256	
+256 - cause
+
+
+
+257	
+257 - damage
+
+
+
+258	
+258 - raise
+
+
+
+259	
+259 - respond
+
+
+
+260	
+260 - directly
+
+
+
+261	
+261 - limited
+
+
+
+262	
+262 - packaging
+
+
+
+263	
+263 - degree
+
+
+
+264	
+264 - further
+
+
+
+265	
+265 - quite
+
+
+
+266	
+266 - regular
+
+
+
+267	
+267 - broadcast
+
+
+
+268	
+268 - contain
+
+
+
+269	
+269 - experienced
+
+
+
+270	
+270 - fix
+
+
+
+271	
+271 - opinion
+
+
+
+272	
+272 - society
+
+
+
+273	
+273 - condition
+
+
+
+274	
+274 - correct
+
+
+
+275	
+275 - audience
+
+
+
+276	
+276 - general
+
+
+
+277	
+277 - advise
+
+
+
+278	
+278 - especially
+
+
+
+279	
+279 - period
+
+
+
+280	
+280 - professor
+
+
+
+281	
+281 - effort
+
+
+
+282	
+282 - highly
+
+
+
+283	
+283 - lower
+
+
+
+284	
+284 - reason
+
+
+
+285	
+285 - similar
+
+
+
+286	
+286 - fit
+
+
+
+287	
+287 - intended
+
+
+
+288	
+288 - invitation
+
+
+
+289	
+289 - patient
+
+
+
+290	
+290 - responsible
+
+
+
+291	
+291 - certainly
+
+
+
+292	
+292 - method
+
+
+
+293	
+293 - claim
+
+
+
+294	
+294 - immediately
+
+
+
+295	
+295 - law
+
+
+
+296	
+296 - row
+
+
+
+297	
+297 - downtown
+
+
+
+298	
+298 - helpful
+
+
+
+299	
+299 - track
+
+
+
+300	
+300 - value
+
+
+
+301	
+301 - ability
+
+
+
+302	
+302 - collect
+
+
+
+303	
+303 - comfortable
+
+
+
+304	
+304 - deal
+
+
+
+305	
+305 - gather
+
+
+
+306	
+306 - unable
+
+
+
+307	
+307 - officer
+
+
+
+308	
+308 - role
+
+
+
+309	
+309 - bit
+
+
+
+310	
+310 - figure
+
+
+
+311	
+311 - fuel
+
+
+
+312	
+312 - regarding
+
+
+
+313	
+313 - reasonable
+
+
+
+314	
+314 - twice
+
+
+
+315	
+315 - arrival
+
+
+
+316	
+316 - central
+
+
+
+317	
+317 - district
+
+
+
+318	
+318 - modern
+
+
+
+319	
+319 - permit
+
+
+
+320	
+320 - positive
+
+
+
+321	
+321 - profit
+
+
+
+322	
+322 - rather
+
+
+
+323	
+323 - surprised
+
+
+
+324	
+324 - address
+
+
+
+325	
+325 - education
+
+
+
+326	
+326 - tip
+
+
+
+327	
+327 - automobile
+
+
+
+328	
+328 - garage
+
+
+
+329	
+329 - handle
+
+
+
+330	
+330 - knowledge
+
+
+
+331	
+331 - private
+
+
+
+332	
+332 - realize
+
+
+
+333	
+333 - reply
+
+
+
+334	
+334 - rest
+
+
+
+335	
+335 - familiar
+
+
+
+336	
+336 - former
+
+
+
+337	
+337 - heating
+
+
+
+338	
+338 - nearly
+
+
+
+339	
+339 - plastic
+
+
+
+340	
+340 - steel
+
+
+
+341	
+341 - demand
+
+
+
+342	
+342 - distance
+
+
+
+343	
+343 - easily
+
+
+
+344	
+344 - pleasure
+
+
+
+345	
+345 - remain
+
+
+
+346	
+346 - standard
+
+
+
+347	
+347 - carefully
+
+
+
+348	
+348 - clerk
+
+
+
+349	
+349 - common
+
+
+
+350	
+350 - compare
+
+
+
+351	
+351 - electricity
+
+
+
+352	
+352 - whole
+
+
+
+353	
+353 - abroad
+
+
+
+354	
+354 - approach
+
+
+
+355	
+355 - borrow
+
+
+
+356	
+356 - bottom
+
+
+
+357	
+357 - duty
+
+
+
+358	
+358 - separate
+
+
+
+359	
+359 - subject
+
+
+
+360	
+360 - tax
+
+
+
+361	
+361 - earn
+
+
+
+362	
+362 - fare
+
+
+
+363	
+363 - formal
+
+
+
+364	
+364 - suit
+
+
+
+365	
+365 - worried
+
+
+
+366	
+366 - aware
+
+
+
+367	
+367 - balance
+
+
+
+368	
+368 - content
+
+
+
+369	
+369 - lift
+
+
+
+370	
+370 - occasion
+
+
+
+371	
+371 - proof
+
+
+
+372	
+372 - respect
+
+
+
+373	
+373 - single
+
+
+
+374	
+374 - wing
+
+
+
+375	
+375 - worth
+
+
+
+376	
+376 - anywhere
+
+
+
+377	
+377 - guess
+
+
+
+378	
+378 - length
+
+
+
+379	
+379 - solve
+
+
+
+380	
+380 - storm
+
+
+
+381	
+381 - willing
+
+
+
+382	
+382 - chapter
+
+
+
+383	
+383 - crowded
+
+
+
+384	
+384 - custom
+
+
+
+385	
+385 - praise
+
+
+
+386	
+386 - bright
+
+
+
+387	
+387 - century
+
+
+
+388	
+388 - scientific
+
+
+
+389	
+389 - vote
+
+
+
+390	
+390 - anyway
+
+
+
+391	
+391 - match
+
+
+
+392	
+392 - object
+
+
+
+393	
+393 - progress
+
+
+
+394	
+394 - regard
+
+
+
+395	
+395 - rush
+
+
+
+396	
+396 - stair
+
+
+
+397	
+397 - appearance
+
+
+
+398	
+398 - cross
+
+
+
+399	
+399 - divide
+
+
+
+400	
+400 - empty
