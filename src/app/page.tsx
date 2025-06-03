@@ -60,14 +60,14 @@ export default function HomePage() {
        description: 'TOEIC用英単語の暗記カードです。クリックで意味を表示します。配列データの扱い、状態による表示切替、イベント処理、シンプルなデータ構造を練習しました。',
        tags: ['React, Next.js, TypeScript, TailwindCSS'],
      },
-    // {
-    //   id: 'day8',
-    //   name: 'Day 8: アニメキャラ検索',
-    //   path: '/day8-anime-character-search',
-    //   imageUrl: '/images/day8-anime-character-search.png',
-    //   description: 'アニメキャラクターのリストを名前でフィルタ検索できます。リストフィルタリング、制御された入力(検索フィールドの状態管理)、文字列操作を練習しました。',
-    //   tags: ['React, Next.js, TypeScript, TailwindCSS'],
-    // },
+     {
+       id: 'day8',
+       name: 'Day 8: アニメキャラ検索',
+       path: '/day8-anime-character-search',
+       imageUrl: '/images/day8-anime-character-search.png',
+       description: 'アニメキャラクターのリストを名前でフィルタ検索できます。リストフィルタリング、制御された入力(検索フィールドの状態管理)、文字列操作を練習しました。',
+       tags: ['React, Next.js, TypeScript, TailwindCSS'],
+     },
     // {
     //   id: 'day9',
     //   name: 'Day 9: アニメ名言ジェネレーター',

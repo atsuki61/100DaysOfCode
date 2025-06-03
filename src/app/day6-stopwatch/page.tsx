@@ -19,7 +19,9 @@ import { useState, useEffect, useRef } from 'react';
 // 共通コンポーネント: ページヘッダー
 import PageHeader from '../../components/common/PageHeader';
 // ストップウォッチ専用UIコンポーネント
-import { TimeDisplay, ControlButtons, StatusIndicator } from './ui';
+import TimeDisplay from './ui/TimeDisplay';
+import ControlButtons from './ui/ControlButtons';
+import StatusIndicator from './ui/StatusIndicator';
 
 export default function StopwatchPage() {
   // === 状態管理 ===
