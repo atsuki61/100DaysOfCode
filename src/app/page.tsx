@@ -68,14 +68,14 @@ export default function HomePage() {
        description: 'アニメキャラクターのリストを名前でフィルタ検索できます。リストフィルタリング、制御された入力(検索フィールドの状態管理)、文字列操作を練習しました。',
        tags: ['React, Next.js, TypeScript, TailwindCSS'],
      },
-    // {
-    //   id: 'day9',
-    //   name: 'Day 9: アニメ名言ジェネレーター',
-    //   path: '/day9-anime-quote-generator',
-    //   imageUrl: '/images/day9-anime-quote-generator.png',
-    //   description: '毎回ランダムなアニメの名言を表示するアプリです（固定データまたは簡易APIモックから）。APIからのデータ取得(fetch/axiosの基本、非同期処理Promise/async/awaitの基礎）、JSONデータの扱い、エラーハンドリングの基本を練習しました。',
-    //   tags: ['React, Next.js, TypeScript, TailwindCSS'],
-    // },
+    {
+      id: 'day9',
+      name: 'Day 9: アニメ名言ジェネレーター',
+      path: '/day9-anime-quote-generator',
+      imageUrl: '/images/day9-anime-quote-generator.png',
+      description: '毎回ランダムなアニメの名言を表示するアプリです（固定データまたは簡易APIモックから）。APIからのデータ取得(fetch/axiosの基本、非同期処理Promise/async/awaitの基礎）、JSONデータの扱い、エラーハンドリングの基本を練習しました。',
+      tags: ['React, Next.js, TypeScript, TailwindCSS'],
+    },
     // {
     //   id: 'day10',
     //   name: 'Day 10: 支出管理アプリ',

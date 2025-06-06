@@ -26,8 +26,9 @@ export default function Footer({
       4: '/day4-todo-list',
       5: '/day5-janken',
       6: '/day6-stopwatch',
-      7: '/day7-color-palette-generator',
+      7: '/day7-flashcard',
       8: '/day8-anime-character-search',
+      9: '/day9-anime-quote-generator',
       // 今後のdayを追加していく
     };
     
