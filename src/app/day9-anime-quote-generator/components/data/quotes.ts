@@ -121,5 +121,67 @@ export const animeQuotes: AnimeQuote[] = [
     quote: "お前のものは俺のもの、俺のものも俺のもの",
     character: "ジャイアン",
     anime: "ドラえもん"
+  },
+  // 僕のヒーローアカデミア
+  {
+    id: 21,
+    quote: "私が来た！",
+    character: "オールマイト",
+    anime: "僕のヒーローアカデミア"
+  },
+  {
+    id: 22,
+    quote: "君が助けを求める顔してた",
+    character: "緑谷出久",
+    anime: "僕のヒーローアカデミア"
+  },
+  {
+    id: 23,
+    quote: "次は、君だ",
+    character: "オールマイト",
+    anime: "僕のヒーローアカデミア"
+  },
+  {
+    id: 24,
+    quote: "なりてえもん、ちゃんと見ろ！",
+    character: "轟焦凍",
+    anime: "僕のヒーローアカデミア"
+  },
+  {
+    id: 25,
+    quote: "更に向こうへ、Plus Ultra（プルス・ウルトラ）！",
+    character: "オールマイト",
+    anime: "僕のヒーローアカデミア"
+  },
+  // HUNTER×HUNTER
+  {
+    id: 26,
+    quote: "ゴン、お前は光だ",
+    character: "キルア=ゾルディック",
+    anime: "HUNTER×HUNTER"
+  },
+  {
+    id: 27,
+    quote: "感謝するぜ お前に会えて本当に良かった",
+    character: "メルエム",
+    anime: "HUNTER×HUNTER"
+  },
+  {
+    id: 28,
+    quote: "いいハンターってやつは、動物に好かれちまうんだ",
+    character: "ゴン=フリークス",
+    anime: "HUNTER×HUNTER"
+  },
+  {
+    id: 29,
+    quote: "これでおわってもいい。だから、ありったけを",
+    character: "ゴン=フリークス",
+    anime: "HUNTER×HUNTER"
+  },
+  {
+    id: 30,
+    quote: "オレでなきゃ見逃しちゃうね",
+    character: "ヒソカ=モロウ",
+    anime: "HUNTER×HUNTER"
   }
 ]; 

@@ -10,8 +10,8 @@ export default function Day9Layout({
   return (
     <div className="flex flex-col min-h-screen">
       <Header title="100DaysOfCodeチャレンジ" />
-      <div className="container mx-auto px-4 py-8">
-      <PageHeader 
+      <div className="flex-1 bg-gradient-to-br from-purple-50 to-blue-50">
+        <PageHeader 
           icon="🎭"
           title="Day 9: アニメ名言ジェネレーター"
           description="ランダムなアニメの名言を表示します"
