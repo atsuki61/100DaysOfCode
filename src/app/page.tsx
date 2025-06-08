@@ -76,14 +76,14 @@ export default function HomePage() {
       description: '毎回ランダムなアニメの名言を表示するアプリです（固定データまたは簡易APIモックから）。APIからのデータ取得(fetch/axiosの基本、非同期処理Promise/async/awaitの基礎）、JSONデータの扱い、エラーハンドリングの基本を練習しました。',
       tags: ['React, Next.js, TypeScript, TailwindCSS'],
     },
-    // {
-    //   id: 'day10',
-    //   name: 'Day 10: 支出管理アプリ',
-    //   path: '/day10-expense-tracker',
-    //   imageUrl: '/images/day10-expense-tracker.png',
-    //   description: '簡易な家計簿として収支アイテムを追加・集計できます。複数状態の管理、配列操作(追加・削除・集計)、数値入力の扱いを練習しました。',
-    //   tags: ['React, Next.js, TypeScript, TailwindCSS'],
-    // },
+     {
+       id: 'day10',
+       name: 'Day 10: 支出管理アプリ',
+       path: '/day10-expense-tracker',
+       imageUrl: '/images/day10-expense-tracker.png',
+       description: '簡易な家計簿として収支アイテムを追加・集計できます。複数状態の管理、配列操作(追加・削除・集計)、数値入力の扱いを練習しました。',
+       tags: ['React, Next.js, TypeScript, TailwindCSS'],
+     },
     // ここに新しいアプリを追加していきます
   ];
 
