@@ -6,6 +6,7 @@ type HeaderProps = {
   title: string;
   showHomeLink?: boolean;
   showPortfolioLink?: boolean;
+  className?: string;
 };
 
 export default function Header({ title, showHomeLink = true, showPortfolioLink = false }: HeaderProps) {
