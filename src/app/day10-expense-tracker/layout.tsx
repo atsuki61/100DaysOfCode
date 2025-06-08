@@ -12,10 +12,11 @@ export default function Day10Layout({
     <>
       <Header title="Day10: 支出管理アプリ" />
       <PageHeader
+        className="bg-gray-50"
         title="Day 10: 支出管理アプリ"
         description="収入と支出を記録・管理するシンプルなアプリです。"
       />
-      <main className="flex-grow bg-gray-50 min-h-screen">{children}</main>
+      <main className="bg-gray-50 flex-grow">{children}</main>
       <Footer currentDay={10} />
     </>
   );

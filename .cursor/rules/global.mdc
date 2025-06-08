@@ -162,6 +162,11 @@ alwaysApply: true
 - 各アプリのレイアウト: `src/app/dayX-appName/layout.tsx` (もしあれば)
 - 各アプリのコンポーネント: `src/app/dayX-appName/components/`
 
+### **【重要】新規プロジェクト作成時のルール**
+- 新しい`dayX-appName`プロジェクトを作成するたびに、必ず`src/components/common/Footer.tsx`を開き、`generateDayPath`関数内の`dayRoutes`オブジェクトに新しいルートを追加してください。
+  - 例: `11: '/day11-new-app'`
+- これを忘れると、フッターのナビゲーションが正しく機能しなくなります。
+
 ## 各日のプロジェクトフォルダ構成 (dayX-appName)
 各日のプロジェクトは `src/app/dayX-appName/` 形式で管理され、以下の基本構成に従います：
 
