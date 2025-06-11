@@ -9,20 +9,22 @@ interface TransactionListProps {
 
 const TransactionList: React.FC<TransactionListProps> = ({ transactions, deleteTransaction }) => {
   return (
-    <div className="w-full max-w-md mx-auto mt-6">
-      <h3 className="text-xl font-bold border-b pb-2 mb-4">履歴</h3>
+    <div className="w-full bg-gray-50 rounded-lg border p-4">
+      <h3 className="text-lg font-bold border-b border-gray-200 pb-2 mb-4">履歴</h3>
       {transactions.length > 0 ? (
-        <ul className="list-none p-0">
-          {transactions.map(transaction => (
-            <TransactionItem
-              key={transaction.id}
-              transaction={transaction}
-              deleteTransaction={deleteTransaction}
-            />
-          ))}
-        </ul>
+        <div className="h-80 overflow-y-auto">
+          <ul className="list-none p-0 space-y-2">
+            {transactions.map(transaction => (
+              <TransactionItem
+                key={transaction.id}
+                transaction={transaction}
+                deleteTransaction={deleteTransaction}
+              />
+            ))}
+          </ul>
+        </div>
       ) : (
-        <p className="text-center text-gray-500 mt-4">まだ取引がありません。</p>
+        <p className="text-center text-gray-500 py-8">まだ取引がありません。</p>
       )}
     </div>
   );

@@ -35,12 +35,12 @@ const TransactionForm: React.FC<TransactionFormProps> = ({ addTransaction }) => 
   };
 
   return (
-    <div className="w-full max-w-md mx-auto mt-6 p-4 bg-white shadow-md rounded-lg">
-      <h3 className="text-xl font-bold border-b pb-2 mb-4">新しい取引を追加</h3>
-      <form onSubmit={handleSubmit}>
-        <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700 mb-2">種類</label>
-          <div className="flex gap-4">
+    <div className="w-full h-fit bg-gray-50 rounded-lg border p-4">
+      <h3 className="text-lg font-bold border-b border-gray-200 pb-2 mb-6">新しい取引を追加</h3>
+      <form onSubmit={handleSubmit} className="space-y-6">
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-3">種類</label>
+          <div className="flex gap-6">
             <label className="flex items-center cursor-pointer">
               <input
                 type="radio"
@@ -65,8 +65,8 @@ const TransactionForm: React.FC<TransactionFormProps> = ({ addTransaction }) => 
             </label>
           </div>
         </div>
-        <div className="mb-4">
-          <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-1">
+        <div>
+          <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-2">
             内容
           </label>
           <input
@@ -75,12 +75,12 @@ const TransactionForm: React.FC<TransactionFormProps> = ({ addTransaction }) => 
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             placeholder="例：給料、コーヒー代"
-            className="w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+            className="w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
             required
           />
         </div>
-        <div className="mb-4">
-          <label htmlFor="amount" className="block text-sm font-medium text-gray-700 mb-1">
+        <div>
+          <label htmlFor="amount" className="block text-sm font-medium text-gray-700 mb-2">
             金額
           </label>
           <input
@@ -89,13 +89,13 @@ const TransactionForm: React.FC<TransactionFormProps> = ({ addTransaction }) => 
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
             placeholder="正の数値を入力してください"
-            className="w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+            className="w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
             min="0.01"
             step="0.01"
             required
           />
         </div>
-        <button type="submit" className="w-full py-2 px-4 bg-indigo-600 text-white font-semibold rounded-md hover:bg-indigo-700 transition-colors duration-200">
+        <button type="submit" className="w-full py-3 px-4 bg-indigo-600 text-white font-semibold rounded-md hover:bg-indigo-700 transition-colors duration-200 text-lg">
           取引を追加
         </button>
       </form>

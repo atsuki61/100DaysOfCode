@@ -17,19 +17,19 @@ const Balance: React.FC<BalanceProps> = ({ transactions }) => {// 残高コン�
   const total = income - expense; // 残高を計算
 
   return (
-    <div className="w-full max-w-md mx-auto p-4 bg-white shadow-md rounded-lg"> {/* コンテナ: 幅全快、最大幅md、中央寄せ、パディング4、白背景、影、角丸 */}
-      <h2 className="text-2xl font-bold text-center mb-4">残高</h2> {/* 見出し: 大文字、太字、中央寄せ、下マージン4 */}
-      <div className="text-3xl font-bold text-center mb-6">¥{total.toLocaleString()}</div> {/* 残高表示、3桁区切り */}
+    <div className="w-full p-4 bg-gray-50 rounded-lg border"> {/* コンテナ: 幅全快、パディング4、グレー背景、角丸、ボーダー */}
+      <h2 className="text-lg font-bold text-center mb-3">残高</h2> {/* 見出し: 大文字、太字、中央寄せ、下マージン3 */}
+      <div className="text-2xl font-bold text-center mb-4">¥{total.toLocaleString()}</div> {/* 残高表示、3桁区切り */}
       <div className="flex justify-around text-center"> {/* コンテナ: Flexbox、要素を均等配置、中央寄せ */}
-        <div className="w-1/2 border-r border-gray-200"> {/* コンテナ: 幅半分、右ボーダー */}
-          <h3 className="text-lg font-semibold text-green-600">収入</h3> {/* 収入見出し: やや大文字、太字、緑色 */}
-          <p className="text-2xl font-bold text-green-500">
+        <div className="flex-1 border-r border-gray-200 pr-4"> {/* コンテナ: フレックス1、右ボーダー、右パディング */}
+          <h3 className="text-sm font-semibold text-green-600 mb-1">収入</h3> {/* 収入見出し: 小文字、太字、緑色 */}
+          <p className="text-lg font-bold text-green-500">
             +¥{income.toLocaleString()}
           </p> {/* 収入額表示、3桁区切り */}
         </div>
-        <div className="w-1/2"> {/* コンテナ: 幅半分 */}
-          <h3 className="text-lg font-semibold text-red-600">支出</h3> {/* 支出見出し: やや大文字、太字、赤色 */}
-          <p className="text-2xl font-bold text-red-500">
+        <div className="flex-1 pl-4"> {/* コンテナ: フレックス1、左パディング */}
+          <h3 className="text-sm font-semibold text-red-600 mb-1">支出</h3> {/* 支出見出し: 小文字、太字、赤色 */}
+          <p className="text-lg font-bold text-red-500">
             -¥{expense.toLocaleString()}
           </p> {/* 支出額表示、3桁区切り */}
         </div>
