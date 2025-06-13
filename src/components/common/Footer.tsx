@@ -51,7 +51,7 @@ const Footer = ({ currentDay }: FooterProps) => {
             
             <div className="text-center progress-container">
               <div className="progress-text">
-                100DaysOfCode チャレンジ
+                100 Days Of Code Projects
               </div>
               <div className="progress-bar-container">
                 <div 
@@ -210,9 +210,9 @@ const Footer = ({ currentDay }: FooterProps) => {
         .progress-bar-container {
           position: relative;
           width: 100%;
-          height: 8px;
+          height: 12px;
           background: linear-gradient(90deg, #f1f5f9, #e2e8f0);
-          border-radius: 4px;
+          border-radius: 6px;
           overflow: hidden;
           box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
         }
@@ -225,7 +225,7 @@ const Footer = ({ currentDay }: FooterProps) => {
             #ec4899,
             #f59e0b
           );
-          border-radius: 4px;
+          border-radius: 6px;
           transition: width 0.5s ease;
           position: relative;
           overflow: hidden;
@@ -256,11 +256,12 @@ const Footer = ({ currentDay }: FooterProps) => {
           top: 50%;
           left: 50%;
           transform: translate(-50%, -50%);
-          font-size: 0.75rem;
+          font-size: 0.8rem;
           font-weight: 700;
           color: #374151;
           text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
           letter-spacing: 0.025em;
+          line-height: 1;
         }
         
         /* レスポンシブ対応 */
@@ -283,7 +284,7 @@ const Footer = ({ currentDay }: FooterProps) => {
           }
           
           .progress-label {
-            font-size: 0.7rem;
+            font-size: 0.75rem;
           }
         }
       `}</style>
