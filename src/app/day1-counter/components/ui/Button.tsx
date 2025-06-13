@@ -19,7 +19,7 @@ const Button: React.FC<ButtonProps> = ({
   // これらはどの種類のボタンにも共通で適用されるスタイルです。
   // ring-offset-background, focus-visible:ring-ring などのクラスは、
   // CSS変数 (--background, --ringなど) を通じて色が定義されることを期待します。
-  let baseClasses = `
+  const baseClasses = `
     inline-flex items-center justify-center rounded-md
     text-sm font-medium transition-colors
     focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2

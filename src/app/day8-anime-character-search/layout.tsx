@@ -32,8 +32,7 @@ export default function Day8Layout({
       </main>
       <Footer 
         currentDay={8}
-        totalDays={100}
-        showNavigation={true}
+
       />
     </div>
   )

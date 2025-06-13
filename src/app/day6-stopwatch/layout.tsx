@@ -34,10 +34,8 @@ export default function Day6Layout({ children }: Day6LayoutProps) {
       </main> 
 
       {/* === フッターセクション === */}
-      <Footer 
-        currentDay={6} // 現在の日数
-        totalDays={100} // 総日数
-        showNavigation={true} // ナビゲーション表示
+            <Footer
+        currentDay={6}
       />
     </div>
   );

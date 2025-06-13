@@ -31,8 +31,7 @@ export default function Day7Layout({ children }: Day7LayoutProps) {
       {/* フッターセクション */}
       <Footer 
         currentDay={7}
-        totalDays={100}
-        showNavigation={true}
+
       />
     </div>
   );

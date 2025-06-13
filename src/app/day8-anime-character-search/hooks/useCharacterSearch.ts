@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useMemo } from 'react'
+import { useState, useMemo } from 'react'
 import { AnimeCharacter } from '../types'
 import { matchesWithKanaConversion } from '../utils/searchUtils'
 
