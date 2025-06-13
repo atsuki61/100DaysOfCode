@@ -30,6 +30,7 @@ export default function Footer({
       8: '/day8-anime-character-search',
       9: '/day9-anime-quote-generator',
       10: '/day10-expense-tracker',
+      11: '/day11-weather',
       // 今後のdayを追加していく
     };
     
