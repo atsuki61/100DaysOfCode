@@ -35,15 +35,19 @@ export default function Day10Layout({
         <div className="scan-line"></div>
       </nav>
       
-      <div className="bg-gradient-to-r from-gray-900/80 to-gray-800/80 backdrop-blur-sm border-b border-purple-500/30 text-center pb-8">
-        <h1 className="text-4xl font-bold text-white mb-2 pt-8">
-          支出管理アプリ
-        </h1>
-        <p className="text-gray-300">
-          収入と支出を記録・管理するシンプルなアプリです。
-        </p>
+      <div className="neon-page-header">
+        <div className="neon-header-grid"></div>
+        <div className="neon-header-scan"></div>
+        <div className="relative z-10 text-center pb-8">
+          <h1 className="neon-page-title">
+            支出管理アプリ
+          </h1>
+          <p className="neon-page-description">
+            収入と支出を記録・管理するシンプルなアプリです。
+          </p>
+        </div>
       </div>
-      <main className="flex-1 overflow-y-auto">{children}</main>
+      <main className="flex-1 neon-main">{children}</main>
       
       {/* Day10専用ネオンFooter */}
       <footer className="neon-footer">
@@ -89,6 +93,127 @@ export default function Day10Layout({
         }
         
         /* Day10専用のスタイル */
+        .neon-page-header {
+          background: linear-gradient(135deg, rgba(0, 0, 0, 0.95), rgba(20, 20, 40, 0.95));
+          backdrop-filter: blur(12px);
+          border-bottom: 2px solid #00FFFF;
+          box-shadow: 
+            0 0 20px rgba(0, 255, 255, 0.3),
+            0 0 40px rgba(255, 0, 255, 0.2),
+            inset 0 1px 0 rgba(255, 255, 255, 0.1);
+          position: relative;
+          overflow: hidden;
+        }
+        
+        .neon-header-grid {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          opacity: 0.1;
+          background-image: 
+            linear-gradient(rgba(0, 255, 255, 0.2) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(0, 255, 255, 0.2) 1px, transparent 1px);
+          background-size: 20px 20px;
+          animation: gridPulse 4s ease-in-out infinite;
+        }
+        
+        .neon-header-scan {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          height: 2px;
+          background: linear-gradient(90deg, 
+            transparent,
+            #00FFFF,
+            #FF00FF,
+            #00FFFF,
+            transparent
+          );
+          animation: scanMove 3s linear infinite;
+        }
+        
+        .neon-page-title {
+          color: #ffffff;
+          font-family: 'Courier New', monospace;
+          font-size: 2.25rem;
+          font-weight: 700;
+          text-shadow: 
+            0 0 15px #00FFFF,
+            0 0 30px #00FFFF,
+            0 0 45px #00FFFF;
+          letter-spacing: 2px;
+          margin-bottom: 0.5rem;
+          padding-top: 2rem;
+          animation: titleGlow 2s ease-in-out infinite alternate;
+        }
+        
+        .neon-page-description {
+          color: #00FFFF;
+          font-family: 'Courier New', monospace;
+          font-size: 1rem;
+          font-weight: 400;
+          text-shadow: 0 0 10px #00FFFF;
+          letter-spacing: 1px;
+          opacity: 0.8;
+        }
+        
+        .neon-main {
+          background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(20, 20, 40, 0.8));
+          backdrop-filter: blur(8px);
+          position: relative;
+          overflow: hidden;
+          padding: 1.5rem;
+        }
+        
+        .neon-main::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          opacity: 0.05;
+          background-image: 
+            linear-gradient(rgba(0, 255, 255, 0.3) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(0, 255, 255, 0.3) 1px, transparent 1px);
+          background-size: 25px 25px;
+          animation: gridPulse 6s ease-in-out infinite;
+          pointer-events: none;
+        }
+        
+        :global(.neon-container) {
+          background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(20, 20, 40, 0.9));
+          backdrop-filter: blur(12px);
+          border: 2px solid rgba(0, 255, 255, 0.3);
+          border-radius: 16px;
+          padding: 2rem;
+          box-shadow: 
+            0 0 30px rgba(0, 255, 255, 0.2),
+            0 0 60px rgba(255, 0, 255, 0.1),
+            inset 0 1px 0 rgba(255, 255, 255, 0.1);
+          position: relative;
+          overflow: hidden;
+        }
+        
+        :global(.neon-container::before) {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: linear-gradient(45deg, 
+            transparent 30%, 
+            rgba(0, 255, 255, 0.05) 50%, 
+            transparent 70%
+          );
+          animation: gridPulse 8s ease-in-out infinite;
+          pointer-events: none;
+        }
+        
         .neon-nav {
           background: linear-gradient(135deg, rgba(0, 0, 0, 0.95), rgba(20, 20, 40, 0.95));
           backdrop-filter: blur(12px);
