@@ -18,7 +18,7 @@ type Day6LayoutProps = {
 export default function Day6Layout({ children }: Day6LayoutProps) {
   return (
     // 画面全体のレイアウトコンテナ
-    <div className="min-h-screen bg-gray-50 flex flex-col"> {/* 最小高さ100vh, 薄灰背景, フレックス縦配置 */}
+    <div className="min-h-screen bg-gray-50 flex flex-col pt-16"> {/* 最小高さ100vh, 薄灰背景, フレックス縦配置, Header分の上部パディング */}
       
       {/* === ヘッダーセクション === */}
       <Header 
@@ -34,7 +34,7 @@ export default function Day6Layout({ children }: Day6LayoutProps) {
       </main> 
 
       {/* === フッターセクション === */}
-            <Footer
+      <Footer 
         currentDay={6}
       />
     </div>

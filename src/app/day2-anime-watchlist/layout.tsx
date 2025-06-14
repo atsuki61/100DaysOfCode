@@ -7,7 +7,7 @@ export default function Day2Layout({
   children: React.ReactNode
 }) {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col pt-16"> {/* Header分の上部パディング追加 */}
       <Header title="Day 2: アニメ視聴リスト" /> 
 
       {/* メインコンテンツ */}

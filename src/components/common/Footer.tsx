@@ -36,20 +36,20 @@ const Footer = ({ currentDay }: FooterProps) => {
         <div className="flex justify-between items-center py-4 h-full">
           <div className="flex-1">
             {prevDay && (
-              <Link
+              <Link 
                 href={getDayPath(prevDay)}
                 className="inline-flex items-center gap-2 px-5 py-3 text-sm font-semibold text-gray-700 bg-gradient-to-br from-slate-50 to-slate-100 border border-black/8 rounded-xl transition-all duration-300 hover:bg-gradient-to-br hover:from-blue-500 hover:to-purple-600 hover:text-white hover:-translate-y-0.5 hover:scale-105 hover:shadow-[0_8px_25px_rgba(59,130,246,0.25)] group relative overflow-hidden"
               >
                 <div className="flex items-center justify-center w-5 h-5 rounded-md bg-white/20 transition-all duration-300 group-hover:bg-white/30 group-hover:scale-110">
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                  </svg>
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
                 </div>
                 <span className="font-semibold tracking-wide hidden sm:block">Day {prevDay}</span>
               </Link>
             )}
           </div>
-          
+
           <div className="text-center flex-shrink-0 w-80">
             <div className="text-xs font-semibold text-gray-600 mb-2 tracking-widest uppercase">
               100 Days Of Code Projects
@@ -68,18 +68,18 @@ const Footer = ({ currentDay }: FooterProps) => {
               </div>
             </div>
           </div>
-          
+
           <div className="flex-1 flex justify-end">
             {nextDay && (
-              <Link
+              <Link 
                 href={getDayPath(nextDay)}
                 className="inline-flex items-center gap-2 px-5 py-3 text-sm font-semibold text-gray-700 bg-gradient-to-br from-slate-50 to-slate-100 border border-black/8 rounded-xl transition-all duration-300 hover:bg-gradient-to-br hover:from-blue-500 hover:to-purple-600 hover:text-white hover:-translate-y-0.5 hover:scale-105 hover:shadow-[0_8px_25px_rgba(59,130,246,0.25)] group relative overflow-hidden"
               >
                 <span className="font-semibold tracking-wide hidden sm:block">Day {nextDay}</span>
                 <div className="flex items-center justify-center w-5 h-5 rounded-md bg-white/20 transition-all duration-300 group-hover:bg-white/30 group-hover:scale-110">
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
                 </div>
               </Link>
             )}

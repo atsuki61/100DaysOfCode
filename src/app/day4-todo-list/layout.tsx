@@ -14,7 +14,7 @@ export default function TodoListLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col pt-16"> {/* Header分の上部パディング追加 */}
       <Header title="Day 4: ToDoリスト" />
       <main className="flex-1 pb-20 bg-gray-50 py-8">
         {children}

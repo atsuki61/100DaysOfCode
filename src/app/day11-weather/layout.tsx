@@ -13,7 +13,7 @@ export default function WeatherLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="min-h-screen flex flex-col"> {/* 最小高さ画面, Flexコンテナ(縦) */}
+    <div className="min-h-screen flex flex-col pt-16"> {/* 最小高さ画面, Flexコンテナ(縦), Header分の上部パディング */}
       <Header 
         title="Day 11: 天気予報アプリ" 
         showPortfolioLink={true} 
