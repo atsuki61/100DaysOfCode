@@ -11,7 +11,7 @@ export default function Day10Layout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+    <div className="h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex flex-col overflow-hidden">
       {/* Day10専用ネオンヘッダー */}
       <nav className="neon-nav">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -43,7 +43,7 @@ export default function Day10Layout({
           収入と支出を記録・管理するシンプルなアプリです。
         </p>
       </div>
-      <main className="flex-grow">{children}</main>
+      <main className="flex-1 overflow-y-auto">{children}</main>
       
       {/* Day10専用ネオンFooter */}
       <footer className="neon-footer">
@@ -79,7 +79,16 @@ export default function Day10Layout({
       </footer>
       
       {/* Day10専用サイバーパンクスタイル */}
-      <style jsx>{`
+      <style jsx global>{`
+        /* Day10専用のbody背景色上書き */
+        body {
+          background: linear-gradient(135deg, #0f172a, #581c87, #0f172a) !important;
+          min-height: 100vh;
+          margin: 0;
+          padding: 0;
+        }
+        
+        /* Day10専用のスタイル */
         .neon-nav {
           background: linear-gradient(135deg, rgba(0, 0, 0, 0.95), rgba(20, 20, 40, 0.95));
           backdrop-filter: blur(12px);
