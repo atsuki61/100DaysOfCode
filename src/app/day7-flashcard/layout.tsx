@@ -14,7 +14,7 @@ type Day7LayoutProps = {
 
 export default function Day7Layout({ children }: Day7LayoutProps) {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 flex flex-col"> {/* 最小高さ100vh, グラデーション背景, フレックス縦配置 */}
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 flex flex-col pt-16"> {/* pt-16: Header分の上部パディング追加 */}
       
       {/* ヘッダーセクション */}
       <Header 
