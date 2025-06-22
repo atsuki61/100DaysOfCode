@@ -7,12 +7,12 @@ export default function Day5Layout({
   children: React.ReactNode
 }) {
   return (
-    <>
-      <Header title="100DaysOfCodeチャレンジ" />
+    <div className="flex flex-col min-h-screen pt-16"> {/* pt-16: Header分の上部パディング追加 */}
+      <Header title="Day5:じゃんけんゲーム" />
       <main className="flex-1"> {/* flex-1: 残り空間を占有 */}
         {children}
       </main>
       <Footer currentDay={5} />
-    </>
+    </div>
   )
 }
