@@ -143,7 +143,7 @@ export default function Day5JankenGame() {
   }
 
   return (
-    <div className="min-h-screen py-4 px-4 pb-24"> {/* 最小高さ画面全体, 縦横余白, 下余白でfooter回避 */}
+    <div className="min-h-screen py-4 px-4 pb-20"> {/* 最小高さ画面全体, 縦横余白, 下余白でfooter回避 */}
       <div className="max-w-4xl mx-auto"> {/* 最大幅制限, 中央寄せ */}
         <PageHeader
           icon="👊" 
