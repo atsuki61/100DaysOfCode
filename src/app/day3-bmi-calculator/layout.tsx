@@ -11,7 +11,7 @@ export default function Day3Layout({
       <Header title="Day 3: BMI計算機" /> 
 
       {/* メインコンテンツ */}
-      <main className="flex-1 pb-20">
+      <main className="flex-1 pb-20 bg-gradient-to-br from-blue-50 to-indigo-100">
         {children}
       </main>
 

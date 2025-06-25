@@ -54,8 +54,8 @@ export default function BMICalculatorPage() {// BMI計算機のページ
     
     <>
     
-      {/* 画面全体: 最小高さ100vh, 青系グラデーション背景, パディング4 */}
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4 py-12">
+      {/* 画面全体: 最小高さ100vh, パディング4 */}
+      <div className="min-h-screen p-4 py-12">
         <PageHeader 
           title="BMI計算機"
           description="Day 3: 身長と体重を入力してBMIを計算できるシンプルなBMI計算機"
