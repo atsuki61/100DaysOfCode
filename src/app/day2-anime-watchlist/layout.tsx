@@ -11,7 +11,7 @@ export default function Day2Layout({
       <Header title="Day 2: アニメ視聴リスト" /> 
 
       {/* メインコンテンツ */}
-      <main className="flex-1 pb-20">
+      <main className="flex-1 pb-20 bg-gradient-to-br from-purple-50 to-pink-50">
         {children}
       </main>
 
