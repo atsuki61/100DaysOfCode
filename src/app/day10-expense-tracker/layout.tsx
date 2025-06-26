@@ -11,7 +11,7 @@ export default function Day10Layout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex flex-col overflow-hidden">
+    <div className="h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex flex-col">
       {/* Day10専用ネオンヘッダー */}
       <nav className="neon-nav">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -21,7 +21,7 @@ export default function Day10Layout({
             </div>
             <div className="flex items-center">
               <h1 className="neon-title">
-                [Day10: 支出管理アプリ]
+                Day10:支出管理アプリ
               </h1>
             </div>
             <div className="flex items-center">
@@ -177,8 +177,9 @@ export default function Day10Layout({
           background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(20, 20, 40, 0.8));
           backdrop-filter: blur(8px);
           position: relative;
-          overflow: hidden;
+          overflow-y: auto; /* 縦スクロールを有効化 */
           padding: 1.5rem;
+          flex: 1; /* flex-growを維持 */
         }
         
         .neon-main::before {
