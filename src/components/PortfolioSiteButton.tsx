@@ -4,7 +4,7 @@ interface PortfolioSiteButtonProps {
 
 export default function PortfolioSiteButton({ className = '' }: PortfolioSiteButtonProps) {
   // BackToHomeButtonと同じスタイルを使用
-  const baseStyle = "inline-flex items-center gap-2 px-4 py-2 bg-white text-black border border-black hover:bg-gray-100 rounded-lg transition-colors duration-200 font-medium";
+  const baseStyle = "inline-flex items-center gap-1 px-2 py-1 text-sm bg-white text-black border border-black hover:bg-gray-100 rounded-lg transition-colors duration-200 font-medium";
   
   const combinedClassName = `${baseStyle} ${className}`.trim();
 
@@ -18,7 +18,7 @@ export default function PortfolioSiteButton({ className = '' }: PortfolioSiteBut
       {/* 外部リンクアイコン */}
       <svg 
         xmlns="http://www.w3.org/2000/svg" 
-        className="h-4 w-4" // 高さ4, 幅4
+        className="h-3 w-3" // 高さ3, 幅3
         fill="none" 
         viewBox="0 0 24 24" 
         stroke="currentColor" // text-black を継承してアイコンも黒になります

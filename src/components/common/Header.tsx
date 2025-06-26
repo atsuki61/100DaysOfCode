@@ -17,7 +17,7 @@ export default function Header({ title, showHomeLink = true, showPortfolioLink =
       {/* Gradient shimmer line */}
       <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-500/60 via-purple-500/60 via-pink-500/60 to-transparent animate-pulse opacity-80"></div>
       
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
           <div className="flex items-center">
             {showPortfolioLink ? (
@@ -29,11 +29,11 @@ export default function Header({ title, showHomeLink = true, showPortfolioLink =
           
           <div className="flex items-center">
             <div className="relative group cursor-default">
-              <h1 className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-gray-800 via-blue-600 to-purple-600 bg-clip-text text-transparent tracking-tight transition-all duration-300 group-hover:scale-105">
+              <h1 className="text-lg sm:text-xl font-bold bg-gradient-to-r from-gray-800 via-blue-600 to-purple-600 bg-clip-text text-transparent tracking-tight transition-all duration-300 group-hover:scale-105">
                 {title}
               </h1>
               {/* Subtle glow effect */}
-              <div className="absolute inset-0 text-xl sm:text-2xl font-bold text-blue-600/20 blur-sm -z-10 transition-opacity duration-300 group-hover:opacity-40">
+              <div className="absolute inset-0 text-lg sm:text-xl font-bold text-blue-600/20 blur-sm -z-10 transition-opacity duration-300 group-hover:opacity-40">
                 {title}
               </div>
               {/* Animated underline */}
