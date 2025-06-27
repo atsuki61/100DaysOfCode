@@ -92,14 +92,14 @@ export default function HomePage() {
        description: '都市名から現在の天気を表示するシンプルなアプリです。外部APIの利用(fetch/axios)、非同期処理と状態更新、APIキーの扱い（環境変数基礎）、TypeScriptでのAPIレスポンスの型定義を練習しました。',
        tags: ['React, Next.js, TypeScript, TailwindCSS'],
      },
-     // {
-     //   id: 'day12',
-     //   name: 'Day 12: ダークモード切替アプリ',
-     //   path: '/day12-dark-mode',
-     //   imageUrl: '/images/day12-dark-mode.png',
-     //   description: 'ボタンでサイトのライト/ダークテーマを切り替え可能です。Context APIによるグローバル状態管理、Tailwind CSSのダークモード機能の利用、localStorageによるテーマ永続化を練習しました。',
-     //   tags: ['React, Next.js, TypeScript, TailwindCSS'],
-     // },
+     {
+       id: 'day12',
+       name: 'Day 12: ダークモード切替アプリ',
+       path: '/day12-dark-mode',
+       imageUrl: '/images/day12-dark-mode.png',
+       description: 'ボタンでサイトのライト/ダークテーマを切り替え可能です。Context APIによるグローバル状態管理、Tailwind CSSのダークモード機能の利用、localStorageによるテーマ永続化を練習しました。',
+       tags: ['React, Next.js, TypeScript, TailwindCSS'],
+     },
      // {
      //   id: 'day13',
      //   name: 'Day 13: 電卓アプリ',
