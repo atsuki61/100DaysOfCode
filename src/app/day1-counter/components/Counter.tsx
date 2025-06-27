@@ -27,7 +27,7 @@ export default function Counter() {
       </div>
 
       {/* ボタンエリア: 縦並び(モバイル)→横並び(PC)、間隔調整 */}
-      <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+      <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center">
         {/* デクリメントボタン: 全幅(モバイル)→自動幅(PC) */}
         <Button onClick={decrement} variant="secondary" size="lg" className="w-full sm:w-auto">
           減らす (-)
