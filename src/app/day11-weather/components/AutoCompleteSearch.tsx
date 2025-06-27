@@ -170,7 +170,7 @@ export default function AutoCompleteSearch({ onSearch, isLoading }: AutoComplete
           人気の都市：
         </p>
         <div className="flex flex-wrap justify-center gap-2"> {/* Flex, 折り返し, 中央寄せ, ギャップ2 */}
-          {['名古屋', '豊田', '岡崎', '大津', '草津', '彦根', '東京', '大阪'].map((popularCity) => (
+          {['京都', '宇治', '舞鶴', '名古屋', '大津', '草津', '東京', '大阪'].map((popularCity) => (
             <button
               key={popularCity}
               type="button"
