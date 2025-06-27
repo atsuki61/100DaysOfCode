@@ -5,8 +5,8 @@ interface BackToHomeButtonProps {
 }
 
 export default function BackToHomeButton({ className = '' }: BackToHomeButtonProps) {
-  // スタイルを「白背景、黒テキスト、黒枠線、ホバー時薄いグレー」に変更
-  const baseStyle = "inline-flex items-center gap-2 px-2 sm:px-4 py-2 bg-white text-black border border-black hover:bg-gray-100 rounded-lg transition-colors duration-200 font-medium";
+  // ダークモード対応のスタイル
+  const baseStyle = "inline-flex items-center gap-2 px-2 sm:px-4 py-2 bg-white dark:bg-gray-800 text-black dark:text-white border border-black dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors duration-200 font-medium";
   
   const combinedClassName = `${baseStyle} ${className}`.trim();// スタイルを結合して、余分なスペースを削除
 

@@ -95,8 +95,8 @@ export default function HomePage() {
      {
        id: 'day12',
        name: 'Day 12: ダークモード切替アプリ',
-       path: '/day12-dark-mode',
-       imageUrl: '/images/day12-dark-mode.png',
+       path: '/day12-darkmode',
+       imageUrl: '/images/day12-darkmode.png',
        description: 'ボタンでサイトのライト/ダークテーマを切り替え可能です。Context APIによるグローバル状態管理、Tailwind CSSのダークモード機能の利用、localStorageによるテーマ永続化を練習しました。',
        tags: ['React, Next.js, TypeScript, TailwindCSS'],
      },

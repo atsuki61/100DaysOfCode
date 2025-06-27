@@ -3,8 +3,8 @@ interface PortfolioSiteButtonProps {
 }
 
 export default function PortfolioSiteButton({ className = '' }: PortfolioSiteButtonProps) {
-  // BackToHomeButtonと同じスタイルを使用
-  const baseStyle = "inline-flex items-center gap-1 px-2 py-1 text-sm bg-white text-black border border-black hover:bg-gray-100 rounded-lg transition-colors duration-200 font-medium";
+  // ダークモード対応のスタイル
+  const baseStyle = "inline-flex items-center gap-1 px-2 py-1 text-sm bg-white dark:bg-gray-800 text-black dark:text-white border border-black dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors duration-200 font-medium";
   
   const combinedClassName = `${baseStyle} ${className}`.trim();
 

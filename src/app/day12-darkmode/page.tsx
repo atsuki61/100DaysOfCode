@@ -3,14 +3,20 @@
 import { ThemeProvider } from './contexts/ThemeContext';
 import ThemeToggle from './components/ThemeToggle';
 import DemoCard from './components/DemoCard';
-import PageHeader from '@/components/common/PageHeader';
-import BackToHomeButton from '@/components/BackToHomeButton';
+import DarkModeHeader from './components/DarkModeHeader';
+import DarkModePageHeader from './components/DarkModePageHeader';
+import DarkModeFooter from './components/DarkModeFooter';
 
 function DarkModeAppContent() {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
-      <div className="container mx-auto px-4 py-8">
-        <PageHeader
+      <DarkModeHeader 
+        title="Day 12: ダークモード切替アプリ"
+        showHomeLink={true}
+      />
+      
+      <div className="container mx-auto px-4 pt-20 pb-24">
+        <DarkModePageHeader
           icon="🌙"
           title="Day 12: ダークモード切替アプリ"
           description="Context APIとTailwind CSSを使ってダークモードを実装"
@@ -57,10 +63,10 @@ function DarkModeAppContent() {
               </div>
             </div>
           </div>
-          
-          <BackToHomeButton />
         </div>
       </div>
+      
+      <DarkModeFooter currentDay={12} />
     </div>
   );
 }
