@@ -69,54 +69,7 @@ export default function WeatherApp() {
             例: 「こ」→ 甲賀市、「なご」→ 名古屋市、「おお」→ 大津市・大阪府
           </p>
           
-          {/* 滋賀県・愛知県特化情報 */}
-          <div className="mt-8 space-y-4 max-w-4xl mx-auto"> {/* 上マージン8, 縦間隔4, 最大幅4xl, 中央寄せ */}
-            {/* 愛知県セクション */}
-            <div className="p-4 bg-orange-50 rounded-lg"> {/* パディング4, 薄いオレンジ背景, 角丸lg */}
-              <h3 className="text-lg font-semibold text-orange-800 mb-2">🏭 愛知県の都市も検索できます！</h3>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-2 text-sm text-orange-700"> {/* グリッド 2列, md以上で4列, ギャップ2, 文字サイズsm, オレンジ文字 */}
-                <div>• 名古屋市</div>
-                <div>• 豊田市</div>
-                <div>• 岡崎市</div>
-                <div>• 一宮市</div>
-                <div>• 豊橋市</div>
-                <div>• 春日井市</div>
-                <div>• 豊川市</div>
-                <div>• 安城市</div>
-                <div>• 西尾市</div>
-                <div>• 刈谷市</div>
-                <div>• 小牧市</div>
-                <div>• 東海市</div>
-                <div>• 江南市</div>
-                <div>• 稲沢市</div>
-                <div>• 知多市</div>
-                <div>• その他38市町村</div>
-              </div>
-            </div>
-            
-            {/* 滋賀県セクション */}
-            <div className="p-4 bg-blue-50 rounded-lg"> {/* パディング4, 薄青背景, 角丸lg */}
-              <h3 className="text-lg font-semibold text-blue-800 mb-2">🏔️ 滋賀県の都市も検索できます！</h3>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-2 text-sm text-blue-700"> {/* グリッド 2列, md以上で4列, ギャップ2, 文字サイズsm, 青文字 */}
-                <div>• 大津市</div>
-                <div>• 草津市</div>
-                <div>• 彦根市</div>
-                <div>• 長浜市</div>
-                <div>• 近江八幡市</div>
-                <div>• 守山市</div>
-                <div>• 栗東市</div>
-                <div>• 甲賀市</div>
-                <div>• 野洲市</div>
-                <div>• 湖南市</div>
-                <div>• 高島市</div>
-                <div>• 東近江市</div>
-                <div>• 米原市</div>
-                <div>• 日野町</div>
-                <div>• 竜王町</div>
-                <div>• 愛荘町</div>
-              </div>
-            </div>
-          </div>
+
         </div>
       )}
 
