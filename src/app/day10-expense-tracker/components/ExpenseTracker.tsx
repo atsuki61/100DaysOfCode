@@ -47,12 +47,14 @@ const ExpenseTracker: React.FC = () => {
   return (
     <div className="container mx-auto p-4">
       <div className="w-full max-w-4xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="flex flex-col gap-6">
+        <div className="flex flex-col md:grid md:grid-cols-2 gap-8">
+          <div className="order-1 md:order-1">
             <Balance transactions={transactions} />
+          </div>
+          <div className="order-3 md:order-2">
             <TransactionList transactions={transactions} deleteTransaction={deleteTransaction} />
           </div>
-          <div className="flex flex-col">
+          <div className="order-2 md:order-3 md:col-start-2 md:row-start-1 md:row-span-2 flex flex-col">
             <TransactionForm addTransaction={addTransaction} />
           </div>
         </div>

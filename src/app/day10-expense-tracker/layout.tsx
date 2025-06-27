@@ -25,7 +25,7 @@ export default function Day10Layout({
               </h1>
             </div>
             <div className="flex items-center">
-              <div className="neon-status">
+              <div className="neon-status hidden sm:flex">
                 <span className="status-text">ONLINE</span>
                 <div className="status-dot"></div>
               </div>
@@ -55,7 +55,7 @@ export default function Day10Layout({
         <div className="neon-footer-scan"></div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 h-full">
-          <div className="flex justify-between items-center py-4 h-full">
+          <div className="flex justify-between items-center py-4 h-full gap-x-2">
             <div className="flex-1">
               <a href="/day9-anime-quote-generator" className="neon-footer-nav">
                 <div className="flex items-center justify-center w-5 h-5 rounded-md bg-cyan-500/20 transition-all duration-300 group-hover:bg-cyan-500/30 group-hover:scale-110">
@@ -67,7 +67,7 @@ export default function Day10Layout({
               </a>
             </div>
 
-            <div className="text-center flex-shrink-0 w-80">
+            <div className="text-center flex-shrink-0 w-56 sm:w-80">
               <div className="neon-footer-title">
                 100 Days Of Code Projects
               </div>
@@ -284,7 +284,7 @@ export default function Day10Layout({
         .neon-title {
           color: #ffffff;
           font-family: 'Courier New', monospace;
-          font-size: 1.25rem;
+          font-size: 1rem; /* スマホでの基本サイズ */
           font-weight: 700;
           text-shadow: 
             0 0 10px #00FFFF,
@@ -292,6 +292,17 @@ export default function Day10Layout({
             0 0 30px #00FFFF;
           letter-spacing: 1px;
           animation: titleGlow 2s ease-in-out infinite alternate;
+          white-space: nowrap; /* タイトルの折り返しを禁止 */
+        }
+
+        @media (min-width: 640px) { /* smブレークポイント以上 */
+          .neon-title {
+            font-size: 1.25rem; /* PCでのサイズ */
+          }
+        }
+
+        :global(.neon-button) {
+          white-space: nowrap; /* ボタン内テキストの折り返しを防ぐ */
         }
         
         @keyframes titleGlow {

@@ -33,7 +33,7 @@ const Footer = ({ currentDay }: FooterProps) => {
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-500/50 via-purple-500/50 via-pink-500/50 to-transparent animate-pulse opacity-70"></div>
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 h-full">
-        <div className="flex justify-between items-center py-4 h-full">
+        <div className="flex justify-between items-center py-4 h-full gap-x-2">
           <div className="flex-1">
             {prevDay && (
               <Link 
@@ -50,7 +50,7 @@ const Footer = ({ currentDay }: FooterProps) => {
             )}
           </div>
 
-          <div className="text-center flex-shrink-0 w-80">
+          <div className="text-center flex-shrink-0 w-56 sm:w-80">
             <div className="text-xs font-semibold text-gray-600 mb-2 tracking-widest uppercase">
               100 Days Of Code Projects
             </div>
