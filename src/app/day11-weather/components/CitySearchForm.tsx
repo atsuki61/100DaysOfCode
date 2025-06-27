@@ -22,7 +22,7 @@ export default function CitySearchForm({ onSearch, isLoading }: CitySearchFormPr
           type="text"
           value={city}
           onChange={(e) => setCity(e.target.value)}
-          placeholder="都市名を入力してください（例: Tokyo, London）"
+          placeholder="都市名を入力してください（例: 名古屋, 豊田, 大津, 草津, Tokyo）"
           className="w-full px-6 py-4 text-lg border-2 border-gray-300 rounded-full focus:border-blue-500 focus:outline-none transition-colors" // 全幅, 横パディング6, 縦パディング4, 文字サイズlg, ボーダー2, グレーボーダー, 角丸円形, フォーカス時青ボーダー, アウトライン無し, 色のトランジション
           disabled={isLoading}
         />
@@ -51,7 +51,7 @@ export default function CitySearchForm({ onSearch, isLoading }: CitySearchFormPr
           人気の都市：
         </p>
         <div className="flex flex-wrap justify-center gap-2"> {/* Flex, 折り返し, 中央寄せ, ギャップ2 */}
-          {['Tokyo', 'London', 'New York', 'Paris', 'Sydney'].map((popularCity) => (
+          {['名古屋', '豊田', '岡崎', '大津', '草津', '彦根', '東京', '大阪'].map((popularCity) => (
             <button
               key={popularCity}
               type="button"

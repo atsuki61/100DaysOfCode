@@ -1,4 +1,5 @@
 import { WeatherResponse, WeatherData } from '../types';
+import { convertJapaneseCityToEnglish } from './cityMapping';
 
 // OpenWeatherMap APIのベースURL
 const API_BASE_URL = 'https://api.openweathermap.org/data/2.5';
@@ -31,7 +32,9 @@ const mapApiResponseToWeatherData = (response: WeatherResponse): WeatherData => 
 export const fetchWeatherByCity = async (city: string): Promise<WeatherData> => {
   try {
     const apiKey = getApiKey();
-    const url = `${API_BASE_URL}/weather?q=${encodeURIComponent(city)}&appid=${apiKey}&units=metric&lang=ja`;
+    // 日本語の都市名を英語に変換
+    const englishCityName = convertJapaneseCityToEnglish(city);
+    const url = `${API_BASE_URL}/weather?q=${encodeURIComponent(englishCityName)}&appid=${apiKey}&units=metric&lang=ja`;
     
     const response = await fetch(url);
     
@@ -40,7 +43,7 @@ export const fetchWeatherByCity = async (city: string): Promise<WeatherData> => 
       
       switch (response.status) {
         case 404:
-          throw new Error(`都市「${city}」が見つかりません。正しい都市名を入力してください。`);
+          throw new Error(`都市「${city}」が見つかりません。正しい都市名を入力してください。\n※日本語（東京、大阪など）と英語（Tokyo、Londonなど）の両方で検索できます。`);
         case 401:
           throw new Error('APIキーが無効です。設定を確認してください。');
         case 429:
