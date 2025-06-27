@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { WeatherCard, CitySearchForm, ErrorMessage } from './components';
+import { WeatherCard, AutoCompleteSearch, ErrorMessage } from './components';
 import { WeatherData, WeatherError } from './types';
 import { fetchWeatherByCity } from './utils/weatherApi';
 
@@ -41,12 +41,12 @@ export default function WeatherApp() {
           ☀️ 天気予報アプリ
         </h1>
         <p className="text-gray-600 text-lg max-w-md mx-auto"> {/* グレー文字, 文字サイズlg, 最大幅md, 中央寄せ */}
-          日本語・英語で都市名を入力して現在の天気情報を確認できます
+          ひらがな・漢字・英語で都市名を検索できます
         </p>
       </div>
 
       {/* 検索フォーム */}
-      <CitySearchForm onSearch={handleSearch} isLoading={isLoading} />
+      <AutoCompleteSearch onSearch={handleSearch} isLoading={isLoading} />
 
       {/* エラー表示 */}
       {error && <ErrorMessage error={error} onRetry={handleRetry} />}
@@ -63,10 +63,10 @@ export default function WeatherApp() {
             </svg>
           </div>
           <p className="text-lg mb-2"> {/* 文字サイズlg, 下マージン2 */}
-            上の検索ボックスに都市名を入力してください
+            ひらがなで入力すると候補が表示されます
           </p>
           <p className="text-sm"> {/* 文字サイズsm */}
-            例: 名古屋, 豊田, 岡崎, 大津, 草津, 彦根, Tokyo
+            例: 「こ」→ 甲賀市、「なご」→ 名古屋市、「おお」→ 大津市・大阪府
           </p>
           
           {/* 滋賀県・愛知県特化情報 */}
@@ -127,6 +127,16 @@ export default function WeatherApp() {
             📚 Day 11の学習ポイント
           </h2>
           <div className="grid md:grid-cols-2 gap-6"> {/* グリッド md以上で2列, ギャップ6 */}
+            <div>
+              <h3 className="text-lg font-semibold text-blue-700 mb-2"> {/* 文字サイズlg, 太字, 青文字, 下マージン2 */}
+                🔍 検索機能
+              </h3>
+              <ul className="text-sm text-blue-600 space-y-1"> {/* 文字サイズsm, 青文字, 縦間隔1 */}
+                <li>• ひらがな入力オートコンプリート</li>
+                <li>• リアルタイム候補表示</li>
+                <li>• キーボード操作対応</li>
+              </ul>
+            </div>
             <div>
               <h3 className="text-lg font-semibold text-blue-700 mb-2"> {/* 文字サイズlg, 太字, 青文字, 下マージン2 */}
                 🌐 外部API連携

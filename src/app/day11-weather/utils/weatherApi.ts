@@ -1,5 +1,5 @@
 import { WeatherResponse, WeatherData } from '../types';
-import { convertJapaneseCityToEnglish } from './cityMapping';
+import { getCityEnglishName } from './cityData';
 
 // OpenWeatherMap APIのベースURL
 const API_BASE_URL = 'https://api.openweathermap.org/data/2.5';
@@ -33,7 +33,7 @@ export const fetchWeatherByCity = async (city: string): Promise<WeatherData> => 
   try {
     const apiKey = getApiKey();
     // 日本語の都市名を英語に変換
-    const englishCityName = convertJapaneseCityToEnglish(city);
+    const englishCityName = getCityEnglishName(city);
     const url = `${API_BASE_URL}/weather?q=${encodeURIComponent(englishCityName)}&appid=${apiKey}&units=metric&lang=ja`;
     
     const response = await fetch(url);
