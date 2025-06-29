@@ -9,7 +9,7 @@ interface ButtonProps {
 
 export default function Button({ value, type, onClick, className = '' }: ButtonProps) {
   const getButtonStyle = () => {
-    const baseStyle = 'h-20 min-h-[60px] text-2xl font-semibold rounded-lg transition-all duration-200 transform hover:scale-105 active:scale-95 shadow-md touch-manipulation';
+    const baseStyle = 'h-14 sm:h-16 min-h-[56px] text-lg sm:text-xl font-semibold rounded-lg transition-all duration-200 transform hover:scale-105 active:scale-95 shadow-md touch-manipulation';
     
     switch (type) {
       case 'number':

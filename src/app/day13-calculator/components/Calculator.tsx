@@ -136,10 +136,10 @@ export default function Calculator() {
   }, [handleNumber, handleOperator, handleEquals, handleClear, handleDecimal]);
 
   return (
-    <div className="bg-white p-8 rounded-xl shadow-2xl border border-gray-200 max-w-lg w-full mx-auto">
+    <div className="bg-white p-4 sm:p-6 rounded-xl shadow-2xl border border-gray-200 max-w-lg w-full mx-auto">
       <Display value={state.display} />
       
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-4 gap-2 sm:gap-3">
         {/* Row 1 */}
         <Button value="C" type="clear" onClick={handleButtonClick} className="col-span-2" />
         <Button value="/" type="operator" onClick={handleButtonClick} />

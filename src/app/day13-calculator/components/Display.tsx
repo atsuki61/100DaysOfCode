@@ -5,17 +5,18 @@ interface DisplayProps {
 export default function Display({ value }: DisplayProps) {
   const displayValue = value || '0';
   
-  // 文字数に応じてフォントサイズを調整
+  // 文字数に応じてフォントサイズを調整（スマホとデスクトップで分ける）
   const getFontSize = () => {
-    if (displayValue.length > 10) return 'text-3xl';
-    if (displayValue.length > 8) return 'text-4xl';
-    return 'text-5xl';
+    if (displayValue.length > 12) return 'text-xl sm:text-2xl';
+    if (displayValue.length > 10) return 'text-2xl sm:text-3xl';
+    if (displayValue.length > 8) return 'text-3xl sm:text-4xl';
+    return 'text-4xl sm:text-5xl';
   };
 
   return (
-    <div className="bg-gray-900 text-white p-8 rounded-lg mb-6 border-2 border-gray-700">
+    <div className="bg-gray-900 text-white p-4 sm:p-6 rounded-lg mb-4 sm:mb-6 border-2 border-gray-700">
       <div className="text-right">
-        <div className={`${getFontSize()} font-mono font-bold leading-tight min-h-16 flex items-center justify-end break-all`}>
+        <div className={`${getFontSize()} font-mono font-bold leading-tight min-h-12 sm:min-h-14 flex items-center justify-end break-all`}>
           {displayValue}
         </div>
       </div>
