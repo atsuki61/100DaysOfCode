@@ -70,7 +70,13 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       };
       
       mediaQuery.addEventListener('change', handleChange);
-      return () => mediaQuery.removeEventListener('change', handleChange);
+      return () => {
+        mediaQuery.removeEventListener('change', handleChange);
+        if (typeof window !== 'undefined') {
+          const root = window.document.documentElement;
+          root.classList.remove('dark');
+        }
+      };
     }
   }, [theme]);
 
