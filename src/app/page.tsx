@@ -100,14 +100,14 @@ export default function HomePage() {
        description: 'ボタンでサイトのライト/ダークテーマを切り替え可能です。Context APIによるグローバル状態管理、Tailwind CSSのダークモード機能の利用、localStorageによるテーマ永続化を練習しました。',
        tags: ['React, Next.js, TypeScript, TailwindCSS'],
      },
-     // {
-     //   id: 'day13',
-     //   name: 'Day 13: 電卓アプリ',
-     //   path: '/day13-calculator',
-     //   imageUrl: '/images/day13-calculator.png',
-     //   description: '四則演算ができるシンプルな電卓です。複数状態の管理(useState複数利用)、ボタンクリックによる計算ロジック、UIイベントの詳細な制御を練習しました。',
-     //   tags: ['React, Next.js, TypeScript, TailwindCSS'],
-     // },
+     {
+       id: 'day13',
+       name: 'Day 13: 電卓アプリ',
+       path: '/day13-calculator',
+       imageUrl: '/images/day13-calculator.png',
+       description: '四則演算ができるシンプルな電卓です。複数状態の管理(useState複数利用)、ボタンクリックによる計算ロジック、UIイベントの詳細な制御を練習しました。',
+       tags: ['React, Next.js, TypeScript, TailwindCSS'],
+     },
      // {
      //   id: 'day14',
      //   name: 'Day 14: 英単語辞書アプリ',

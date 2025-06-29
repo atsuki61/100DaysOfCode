@@ -23,7 +23,8 @@ const Footer = ({ currentDay }: FooterProps) => {
       9: "/day9-anime-quote-generator",
       10: "/day10-expense-tracker",
       11: "/day11-weather",
-      12: "/day12-darkmode"
+      12: "/day12-darkmode",
+      13: "/day13-calculator",
     };
     return dayRoutes[day] || `/day${day}`;
   };
