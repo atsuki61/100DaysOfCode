@@ -3,20 +3,20 @@
 import { ThemeProvider } from './contexts/ThemeContext';
 import ThemeToggle from './components/ThemeToggle';
 import DemoCard from './components/DemoCard';
-import DarkModeHeader from './components/DarkModeHeader';
-import DarkModePageHeader from './components/DarkModePageHeader';
+import Header from '@/components/common/Header';
+import PageHeader from '@/components/common/PageHeader';
 import Footer from '@/components/common/Footer';
 
 function DarkModeAppContent() {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
-      <DarkModeHeader 
+      <Header 
         title="Day 12: ダークモード切替アプリ"
         showHomeLink={true}
       />
       
       <div className="container mx-auto px-4 pt-20 pb-24">
-        <DarkModePageHeader
+        <PageHeader
           icon="🌙"
           title="Day 12: ダークモード切替アプリ"
           description="Context APIとTailwind CSSを使ってダークモードを実装"
