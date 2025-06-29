@@ -5,6 +5,7 @@ export interface CalculatorState {
   previousValue: number | null;
   operation: Operation;
   waitingForNewValue: boolean;
+  formula: string;
 }
 
 export type ButtonType = 'number' | 'operator' | 'equals' | 'clear' | 'decimal'; 

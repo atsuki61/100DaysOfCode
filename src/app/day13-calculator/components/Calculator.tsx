@@ -10,6 +10,7 @@ const initialState: CalculatorState = {
   previousValue: null,
   operation: null,
   waitingForNewValue: false,
+  formula: '',
 };
 
 export default function Calculator() {
@@ -18,15 +19,21 @@ export default function Calculator() {
   const handleNumber = useCallback((num: string) => {
     setState(prevState => {
       if (prevState.waitingForNewValue) {
+        const newFormula = prevState.formula ? `${prevState.formula} ${num}` : num;
         return {
           ...prevState,
           display: num,
           waitingForNewValue: false,
+          formula: newFormula,
         };
       }
+      const newDisplay = prevState.display === '0' ? num : prevState.display + num;
+      const baseFormula = prevState.formula.replace(/\d+\.?\d*$/, '');
+      const newFormula = baseFormula + newDisplay;
       return {
         ...prevState,
-        display: prevState.display === '0' ? num : prevState.display + num,
+        display: newDisplay,
+        formula: newFormula,
       };
     });
   }, []);
@@ -41,6 +48,7 @@ export default function Calculator() {
           previousValue: inputValue,
           operation: nextOperation as Operation,
           waitingForNewValue: true,
+          formula: `${prevState.display} ${nextOperation}`,
         };
       }
 
@@ -54,13 +62,16 @@ export default function Calculator() {
           previousValue: result,
           operation: nextOperation as Operation,
           waitingForNewValue: true,
+          formula: `${prevState.formula} = ${result} ${nextOperation}`,
         };
       }
 
+      const formulaWithoutLastOp = prevState.formula.replace(/\s[+\-*/]\s?$/, '');
       return {
         ...prevState,
         operation: nextOperation as Operation,
         waitingForNewValue: true,
+        formula: `${formulaWithoutLastOp} ${nextOperation}`,
       };
     });
   }, [state.display]);
@@ -77,6 +88,7 @@ export default function Calculator() {
           previousValue: null,
           operation: null,
           waitingForNewValue: true,
+          formula: `${prevState.formula} = ${result}`,
         };
       }
       return prevState;
@@ -90,16 +102,22 @@ export default function Calculator() {
   const handleDecimal = useCallback(() => {
     setState(prevState => {
       if (prevState.waitingForNewValue) {
+        const newFormula = prevState.formula ? `${prevState.formula} 0.` : '0.';
         return {
           ...prevState,
           display: '0.',
           waitingForNewValue: false,
+          formula: newFormula,
         };
       }
       if (prevState.display.indexOf('.') === -1) {
+        const newDisplay = prevState.display + '.';
+        const baseFormula = prevState.formula.replace(/\d+\.?\d*$/, '');
+        const newFormula = baseFormula + newDisplay;
         return {
           ...prevState,
-          display: prevState.display + '.',
+          display: newDisplay,
+          formula: newFormula,
         };
       }
       return prevState;
@@ -137,7 +155,7 @@ export default function Calculator() {
 
   return (
     <div className="bg-white p-4 sm:p-6 rounded-xl shadow-2xl border border-gray-200 max-w-lg w-full mx-auto">
-      <Display value={state.display} />
+      <Display value={state.display} formula={state.formula} />
       
       <div className="grid grid-cols-4 gap-2 sm:gap-3">
         {/* Row 1 */}
