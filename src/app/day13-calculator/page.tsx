@@ -15,7 +15,14 @@ export default function Day13Page() {
           description="四則演算ができるシンプルな電卓"
         />
         
-        <div className="max-w-2xl mx-auto">
+        <div className="max-w-4xl mx-auto">
+          {/* 電卓コンポーネント */}
+          <div className="flex justify-center mb-8 px-4">
+            <div className="w-full max-w-sm sm:max-w-md">
+              <Calculator />
+            </div>
+          </div>
+
           {/* 電卓の説明 */}
           <div className="bg-white p-6 rounded-lg shadow-md mb-8">
             <h2 className="text-2xl font-bold text-gray-800 mb-4">🧮 電卓の使い方</h2>
@@ -41,11 +48,6 @@ export default function Day13Page() {
                 </ul>
               </div>
             </div>
-          </div>
-
-          {/* 電卓コンポーネント */}
-          <div className="flex justify-center mb-8">
-            <Calculator />
           </div>
 
           {/* 技術ポイント */}
