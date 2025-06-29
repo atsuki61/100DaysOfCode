@@ -5,7 +5,7 @@ import ThemeToggle from './components/ThemeToggle';
 import DemoCard from './components/DemoCard';
 import DarkModeHeader from './components/DarkModeHeader';
 import DarkModePageHeader from './components/DarkModePageHeader';
-import DarkModeFooter from './components/DarkModeFooter';
+import Footer from '@/components/common/Footer';
 
 function DarkModeAppContent() {
   return (
@@ -66,7 +66,7 @@ function DarkModeAppContent() {
         </div>
       </div>
       
-      <DarkModeFooter currentDay={12} />
+      <Footer currentDay={12} />
     </div>
   );
 }
