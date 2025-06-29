@@ -13,11 +13,11 @@ export default function PageHeader({
 }: PageHeaderProps) {
   return (
     <header className={`text-center pb-8 pt-8 ${className}`}>
-      <h1 className="text-4xl font-bold text-gray-800 mb-2">
+      <h1 className="text-4xl font-bold text-gray-800 dark:text-white mb-2">
         {icon && <span className="mr-2">{icon}</span>}
         {title}
       </h1>
-      <p className="text-gray-600">
+      <p className="text-gray-600 dark:text-gray-300">
         {description}
       </p>
     </header>
