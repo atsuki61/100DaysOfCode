@@ -127,7 +127,16 @@ alwaysApply: true
      - TypeScript の型は正確に定義し、コードの安全性を高めてください。
      - Tailwind CSS はユーティリティファーストで記述し、インラインスタイルは避けてください。
      - [Header.tsx](mdc:src/components/common/Header.tsx),[PageHeader.tsx](mdc:src/components/common/PageHeader.tsx),[Footer.tsx](mdc:src/components/common/Footer.tsx) は全てのsrc/app/dayX-appName/layout.tsxに適切なタイトルで配置するようにしてください。
-     - **背景色の統一**: 各プロジェクトでPageHeaderとメインコンテンツの背景色が分離しないよう、layout.tsxの`main`タグに背景色（例：`bg-gray-50 min-h-screen`）を設定し、page.tsxでは重複する背景色設定は避けてください。プロジェクトごとに異なる背景色を使用する場合は、layout.tsxで統一して管理してください。
+
+- **新規プロジェクト作成時の必須更新作業**:
+     - **ホームページに表示**: [page.tsx](mdc:src/app/page.tsx) の`apps`配列で、新しいプロジェクトの該当部分のコメントアウト(`//`)を外す
+     - **フッターナビゲーション対応**: [Footer.tsx](mdc:src/components/common/Footer.tsx)の`dayRoutes`オブジェクトに新しい日数とパスを追加する
+     - 例: `x: '/dayx-new-app'`
+  
+  ※ この作業を忘れると、ホームページにカードが表示されない、または前後日ナビゲーションが機能しなくなります。
+  
+- **背景色の統一**:
+各プロジェクトでPageHeaderとメインコンテンツの背景色が分離しないよう、layout.tsxの`main`タグに背景色（例：`bg-gray-50 min-h-screen`）を設定し、page.tsxでは重複する背景色設定は避けてください。プロジェクトごとに異なる背景色を使用する場合は、layout.tsxで統一して管理してください。
 - **Tailwind CSS クラスの注釈**:
      - あなたがコードを生成する際、または私が既存のコードについて質問した際、JSX/TSXファイル内でTailwind CSSのクラスが指定されている `className` プロパティに対して、その主な効果を日本語で非常に簡潔なコメントとして追記してください。
      - コメントは、該当行の行末に `// 説明` の形で記述するか、または該当行の直前に ` {/* 説明 */}` の形で記述してください。
