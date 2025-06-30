@@ -10,11 +10,15 @@ export default function Day14Page() {
   const {
     wordData,
     searchState,
+    translationState,
+    currentLanguage,
     searchDictionary,
+    switchLanguage,
     clearSearch,
     isLoading,
     isError,
     isSuccess,
+    canTranslate,
   } = useDictionary();
 
   const handleRetry = () => {
@@ -40,7 +44,7 @@ export default function Day14Page() {
             </p>
             
             {/* 機能の説明 */}
-            <div className="grid md:grid-cols-3 gap-4 text-sm"> {/* グリッドレイアウト, md以上で3列, ギャップ4, 文字サイズsm */}
+            <div className="grid md:grid-cols-4 gap-4 text-sm"> {/* グリッドレイアウト, md以上で4列, ギャップ4, 文字サイズsm */}
               <div className="bg-blue-50 p-4 rounded-lg text-center"> {/* ブルー50背景, 全方向パディング4, 角丸lg, 中央揃え */}
                 <div className="text-2xl mb-2">🔍</div>
                 <div className="font-semibold text-blue-800">単語検索</div> {/* 太字, ブルー800文字 */}
@@ -55,6 +59,11 @@ export default function Day14Page() {
                 <div className="text-2xl mb-2">🔉</div>
                 <div className="font-semibold text-purple-800">音声再生</div> {/* 太字, パープル800文字 */}
                 <div className="text-purple-600">発音を音声で確認</div> {/* パープル600文字 */}
+              </div>
+              <div className="bg-orange-50 p-4 rounded-lg text-center"> {/* オレンジ50背景, 全方向パディング4, 角丸lg, 中央揃え */}
+                <div className="text-2xl mb-2">🇯🇵</div>
+                <div className="font-semibold text-orange-800">日本語翻訳</div> {/* 太字, オレンジ800文字 */}
+                <div className="text-orange-600">Gemini APIで翻訳</div> {/* オレンジ600文字 */}
               </div>
             </div>
           </div>
@@ -114,7 +123,13 @@ export default function Day14Page() {
           {/* 成功状態 */}
           {isSuccess && wordData && (
             <div className="space-y-6"> {/* 縦方向スペース6 */}
-              <WordCard wordData={wordData} />
+              <WordCard 
+                wordData={wordData}
+                currentLanguage={currentLanguage}
+                translationState={translationState}
+                onLanguageSwitch={switchLanguage}
+                canTranslate={canTranslate}
+              />
               
               {/* 新しい検索を促すボタン */}
               <div className="text-center"> {/* 中央揃え */}
@@ -139,6 +154,7 @@ export default function Day14Page() {
               <h3 className="text-lg font-semibold text-indigo-700">技術的な学習</h3> {/* 文字サイズlg, 太字, インディゴ700文字 */}
               <ul className="space-y-2 text-gray-600"> {/* 縦方向スペース2, グレー600文字 */}
                 <li>• 外部辞書API（Free Dictionary API）の利用</li>
+                <li>• Gemini APIによる翻訳機能の実装</li>
                 <li>• 非同期データ取得とエラーハンドリング</li>
                 <li>• 複雑なJSONレスポンスの型定義と変換</li>
                 <li>• ローディング状態の管理とUX向上</li>
@@ -149,10 +165,11 @@ export default function Day14Page() {
               <h3 className="text-lg font-semibold text-green-700">React/TypeScriptの練習</h3> {/* 文字サイズlg, 太字, グリーン700文字 */}
               <ul className="space-y-2 text-gray-600"> {/* 縦方向スペース2, グレー600文字 */}
                 <li>• カスタムフック（useDictionary）の作成</li>
-                <li>• 状態管理（idle, loading, success, error）</li>
+                <li>• 複数状態管理（検索・翻訳・言語切り替え）</li>
                 <li>• コンポーネント分割と関心事の分離</li>
                 <li>• TypeScriptでのAPI型定義の実践</li>
                 <li>• useCallback による最適化</li>
+                <li>• 条件付きレンダリングによる多言語対応</li>
               </ul>
             </div>
           </div>

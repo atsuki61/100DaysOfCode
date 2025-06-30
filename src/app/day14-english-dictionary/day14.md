@@ -14,7 +14,9 @@
 - **フレームワーク**: Next.js 15.3.2 (App Router)
 - **言語**: TypeScript
 - **スタイリング**: Tailwind CSS ^4
-- **API**: Free Dictionary API (https://api.dictionaryapi.dev/api/v2/entries/en/)
+- **API**: 
+  - Free Dictionary API (https://api.dictionaryapi.dev/api/v2/entries/en/)
+  - Gemini API (Google AI Studio) - 翻訳機能
 - **音声**: Web Audio API
 
 ## 📁 プロジェクト構成
@@ -28,7 +30,8 @@ src/app/day14-english-dictionary/
 ├── hooks/
 │   └── useDictionary.ts       # 辞書検索カスタムフック
 ├── utils/
-│   └── dictionaryApi.ts       # API呼び出しユーティリティ
+│   ├── dictionaryApi.ts       # 辞書API呼び出しユーティリティ
+│   └── geminiApi.ts           # Gemini翻訳API呼び出しユーティリティ
 ├── types.ts                   # TypeScript型定義
 ├── layout.tsx                 # レイアウトファイル
 ├── page.tsx                   # メインページ
@@ -58,6 +61,13 @@ src/app/day14-english-dictionary/
 - 詳細なエラーメッセージとリトライ機能
 - 状態管理（idle, loading, success, error）
 
+### 5. 日本語翻訳機能 🆕
+- Gemini APIによる自動翻訳
+- 英語⇔日本語の切り替えボタン
+- 定義、例文、同義語・反義語の一括翻訳
+- 品詞の日本語変換（noun→名詞、verb→動詞等）
+- 翻訳ローディング状態の管理
+
 ## 💡 学んだこと
 
 ### TypeScript関連
@@ -69,14 +79,19 @@ src/app/day14-english-dictionary/
 ### React/Next.js関連
 - **カスタムフック**: 複雑な状態とロジックの抽象化
 - **useCallback**: 不要な再レンダリングの防止
-- **状態管理**: 複数の状態（データ、ローディング、エラー）の統合管理
+- **複数状態管理**: 検索・翻訳・言語切り替えの統合管理
 - **コンポーネント分割**: 関心事の分離と再利用性の向上
+- **条件レンダリング**: 言語切り替えによる動的コンテンツ表示
+- **Props設計**: 翻訳機能に対応した適切なコンポーネントインターフェース
 
 ### API・非同期処理
 - **RESTful API**: Free Dictionary API の仕様理解
+- **Gemini API**: Google AI Studio による翻訳API統合
+- **複数API連携**: 辞書検索と翻訳の複合機能実装
 - **エラーハンドリング**: HTTPステータスコード別の適切な処理
 - **データ変換**: APIレスポンスからアプリケーション用データへの変換
 - **ネットワークエラー**: ネットワーク障害時の適切な対応
+- **API効率化**: 一括翻訳による API コール数の最適化
 
 ### UX/UI設計
 - **ローディング状態**: ユーザビリティを考慮した待機画面
@@ -110,7 +125,39 @@ const useDictionary = () => {
 };
 ```
 
-### 2. 堅牢なエラーハンドリング
+### 2. Gemini API翻訳機能
+```typescript
+// 単語データ全体を日本語に翻訳
+export const translateWordData = async (wordData: WordData): Promise<Partial<WordData>> => {
+  try {
+    const translations: Partial<WordData> = {};
+
+    // 品詞別の定義を翻訳
+    const japaneseMeanings = await Promise.all(
+      wordData.meanings.map(async (meaning) => {
+        const translatedDefinitions = await translateMultipleTexts(
+          meaning.definitions,
+          `これは「${wordData.word}」という英単語の${meaning.partOfSpeech}（品詞）としての定義です。`
+        );
+        
+        return {
+          partOfSpeech: await translatePartOfSpeech(meaning.partOfSpeech),
+          definitions: translatedDefinitions
+        };
+      })
+    );
+
+    translations.japaneseMeanings = japaneseMeanings;
+    // 例文、同義語、反義語も同様に翻訳...
+    
+    return translations;
+  } catch (error) {
+    throw new Error('翻訳に失敗しました。しばらく待ってから再試行してください。');
+  }
+};
+```
+
+### 3. 堅牢なエラーハンドリング
 ```typescript
 // HTTPステータスコード別の詳細なエラー処理
 switch (response.status) {
@@ -123,7 +170,7 @@ switch (response.status) {
 }
 ```
 
-### 3. 型安全なデータ変換
+### 4. 型安全なデータ変換
 ```typescript
 // APIレスポンスからアプリケーション用データへの変換
 const mapApiResponseToWordData = (response: DictionaryResponse[]): WordData => {
@@ -175,13 +222,15 @@ const mapApiResponseToWordData = (response: DictionaryResponse[]): WordData => {
 
 ## 🏆 達成できたこと
 
-1. **外部API統合**: Free Dictionary APIの完全活用
+1. **複数外部API統合**: Free Dictionary API + Gemini API の完全活用
 2. **型安全性**: TypeScriptによる堅牢なコード
-3. **ユーザー体験**: 直感的で使いやすいインターフェース
-4. **エラー処理**: 様々な状況に対応したエラーハンドリング
-5. **レスポンシブ**: あらゆるデバイスでの快適な操作
+3. **多言語対応**: 英語⇔日本語の動的切り替え機能
+4. **ユーザー体験**: 直感的で使いやすいインターフェース
+5. **エラー処理**: 様々な状況に対応したエラーハンドリング
+6. **レスポンシブ**: あらゆるデバイスでの快適な操作
+7. **AI統合**: 最新のGemini APIによるリアルタイム翻訳
 
-このプロジェクトを通じて、実用的なアプリケーション開発に必要な多くの技術要素を体験でき、特に外部APIとの連携、TypeScriptでの型安全性、React のカスタムフックによる状態管理について深く学習できました。
+このプロジェクトを通じて、実用的なアプリケーション開発に必要な多くの技術要素を体験でき、特に複数外部APIとの連携、TypeScriptでの型安全性、React のカスタムフックによる状態管理、そして最新AI技術の統合について深く学習できました。
 
 ---
 

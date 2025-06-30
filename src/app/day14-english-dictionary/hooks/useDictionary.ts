@@ -1,14 +1,20 @@
 'use client'
 
 import { useState, useCallback } from 'react';
-import { WordData, SearchState } from '../types';
+import { WordData, SearchState, TranslationState, Language } from '../types';
 import { searchWord } from '../utils/dictionaryApi';
+import { translateWordData, isGeminiApiAvailable } from '../utils/geminiApi';
 
 export function useDictionary() {
   const [wordData, setWordData] = useState<WordData | null>(null);
   const [searchState, setSearchState] = useState<SearchState>({
     status: 'idle'
   });
+  const [translationState, setTranslationState] = useState<TranslationState>({
+    status: 'idle',
+    isTranslated: false
+  });
+  const [currentLanguage, setCurrentLanguage] = useState<Language>('en');
 
   const searchDictionary = useCallback(async (word: string) => {
     if (!word.trim()) {
@@ -31,6 +37,12 @@ export function useDictionary() {
         status: 'success',
         lastSearchedWord: word.trim()
       });
+      // 新しい検索時は翻訳状態をリセット
+      setTranslationState({
+        status: 'idle',
+        isTranslated: false
+      });
+      setCurrentLanguage('en');
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : '検索中にエラーが発生しました。';
       setSearchState({
@@ -42,18 +54,66 @@ export function useDictionary() {
     }
   }, []);
 
+  const translateToJapanese = useCallback(async () => {
+    if (!wordData || translationState.isTranslated) return;
+
+    setTranslationState({
+      status: 'translating',
+      isTranslated: false
+    });
+
+    try {
+      const translations = await translateWordData(wordData);
+      setWordData(prevData => prevData ? { ...prevData, ...translations } : null);
+      setTranslationState({
+        status: 'success',
+        isTranslated: true
+      });
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : '翻訳中にエラーが発生しました。';
+      setTranslationState({
+        status: 'error',
+        error: errorMessage,
+        isTranslated: false
+      });
+    }
+  }, [wordData, translationState.isTranslated]);
+
+  const switchLanguage = useCallback(async (language: Language) => {
+    if (language === currentLanguage) return;
+
+    setCurrentLanguage(language);
+
+    // 日本語に切り替える場合で、まだ翻訳されていない場合は翻訳を実行
+    if (language === 'ja' && !translationState.isTranslated && wordData) {
+      await translateToJapanese();
+    }
+  }, [currentLanguage, translationState.isTranslated, wordData, translateToJapanese]);
+
   const clearSearch = useCallback(() => {
     setWordData(null);
     setSearchState({ status: 'idle' });
+    setTranslationState({
+      status: 'idle',
+      isTranslated: false
+    });
+    setCurrentLanguage('en');
   }, []);
 
   return {
     wordData,
     searchState,
+    translationState,
+    currentLanguage,
     searchDictionary,
+    translateToJapanese,
+    switchLanguage,
     clearSearch,
     isLoading: searchState.status === 'loading',
     isError: searchState.status === 'error',
     isSuccess: searchState.status === 'success',
+    isTranslating: translationState.status === 'translating',
+    isTranslationError: translationState.status === 'error',
+    canTranslate: isGeminiApiAvailable() && !!wordData && !translationState.isTranslated,
   };
 } 
