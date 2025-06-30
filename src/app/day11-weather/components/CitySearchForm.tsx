@@ -1,21 +1,21 @@
 import { useState } from 'react';
 
-interface CitySearchFormProps {
-  onSearch: (city: string) => void;
-  isLoading: boolean;
+interface CitySearchFormProps {/* 都市検索フォームのプロパティ */
+  onSearch: (city: string) => void;/* 検索ハンドラー */
+  isLoading: boolean;/* ローディング */
 }
 
-export default function CitySearchForm({ onSearch, isLoading }: CitySearchFormProps) {
-  const [city, setCity] = useState('');
+export default function CitySearchForm({ onSearch, isLoading }: CitySearchFormProps) {/* 都市検索フォーム */
+  const [city, setCity] = useState('');/* 都市 */
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (city.trim()) {
-      onSearch(city.trim());
+  const handleSubmit = (e: React.FormEvent) => {/* フォーム送信ハンドラー */
+    e.preventDefault();/* フォーム送信をキャンセル */
+    if (city.trim()) {/* 都市が入力されている場合 */
+      onSearch(city.trim());/* 検索 */
     }
   };
 
-  return (
+  return (/* 都市検索フォーム */
     <form onSubmit={handleSubmit} className="w-full max-w-md mx-auto mb-8"> {/* 全幅, 最大幅md, 中央寄せ, 下マージン8 */}
       <div className="relative"> {/* 相対位置 */}
         <input

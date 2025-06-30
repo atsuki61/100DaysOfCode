@@ -5,32 +5,32 @@ import { WeatherCard, AutoCompleteSearch, ErrorMessage } from './components';
 import { WeatherData, WeatherError } from './types';
 import { fetchWeatherByCity } from './utils/weatherApi';
 
-export default function WeatherApp() {
-  const [weather, setWeather] = useState<WeatherData | null>(null);
-  const [error, setError] = useState<WeatherError | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
+export default function WeatherApp() {/* 天気予報アプリ */
+  const [weather, setWeather] = useState<WeatherData | null>(null);/* 天気データ */
+  const [error, setError] = useState<WeatherError | null>(null);/* エラー */
+  const [isLoading, setIsLoading] = useState(false);/* ローディング */
 
-  const handleSearch = async (city: string) => {
-    setIsLoading(true);
-    setError(null);
-    setWeather(null);
+  const handleSearch = async (city: string) => {/* 検索ハンドラー */
+    setIsLoading(true);/* ローディング */
+    setError(null);/* エラー */
+    setWeather(null);/* 天気データ */
 
-    try {
-      const weatherData = await fetchWeatherByCity(city);
-      setWeather(weatherData);
-    } catch (err) {
-      if (err instanceof Error) {
-        setError({ message: err.message });
-      } else {
-        setError({ message: '予期しないエラーが発生しました。' });
+    try {/* 天気データ取得 */
+      const weatherData = await fetchWeatherByCity(city);/* 天気データ取得 */
+      setWeather(weatherData);/* 天気データ */
+    } catch (err) {/* エラー */
+      if (err instanceof Error) {/* エラー */
+        setError({ message: err.message });/* エラー */
+      } else {/* エラー */
+        setError({ message: '予期しないエラーが発生しました。' });/* エラー */
       }
-    } finally {
-      setIsLoading(false);
+    } finally {/* ローディング */
+      setIsLoading(false);/* ローディング */
     }
   };
 
-  const handleRetry = () => {
-    setError(null);
+  const handleRetry = () => {/* 再試行ハンドラー */
+    setError(null);/* エラー */
   };
 
   return (
