@@ -21,6 +21,15 @@ export default function WordCard({
 }: WordCardProps) {
   const [isPlayingAudio, setIsPlayingAudio] = useState(false);
 
+  // デバッグ用ログ
+  console.log('WordCard DEBUG:', {
+    canTranslate,
+    currentLanguage,
+    translationState,
+    hasWordData: !!wordData,
+    wordDataKeys: wordData ? Object.keys(wordData) : []
+  });
+
   const handlePlayAudio = async () => {
     if (isPlayingAudio) return;
     
@@ -60,7 +69,7 @@ export default function WordCard({
           
           <div className="flex items-center gap-3"> {/* Flexコンテナ, アイテム中央寄せ, ギャップ3 */}
             {/* 言語切り替えボタン */}
-            {canTranslate && (
+            {true && (
               <div className="flex bg-gray-100 rounded-lg p-1"> {/* Flexコンテナ, グレー100背景, 角丸lg, パディング1 */}
                 <button
                   onClick={() => onLanguageSwitch('en')}

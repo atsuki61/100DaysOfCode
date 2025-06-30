@@ -100,6 +100,18 @@ export function useDictionary() {
     setCurrentLanguage('en');
   }, []);
 
+  const canTranslateValue = isGeminiApiAvailable() && !!wordData;
+  
+  // デバッグ用ログ
+  console.log('useDictionary DEBUG:', {
+    isGeminiApiAvailable: isGeminiApiAvailable(),
+    hasWordData: !!wordData,
+    canTranslate: canTranslateValue,
+    currentLanguage,
+    translationState,
+    NEXT_PUBLIC_GEMINI_API_KEY: !!process.env.NEXT_PUBLIC_GEMINI_API_KEY
+  });
+
   return {
     wordData,
     searchState,
@@ -114,6 +126,6 @@ export function useDictionary() {
     isSuccess: searchState.status === 'success',
     isTranslating: translationState.status === 'translating',
     isTranslationError: translationState.status === 'error',
-    canTranslate: isGeminiApiAvailable() && !!wordData && !translationState.isTranslated,
+    canTranslate: canTranslateValue,
   };
 } 
