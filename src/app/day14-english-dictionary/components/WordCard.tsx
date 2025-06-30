@@ -156,46 +156,7 @@ export default function WordCard({
         ))}
       </div>
 
-      {/* 同義語・反義語セクション */}
-      <div className="grid md:grid-cols-2 gap-6"> {/* グリッドレイアウト, md以上で2列, ギャップ6 */}
-        {/* 同義語 */}
-        {((currentLanguage === 'ja' && wordData.japaneseSynonyms) || wordData.synonyms).length > 0 && (
-          <div className="bg-green-50 rounded-xl p-5"> {/* グリーン50背景, 角丸xl, 全方向パディング5 */}
-            <h3 className="text-lg font-semibold text-green-700 mb-3 flex items-center gap-2"> {/* 文字サイズlg, 太字, グリーン700文字, 下マージン3, Flexコンテナ, アイテム中央寄せ, ギャップ2 */}
-              ✅ 同義語
-            </h3>
-            <div className="flex flex-wrap gap-2"> {/* Flexコンテナ, 折り返しあり, ギャップ2 */}
-              {(currentLanguage === 'ja' && wordData.japaneseSynonyms ? wordData.japaneseSynonyms : wordData.synonyms).map((synonym, index) => (
-                <span
-                  key={index}
-                  className="px-3 py-1 bg-green-200 text-green-800 rounded-full text-sm font-medium" // 横パディング3, 縦パディング1, グリーン200背景, グリーン800文字, 角丸円形, 文字サイズsm, 中太字 */}
-                >
-                  {synonym}
-                </span>
-              ))}
-            </div>
-          </div>
-        )}
 
-        {/* 反義語 */}
-        {((currentLanguage === 'ja' && wordData.japaneseAntonyms) || wordData.antonyms).length > 0 && (
-          <div className="bg-red-50 rounded-xl p-5"> {/* レッド50背景, 角丸xl, 全方向パディング5 */}
-            <h3 className="text-lg font-semibold text-red-700 mb-3 flex items-center gap-2"> {/* 文字サイズlg, 太字, レッド700文字, 下マージン3, Flexコンテナ, アイテム中央寄せ, ギャップ2 */}
-              ❌ 反義語
-            </h3>
-            <div className="flex flex-wrap gap-2"> {/* Flexコンテナ, 折り返しあり, ギャップ2 */}
-              {(currentLanguage === 'ja' && wordData.japaneseAntonyms ? wordData.japaneseAntonyms : wordData.antonyms).map((antonym, index) => (
-                <span
-                  key={index}
-                  className="px-3 py-1 bg-red-200 text-red-800 rounded-full text-sm font-medium" // 横パディング3, 縦パディング1, レッド200背景, レッド800文字, 角丸円形, 文字サイズsm, 中太字 */}
-                >
-                  {antonym}
-                </span>
-              ))}
-            </div>
-          </div>
-        )}
-      </div>
     </div>
   );
 } 
