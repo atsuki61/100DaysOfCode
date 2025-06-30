@@ -108,14 +108,14 @@ export default function HomePage() {
        description: '四則演算ができるシンプルな電卓です。複数状態の管理(useState複数利用)、ボタンクリックによる計算ロジック、UIイベントの詳細な制御を練習しました。',
        tags: ['React, Next.js, TypeScript, TailwindCSS'],
      },
-     // {
-     //   id: 'day14',
-     //   name: 'Day 14: 英単語辞書アプリ',
-     //   path: '/day14-dictionary',
-     //   imageUrl: '/images/day14-dictionary.png',
-     //   description: '英単語を入力すると意味を表示する辞書アプリです（外部辞書API利用）。外部辞書APIの利用、非同期データ取得、より複雑なJSONデータの表示、ローディング状態の管理を練習しました。',
-     //   tags: ['React, Next.js, TypeScript, TailwindCSS'],
-     // },
+     {
+       id: 'day14',
+       name: 'Day 14: 英単語辞書アプリ',
+       path: '/day14-english-dictionary',
+       imageUrl: '/images/day14-dictionary.png',
+       description: '英単語を入力すると意味を表示する辞書アプリです（外部辞書API利用）。外部辞書APIの利用、非同期データ取得、より複雑なJSONデータの表示、ローディング状態の管理を練習しました。',
+       tags: ['React, Next.js, TypeScript, TailwindCSS'],
+     },
      // {
      //   id: 'day15',
      //   name: 'Day 15: ワークアウトプランナー',

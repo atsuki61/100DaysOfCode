@@ -25,6 +25,7 @@ const Footer = ({ currentDay }: FooterProps) => {
       11: "/day11-weather",
       12: "/day12-darkmode",
       13: "/day13-calculator",
+      14: "/day14-english-dictionary",
     };
     return dayRoutes[day] || `/day${day}`;
   };
