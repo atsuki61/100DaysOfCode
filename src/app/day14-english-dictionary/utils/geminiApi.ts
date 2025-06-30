@@ -109,12 +109,12 @@ ${textList}
     }
 
     // 番号付きリストから翻訳結果を抽出
-    const lines = translatedText.split('\n');
+    const lines: string[] = translatedText.split('\n');
     const translations: string[] = [];
     
     for (let i = 0; i < texts.length; i++) {
       const linePattern = new RegExp(`${i + 1}\\. "?(.+?)"?$`);
-      const matchingLine = lines.find(line => linePattern.test(line.trim()));
+      const matchingLine = lines.find((line: string) => linePattern.test(line.trim()));
       
       if (matchingLine) {
         const match = matchingLine.match(linePattern);
