@@ -21,14 +21,6 @@ export default function WordCard({
 }: WordCardProps) {
   const [isPlayingAudio, setIsPlayingAudio] = useState(false);
 
-  // デバッグ用ログ
-  console.log('WordCard DEBUG:', {
-    canTranslate,
-    currentLanguage,
-    translationState,
-    hasWordData: !!wordData,
-    wordDataKeys: wordData ? Object.keys(wordData) : []
-  });
 
   const handlePlayAudio = async () => {
     if (isPlayingAudio) return;
@@ -69,7 +61,7 @@ export default function WordCard({
           
           <div className="flex items-center gap-3"> {/* Flexコンテナ, アイテム中央寄せ, ギャップ3 */}
             {/* 言語切り替えボタン */}
-            {true && (
+            {canTranslate && (
               <div className="flex bg-gray-100 rounded-lg p-1"> {/* Flexコンテナ, グレー100背景, 角丸lg, パディング1 */}
                 <button
                   onClick={() => onLanguageSwitch('en')}
@@ -108,51 +100,61 @@ export default function WordCard({
         </div>
       </div>
 
-      {/* 意味セクション */}
-      <div className="mb-8"> {/* 下マージン8 */}
-        <h2 className="text-2xl font-semibold text-gray-800 mb-4 flex items-center gap-2"> {/* 文字サイズ2xl, 太字, グレー800文字, 下マージン4, Flexコンテナ, アイテム中央寄せ, ギャップ2 */}
-          📖 意味
-        </h2>
-        <div className="space-y-6"> {/* 縦方向スペース6 */}
-          {(currentLanguage === 'ja' && wordData.japaneseMeanings ? wordData.japaneseMeanings : wordData.meanings).map((meaning, index) => (
-            <div key={index} className="bg-gray-50 rounded-xl p-5"> {/* グレー50背景, 角丸xl, 全方向パディング5 */}
-              <h3 className="text-lg font-semibold text-indigo-700 mb-3 capitalize"> {/* 文字サイズlg, 太字, インディゴ700文字, 下マージン3, 先頭大文字 */}
-                {meaning.partOfSpeech} ({meaning.definitions.length}個の定義)
-              </h3>
-              <ul className="space-y-2"> {/* 縦方向スペース2 */}
+      {/* 品詞別意味・例文セクション */}
+      <div className="space-y-8"> {/* 縦方向スペース8 */}
+        {(currentLanguage === 'ja' && wordData.japaneseMeanings ? wordData.japaneseMeanings : wordData.meanings).map((meaning, index) => (
+          <div key={index} className="bg-gray-50 rounded-xl p-6"> {/* グレー50背景, 角丸xl, 全方向パディング6 */}
+            {/* 品詞タイトル */}
+            <h2 className="text-xl font-bold text-indigo-700 mb-4 border-b border-indigo-200 pb-2"> {/* 文字サイズxl, 太字, インディゴ700文字, 下マージン4, 下ボーダー, インディゴ200ボーダー, 下パディング2 */}
+              {index + 1}. {meaning.partOfSpeech}
+            </h2>
+            
+            {/* 意味 */}
+            <div className="mb-6"> {/* 下マージン6 */}
+              <h3 className="text-lg font-semibold text-gray-800 mb-3">・意味</h3>
+              <div className="ml-4 space-y-2"> {/* 左マージン4, 縦方向スペース2 */}
                 {meaning.definitions.map((definition, defIndex) => (
-                  <li key={defIndex} className="flex items-start gap-3"> {/* Flexコンテナ, アイテム開始位置, ギャップ3 */}
-                    <span className="text-indigo-500 font-bold mt-1 text-sm"> {/* インディゴ500文字, 太字, 上マージン1, 文字サイズsm */}
+                  <div key={defIndex} className="flex items-start gap-3"> {/* Flexコンテナ, アイテム開始位置, ギャップ3 */}
+                    <span className="text-indigo-600 font-bold text-sm mt-1"> {/* インディゴ600文字, 太字, 文字サイズsm, 上マージン1 */}
                       {defIndex + 1}.
                     </span>
                     <span className="text-gray-700 leading-relaxed"> {/* グレー700文字, 行間ゆったり */}
                       {definition}
                     </span>
-                  </li>
+                  </div>
                 ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* 例文セクション */}
-      {((currentLanguage === 'ja' && wordData.japaneseExamples) || wordData.examples).length > 0 && (
-        <div className="mb-8"> {/* 下マージン8 */}
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4 flex items-center gap-2"> {/* 文字サイズ2xl, 太字, グレー800文字, 下マージン4, Flexコンテナ, アイテム中央寄せ, ギャップ2 */}
-            💬 例文
-          </h2>
-          <div className="space-y-3"> {/* 縦方向スペース3 */}
-            {(currentLanguage === 'ja' && wordData.japaneseExamples ? wordData.japaneseExamples : wordData.examples).map((example, index) => (
-              <div key={index} className="bg-blue-50 border-l-4 border-blue-400 p-4 rounded-r-lg"> {/* ブルー50背景, 左ボーダー4, ブルー400ボーダー, 全方向パディング4, 右角丸lg */}
-                                 <p className="text-gray-700 italic"> {/* グレー700文字, イタリック */}
-                   &ldquo;{example}&rdquo;
-                 </p>
               </div>
-            ))}
+            </div>
+            
+            {/* この品詞の例文 */}
+            {wordData.examples.length > 0 && (
+              <div className="mb-4"> {/* 下マージン4 */}
+                <h3 className="text-lg font-semibold text-gray-800 mb-3">・例文</h3>
+                <div className="ml-4 space-y-4"> {/* 左マージン4, 縦方向スペース4 */}
+                  {wordData.examples.slice(index * 2, (index + 1) * 2).map((example, exampleIndex) => {
+                    const japaneseExample = currentLanguage === 'ja' && wordData.japaneseExamples 
+                      ? wordData.japaneseExamples[index * 2 + exampleIndex] 
+                      : null;
+                    
+                    return (
+                      <div key={exampleIndex} className="bg-white p-4 rounded-lg border border-gray-200"> {/* 白背景, 全方向パディング4, 角丸lg, グレー200ボーダー */}
+                        <div className="text-gray-800 mb-2 font-medium"> {/* グレー800文字, 下マージン2, 中太字 */}
+                          ・{example}
+                        </div>
+                        {japaneseExample && currentLanguage === 'ja' && (
+                          <div className="text-indigo-700 text-sm"> {/* インディゴ700文字, 文字サイズsm */}
+                            → {japaneseExample}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
           </div>
-        </div>
-      )}
+        ))}
+      </div>
 
       {/* 同義語・反義語セクション */}
       <div className="grid md:grid-cols-2 gap-6"> {/* グリッドレイアウト, md以上で2列, ギャップ6 */}
