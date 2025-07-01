@@ -15,6 +15,7 @@ export default function Day14Page() {
     searchDictionary,
     switchLanguage,
     clearSearch,
+    retryTranslation,
     isLoading,
     isError,
     isSuccess,
@@ -129,6 +130,7 @@ export default function Day14Page() {
                 translationState={translationState}
                 onLanguageSwitch={switchLanguage}
                 canTranslate={canTranslate}
+                onRetryTranslation={retryTranslation}
               />
               
               {/* 新しい検索を促すボタン */}

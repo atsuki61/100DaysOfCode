@@ -4,43 +4,55 @@ import { useState } from 'react';
 import { WordData, Language, TranslationState } from '../types';
 import { getAudioUrl } from '../utils/dictionaryApi';
 
-interface WordCardProps {
+interface WordCardProps {// 単語カードのprops
   wordData: WordData;
   currentLanguage: Language;
   translationState: TranslationState;
-  onLanguageSwitch: (language: Language) => void;
-  canTranslate: boolean;
+  onLanguageSwitch: (language: Language) => void;// 言語切り替えボタンのクリックイベント
+  canTranslate: boolean;// 翻訳可能かどうか
+  onRetryTranslation?: () => void;// 翻訳リトライボタンのクリックイベント
 }
 
-export default function WordCard({ 
-  wordData, 
-  currentLanguage, 
-  translationState, 
-  onLanguageSwitch, 
-  canTranslate 
+export default function WordCard({ // 単語カードのコンポーネント
+  wordData, // 単語データ
+  currentLanguage, // 現在の言語
+  translationState, // 翻訳状態
+  onLanguageSwitch, // 言語切り替えボタンのクリックイベント
+  canTranslate, // 翻訳可能かどうか
+  onRetryTranslation // 翻訳リトライボタンのクリックイベント
 }: WordCardProps) {
-  const [isPlayingAudio, setIsPlayingAudio] = useState(false);
-
+  const [isPlayingAudio, setIsPlayingAudio] = useState(false);// 音声再生中かどうか
 
   const handlePlayAudio = async () => {
-    if (isPlayingAudio) return;
+    if (isPlayingAudio) return;// 音声再生中の場合は何もしない
     
-    setIsPlayingAudio(true);
+    setIsPlayingAudio(true);// 音声再生中にする
     try {
-      const audioUrl = await getAudioUrl(wordData.word);
+      const audioUrl = await getAudioUrl(wordData.word);// 音声データのURLを取得
       if (audioUrl) {
-        const audio = new Audio(audioUrl);
-        audio.onended = () => setIsPlayingAudio(false);
-        audio.onerror = () => setIsPlayingAudio(false);
-        await audio.play();
+        const audio = new Audio(audioUrl);// 音声データのURLをAudioオブジェクトにする
+        audio.onended = () => setIsPlayingAudio(false);// 音声再生終了時に音声再生中を解除
+        audio.onerror = () => setIsPlayingAudio(false);// 音声再生エラー時に音声再生中を解除
+        await audio.play();// 音声再生
       } else {
         console.log('音声データが見つかりませんでした');
-        setIsPlayingAudio(false);
+        setIsPlayingAudio(false);// 音声再生中を解除
       }
     } catch (error) {
       console.error('音声再生エラー:', error);
-      setIsPlayingAudio(false);
+      setIsPlayingAudio(false);// 音声再生中を解除
     }
+  };
+
+  // レート制限解除までの残り時間を計算
+  const getRemainingTime = () => {
+    if (!translationState.rateLimitedUntil) return '';
+    const now = new Date();
+    const remaining = translationState.rateLimitedUntil.getTime() - now.getTime();
+    if (remaining <= 0) return '';
+    
+    const minutes = Math.ceil(remaining / (1000 * 60));
+    return `あと約${minutes}分`;
   };
 
   return (
@@ -61,10 +73,10 @@ export default function WordCard({
           
           <div className="flex items-center gap-3"> {/* Flexコンテナ, アイテム中央寄せ, ギャップ3 */}
             {/* 言語切り替えボタン */}
-            {canTranslate && (
+            {(canTranslate || translationState.status === 'rate-limited') && (
               <div className="flex bg-gray-100 rounded-lg p-1"> {/* Flexコンテナ, グレー100背景, 角丸lg, パディング1 */}
                 <button
-                  onClick={() => onLanguageSwitch('en')}
+                  onClick={() => onLanguageSwitch('en')}// 英語に切り替える
                   className={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
                     currentLanguage === 'en'
                       ? 'bg-white text-indigo-700 shadow-sm'
@@ -75,14 +87,15 @@ export default function WordCard({
                 </button>
                 <button
                   onClick={() => onLanguageSwitch('ja')}
-                  disabled={translationState.status === 'translating'}
+                  disabled={translationState.status === 'translating' || translationState.status === 'rate-limited'}
                   className={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 disabled:opacity-50 ${
                     currentLanguage === 'ja'
                       ? 'bg-white text-indigo-700 shadow-sm'
                       : 'text-gray-600 hover:text-gray-800'
                   }`} /* 横パディング3, 縦パディング2, 角丸md, 文字サイズsm, 中太字, 色にトランジション, 無効時不透明度50% */
                 >
-                  🇯🇵 {translationState.status === 'translating' ? '翻訳中...' : '日本語'}
+                  🇯🇵 {translationState.status === 'translating' ? '翻訳中...' : 
+                        translationState.status === 'rate-limited' ? '利用制限中' : '日本語'}
                 </button>
               </div>
             )}
@@ -99,6 +112,38 @@ export default function WordCard({
           </div>
         </div>
       </div>
+
+      {/* レート制限エラー表示 */}
+      {translationState.status === 'rate-limited' && (
+        <div className="bg-orange-50 border border-orange-200 rounded-xl p-6 mb-6"> {/* オレンジ50背景, オレンジ200ボーダー, 角丸xl, 全方向パディング6, 下マージン6 */}
+          <div className="flex items-start gap-4"> {/* Flexコンテナ, アイテム開始位置, ギャップ4 */}
+            <div className="flex-shrink-0"> {/* 縮小しない */}
+              <div className="w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center"> {/* 横幅10, 高さ10, オレンジ100背景, 角丸円形, Flexコンテナ, アイテム中央寄せ(垂直・水平) */}
+                <span className="text-xl">⏱️</span>
+              </div>
+            </div>
+            
+            <div className="flex-1"> {/* Flex伸長1 */}
+              <h3 className="text-lg font-semibold text-orange-800 mb-2"> {/* 文字サイズlg, 太字, オレンジ800文字, 下マージン2 */}
+                翻訳機能が一時的に利用できません
+              </h3>
+              <div className="text-orange-700 mb-4"> {/* オレンジ700文字, 下マージン4 */}
+                <p>Gemini APIの利用制限に達しました。{getRemainingTime()}で復旧予定です。</p>
+                <p className="text-sm mt-1">現在は英語のみ表示されています。しばらく時間をおいてからお試しください。</p>
+              </div>
+              
+              {onRetryTranslation && (
+                <button
+                  onClick={onRetryTranslation}
+                  className="px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 focus:outline-none focus:ring-4 focus:ring-orange-100 transition-all duration-200 font-medium" // 横パディング4, 縦パディング2, オレンジ600背景, 白文字, 角丸lg, ホバー時オレンジ700背景, フォーカス時アウトラインなし・リング4・オレンジ100リング, 全プロパティトランジション, 中太字 */}
+                >
+                  🔄 翻訳を再試行
+                </button>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* 品詞別意味・例文セクション */}
       <div className="space-y-8"> {/* 縦方向スペース8 */}
@@ -155,8 +200,6 @@ export default function WordCard({
           </div>
         ))}
       </div>
-
-
     </div>
   );
 } 

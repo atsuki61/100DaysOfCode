@@ -71,16 +71,33 @@ export function useDictionary() {
       });
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : '翻訳中にエラーが発生しました。';
-      setTranslationState({
-        status: 'error',
-        error: errorMessage,
-        isTranslated: false
-      });
+      
+      // レート制限エラーの場合は特別な状態に設定
+      if (errorMessage.includes('利用制限に達しました')) {
+        const rateLimitedUntil = new Date(Date.now() + 10 * 60 * 1000); // 10分後
+        setTranslationState({
+          status: 'rate-limited',
+          error: errorMessage,
+          isTranslated: false,
+          rateLimitedUntil
+        });
+      } else {
+        setTranslationState({
+          status: 'error',
+          error: errorMessage,
+          isTranslated: false
+        });
+      }
     }
   }, [wordData, translationState.isTranslated]);
 
   const switchLanguage = useCallback(async (language: Language) => {
     if (language === currentLanguage) return;
+
+    // レート制限中の場合は日本語切り替えを無効化
+    if (language === 'ja' && translationState.status === 'rate-limited') {
+      return;
+    }
 
     setCurrentLanguage(language);
 
@@ -88,7 +105,7 @@ export function useDictionary() {
     if (language === 'ja' && !translationState.isTranslated && wordData) {
       await translateToJapanese();
     }
-  }, [currentLanguage, translationState.isTranslated, wordData, translateToJapanese]);
+  }, [currentLanguage, translationState.isTranslated, translationState.status, wordData, translateToJapanese]);
 
   const clearSearch = useCallback(() => {
     setWordData(null);
@@ -100,7 +117,20 @@ export function useDictionary() {
     setCurrentLanguage('en');
   }, []);
 
-  const canTranslateValue = isGeminiApiAvailable() && !!wordData;
+  const retryTranslation = useCallback(async () => {
+    if (!wordData) return;
+    
+    setTranslationState({
+      status: 'idle',
+      isTranslated: false
+    });
+    
+    await translateToJapanese();
+  }, [wordData, translateToJapanese]);
+
+  const canTranslateValue = isGeminiApiAvailable() && 
+                           !!wordData && 
+                           translationState.status !== 'rate-limited';
 
   return {
     wordData,
@@ -111,11 +141,13 @@ export function useDictionary() {
     translateToJapanese,
     switchLanguage,
     clearSearch,
+    retryTranslation,
     isLoading: searchState.status === 'loading',
     isError: searchState.status === 'error',
     isSuccess: searchState.status === 'success',
     isTranslating: translationState.status === 'translating',
     isTranslationError: translationState.status === 'error',
+    isRateLimited: translationState.status === 'rate-limited',
     canTranslate: canTranslateValue,
   };
 } 

@@ -1,10 +1,10 @@
-interface ErrorMessageProps {
-  error: string;
-  onRetry?: () => void;
-  lastSearchedWord?: string;
+interface ErrorMessageProps {// エラーメッセージを表示するコンポーネントのprops
+  error: string;// エラーメッセージ
+  onRetry?: () => void;// 再検索ボタンのクリックイベント
+  lastSearchedWord?: string;// 最後の検索語
 }
 
-export default function ErrorMessage({ error, onRetry, lastSearchedWord }: ErrorMessageProps) {
+export default function ErrorMessage({ error, onRetry, lastSearchedWord }: ErrorMessageProps) {// エラーメッセージを表示するコンポーネント, エラーメッセージ, 再検索ボタン, 最後の検索語
   return (
     <div className="bg-red-50 border border-red-200 rounded-2xl p-6 max-w-2xl mx-auto"> {/* レッド50背景, レッド200ボーダー, 角丸2xl, 全方向パディング6, 最大横幅2xl, 中央寄せ */}
       <div className="flex items-start gap-4"> {/* Flexコンテナ, アイテム開始位置, ギャップ4 */}
@@ -22,7 +22,7 @@ export default function ErrorMessage({ error, onRetry, lastSearchedWord }: Error
             {error}
           </div>
           
-          {onRetry && lastSearchedWord && (
+          {onRetry && lastSearchedWord && (// 再検索ボタンが存在し、最後の検索語が存在する場合
             <button
               onClick={onRetry}
               className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 focus:outline-none focus:ring-4 focus:ring-red-100 transition-all duration-200 font-medium" // 横パディング4, 縦パディング2, レッド600背景, 白文字, 角丸lg, ホバー時レッド700背景, フォーカス時アウトラインなし・リング4・レッド100リング, 全プロパティトランジション, 中太字 */}

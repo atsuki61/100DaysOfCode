@@ -12,11 +12,58 @@ const getApiKey = (): string => {
   return apiKey;
 };
 
+// 遅延用のユーティリティ関数
+const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+
+// リトライ用の設定
+const RETRY_CONFIG = {
+  maxRetries: 3,
+  baseDelay: 1000, // 1秒
+  maxDelay: 10000, // 10秒
+};
+
+/**
+ * 指数バックオフでリトライ処理を行う
+ */
+const withRetry = async <T>(
+  apiCall: () => Promise<T>,
+  retryCount: number = 0
+): Promise<T> => {
+  try {
+    return await apiCall();
+  } catch (error: unknown) {
+    const errorObj = error as { message?: string; status?: number };
+    const isRateLimitError = errorObj.message?.includes('429') || 
+                           errorObj.status === 429 ||
+                           errorObj.message?.includes('Too Many Requests');
+    
+    if (isRateLimitError && retryCount < RETRY_CONFIG.maxRetries) {
+      // 指数バックオフで遅延時間を計算
+      const delayTime = Math.min(
+        RETRY_CONFIG.baseDelay * Math.pow(2, retryCount) + Math.random() * 1000,
+        RETRY_CONFIG.maxDelay
+      );
+      
+      console.log(`レート制限エラー(${retryCount + 1}/${RETRY_CONFIG.maxRetries + 1}): ${delayTime}ms後にリトライします`);
+      await delay(delayTime);
+      
+      return withRetry(apiCall, retryCount + 1);
+    }
+    
+    // リトライ回数超過またはレート制限以外のエラー
+    if (isRateLimitError) {
+      throw new Error('Gemini APIの利用制限に達しました。しばらく時間をおいてから再試行してください。（通常5-10分程度で復旧します）');
+    }
+    
+    throw error;
+  }
+};
+
 /**
  * Gemini APIを使ってテキストを翻訳
  */
 const translateText = async (text: string, context: string = ''): Promise<string> => {
-  try {
+  return withRetry(async () => {
     const apiKey = getApiKey();
     
     const prompt = `${context}
@@ -45,6 +92,9 @@ const translateText = async (text: string, context: string = ''): Promise<string
     });
 
     if (!response.ok) {
+      if (response.status === 429) {
+        throw new Error(`Gemini API エラー: 429`);
+      }
       throw new Error(`Gemini API エラー: ${response.status}`);
     }
 
@@ -56,22 +106,21 @@ const translateText = async (text: string, context: string = ''): Promise<string
     }
 
     return translatedText;
-  } catch (error) {
-    console.error('翻訳エラー:', error);
-    throw error;
-  }
+  });
 };
 
 /**
- * 複数のテキストを一括翻訳
+ * 複数のテキストを一括翻訳（遅延付き）
  */
 const translateMultipleTexts = async (texts: string[], context: string = ''): Promise<string[]> => {
-  try {
-    const apiKey = getApiKey();
-    
-    const textList = texts.map((text, index) => `${index + 1}. "${text}"`).join('\n');
-    
-    const prompt = `${context}
+  // テキスト数が少ない場合は一括処理
+  if (texts.length <= 3) {
+    return withRetry(async () => {
+      const apiKey = getApiKey();
+      
+      const textList = texts.map((text, index) => `${index + 1}. "${text}"`).join('\n');
+      
+      const prompt = `${context}
 以下の英語テキストリストを自然で正確な日本語に翻訳してください。各項目の番号を保持して翻訳結果を返してください。
 
 英語テキストリスト:
@@ -79,121 +128,163 @@ ${textList}
 
 日本語翻訳リスト:`;
 
-    const response = await fetch(`${GEMINI_API_URL}?key=${apiKey}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        contents: [{
-          parts: [{
-            text: prompt
-          }]
-        }],
-        generationConfig: {
-          temperature: 0.3,
-          maxOutputTokens: 2000,
+      const response = await fetch(`${GEMINI_API_URL}?key=${apiKey}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          contents: [{
+            parts: [{
+              text: prompt
+            }]
+          }],
+          generationConfig: {
+            temperature: 0.3,
+            maxOutputTokens: 2000,
+          }
+        }),
+      });
+
+      if (!response.ok) {
+        if (response.status === 429) {
+          throw new Error(`Gemini API エラー: 429`);
         }
-      }),
-    });
+        throw new Error(`Gemini API エラー: ${response.status}`);
+      }
 
-    if (!response.ok) {
-      throw new Error(`Gemini API エラー: ${response.status}`);
-    }
-
-    const data = await response.json();
-    const translatedText = data.candidates?.[0]?.content?.parts?.[0]?.text?.trim();
-    
-    if (!translatedText) {
-      throw new Error('翻訳結果が取得できませんでした');
-    }
-
-    // 番号付きリストから翻訳結果を抽出
-    const lines: string[] = translatedText.split('\n');
-    const translations: string[] = [];
-    
-    for (let i = 0; i < texts.length; i++) {
-      const linePattern = new RegExp(`${i + 1}\\. "?(.+?)"?$`);
-      const matchingLine = lines.find((line: string) => linePattern.test(line.trim()));
+      const data = await response.json();
+      const translatedText = data.candidates?.[0]?.content?.parts?.[0]?.text?.trim();
       
-      if (matchingLine) {
-        const match = matchingLine.match(linePattern);
-        translations.push(match?.[1]?.replace(/^"|"$/g, '') || texts[i]);
-      } else {
-        // フォールバック：個別翻訳
-        translations.push(await translateText(texts[i], context));
+      if (!translatedText) {
+        throw new Error('翻訳結果が取得できませんでした');
       }
-    }
-    
-    return translations;
-  } catch (error) {
-    console.error('一括翻訳エラー:', error);
-    // エラー時は個別翻訳にフォールバック
-    const results: string[] = [];
-    for (const text of texts) {
-      try {
-        const translated = await translateText(text, context);
-        results.push(translated);
-      } catch {
-        results.push(text); // 翻訳失敗時は元のテキストを保持
+
+      // 番号付きリストから翻訳結果を抽出
+      const lines: string[] = translatedText.split('\n');
+      const translations: string[] = [];
+      
+      for (let i = 0; i < texts.length; i++) {
+        const linePattern = new RegExp(`${i + 1}\\. "?(.+?)"?$`);
+        const matchingLine = lines.find((line: string) => linePattern.test(line.trim()));
+        
+        if (matchingLine) {
+          const match = matchingLine.match(linePattern);
+          translations.push(match?.[1]?.replace(/^"|"$/g, '') || texts[i]);
+        } else {
+          // フォールバック：元のテキストを保持
+          translations.push(texts[i]);
+        }
       }
-    }
-    return results;
+      
+      return translations;
+    });
   }
+
+  // テキスト数が多い場合は個別処理（遅延付き）
+  const results: string[] = [];
+  for (const text of texts) {
+    try {
+      const translated = await translateText(text, context);
+      results.push(translated);
+      // API呼び出し間に遅延を追加（レート制限対策）
+      await delay(500); // 500ms遅延
+    } catch (error) {
+      console.error('個別翻訳エラー:', error);
+      results.push(text); // 翻訳失敗時は元のテキストを保持
+    }
+  }
+  return results;
 };
 
 /**
- * 単語データ全体を日本語に翻訳
+ * 単語データ全体を日本語に翻訳（段階的処理）
  */
 export const translateWordData = async (wordData: WordData): Promise<Partial<WordData>> => {
   try {
     const translations: Partial<WordData> = {};
 
-    // 品詞別の定義を翻訳
-    const japaneseMeanings = await Promise.all(
-      wordData.meanings.map(async (meaning) => {
+    console.log('翻訳開始:', wordData.word);
+
+    // 段階1: 品詞別の定義を翻訳（逐次処理でレート制限対策）
+    const japaneseMeanings = [];
+    for (const meaning of wordData.meanings) {
+      try {
+        console.log(`品詞 "${meaning.partOfSpeech}" の定義を翻訳中...`);
+        
         const translatedDefinitions = await translateMultipleTexts(
           meaning.definitions,
           `これは「${wordData.word}」という英単語の${meaning.partOfSpeech}（品詞）としての定義です。`
         );
         
-        return {
+        japaneseMeanings.push({
           partOfSpeech: await translatePartOfSpeech(meaning.partOfSpeech),
           definitions: translatedDefinitions
-        };
-      })
-    );
+        });
+
+        // 品詞間の遅延
+        await delay(1000);
+      } catch (error) {
+        console.error(`品詞 "${meaning.partOfSpeech}" の翻訳エラー:`, error);
+        japaneseMeanings.push({
+          partOfSpeech: meaning.partOfSpeech,
+          definitions: meaning.definitions
+        });
+      }
+    }
 
     translations.japaneseMeanings = japaneseMeanings;
 
-    // 例文を翻訳
+    // 段階2: 例文を翻訳
     if (wordData.examples.length > 0) {
-      translations.japaneseExamples = await translateMultipleTexts(
-        wordData.examples,
-        `これらは「${wordData.word}」という英単語を使った例文です。`
-      );
+      try {
+        console.log('例文を翻訳中...');
+        await delay(1000);
+        translations.japaneseExamples = await translateMultipleTexts(
+          wordData.examples,
+          `これらは「${wordData.word}」という英単語を使った例文です。`
+        );
+      } catch (error) {
+        console.error('例文翻訳エラー:', error);
+        translations.japaneseExamples = wordData.examples;
+      }
     }
 
-    // 同義語を翻訳
+    // 段階3: 同義語を翻訳
     if (wordData.synonyms.length > 0) {
-      translations.japaneseSynonyms = await translateMultipleTexts(
-        wordData.synonyms,
-        `これらは「${wordData.word}」の同義語（類義語）です。単語として翻訳してください。`
-      );
+      try {
+        console.log('同義語を翻訳中...');
+        await delay(1000);
+        translations.japaneseSynonyms = await translateMultipleTexts(
+          wordData.synonyms,
+          `これらは「${wordData.word}」の同義語（類義語）です。単語として翻訳してください。`
+        );
+      } catch (error) {
+        console.error('同義語翻訳エラー:', error);
+        translations.japaneseSynonyms = wordData.synonyms;
+      }
     }
 
-    // 反義語を翻訳
+    // 段階4: 反義語を翻訳
     if (wordData.antonyms.length > 0) {
-      translations.japaneseAntonyms = await translateMultipleTexts(
-        wordData.antonyms,
-        `これらは「${wordData.word}」の反義語（対義語）です。単語として翻訳してください。`
-      );
+      try {
+        console.log('反義語を翻訳中...');
+        await delay(1000);
+        translations.japaneseAntonyms = await translateMultipleTexts(
+          wordData.antonyms,
+          `これらは「${wordData.word}」の反義語（対義語）です。単語として翻訳してください。`
+        );
+      } catch (error) {
+        console.error('反義語翻訳エラー:', error);
+        translations.japaneseAntonyms = wordData.antonyms;
+      }
     }
 
+    console.log('翻訳完了:', wordData.word);
     return translations;
   } catch (error) {
     console.error('単語データ翻訳エラー:', error);
-    throw new Error('翻訳に失敗しました。しばらく待ってから再試行してください。');
+    throw new Error('翻訳に失敗しました。Gemini APIの利用制限に達している可能性があります。しばらく時間をおいてから再試行してください。');
   }
 };
 
