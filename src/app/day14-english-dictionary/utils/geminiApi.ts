@@ -67,11 +67,14 @@ const translateText = async (text: string, context: string = ''): Promise<string
     const apiKey = getApiKey();
     
     const prompt = `${context}
-以下の英語テキストを自然で正確な日本語に翻訳してください。専門用語や慣用表現は適切に日本語化してください。
+以下の英語の辞書定義を日本語に翻訳してください。
+- 簡潔で正確な翻訳のみを提供してください
+- 余計な説明や補足は一切追加しないでください
+- 辞書に載るような標準的な訳語のみを返してください
 
-英語テキスト: "${text}"
+英語定義: "${text}"
 
-日本語翻訳:`;
+日本語訳:`;
 
     const response = await fetch(`${GEMINI_API_URL}?key=${apiKey}`, {
       method: 'POST',
@@ -85,7 +88,7 @@ const translateText = async (text: string, context: string = ''): Promise<string
           }]
         }],
         generationConfig: {
-          temperature: 0.3,
+          temperature: 0.1, // より一貫した翻訳のために低く設定
           maxOutputTokens: 1000,
         }
       }),
@@ -121,12 +124,16 @@ const translateMultipleTexts = async (texts: string[], context: string = ''): Pr
       const textList = texts.map((text, index) => `${index + 1}. "${text}"`).join('\n');
       
       const prompt = `${context}
-以下の英語テキストリストを自然で正確な日本語に翻訳してください。各項目の番号を保持して翻訳結果を返してください。
+以下の英語の辞書定義リストを日本語に翻訳してください。
+- 各項目の番号を保持してください
+- 簡潔で正確な翻訳のみを提供してください
+- 余計な説明や補足は一切追加しないでください
+- 辞書に載るような標準的な訳語のみを返してください
 
-英語テキストリスト:
+英語定義リスト:
 ${textList}
 
-日本語翻訳リスト:`;
+日本語訳リスト:`;
 
       const response = await fetch(`${GEMINI_API_URL}?key=${apiKey}`, {
         method: 'POST',
@@ -140,7 +147,7 @@ ${textList}
             }]
           }],
           generationConfig: {
-            temperature: 0.3,
+            temperature: 0.1, // より一貫した翻訳のために低く設定
             maxOutputTokens: 2000,
           }
         }),
@@ -214,7 +221,7 @@ export const translateWordData = async (wordData: WordData): Promise<Partial<Wor
         
         const translatedDefinitions = await translateMultipleTexts(
           meaning.definitions,
-          `これは「${wordData.word}」という英単語の${meaning.partOfSpeech}（品詞）としての定義です。`
+          `「${wordData.word}」の${meaning.partOfSpeech}としての定義を翻訳してください。`
         );
         
         japaneseMeanings.push({
@@ -242,7 +249,7 @@ export const translateWordData = async (wordData: WordData): Promise<Partial<Wor
         await delay(1000);
         translations.japaneseExamples = await translateMultipleTexts(
           wordData.examples,
-          `これらは「${wordData.word}」という英単語を使った例文です。`
+          `「${wordData.word}」を使った例文を自然な日本語に翻訳してください。`
         );
       } catch (error) {
         console.error('例文翻訳エラー:', error);
@@ -257,7 +264,7 @@ export const translateWordData = async (wordData: WordData): Promise<Partial<Wor
         await delay(1000);
         translations.japaneseSynonyms = await translateMultipleTexts(
           wordData.synonyms,
-          `これらは「${wordData.word}」の同義語（類義語）です。単語として翻訳してください。`
+          `「${wordData.word}」の同義語を日本語の単語のみで翻訳してください。`
         );
       } catch (error) {
         console.error('同義語翻訳エラー:', error);
@@ -272,7 +279,7 @@ export const translateWordData = async (wordData: WordData): Promise<Partial<Wor
         await delay(1000);
         translations.japaneseAntonyms = await translateMultipleTexts(
           wordData.antonyms,
-          `これらは「${wordData.word}」の反義語（対義語）です。単語として翻訳してください。`
+          `「${wordData.word}」の反義語を日本語の単語のみで翻訳してください。`
         );
       } catch (error) {
         console.error('反義語翻訳エラー:', error);
