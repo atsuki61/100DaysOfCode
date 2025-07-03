@@ -168,7 +168,7 @@ alwaysApply: true
 - TypeScript 設定ファイル: `tsconfig.json`
 - Next.js 設定ファイル: `next.config.ts` (または `.js`)
 - 各アプリのルートページ: `src/app/dayX-appName/page.tsx`
-- 各アプリのレイアウト: `src/app/dayX-appName/layout.tsx` (もしあれば)
+- 各アプリのレイアウト: `src/app/dayX-appName/layout.tsx`
 - 各アプリのコンポーネント: `src/app/dayX-appName/components/`
 
 ### **【重要】新規プロジェクト作成時のルール**
@@ -182,7 +182,7 @@ alwaysApply: true
 ### 基本ファイル構成
 - **`page.tsx`** (必須): アプリのメインページコンポーネント
 - **`layout.tsx`** (推奨): そのアプリ専用のレイアウト設定（Header、Footer含む）
-- **`dayX.md`** (推奨): その日の学習記録、機能説明、実装メモ
+- **`dayX.md`** (推奨): その日の実装内容について、初学者向けに、分かりやすい例えを使って詳細に解説したものを記載。
 - **`types.ts`** (必要に応じて): TypeScript型定義
 
 ### サブディレクトリ構成
