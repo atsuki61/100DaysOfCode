@@ -12,6 +12,21 @@ export interface WorkoutExercise {
   createdAt: string;
 }
 
+// Exercise Master Data Type
+export interface ExerciseMaster {
+  id: string;
+  name: string;
+  category: 'strength' | 'cardio' | 'flexibility' | 'sports';
+  bodyPart: 'chest' | 'back' | 'shoulders' | 'arms' | 'legs' | 'abs' | 'cardio' | 'flexibility' | 'sports';
+  description?: string;
+  defaultSets?: number;
+  defaultReps?: number;
+  isSelected?: boolean; // for toggle selection
+}
+
+// Body Part Type
+export type BodyPart = 'chest' | 'back' | 'shoulders' | 'arms' | 'legs' | 'abs' | 'cardio' | 'flexibility' | 'sports';
+
 // Workout Plan Type
 export interface WorkoutPlan {
   id: string;
@@ -40,6 +55,16 @@ export interface PlanFormData {
   name: string;
   description: string;
   difficulty: 'beginner' | 'intermediate' | 'advanced';
+}
+
+// Selected Exercise for Workout Creation
+export interface SelectedExercise extends ExerciseMaster {
+  sets?: number;
+  reps?: number;
+  weight?: number;
+  duration?: number;
+  distance?: number;
+  notes?: string;
 }
 
 // Validation Error Type
