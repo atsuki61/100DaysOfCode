@@ -116,14 +116,14 @@ export default function HomePage() {
        description: '英単語を入力すると意味を表示する辞書アプリです（外部辞書API利用）。外部辞書APIの利用、非同期データ取得、より複雑なJSONデータの表示、ローディング状態の管理を練習しました。',
        tags: ['React, Next.js, TypeScript, TailwindCSS'],
      },
-     // {
-     //   id: 'day15',
-     //   name: 'Day 15: ワークアウトプランナー',
-     //   path: '/day15-workout-planner',
-     //   imageUrl: '/images/day15-workout-planner.png',
-     //   description: 'トレーニング種目をリストに追加し管理するアプリです（簡易プラン作成）。複数フィールドのフォーム処理、localStorageを使ったデータ永続化（複数項目）、入力バリデーションの基礎を練習しました。',
-     //   tags: ['React, Next.js, TypeScript, TailwindCSS'],
-     // },
+     {
+       id: 'day15',
+       name: 'Day 15: ワークアウトプランナー',
+       path: '/day15-workout-planner',
+       imageUrl: '/images/day15-workout-planner.png',
+       description: 'トレーニング種目をリストに追加し管理するアプリです（簡易プラン作成）。複数フィールドのフォーム処理、localStorageを使ったデータ永続化（複数項目）、入力バリデーションの基礎を練習しました。',
+       tags: ['React, Next.js, TypeScript, TailwindCSS'],
+     },
      // {
      //   id: 'day16',
      //   name: 'Day 16: 音楽検索アプリ',
