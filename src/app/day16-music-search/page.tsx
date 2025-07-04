@@ -16,8 +16,57 @@ export default function MusicSearchPage() {
     hasSearched: false
   });
 
+  // 音楽再生状態の管理
+  const [currentPlayingTrack, setCurrentPlayingTrack] = useState<string | null>(null);
+  const [currentAudio, setCurrentAudio] = useState<HTMLAudioElement | null>(null);
+
+  // 音楽再生制御関数
+  const handleMusicPlay = useCallback((trackId: string, previewUrl: string) => {
+    // 現在再生中の音楽があれば停止
+    if (currentAudio) {
+      currentAudio.pause();
+      currentAudio.currentTime = 0;
+    }
+
+    // 新しい音楽を再生
+    const newAudio = new Audio(previewUrl);
+    newAudio.play();
+    setCurrentAudio(newAudio);
+    setCurrentPlayingTrack(trackId);
+
+    // 音楽終了時の処理
+    newAudio.onended = () => {
+      setCurrentPlayingTrack(null);
+      setCurrentAudio(null);
+    };
+
+    // エラー時の処理
+    newAudio.onerror = () => {
+      setCurrentPlayingTrack(null);
+      setCurrentAudio(null);
+    };
+  }, [currentAudio]);
+
+  // 音楽停止関数
+  const handleMusicStop = useCallback(() => {
+    if (currentAudio) {
+      currentAudio.pause();
+      currentAudio.currentTime = 0;
+    }
+    setCurrentPlayingTrack(null);
+    setCurrentAudio(null);
+  }, [currentAudio]);
+
   // 検索実行関数
   const handleSearch = useCallback(async (params: SearchParams) => {
+    // 検索開始時に再生中の音楽を停止
+    if (currentAudio) {
+      currentAudio.pause();
+      currentAudio.currentTime = 0;
+      setCurrentPlayingTrack(null);
+      setCurrentAudio(null);
+    }
+
     setSearchState(prev => ({
       ...prev,
       isLoading: true,
@@ -43,7 +92,7 @@ export default function MusicSearchPage() {
         error: error instanceof Error ? error.message : '検索中にエラーが発生しました'
       }));
     }
-  }, []);
+  }, [currentAudio]);
 
   // エラー時の再試行
   const handleRetry = useCallback(() => {
@@ -92,6 +141,9 @@ export default function MusicSearchPage() {
               <MusicCard
                 key={`${item.trackId || item.collectionId || item.artistId}-${index}`}
                 item={item}
+                isPlaying={currentPlayingTrack === (item.trackId?.toString() || item.collectionId?.toString() || item.artistId?.toString())}
+                onPlay={handleMusicPlay}
+                onStop={handleMusicStop}
               />
             ))}
           </div>

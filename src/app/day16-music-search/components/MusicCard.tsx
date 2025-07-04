@@ -6,12 +6,13 @@ import { formatTrackTime, formatPrice } from '../utils/musicApi';
 
 interface MusicCardProps {
   item: iTunesItem;
+  isPlaying: boolean;
+  onPlay: (trackId: string, previewUrl: string) => void;
+  onStop: () => void;
 }
 
-export default function MusicCard({ item }: MusicCardProps) {
+export default function MusicCard({ item, isPlaying, onPlay, onStop }: MusicCardProps) {
   const [imageError, setImageError] = useState(false);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
 
   // アートワーク画像の取得
   const getArtworkUrl = () => {
@@ -23,22 +24,12 @@ export default function MusicCard({ item }: MusicCardProps) {
   const togglePreview = () => {
     if (!item.previewUrl) return;
 
-    if (isPlaying && audio) {
-      audio.pause();
-      setIsPlaying(false);
+    const trackId = item.trackId?.toString() || item.collectionId?.toString() || item.artistId?.toString() || '';
+
+    if (isPlaying) {
+      onStop();
     } else {
-      if (audio) {
-        audio.pause();
-      }
-      
-      const newAudio = new Audio(item.previewUrl);
-      newAudio.play();
-      setAudio(newAudio);
-      setIsPlaying(true);
-      
-      newAudio.onended = () => {
-        setIsPlaying(false);
-      };
+      onPlay(trackId, item.previewUrl);
     }
   };
 
@@ -130,7 +121,11 @@ export default function MusicCard({ item }: MusicCardProps) {
           {item.previewUrl && (
             <button
               onClick={togglePreview}
-              className="p-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors" // パディング2, 青背景, 白文字, 角丸, ホバー時濃い青
+              className={`p-2 text-white rounded-lg transition-colors ${
+                isPlaying 
+                  ? 'bg-red-600 hover:bg-red-700' 
+                  : 'bg-blue-600 hover:bg-blue-700'
+              }`} // パディング2, 白文字, 角丸, トランジション, 再生状態に応じた背景色
               title={isPlaying ? 'プレビューを停止' : 'プレビューを再生'}
             >
               {isPlaying ? (
@@ -138,8 +133,8 @@ export default function MusicCard({ item }: MusicCardProps) {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               ) : (
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1.5a2.5 2.5 0 002.5-2.5V6a2.5 2.5 0 00-2.5-2.5H9V10zM12 21v-9" />
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M8 5v14l11-7z"/>
                 </svg>
               )}
             </button>
