@@ -124,14 +124,14 @@ export default function HomePage() {
        description: 'トレーニング種目をリストに追加し管理するアプリです（簡易プラン作成）。複数フィールドのフォーム処理、localStorageを使ったデータ永続化（複数項目）、入力バリデーションの基礎を練習しました。',
        tags: ['React, Next.js, TypeScript, TailwindCSS'],
      },
-     // {
-     //   id: 'day16',
-     //   name: 'Day 16: 音楽検索アプリ',
-     //   path: '/day16-music-search',
-     //   imageUrl: '/images/day16-music-search.png',
-     //   description: 'アーティスト名や曲名で音楽を検索し、結果一覧を表示するアプリです（iTunes APIなど利用）。動的クエリによるAPI取得、JSON結果のリスト表示、ページネーションの概念を練習しました。',
-     //   tags: ['React, Next.js, TypeScript, TailwindCSS'],
-     // },
+     {
+       id: 'day16',
+       name: 'Day 16: 音楽検索アプリ',
+       path: '/day16-music-search',
+       imageUrl: '/images/day16-music-search.png',
+       description: 'アーティスト名や曲名で音楽を検索し、結果一覧を表示するアプリです（iTunes APIなど利用）。動的クエリによるAPI取得、JSON結果のリスト表示、ページネーションの概念を練習しました。',
+       tags: ['React, Next.js, TypeScript, TailwindCSS'],
+     },
      // {
      //   id: 'day17',
      //   name: 'Day 17: ○×ゲーム',
