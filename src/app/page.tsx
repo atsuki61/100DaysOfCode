@@ -132,14 +132,14 @@ export default function HomePage() {
        description: 'アーティスト名や曲名で音楽を検索し、結果一覧を表示するアプリです（iTunes APIなど利用）。動的クエリによるAPI取得、JSON結果のリスト表示、ページネーションの概念を練習しました。',
        tags: ['React, Next.js, TypeScript, TailwindCSS'],
      },
-     // {
-     //   id: 'day17',
-     //   name: 'Day 17: ○×ゲーム',
-     //   path: '/day17-tic-tac-toe',
-     //   imageUrl: '/images/day17-tic-tac-toe.png',
-     //   description: '二人対戦の三目並べゲームです。勝敗判定付き。二次元配列の状態管理、勝利条件の判定ロジック、状態リフトアップ、コンポーネント間の連携を練習しました。',
-     //   tags: ['React, Next.js, TypeScript, TailwindCSS'],
-     // },
+     {
+       id: 'day17',
+       name: 'Day 17: ○×ゲーム',
+       path: '/day17-tic-tac-toe',
+       imageUrl: '/images/day17-tic-tac-toe.png',
+       description: '二人対戦の三目並べゲームです。勝敗判定付き。二次元配列の状態管理、勝利条件の判定ロジック、状態リフトアップ、コンポーネント間の連携を練習しました。',
+       tags: ['React, Next.js, TypeScript, TailwindCSS'],
+     },
      // {
      //   id: 'day18',
      //   name: 'Day 18: 学習進捗チャート',

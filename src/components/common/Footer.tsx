@@ -28,6 +28,7 @@ const Footer = ({ currentDay }: FooterProps) => {
       14: "/day14-english-dictionary",
       15: "/day15-workout-planner",
       16: "/day16-music-search",
+      17: "/day17-tic-tac-toe",
     };
     return dayRoutes[day] || `/day${day}`;
   };
