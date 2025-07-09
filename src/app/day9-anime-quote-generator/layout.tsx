@@ -8,7 +8,7 @@ export default function Day9Layout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex flex-col min-h-screen pt-16">
+    <div className="flex flex-col min-h-screen">
       <Header title="Day9:アニメ名言ジェネレーター" />
       <div className="flex-1 bg-gradient-to-br from-purple-50 to-blue-50">
         <PageHeader 
