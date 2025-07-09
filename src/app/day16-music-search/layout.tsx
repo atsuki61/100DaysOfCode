@@ -22,7 +22,7 @@ export default function Day16Layout({
         showHomeLink={true} 
       />
       <main className="bg-gray-50 min-h-screen"> {/* メインコンテンツ, グレー背景, 最小高さフルスクリーン */}
-        <div className="pt-20 pb-8 px-4"> {/* 上パディング20, 下パディング8, 横パディング4 */}
+        <div className="pb-8 px-4"> {/* 上パディング20, 下パディング8, 横パディング4 */}
           <div className="max-w-6xl mx-auto"> {/* 最大横幅6xl, 中央寄せ */}
             <PageHeader
               icon="🎵"
