@@ -55,6 +55,7 @@ iTunes Search APIは、Appleが提供する無料のRESTful APIです。認証�
 // 基本的な検索URL構造
 const ITUNES_API_BASE_URL = 'https://itunes.apple.com/search';
 
+
 export async function searchMusic(params: SearchParams): Promise<iTunesSearchResponse> {
   const searchParams = new URLSearchParams();
   searchParams.append('term', params.term);
