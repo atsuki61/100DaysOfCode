@@ -15,7 +15,7 @@ export default function Header({ title, showHomeLink = true, showPortfolioLink =
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-white via-slate-50 to-white dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 backdrop-blur-xl border-b border-slate-200/50 dark:border-gray-700/50 shadow-[0_8px_32px_rgba(0,0,0,0.1)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)] transition-all duration-300 hover:shadow-[0_12px_40px_rgba(0,0,0,0.15)]">
       {/* Gradient shimmer line */}
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-500/60 via-purple-500/60 via-pink-500/60 to-transparent animate-pulse opacity-80"></div>
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-500/60 to-transparent animate-pulse opacity-80"></div>
       
       <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
