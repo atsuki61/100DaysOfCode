@@ -22,7 +22,6 @@ export default function ProgressChartPage() {
     showListening: true,
     showReading: true,
     showTotal: true,
-    showDataLabels: false,
     timeRange: 'all'
   });
 
@@ -75,7 +74,6 @@ export default function ProgressChartPage() {
               showListening={chartConfig.showListening}
               showReading={chartConfig.showReading}
               showTotal={chartConfig.showTotal}
-              showDataLabels={chartConfig.showDataLabels}
             />
           )}
           

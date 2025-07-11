@@ -8,10 +8,12 @@ interface StatisticsCardProps {
 
 export default function StatisticsCard({ statistics }: StatisticsCardProps) {
   const {
-    averageTotal,
-    maxTotal,
-    minTotal,
     latestScore,
+    maxScore,
+    minScore,
+    averageTotal,
+    averageListening,
+    averageReading,
     improvement,
     testCount
   } = statistics;
@@ -24,7 +26,7 @@ export default function StatisticsCard({ statistics }: StatisticsCardProps) {
         {/* 最新スコア */}
         <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-4 rounded-lg"> {/* グラデーション青背景, パディング4, 角丸 */}
           <div className="text-2xl font-bold text-blue-600 mb-1"> {/* 大文字, 太字, 青色, 下マージン1 */}
-            {latestScore?.totalScore || 0}
+            {latestScore?.total || 0}
           </div>
           <div className="text-sm text-blue-700">最新スコア</div> {/* 小文字, 青色 */}
           {latestScore && (
@@ -36,8 +38,13 @@ export default function StatisticsCard({ statistics }: StatisticsCardProps) {
 
         {/* 最高スコア */}
         <div className="bg-gradient-to-br from-green-50 to-green-100 p-4 rounded-lg"> {/* グラデーション緑背景, パディング4, 角丸 */}
-          <div className="text-2xl font-bold text-green-600 mb-1">{maxTotal}</div> {/* 大文字, 太字, 緑色, 下マージン1 */}
+          <div className="text-2xl font-bold text-green-600 mb-1">{maxScore?.total || 0}</div> {/* 大文字, 太字, 緑色, 下マージン1 */}
           <div className="text-sm text-green-700">最高スコア</div> {/* 小文字, 緑色 */}
+          {maxScore && (
+            <div className="text-xs text-green-600 mt-1"> {/* 極小文字, 緑色, 上マージン1 */}
+              {maxScore.date}
+            </div>
+          )}
         </div>
 
         {/* 平均スコア */}
@@ -48,8 +55,13 @@ export default function StatisticsCard({ statistics }: StatisticsCardProps) {
 
         {/* 最低スコア */}
         <div className="bg-gradient-to-br from-orange-50 to-orange-100 p-4 rounded-lg"> {/* グラデーションオレンジ背景, パディング4, 角丸 */}
-          <div className="text-2xl font-bold text-orange-600 mb-1">{minTotal}</div> {/* 大文字, 太字, オレンジ色, 下マージン1 */}
+          <div className="text-2xl font-bold text-orange-600 mb-1">{minScore?.total || 0}</div> {/* 大文字, 太字, オレンジ色, 下マージン1 */}
           <div className="text-sm text-orange-700">最低スコア</div> {/* 小文字, オレンジ色 */}
+          {minScore && (
+            <div className="text-xs text-orange-600 mt-1"> {/* 極小文字, オレンジ色, 上マージン1 */}
+              {minScore.date}
+            </div>
+          )}
         </div>
 
         {/* 改善度 */}
@@ -74,19 +86,32 @@ export default function StatisticsCard({ statistics }: StatisticsCardProps) {
           <div className="grid grid-cols-2 gap-4"> {/* グリッド2列, 間隔4 */}
             <div>
               <span className="text-sm text-gray-600">リスニング:</span> {/* 小文字, グレー色 */}
-              <span className="ml-2 font-semibold text-blue-600">{latestScore.listeningScore}点</span> {/* 左マージン2, セミ太字, 青色 */}
+              <span className="ml-2 font-semibold text-blue-600">{latestScore.listening}点</span> {/* 左マージン2, セミ太字, 青色 */}
             </div>
             <div>
               <span className="text-sm text-gray-600">リーディング:</span> {/* 小文字, グレー色 */}
-              <span className="ml-2 font-semibold text-green-600">{latestScore.readingScore}点</span> {/* 左マージン2, セミ太字, 緑色 */}
+              <span className="ml-2 font-semibold text-green-600">{latestScore.reading}点</span> {/* 左マージン2, セミ太字, 緑色 */}
             </div>
           </div>
-          {latestScore.memo && (
-            <div className="mt-3"> {/* 上マージン3 */}
-              <span className="text-sm text-gray-600">メモ:</span> {/* 小文字, グレー色 */}
-              <p className="mt-1 text-sm text-gray-700 italic">{latestScore.memo}</p> {/* 上マージン1, 小文字, グレー色, イタリック */}
+          
+          {/* 平均値情報も表示 */}
+          <div className="mt-4"> {/* 上マージン4 */}
+            <h5 className="text-md font-medium text-gray-700 mb-2">📊 全体平均</h5> {/* 中文字, 中太字, グレー色, 下マージン2 */}
+            <div className="grid grid-cols-3 gap-4 text-sm"> {/* グリッド3列, 間隔4, 小文字 */}
+              <div className="text-center"> {/* 中央揃え */}
+                <div className="font-semibold text-purple-600">{averageTotal}点</div> {/* セミ太字, 紫色 */}
+                <div className="text-gray-500">総合平均</div> {/* グレー色 */}
+              </div>
+              <div className="text-center"> {/* 中央揃え */}
+                <div className="font-semibold text-blue-600">{averageListening}点</div> {/* セミ太字, 青色 */}
+                <div className="text-gray-500">L平均</div> {/* グレー色 */}
+              </div>
+              <div className="text-center"> {/* 中央揃え */}
+                <div className="font-semibold text-green-600">{averageReading}点</div> {/* セミ太字, 緑色 */}
+                <div className="text-gray-500">R平均</div> {/* グレー色 */}
+              </div>
             </div>
-          )}
+          </div>
         </div>
       )}
     </div>

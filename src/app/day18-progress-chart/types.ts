@@ -1,53 +1,44 @@
-// TOEICスコア推移チャートの型定義
-
-// TOEICスコアの型
+// TOEIC スコアデータの型定義
 export interface TOEICScore {
-  id: string;
-  date: string; // YYYY-MM-DD形式
-  listeningScore: number; // 5-495点
-  readingScore: number; // 5-495点
-  totalScore: number; // 10-990点
-  testType: 'TOEIC L&R' | 'TOEIC Bridge' | 'TOEIC IP';
-  memo?: string; // 受験時のメモ
+  date: string;       // 受験日 (YYYY-MM-DD)
+  total: number;      // 総合スコア (10-990)
+  listening: number;  // リスニングスコア (5-495)
+  reading: number;    // リーディングスコア (5-495)
 }
 
-// チャート表示用のデータ型
+// チャート表示用のデータポイント
 export interface ChartDataPoint {
   date: string;
+  formattedDate: string;  // 表示用にフォーマットされた日付
+  total: number;
   listening: number;
   reading: number;
-  total: number;
-  formattedDate: string; // 表示用のフォーマット済み日付
 }
 
-// チャートの種類
-export type ChartType = 'line' | 'bar' | 'area';
-
-// チャート設定
+// チャート設定の型定義
 export interface ChartConfig {
-  type: ChartType;
-  showListening: boolean;
-  showReading: boolean;
-  showTotal: boolean;
-  showDataLabels: boolean;
-  timeRange: 'all' | '1year' | '6months' | '3months';
+  type: 'line' | 'bar';           // グラフの種類
+  showListening: boolean;         // リスニングスコアを表示するか
+  showReading: boolean;           // リーディングスコアを表示するか
+  showTotal: boolean;             // 総合スコアを表示するか
+  timeRange: 'all' | '1year' | '6months' | '3months';  // 表示期間
 }
 
-// 統計情報
+// スコア統計情報の型定義
 export interface ScoreStatistics {
-  averageTotal: number;
-  maxTotal: number;
-  minTotal: number;
-  latestScore: TOEICScore | null;
-  improvement: number; // 最新と最古のスコア差
-  testCount: number;
+  latestScore: TOEICScore | null;    // 最新のスコア
+  maxScore: TOEICScore | null;       // 最高スコア
+  minScore: TOEICScore | null;       // 最低スコア
+  averageTotal: number;              // 平均総合スコア
+  averageListening: number;          // 平均リスニングスコア
+  averageReading: number;            // 平均リーディングスコア
+  improvement: number;               // 初回から最新までの改善点数
+  testCount: number;                 // 受験回数
 }
 
-// フィルター設定
+// スコアフィルター条件の型定義
 export interface ScoreFilter {
-  startDate?: string;
-  endDate?: string;
-  testType?: TOEICScore['testType'];
+  timeRange: ChartConfig['timeRange'];
   minScore?: number;
   maxScore?: number;
 } 

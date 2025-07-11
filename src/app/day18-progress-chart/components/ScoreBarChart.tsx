@@ -29,7 +29,8 @@ export default function ScoreBarChart({
     <div className="bg-white p-6 rounded-xl shadow-lg"> {/* 白背景, パディング6, 角丸大, 影 */}
       <h3 className="text-xl font-semibold text-gray-800 mb-4">📊 スコア推移（棒グラフ）</h3> {/* 大文字, セミ太字, グレー文字, 下マージン4 */}
       
-      <ResponsiveContainer width="100%" height={400}> {/* レスポンシブ, 幅100%, 高さ400px */}
+      {/* レスポンシブ, 幅100%, 高さ400px */}
+      <ResponsiveContainer width="100%" height={400}>
         <BarChart
           data={data}
           margin={{

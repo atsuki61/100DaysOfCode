@@ -1,6 +1,6 @@
 'use client';
 
-import { ChartConfig, ChartType } from '../types';
+import { ChartConfig } from '../types';
 
 interface ChartControlsProps {
   config: ChartConfig;
@@ -8,7 +8,7 @@ interface ChartControlsProps {
 }
 
 export default function ChartControls({ config, onConfigChange }: ChartControlsProps) {
-  const handleChartTypeChange = (type: ChartType) => {
+  const handleChartTypeChange = (type: ChartConfig['type']) => {
     onConfigChange({ ...config, type });
   };
 
@@ -88,7 +88,7 @@ export default function ChartControls({ config, onConfigChange }: ChartControlsP
       </div>
 
       {/* 時間範囲設定 */}
-      <div className="mb-6"> {/* 下マージン6 */}
+      <div> {/* 下マージン削除 */}
         <label className="block text-sm font-medium text-gray-700 mb-3">📅 表示期間</label> {/* ブロック, 小文字, 中太字, グレー文字, 下マージン3 */}
         <select
           value={config.timeRange}
@@ -100,20 +100,6 @@ export default function ChartControls({ config, onConfigChange }: ChartControlsP
           <option value="6months">過去6ヶ月</option>
           <option value="3months">過去3ヶ月</option>
         </select>
-      </div>
-
-      {/* その他の設定 */}
-      <div>
-        <label className="block text-sm font-medium text-gray-700 mb-3">🔧 その他設定</label> {/* ブロック, 小文字, 中太字, グレー文字, 下マージン3 */}
-        <label className="flex items-center cursor-pointer"> {/* フレックス, アイテム中央, カーソルポインター */}
-          <input
-            type="checkbox"
-            checked={config.showDataLabels}
-            onChange={() => onConfigChange({ ...config, showDataLabels: !config.showDataLabels })}
-            className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2" // サイズ, 色設定
-          />
-          <span className="ml-3 text-sm text-gray-700">🏷️ データラベル表示</span> {/* 左マージン3, 小文字, グレー色 */}
-        </label>
       </div>
     </div>
   );

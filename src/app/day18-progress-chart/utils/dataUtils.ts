@@ -3,58 +3,40 @@ import { TOEICScore, ChartDataPoint, ScoreStatistics, ScoreFilter } from '../typ
 // サンプルTOEICスコアデータ
 export const sampleTOEICScores: TOEICScore[] = [
   {
-    id: '1',
     date: '2023-01-15',
-    listeningScore: 350,
-    readingScore: 320,
-    totalScore: 670,
-    testType: 'TOEIC L&R',
-    memo: '初回受験。基礎力確認のため。'
+    listening: 350,
+    reading: 320,
+    total: 670
   },
   {
-    id: '2',
     date: '2023-04-20',
-    listeningScore: 380,
-    readingScore: 340,
-    totalScore: 720,
-    testType: 'TOEIC L&R',
-    memo: '3ヶ月の勉強成果。リスニング改善。'
+    listening: 380,
+    reading: 340,
+    total: 720
   },
   {
-    id: '3',
     date: '2023-07-10',
-    listeningScore: 420,
-    readingScore: 385,
-    totalScore: 805,
-    testType: 'TOEIC L&R',
-    memo: 'オンライン学習を取り入れた結果。'
+    listening: 420,
+    reading: 385,
+    total: 805
   },
   {
-    id: '4',
     date: '2023-10-05',
-    listeningScore: 445,
-    readingScore: 415,
-    totalScore: 860,
-    testType: 'TOEIC L&R',
-    memo: '目標の800点を突破！'
+    listening: 445,
+    reading: 415,
+    total: 860
   },
   {
-    id: '5',
     date: '2024-01-12',
-    listeningScore: 465,
-    readingScore: 450,
-    totalScore: 915,
-    testType: 'TOEIC L&R',
-    memo: '継続的な学習で900点台に。'
+    listening: 465,
+    reading: 450,
+    total: 915
   },
   {
-    id: '6',
     date: '2024-04-15',
-    listeningScore: 480,
-    readingScore: 470,
-    totalScore: 950,
-    testType: 'TOEIC L&R',
-    memo: '目標の950点に到達！'
+    listening: 480,
+    reading: 470,
+    total: 950
   }
 ];
 
@@ -74,9 +56,9 @@ export const convertToChartData = (scores: TOEICScore[]): ChartDataPoint[] => {
     .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
     .map(score => ({
       date: score.date,
-      listening: score.listeningScore,
-      reading: score.readingScore,
-      total: score.totalScore,
+      listening: score.listening,
+      reading: score.reading,
+      total: score.total,
       formattedDate: formatDate(score.date)
     }));
 };
@@ -85,30 +67,44 @@ export const convertToChartData = (scores: TOEICScore[]): ChartDataPoint[] => {
 export const calculateStatistics = (scores: TOEICScore[]): ScoreStatistics => {
   if (scores.length === 0) {
     return {
-      averageTotal: 0,
-      maxTotal: 0,
-      minTotal: 0,
       latestScore: null,
+      maxScore: null,
+      minScore: null,
+      averageTotal: 0,
+      averageListening: 0,
+      averageReading: 0,
       improvement: 0,
       testCount: 0
     };
   }
 
   const sortedScores = [...scores].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
-  const totalScores = scores.map(s => s.totalScore);
+  const totalScores = scores.map(s => s.total);
+  const listeningScores = scores.map(s => s.listening);
+  const readingScores = scores.map(s => s.reading);
   
   const averageTotal = Math.round(totalScores.reduce((sum, score) => sum + score, 0) / totalScores.length);
-  const maxTotal = Math.max(...totalScores);
-  const minTotal = Math.min(...totalScores);
+  const averageListening = Math.round(listeningScores.reduce((sum, score) => sum + score, 0) / listeningScores.length);
+  const averageReading = Math.round(readingScores.reduce((sum, score) => sum + score, 0) / readingScores.length);
+  
+  const maxScore = scores.reduce((max, score) => 
+    score.total > max.total ? score : max
+  );
+  const minScore = scores.reduce((min, score) => 
+    score.total < min.total ? score : min
+  );
+  
   const latestScore = sortedScores[sortedScores.length - 1];
   const improvement = sortedScores.length > 1 ? 
-    latestScore.totalScore - sortedScores[0].totalScore : 0;
+    latestScore.total - sortedScores[0].total : 0;
 
   return {
-    averageTotal,
-    maxTotal,
-    minTotal,
     latestScore,
+    maxScore,
+    minScore,
+    averageTotal,
+    averageListening,
+    averageReading,
     improvement,
     testCount: scores.length
   };
@@ -117,16 +113,9 @@ export const calculateStatistics = (scores: TOEICScore[]): ScoreStatistics => {
 // フィルター適用
 export const applyFilter = (scores: TOEICScore[], filter: ScoreFilter): TOEICScore[] => {
   return scores.filter(score => {
-    // 日付範囲フィルター
-    if (filter.startDate && score.date < filter.startDate) return false;
-    if (filter.endDate && score.date > filter.endDate) return false;
-    
-    // テストタイプフィルター
-    if (filter.testType && score.testType !== filter.testType) return false;
-    
     // スコア範囲フィルター
-    if (filter.minScore && score.totalScore < filter.minScore) return false;
-    if (filter.maxScore && score.totalScore > filter.maxScore) return false;
+    if (filter.minScore && score.total < filter.minScore) return false;
+    if (filter.maxScore && score.total > filter.maxScore) return false;
     
     return true;
   });
@@ -153,8 +142,8 @@ export const calculateImprovementRate = (scores: TOEICScore[]): number => {
   if (scores.length < 2) return 0;
   
   const sortedScores = [...scores].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
-  const firstScore = sortedScores[0].totalScore;
-  const lastScore = sortedScores[sortedScores.length - 1].totalScore;
+  const firstScore = sortedScores[0].total;
+  const lastScore = sortedScores[sortedScores.length - 1].total;
   
   return Math.round(((lastScore - firstScore) / firstScore) * 100);
 }; 
