@@ -1,42 +1,18 @@
 import { TOEICScore, ChartDataPoint, ScoreStatistics, ScoreFilter } from '../types';
 
-// サンプルTOEICスコアデータ
+// 実際のTOEICスコアデータ
 export const sampleTOEICScores: TOEICScore[] = [
   {
-    date: '2023-01-15',
-    listening: 350,
-    reading: 320,
-    total: 670
+    date: '2024-12-13',
+    listening: 190,
+    reading: 90,
+    total: 280
   },
   {
-    date: '2023-04-20',
-    listening: 380,
-    reading: 340,
-    total: 720
-  },
-  {
-    date: '2023-07-10',
-    listening: 420,
-    reading: 385,
-    total: 805
-  },
-  {
-    date: '2023-10-05',
-    listening: 445,
-    reading: 415,
-    total: 860
-  },
-  {
-    date: '2024-01-12',
-    listening: 465,
-    reading: 450,
-    total: 915
-  },
-  {
-    date: '2024-04-15',
-    listening: 480,
-    reading: 470,
-    total: 950
+    date: '2025-05-18',
+    listening: 265,
+    reading: 150,
+    total: 415
   }
 ];
 
