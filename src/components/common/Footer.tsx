@@ -36,7 +36,12 @@ const Footer = ({ currentDay }: FooterProps) => {
   return (
     <footer className="fixed bottom-0 left-0 right-0 z-50 bg-gradient-to-r from-white to-slate-50 dark:from-gray-900 dark:to-gray-800 backdrop-blur-xl border-t border-black/5 dark:border-white/10 shadow-[0_-10px_30px_rgba(0,0,0,0.1)] dark:shadow-[0_-10px_30px_rgba(0,0,0,0.3)] h-20 transition-all duration-300">
       {/* Gradient shimmer line */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-500/50 via-purple-500/50 via-pink-500/50 to-transparent animate-pulse opacity-70"></div>
+      <div 
+        className="absolute top-0 left-0 right-0 h-px animate-pulse opacity-70"
+        style={{
+          background: 'linear-gradient(to right, transparent, rgba(59,130,246,0.5) 25%, rgba(147,51,234,0.5) 50%, rgba(236,72,153,0.5) 75%, transparent)'
+        }}
+      ></div>
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 h-full">
         <div className="flex justify-between items-center py-4 h-full">
@@ -63,8 +68,11 @@ const Footer = ({ currentDay }: FooterProps) => {
             </div>
             <div className="relative w-full h-3 bg-gradient-to-r from-slate-100 to-slate-200 dark:from-gray-700 dark:to-gray-600 rounded-md overflow-hidden shadow-inner transition-colors">
               <div 
-                className="h-full bg-gradient-to-r from-blue-500 via-purple-500 via-pink-500 to-orange-500 rounded-md transition-all duration-500 relative overflow-hidden"
-                style={{ width: `${(currentDay / 100) * 100}%` }}
+                className="h-full rounded-md transition-all duration-500 relative overflow-hidden"
+                style={{ 
+                  width: `${(currentDay / 100) * 100}%`,
+                  background: 'linear-gradient(to right, #3b82f6, #8b5cf6 33%, #ec4899 66%, #f97316)'
+                }}
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-[shimmer_2s_ease-in-out_infinite] translate-x-[-100%]"></div>
               </div>
