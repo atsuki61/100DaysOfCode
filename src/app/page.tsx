@@ -140,14 +140,14 @@ export default function HomePage() {
        description: '二人対戦の三目並べゲームです。勝敗判定付き。二次元配列の状態管理、勝利条件の判定ロジック、状態リフトアップ、コンポーネント間の連携を練習しました。',
        tags: ['React, Next.js, TypeScript, TailwindCSS'],
      },
-     // {
-     //   id: 'day18',
-     //   name: 'Day 18: 学習進捗チャート',
-     //   path: '/day18-progress-chart',
-     //   imageUrl: '/images/day18-progress-chart.png',
-     //   description: '過去のTOEICスコア推移をグラフで表示するアプリです。グラフライブラリの導入（例: Chart.js, Recharts）、データ可視化、配列データ操作と整形を練習しました。',
-     //   tags: ['React, Next.js, TypeScript, TailwindCSS, Chart.js or Recharts'],
-     // },
+     {
+       id: 'day18',
+       name: 'Day 18: 学習進捗チャート',
+       path: '/day18-progress-chart',
+       imageUrl: '/images/day18-progress-chart.png',
+       description: '過去のTOEICスコア推移をグラフで表示するアプリです。グラフライブラリの導入（例: Chart.js, Recharts）、データ可視化、配列データ操作と整形を練習しました。',
+       tags: ['React, Next.js, TypeScript, TailwindCSS, Recharts'],
+     },
      // {
      //   id: 'day19',
      //   name: 'Day 19: クイズアプリ',
