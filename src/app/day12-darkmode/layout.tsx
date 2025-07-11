@@ -10,16 +10,18 @@ export default function Day12Layout({
 }) {
   return (
     <ThemeProvider>
-      <Header title="Day 12: ダークモード切替アプリ" />
-      <PageHeader 
-        icon="🌙" 
-        title="ダークモード切替アプリ" 
-        description="Context APIとTailwind CSSを使ってダークモードを実装" 
-      />
-      <main className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300"> {/* 薄いグレー背景, ダーク時グレー, 色変化トランジション */}
-        {children}
-      </main>
-      <Footer currentDay={12} />
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300"> {/* 全体に薄いグレー背景, ダーク時グレー, 色変化トランジション */}
+        <Header title="Day 12: ダークモード切替アプリ" />
+        <PageHeader 
+          icon="🌙" 
+          title="ダークモード切替アプリ" 
+          description="Context APIとTailwind CSSを使ってダークモードを実装" 
+        />
+        <main>
+          {children}
+        </main>
+        <Footer currentDay={12} />
+      </div>
     </ThemeProvider>
   );
 } 

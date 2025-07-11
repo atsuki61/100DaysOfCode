@@ -8,17 +8,17 @@ export default function Day18Layout({
   children: React.ReactNode;
 }) {
   return (
-    <>
+    <div className="min-h-screen bg-gradient-to-br from-green-50 via-blue-50 to-purple-50"> {/* 全体に最小画面高さ, 緑から青、紫のグラデーション背景 */}
       <Header title="Day 18: 学習進捗チャート" />
       <PageHeader 
         icon="📊" 
         title="学習進捗チャート" 
-        description="TOEICスコア推移をグラフで可視化して学習効果を確認しましょう" 
+        description="TOEICスコア推移をグラデーション背景で統一して学習効果を確認しましょう" 
       />
-      <main className="min-h-screen bg-gradient-to-br from-green-50 via-blue-50 to-purple-50"> {/* 最小画面高さ, 緑から青、紫のグラデーション背景 */}
+      <main>
         {children}
       </main>
       <Footer currentDay={18} />
-    </>
+    </div>
   );
 } 
