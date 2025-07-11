@@ -9,7 +9,7 @@ export default function Day17Layout({
 }) {
   return (
     <>
-      <Header title="○×ゲーム" />
+      <Header title="day17: ○×ゲーム" />
       <div className="bg-blue-50 min-h-screen"> {/* 薄い青背景, 最小画面高さ */}
         <PageHeader
           icon="⭕"
