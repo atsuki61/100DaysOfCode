@@ -148,14 +148,14 @@ export default function HomePage() {
        description: '過去のTOEICスコア推移をグラフで表示するアプリです。グラフライブラリの導入（例: Chart.js, Recharts）、データ可視化、配列データ操作と整形を練習しました。',
        tags: ['React, Next.js, TypeScript, TailwindCSS, Recharts'],
      },
-     // {
-     //   id: 'day19',
-     //   name: 'Day 19: クイズアプリ',
-     //   path: '/day19-quiz',
-     //   imageUrl: '/images/day19-quiz.png',
-     //   description: '選択式のクイズを出題し、回答後に得点を表示するアプリです（例:アニメクイズ）。useStateによる問題/スコア管理、配列からの選択肢表示、条件による結果表示、コンポーネントの再利用を練習しました。',
-     //   tags: ['React, Next.js, TypeScript, TailwindCSS'],
-     // },
+     {
+       id: 'day19',
+       name: 'Day 19: クイズアプリ',
+       path: '/day19-quiz-app',
+       imageUrl: '/images/day19-quiz.png',
+       description: '選択式のクイズを出題し、回答後に得点を表示するアプリです（例:アニメクイズ）。useStateによる問題/スコア管理、配列からの選択肢表示、条件による結果表示、コンポーネントの再利用を練習しました。',
+       tags: ['React, Next.js, TypeScript, TailwindCSS'],
+     },
      // {
      //   id: 'day20',
      //   name: 'Day 20: 神経衰弱ゲーム',
