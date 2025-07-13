@@ -42,14 +42,6 @@ export default function ProgressChartPage() {
 
   return (
     <div className="container mx-auto px-4 py-8 space-y-8"> {/* コンテナ, 中央配置, 横パディング4, 縦パディング8, 縦間隔8 */}
-      {/* ページ説明 */}
-      <div className="text-center mb-8"> {/* 中央揃え, 下マージン8 */}
-        <p className="text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed"> {/* 大文字, グレー色, 最大幅, 中央配置, 行間広め */}
-          TOEICスコアの推移をグラフで可視化することで、学習の効果を客観的に確認できます。
-          グラフの種類や表示データを変更して、様々な角度から分析してみましょう。
-        </p>
-      </div>
-
       {/* 上段: 統計情報 */}
       <div className="w-full"> {/* 幅100% */}
         <StatisticsCard statistics={statistics} />

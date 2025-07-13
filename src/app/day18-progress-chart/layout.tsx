@@ -13,7 +13,7 @@ export default function Day18Layout({
       <PageHeader 
         icon="📊" 
         title="学習進捗チャート" 
-        description="TOEICスコア推移をグラデーション背景で統一して学習効果を確認しましょう" 
+        description="TOEICスコア推移を記録していきます。" 
       />
       <main>
         {children}
