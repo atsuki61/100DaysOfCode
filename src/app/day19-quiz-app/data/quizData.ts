@@ -1,6 +1,6 @@
 import { QuizQuestion } from '../types';
 
-export const quizDataByCategory: Record<string, QuizQuestion[]> = {
+export const quizData: Record<string, QuizQuestion[]> = {
   "僕のヒーローアカデミア": [
     {
       id: 1,
