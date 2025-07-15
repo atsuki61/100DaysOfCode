@@ -15,7 +15,7 @@ export default function Day14Layout({
 }) {
   return (
     <>
-      <Header title="Day 14: 英単語辞書アプリ" showPortfolioLink={true} showHomeLink={true} />
+      <Header title="Day 14: 英単語辞書アプリ" />
       <main className="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen"> {/* グラデーション背景, 最小高さ画面全体 */}
         <div className="pb-8 px-4"> {/* 下パディング8, 横パディング4 */}
           <div className="max-w-6xl mx-auto"> {/* 最大横幅6xl, 中央寄せ */}

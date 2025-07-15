@@ -16,11 +16,7 @@ export default function Day16Layout({
 }) {
   return (
     <>
-      <Header 
-        title="Day16: 音楽検索アプリ" 
-        showPortfolioLink={true} 
-        showHomeLink={true} 
-      />
+      <Header title= "Day16: 音楽検索アプリ"/>
       <main className="bg-gray-50 min-h-screen"> {/* メインコンテンツ, グレー背景, 最小高さフルスクリーン */}
         <div className="pb-8 px-4"> {/* 下パディング8, 横パディング4 */}
           <div className="max-w-6xl mx-auto"> {/* 最大横幅6xl, 中央寄せ */}

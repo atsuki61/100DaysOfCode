@@ -15,11 +15,7 @@ export default function Day15Layout({
 }) {
   return (
     <>
-      <Header 
-        title="Day15: ワークアウトプランナー" 
-        showPortfolioLink={true} 
-        showHomeLink={true} 
-      />
+      <Header title="Day15: ワークアウトプランナー" />
       <main className="bg-gradient-to-br from-blue-50 via-white to-green-50 min-h-screen"> {/* メインコンテンツ, グラデーション背景 */}
         <div className="pb-8 px-4"> {/* 下パディング8, 横パディング4 */}
           <div className="max-w-6xl mx-auto"> {/* 最大横幅6xl, 中央寄せ */}
