@@ -26,6 +26,8 @@ const shuffleArray = <T,>(array: T[]): T[] => {
 
 const MemoryGame = () => {
   const [cards, setCards] = useState<CardType[]>([]);
+  const [flippedCards, setFlippedCards] = useState<number[]>([]);  // 現在めくられているカードのIDを保持するstate（最大2つ）
+  const [isChecking, setIsChecking] = useState(false);  // ペアが一致しているかチェック中の状態かを管理するstate
 
   // ゲーム開始時にカードを初期化してシャッフルする
   useEffect(() => {
@@ -41,11 +43,25 @@ const MemoryGame = () => {
     setCards(shuffleArray(duplicatedCards));
   }, []); // 空の依存配列[]を指定することで、コンポーネントの初回マウント時にのみ実行される
 
-  // カードがクリックされた時の処理
-  const handleCardClick = (id: number) => {//
-    console.log(`カード${id}がクリックされました`); //
-    // TODO: ここにカードをめくるロジックを追加
-  }
+
+  // カードがクリックされたときの処理
+  const handleCardClick = (clickedId: number) => {
+    console.log(`カード${clickedId}がクリックされました`); //
+    //カードをめくるロジック
+     // チェック中、または既に2枚めくられている場合は何もしない
+     if (isChecking || flippedCards.length === 2) {
+      return;
+    }
+    // 1. クリックされたカードを `isFlipped = true` にする
+    setCards((prevCards) =>
+      prevCards.map((card) =>
+        card.id === clickedId ? { ...card, isFlipped: true } : card
+      )
+    );
+    // 2. めくられたカードのIDをstateに追加する
+    setFlippedCards((prev) => [...prev, clickedId]);
+    // TODO: 次のステップで、ここにペア判定のロジックを追加
+  };
 
   // ... return文は変更なし ...
   return (
