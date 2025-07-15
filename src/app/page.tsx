@@ -156,14 +156,14 @@ export default function HomePage() {
        description: '選択式のクイズを出題し、回答後に得点を表示するアプリです（例:アニメクイズ）。useStateによる問題/スコア管理、配列からの選択肢表示、条件による結果表示、コンポーネントの再利用を練習しました。',
        tags: ['React, Next.js, TypeScript, TailwindCSS'],
      },
-     // {
-     //   id: 'day20',
-     //   name: 'Day 20: 神経衰弱ゲーム',
-     //   path: '/day20-memory-game',
-     //   imageUrl: '/images/day20-memory-game.png',
-     //   description: 'カードをめくって同じ絵柄を当てる記憶ゲームです。配列のシャッフル、複数要素の状態管理(選択カード)、一定時間後の裏返し処理(useEffect, setTimeout)、CSSアニメーション/トランジションの基礎を練習しました。',
-     //   tags: ['React, Next.js, TypeScript, TailwindCSS'],
-     // },
+     {
+       id: 'day20',
+       name: 'Day 20: 神経衰弱ゲーム',
+       path: '/day20-memory-game',
+       imageUrl: '/images/day20-memory-game.png',
+       description: 'カードをめくって同じ絵柄を当てる記憶ゲームです。配列のシャッフル、複数要素の状態管理(選択カード)、一定時間後の裏返し処理(useEffect, setTimeout)、CSSアニメーション/トランジションの基礎を練習しました。',
+       tags: ['React, Next.js, TypeScript, TailwindCSS'],
+     },
     // ここに新しいアプリを追加していきます
   ];
 
