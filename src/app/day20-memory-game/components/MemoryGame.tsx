@@ -34,6 +34,7 @@ const MemoryGame = () => {
   const [isChecking, setIsChecking] = useState(false);  // ペアが一致しているかチェック中の状態かを管理するstate
   const [isGameClear, setIsGameClear] = useState(false); // ゲームがクリアしたかどうかを管理するstate
   const [moves, setMoves] = useState(0); // 試行回数をカウント
+  const [isPreviewMode, setIsPreviewMode] = useState(false); // プレビューモード（開始時に全カードを1秒表示）
   
   // ゲームを初期化する関数
   const initializeGame = () => {
@@ -49,12 +50,24 @@ const MemoryGame = () => {
     setIsChecking(false);
     setIsGameClear(false);
     setMoves(0); // 試行回数もリセット
+    setIsPreviewMode(true); // プレビューモードを開始
   };
 
    // 初回マウント時にゲームを初期化
    useEffect(() => {
     initializeGame();
   }, []);
+
+  // プレビューモードのタイマー制御
+  useEffect(() => {
+    if (isPreviewMode) {
+      const timer = setTimeout(() => {
+        setIsPreviewMode(false); // 1秒後にプレビューモードを終了
+      }, 1000); // 1000ms = 1秒
+
+      return () => clearTimeout(timer); // クリーンアップ関数
+    }
+  }, [isPreviewMode]);
 
   // ペア判定ロジック
   useEffect(() => {
@@ -114,7 +127,7 @@ const MemoryGame = () => {
 
     // カードがクリックされたときの処理
     const handleCardClick = (clickedId: number) => {
-      if (isChecking || flippedCards.length === 2) {
+      if (isChecking || flippedCards.length === 2 || isPreviewMode) {
         return;
       }
       setCards((prevCards) =>
@@ -173,11 +186,12 @@ const MemoryGame = () => {
           }`}
         >
           {cards.map((card) => (
-            <Card 
-              key={card.id} 
-              card={card} 
-              onClick={handleCardClick} 
-              isChecking={isChecking} 
+            <Card
+              key={card.id}
+              card={card}
+              onClick={handleCardClick}
+              isChecking={isChecking}
+              isPreviewMode={isPreviewMode}
             />
           ))}
         </div>
