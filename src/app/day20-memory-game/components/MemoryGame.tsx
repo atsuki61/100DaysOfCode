@@ -140,16 +140,16 @@ const MemoryGame = () => {
               <p className="text-xl mb-3 font-semibold">
                 ゲームクリア！
               </p>
-              <div className="bg-white bg-opacity-20 rounded-lg p-3 mb-4">
-                <p className="text-lg font-bold">
-                  試行回数: <span className="text-yellow-200 text-xl">{moves}</span> 回
-                </p>
-                <p className="text-sm mt-1">
-                  {moves <= 10 ? '素晴らしい記憶力です！🏆' : 
-                   moves <= 15 ? 'よくできました！👏' : 
-                   'お疲れ様でした！💪'}
-                </p>
-              </div>
+                             <div className="bg-slate-800 bg-opacity-80 rounded-lg p-3 mb-4">
+                 <p className="text-lg font-bold text-white">
+                   試行回数: <span className="text-yellow-300 text-xl">{moves}</span> 回
+                 </p>
+                 <p className="text-sm mt-1 text-gray-100">
+                   {moves <= 10 ? '素晴らしい記憶力です！🏆' : 
+                    moves <= 15 ? 'よくできました！👏' : 
+                    'お疲れ様でした！💪'}
+                 </p>
+               </div>
               <div className="flex justify-center items-center space-x-2 text-4xl animate-pulse">
                 <span>🌟</span>
                 <span>✨</span>
