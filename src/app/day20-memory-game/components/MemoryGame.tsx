@@ -124,8 +124,6 @@ const MemoryGame = () => {
     // ★★★ コンポーネントが画面に表示する内容（JSX）はここから始まります ★★★
     return (
       <div className="text-center">
-        <h2 className="text-2xl font-bold mb-4">Memory Game</h2>
-
         {/* ゲームクリアメッセージ */}
         {isGameClear && (
           <div className="mb-4 p-4 bg-green-200 text-green-800 rounded-lg">

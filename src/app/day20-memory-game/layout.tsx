@@ -14,7 +14,7 @@ export default function Day20Layout({
       <Header title="Day20: 神経衰弱ゲーム" />
       <main className="flex-grow bg-gray-50"> {/* メインコンテンツ */}
         <PageHeader
-          title="♠神経衰弱ゲーム"
+          title="🍎神経衰弱ゲーム🍌"
           description="カードをめくって同じ絵柄を当てる記憶ゲームです。"
         />
         {children}
