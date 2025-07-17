@@ -12,6 +12,10 @@ const initialCards: Omit<CardType, 'id' | 'isFlipped' | 'isMatched'>[] = [
   { pairId: 4, content: '🍍' },
   { pairId: 5, content: '🍇' },
   { pairId: 6, content: '🍑' },
+  { pairId: 7, content: '🍎' },
+  { pairId: 8, content: '🍊' },
+  { pairId: 9, content: '🍋' },
+  { pairId: 10, content: '🍈' },
 ];
 
 // カードをシャッフルする関数
@@ -28,24 +32,31 @@ const MemoryGame = () => {
   const [cards, setCards] = useState<CardType[]>([]);
   const [flippedCards, setFlippedCards] = useState<number[]>([]);  // 現在めくられているカードのIDを保持するstate（最大2つ）
   const [isChecking, setIsChecking] = useState(false);  // ペアが一致しているかチェック中の状態かを管理するstate
-
-  // 初回マウント時の処理 ゲーム開始時にカードを初期化してシャッフルする
-  useEffect(() => {
-    const duplicatedCards = initialCards.flatMap((card, index) => {//flatMap:配列の各要素に対して処理を行い、新しい配列を返す
-      const pairId = index + 1;//ペアIDを生成
+  const [isGameClear, setIsGameClear] = useState(false); // ゲームがクリアしたかどうかを管理するstate
+  
+  // ゲームを初期化する関数
+  const initializeGame = () => {
+    const duplicatedCards = initialCards.flatMap((card, index) => {
+      const pairId = index + 1;
       return [
-        { ...card, id: pairId * 2 - 1, pairId, isFlipped: false, isMatched: false },//ペアIDを2倍して1を引くことで、奇数と偶数のIDを生成
-        { ...card, id: pairId * 2, pairId, isFlipped: false, isMatched: false },//ペアIDを2倍することで、偶数と奇数のIDを生成
+        { ...card, id: pairId * 2 - 1, pairId, isFlipped: false, isMatched: false },
+        { ...card, id: pairId * 2, pairId, isFlipped: false, isMatched: false },
       ];
     });
-    // 2. カードをシャッフルする
     setCards(shuffleArray(duplicatedCards));
-  }, []); // 空の依存配列[]を指定することで、コンポーネントの初回マウント時にのみ実行される
+    setFlippedCards([]);
+    setIsChecking(false);
+    setIsGameClear(false);
+  };
 
-  // flippedCards（めくられたカード）の状態が変わった時に実行される
+   // 初回マウント時にゲームを初期化
+   useEffect(() => {
+    initializeGame();
+  }, []);
+
+  // ペア判定ロジック
   useEffect(() => {
-    // 2枚のカードがめくられたら判定処理を開始
-    if (flippedCards.length === 2) {
+    if (flippedCards.length === 2) { // 2枚のカードがめくられたら判定処理を開始
       setIsChecking(true); // チェック状態にする
 
       const [firstCardId, secondCardId] = flippedCards;//めくられたカードのIDを取得
@@ -61,17 +72,18 @@ const MemoryGame = () => {
               : card
           )
         );
+
         // 次のペア選択のために、めくられたカード情報をリセット
         setFlippedCards([]);
         setIsChecking(false); // チェック状態を解除
       } else {
         // ペアが不一致だった場合、1秒後にカードを裏返す
         setTimeout(() => {
-          setCards((prevCards) =>
-            prevCards.map((card) =>
-              flippedCards.includes(card.id)
+          setCards((prevCards) =>//カードの配列を更新
+            prevCards.map((card) =>//カードの配列を更新
+              flippedCards.includes(card.id)//カードのIDがめくられたカードのIDに一致しているかどうかをチェック
                 ? { ...card, isFlipped: false } // isFlippedをfalseに戻す
-                : card
+                : card // クリックされていないカードはそのまま
             )
           );
           // 次のペア選択のために、めくられたカード情報をリセット
@@ -82,33 +94,70 @@ const MemoryGame = () => {
     }
   }, [flippedCards, cards]); // flippedCardsかcardsの状態が変わるたびに実行
 
-  // カードがクリックされたときの処理
-  const handleCardClick = (clickedId: number) => {
-    console.log(`カード${clickedId}がクリックされました`); //
-     if (isChecking || flippedCards.length === 2) {//チェック中、または既に2枚めくられている場合は何もしない
-      return;//何もしない
-    }
-    // 1. クリックされたカードを `isFlipped = true` にする
-    setCards((prevCards) =>//カードの配列を更新
-      prevCards.map((card) =>//カードの配列を更新
-        card.id === clickedId ? { ...card, isFlipped: true } : card//クリックされたカードをめくる
-      )
-    );
-    setFlippedCards((prev) => [...prev, clickedId]);//めくられたカードのIDをstateに追加する
+// ゲームクリアを判定するロジック
+    // ゲームクリアを判定するロジック
+    useEffect(() => {
+      // カードが0枚の場合は何もしない（初期化中の誤判定を防ぐ）
+      if (cards.length === 0) return;
+      
+      // 全てのカードがマッチしたらクリア
+      const allMatched = cards.every(card => card.isMatched);
+      if (allMatched) {
+        setIsGameClear(true);
+      }
+    }, [cards]); // ★★★ useEffectはここで正しく閉じられます ★★★
 
-    // TODO: 次のステップで、ここにペア判定のロジックを追加
-  };
 
-  return (
-    <div className="text-center">
-      <h2 className="text-2xl font-bold mb-4">Memory Game</h2>
-      <div className="grid grid-cols-4 gap-4 max-w-md mx-auto perspective-1000"> {/* 4列グリッド, 隙間4, 最大幅md, 中央寄せ */}
-        {cards.map((card) => (
-          <Card key={card.id} card={card} onClick={handleCardClick} />
-        ))}
+    // カードがクリックされたときの処理
+    const handleCardClick = (clickedId: number) => {
+      if (isChecking || flippedCards.length === 2) {
+        return;
+      }
+      setCards((prevCards) =>
+        prevCards.map((card) =>
+          card.id === clickedId ? { ...card, isFlipped: true } : card
+        )
+      );
+      setFlippedCards((prev) => [...prev, clickedId]);
+    };
+
+    // ★★★ コンポーネントが画面に表示する内容（JSX）はここから始まります ★★★
+    return (
+      <div className="text-center">
+        <h2 className="text-2xl font-bold mb-4">Memory Game</h2>
+
+        {/* ゲームクリアメッセージ */}
+        {isGameClear && (
+          <div className="mb-4 p-4 bg-green-200 text-green-800 rounded-lg">
+            <p className="font-bold text-lg">🎉 クリア！おめでとうございます！ 🎉</p>
+          </div>
+        )}
+
+        {/* ゲーム盤面 */}
+        <div
+          className={`grid grid-cols-5 gap-4 max-w-xl mx-auto perspective-1000 ${ // grid-cols-4 -> 5, max-w-md -> xl に変更
+            isGameClear ? 'opacity-50' : ''
+          }`}
+        >
+          {cards.map((card) => (
+            <Card 
+              key={card.id} 
+              card={card} 
+              onClick={handleCardClick} 
+              isChecking={isChecking} 
+            />
+          ))}
+        </div>
+
+        {/* リセットボタン */}
+        <button
+          onClick={initializeGame}
+          className="mt-8 px-6 py-2 bg-indigo-600 text-white font-semibold rounded-lg shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-75"
+          // mt-8:上マージン8, px-6 py-2:パディング, bg-indigo-600:背景色, text-white font-semibold:文字スタイル, rounded-lg shadow-md:角丸と影, hover:bg-indigo-700:ホバー時背景色
+        >
+          リセット
+        </button>
       </div>
-    </div>
-  );
-};
-
+    );
+  };
 export default MemoryGame;
