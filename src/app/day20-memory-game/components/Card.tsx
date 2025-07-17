@@ -17,26 +17,21 @@ const Card: React.FC<CardProps> = ({ card, onClick }) => {
     }
   };
  // 3D回転アニメーションのための基本的なコンテナ
+
  return (
   <div
-    className="w-full h-24 rounded-lg cursor-pointer perspective-1000"
+    className={`
+      w-full h-24 rounded-lg flex items-center justify-center text-4xl cursor-pointer 
+      transition-transform duration-300 transform-style-preserve-3d
+      ${isFlipped || isMatched ? 'bg-white rotate-y-180' : 'bg-indigo-500'}
+    `} // w-full:幅100%, h-24:高さ, rounded-lg:角丸, flex items-center justify-center:中央揃え, text-4xl:文字大, cursor-pointer:マウスカーソルがこの要素の上に来たときに指の形（リンクのような）に変わります。
     onClick={handleClick}
   >
-    <div
-      className={`
-        relative w-full h-full transition-transform duration-500 transform-style-preserve-3d
-        ${isFlipped || isMatched ? 'rotate-y-180' : ''}
-      `}
-    >
-      {/* カードの裏面 (最初はこれが表示される) */}
-      <div className="absolute w-full h-full backface-hidden rounded-lg flex items-center justify-center bg-indigo-500">
-        {/* 裏面のデザイン。お好みでアイコンなどを入れてもOK */}
-      </div>
-
-      {/* カードの表面 (回転後に表示される) */}
-      <div className="absolute w-full h-full backface-hidden rounded-lg flex items-center justify-center bg-white text-4xl rotate-y-180 text-slate-900"> {/* text-slate-900: 濃い文字色を追加 */}
-        {content}
-      </div>
+    <div className={`absolute backface-hidden ${isFlipped || isMatched ? '' : 'rotate-y-180'}`}>
+      {content}
+    </div>
+    <div className={`absolute backface-hidden ${isFlipped || isMatched ? 'rotate-y-180' : ''}`}>
+      {/* カードの裏面のデザイン（今は空） */}
     </div>
   </div>
 );
