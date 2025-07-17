@@ -29,11 +29,10 @@ const MemoryGame = () => {
   const [flippedCards, setFlippedCards] = useState<number[]>([]);  // 現在めくられているカードのIDを保持するstate（最大2つ）
   const [isChecking, setIsChecking] = useState(false);  // ペアが一致しているかチェック中の状態かを管理するstate
 
-  // ゲーム開始時にカードを初期化してシャッフルする
+  // 初回マウント時の処理 ゲーム開始時にカードを初期化してシャッフルする
   useEffect(() => {
-    // 1. 各カードを2枚ずつに増やす
     const duplicatedCards = initialCards.flatMap((card, index) => {//flatMap:配列の各要素に対して処理を行い、新しい配列を返す
-      const pairId = index + 1;
+      const pairId = index + 1;//ペアIDを生成
       return [
         { ...card, id: pairId * 2 - 1, pairId, isFlipped: false, isMatched: false },//ペアIDを2倍して1を引くことで、奇数と偶数のIDを生成
         { ...card, id: pairId * 2, pairId, isFlipped: false, isMatched: false },//ペアIDを2倍することで、偶数と奇数のIDを生成
@@ -43,27 +42,63 @@ const MemoryGame = () => {
     setCards(shuffleArray(duplicatedCards));
   }, []); // 空の依存配列[]を指定することで、コンポーネントの初回マウント時にのみ実行される
 
+  // flippedCards（めくられたカード）の状態が変わった時に実行される
+  useEffect(() => {
+    // 2枚のカードがめくられたら判定処理を開始
+    if (flippedCards.length === 2) {
+      setIsChecking(true); // チェック状態にする
+
+      const [firstCardId, secondCardId] = flippedCards;//めくられたカードのIDを取得
+      const firstCard = cards.find((c) => c.id === firstCardId);//カードの配列から、めくられたカードのIDに一致するカードを取得
+      const secondCard = cards.find((c) => c.id === secondCardId);//カードの配列から、めくられたカードのIDに一致するカードを取得
+
+      // ペアが一致した場合
+      if (firstCard && secondCard && firstCard.pairId === secondCard.pairId) {
+        setCards((prevCards) =>//カードの配列を更新
+          prevCards.map((card) =>//カードの配列を更新
+            card.pairId === firstCard.pairId//ペアIDが一致しているかどうかをチェック
+              ? { ...card, isMatched: true } // isMatchedをtrueに更新
+              : card
+          )
+        );
+        // 次のペア選択のために、めくられたカード情報をリセット
+        setFlippedCards([]);
+        setIsChecking(false); // チェック状態を解除
+      } else {
+        // ペアが不一致だった場合、1秒後にカードを裏返す
+        setTimeout(() => {
+          setCards((prevCards) =>
+            prevCards.map((card) =>
+              flippedCards.includes(card.id)
+                ? { ...card, isFlipped: false } // isFlippedをfalseに戻す
+                : card
+            )
+          );
+          // 次のペア選択のために、めくられたカード情報をリセット
+          setFlippedCards([]);
+          setIsChecking(false); // チェック状態を解除
+        }, 1000); // 1000ms = 1秒
+      }
+    }
+  }, [flippedCards, cards]); // flippedCardsかcardsの状態が変わるたびに実行
 
   // カードがクリックされたときの処理
   const handleCardClick = (clickedId: number) => {
     console.log(`カード${clickedId}がクリックされました`); //
-    //カードをめくるロジック
-     // チェック中、または既に2枚めくられている場合は何もしない
-     if (isChecking || flippedCards.length === 2) {
-      return;
+     if (isChecking || flippedCards.length === 2) {//チェック中、または既に2枚めくられている場合は何もしない
+      return;//何もしない
     }
     // 1. クリックされたカードを `isFlipped = true` にする
-    setCards((prevCards) =>
-      prevCards.map((card) =>
-        card.id === clickedId ? { ...card, isFlipped: true } : card
+    setCards((prevCards) =>//カードの配列を更新
+      prevCards.map((card) =>//カードの配列を更新
+        card.id === clickedId ? { ...card, isFlipped: true } : card//クリックされたカードをめくる
       )
     );
-    // 2. めくられたカードのIDをstateに追加する
-    setFlippedCards((prev) => [...prev, clickedId]);
+    setFlippedCards((prev) => [...prev, clickedId]);//めくられたカードのIDをstateに追加する
+
     // TODO: 次のステップで、ここにペア判定のロジックを追加
   };
 
-  // ... return文は変更なし ...
   return (
     <div className="text-center">
       <h2 className="text-2xl font-bold mb-4">Memory Game</h2>
