@@ -33,6 +33,7 @@ const MemoryGame = () => {
   const [flippedCards, setFlippedCards] = useState<number[]>([]);  // 現在めくられているカードのIDを保持するstate（最大2つ）
   const [isChecking, setIsChecking] = useState(false);  // ペアが一致しているかチェック中の状態かを管理するstate
   const [isGameClear, setIsGameClear] = useState(false); // ゲームがクリアしたかどうかを管理するstate
+  const [moves, setMoves] = useState(0); // 試行回数をカウント
   
   // ゲームを初期化する関数
   const initializeGame = () => {
@@ -47,6 +48,7 @@ const MemoryGame = () => {
     setFlippedCards([]);
     setIsChecking(false);
     setIsGameClear(false);
+    setMoves(0); // 試行回数もリセット
   };
 
    // 初回マウント時にゲームを初期化
@@ -56,12 +58,14 @@ const MemoryGame = () => {
 
   // ペア判定ロジック
   useEffect(() => {
-    if (flippedCards.length === 2) { // 2枚のカードがめくられたら判定処理を開始
+    // 2枚のカードがめくられたら判定処理を開始
+    if (flippedCards.length === 2) {
       setIsChecking(true); // チェック状態にする
+      setMoves((prev) => prev + 1); // 2枚目がめくられた時に試行回数を増やす
 
-      const [firstCardId, secondCardId] = flippedCards;//めくられたカードのIDを取得
-      const firstCard = cards.find((c) => c.id === firstCardId);//カードの配列から、めくられたカードのIDに一致するカードを取得
-      const secondCard = cards.find((c) => c.id === secondCardId);//カードの配列から、めくられたカードのIDに一致するカードを取得
+      const [firstCardId, secondCardId] = flippedCards;
+      const firstCard = cards.find((c) => c.id === firstCardId);
+      const secondCard = cards.find((c) => c.id === secondCardId);
 
       // ペアが一致した場合
       if (firstCard && secondCard && firstCard.pairId === secondCard.pairId) {
@@ -119,6 +123,7 @@ const MemoryGame = () => {
         )
       );
       setFlippedCards((prev) => [...prev, clickedId]);
+      // setMoves((prev) => prev + 1); // カードをめくるたびに試行回数を増やす
     };
 
     // ★★★ コンポーネントが画面に表示する内容（JSX）はここから始まります ★★★
@@ -126,10 +131,40 @@ const MemoryGame = () => {
       <div className="text-center">
         {/* ゲームクリアメッセージ */}
         {isGameClear && (
-          <div className="mb-4 p-4 bg-green-200 text-green-800 rounded-lg">
-            <p className="font-bold text-lg">🎉 クリア！おめでとうございます！ 🎉</p>
+          <div className="mb-6 p-6 bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-600 text-white rounded-xl shadow-2xl animate-bounce">
+            <div className="text-center">
+              <div className="text-6xl mb-4 animate-pulse">🎉</div>
+              <h3 className="text-3xl font-bold mb-2 drop-shadow-lg">
+                おめでとうございます！
+              </h3>
+              <p className="text-xl mb-3 font-semibold">
+                ゲームクリア！
+              </p>
+              <div className="bg-white bg-opacity-20 rounded-lg p-3 mb-4">
+                <p className="text-lg font-bold">
+                  試行回数: <span className="text-yellow-200 text-xl">{moves}</span> 回
+                </p>
+                <p className="text-sm mt-1">
+                  {moves <= 10 ? '素晴らしい記憶力です！🏆' : 
+                   moves <= 15 ? 'よくできました！👏' : 
+                   'お疲れ様でした！💪'}
+                </p>
+              </div>
+              <div className="flex justify-center items-center space-x-2 text-4xl animate-pulse">
+                <span>🌟</span>
+                <span>✨</span>
+                <span>🎊</span>
+                <span>✨</span>
+                <span>🌟</span>
+              </div>
+            </div>
           </div>
         )}
+
+        {/* 試行回数表示 */}
+        <div className="mb-4 text-lg font-bold text-gray-800 bg-gray-100 rounded-lg px-4 py-2 inline-block">
+          試行回数: <span className="text-indigo-600">{moves}</span> 回
+        </div>
 
         {/* ゲーム盤面 */}
         <div
