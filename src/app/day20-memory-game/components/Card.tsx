@@ -16,13 +16,13 @@ const Card: React.FC<CardProps> = ({ card, onClick, isChecking, isPreviewMode })
     if (isPreviewMode || isChecking || isFlipped || isMatched) {
       return;
     }
-    onClick(card.id);
+      onClick(card.id);
   };
 
   // プレビューモード中は全カードを表向きで表示
   const shouldShowContent = isPreviewMode || isFlipped || isMatched;
 
-  return (
+ return (
     <div
       onClick={handleClick}
       className={`
@@ -39,8 +39,8 @@ const Card: React.FC<CardProps> = ({ card, onClick, isChecking, isPreviewMode })
     >
       {/* isFlippedかisMatchedがtrueの時だけ中身を表示 */}
       {shouldShowContent ? content : ''}
-    </div>
-  );
+  </div>
+);
 };
 
 export default Card;

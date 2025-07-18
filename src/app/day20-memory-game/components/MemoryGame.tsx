@@ -140,8 +140,8 @@ const MemoryGame = () => {
     };
 
     // ★★★ コンポーネントが画面に表示する内容（JSX）はここから始まります ★★★
-    return (
-      <div className="text-center">
+  return (
+    <div className="text-center">
         {/* ゲームクリアメッセージ */}
         {isGameClear && (
           <div className="mb-6 p-6 bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-600 text-white rounded-xl shadow-2xl animate-bounce">
@@ -204,7 +204,7 @@ const MemoryGame = () => {
         >
           リセット
         </button>
-      </div>
-    );
-  };
+    </div>
+  );
+};
 export default MemoryGame;
