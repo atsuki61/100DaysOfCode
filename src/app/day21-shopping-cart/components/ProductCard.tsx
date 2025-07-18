@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Product } from '../types';
 import { useCart } from '../contexts/CartContext';
 
@@ -10,9 +10,16 @@ interface ProductCardProps {
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const { addToCart } = useCart();
+  const [isAdding, setIsAdding] = useState(false);
 
-  const handleAddToCart = () => {
+  const handleAddToCart = async () => {
+    setIsAdding(true);
     addToCart(product);
+    
+    // 短時間のフィードバック表示
+    setTimeout(() => {
+      setIsAdding(false);
+    }, 800);
   };
 
   // 価格を日本円でフォーマット
@@ -53,10 +60,15 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           
           <button
             onClick={handleAddToCart}
-            className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200 flex items-center space-x-2"
+            disabled={isAdding}
+            className={`font-semibold py-2 px-4 rounded-lg transition-all duration-200 flex items-center space-x-2 ${
+              isAdding
+                ? 'bg-green-500 text-white scale-95'
+                : 'bg-blue-600 hover:bg-blue-700 text-white hover:scale-105'
+            }`}
           >
-            <span>🛒</span>
-            <span>カートに追加</span>
+            <span>{isAdding ? '✅' : '🛒'}</span>
+            <span>{isAdding ? '追加済み!' : 'カートに追加'}</span>
           </button>
         </div>
       </div>

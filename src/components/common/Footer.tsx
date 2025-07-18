@@ -32,6 +32,7 @@ const Footer = ({ currentDay }: FooterProps) => {
       18: "/day18-progress-chart",
       19: "/day19-quiz-app",
       20: "/day20-memory-game",
+      21: "/day21-shopping-cart",
     };
     return dayRoutes[day] || `/day${day}`;
   };

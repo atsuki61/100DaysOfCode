@@ -164,6 +164,14 @@ export default function HomePage() {
        description: 'カードをめくって同じ絵柄を当てる記憶ゲームです。配列のシャッフル、複数要素の状態管理(選択カード)、一定時間後の裏返し処理(useEffect, setTimeout)、CSSアニメーション/トランジションの基礎を練習しました。',
        tags: ['React, Next.js, TypeScript, TailwindCSS'],
      },
+     {
+       id: 'day21',
+       name: 'Day 21: ショッピングカート',
+       path: '/day21-shopping-cart',
+       imageUrl: '/images/day21-shopping-cart.png',
+       description: '商品一覧からカートに追加・削除し、合計金額を表示するアプリです。Context APIによるグローバル状態管理、複数コンポーネント間のデータ共有、合計計算、カート内商品の数量変更を練習しました。',
+       tags: ['React, Next.js, TypeScript, TailwindCSS, Context API'],
+     },
     // ここに新しいアプリを追加していきます
   ];
 
