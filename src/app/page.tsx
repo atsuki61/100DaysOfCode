@@ -172,6 +172,14 @@ export default function HomePage() {
        description: '商品一覧からカートに追加・削除し、合計金額を表示するアプリです。Context APIによるグローバル状態管理、複数コンポーネント間のデータ共有、合計計算、カート内商品の数量変更を練習しました。',
        tags: ['React, Next.js, TypeScript, TailwindCSS, Context API'],
      },
+     {
+       id: 'day22',
+       name: 'Day 22: ブログサイト',
+       path: '/day22-blog-site',
+       imageUrl: '/images/day22-blog-site.png',
+       description: 'Next.js App Routerを使用した静的ブログサイトです。Markdownファイルの読み込みとパース、動的ルーティング、静的サイト生成(SSG)を練習しました。',
+       tags: ['React, Next.js, TypeScript, TailwindCSS, Markdown, SSG'],
+     },
     // ここに新しいアプリを追加していきます
   ];
 
