@@ -1,6 +1,7 @@
 import { CryptoData, fetchPopularCryptos } from './utils/cryptoApi'
 import CryptoCard from './components/CryptoCard'
 import ErrorState from './components/ErrorState'
+import RefreshButton, { LastUpdated } from './components/RefreshButton'
 
 // App Router用のServer Component（SSR）
 export default async function CryptoPricesPage() {
@@ -44,13 +45,24 @@ export default async function CryptoPricesPage() {
 
   return (
     <div className="container mx-auto px-4 max-w-6xl">
-      {/* ヘッダー情報 */}
+      {/* ヘッダー情報と更新ボタン */}
       <div className="text-center mb-8">
-        <div className="inline-flex items-center px-4 py-2 bg-green-100 text-green-800 rounded-full mb-4">
+        <div className="inline-flex items-center px-4 py-2 bg-green-100 text-green-800 rounded-full mb-6">
           <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
           データ取得成功 • {cryptoData.length}件の暗号通貨
+        </div>
+        
+        {/* 更新ボタンと最終更新時刻 */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-4">
+          <RefreshButton />
+          <LastUpdated />
+        </div>
+        
+        {/* 自動更新の説明 */}
+        <div className="text-sm text-gray-600 bg-blue-50 rounded-lg px-4 py-2 inline-block">
+          💡 SSR: ページアクセス時に最新データを自動取得 | 手動更新も可能
         </div>
       </div>
 
