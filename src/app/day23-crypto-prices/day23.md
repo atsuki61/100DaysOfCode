@@ -7,29 +7,35 @@ Next.jsのサーバーサイドレンダリング機能を使って、暗号通�
 
 ### 主要な学習ポイント
 
-#### 1. getServerSideProps とは
+#### 1. App Router での Server Components とは
 ```typescript
-export const getServerSideProps: GetServerSideProps = async () => {
-  // サーバー側で実行される処理
-  return {
-    props: {
-      data: fetchedData, // コンポーネントに渡すデータ
-    },
-  }
+// App Router用のServer Component（SSR）
+export default async function CryptoPricesPage() {
+  // Server Componentで直接APIを呼び出し（SSR）
+  const cryptoData = await fetchPopularCryptos()
+  
+  return (
+    <div>
+      {/* サーバーで取得したデータを表示 */}
+      {cryptoData.map(crypto => <CryptoCard key={crypto.id} crypto={crypto} />)}
+    </div>
+  )
 }
 ```
 
 **重要なポイント:**
-- **サーバー側で実行**: ブラウザではなく、サーバー上でAPIを呼び出し
-- **毎回実行**: ページにアクセスするたびに実行される
+- **Server Component**: Next.js App Routerのデフォルト実行環境（サーバーサイド）
+- **async/await**: Server Component内で直接非同期処理が可能
+- **毎回実行**: ページにアクセスするたびにサーバーで実行される
 - **SEO対応**: HTMLに初期データが含まれるため、検索エンジンにも優しい
 
-#### 2. SSR vs CSR の違い
+#### 2. App Router vs Pages Router の違い
 
-| 方式 | 実行場所 | 初期データ | SEO | パフォーマンス |
-|------|----------|------------|-----|----------------|
-| **SSR** (getServerSideProps) | サーバー | あり | 良い | 初期表示が速い |
-| **CSR** (useEffect + fetch) | ブラウザ | なし | 劣る | ローディングが必要 |
+| 方式 | SSR実装方法 | 実行場所 | 初期データ | SEO | パフォーマンス |
+|------|-------------|----------|------------|-----|----------------|
+| **App Router** (Server Components) | async function | サーバー | あり | 良い | 初期表示が速い |
+| **Pages Router** (getServerSideProps) | export function | サーバー | あり | 良い | 初期表示が速い |
+| **CSR** (useEffect + fetch) | Client Component | ブラウザ | なし | 劣る | ローディングが必要 |
 
 #### 3. 環境変数の管理
 ```bash
@@ -90,6 +96,8 @@ interface CryptoData {
 4. **予約システム**: 空室状況のリアルタイム反映
 
 ### 学習のポイント
+- **App Router の Server Components** は Next.js 13以降の推奨実装方法
 - SSRは「最新のデータが必要」かつ「SEOが重要」な場面で威力を発揮
 - 暗号通貨のような変動の激しいデータには最適
-- Next.jsの強力な機能の一つとして、適切な場面で活用することが重要 
+- **従来の Pages Router** (`getServerSideProps`) との実装方法の違いを理解することが重要
+- Server Components では **async/await** を直接使用でき、よりシンプルな実装が可能 
