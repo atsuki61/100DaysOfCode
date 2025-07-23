@@ -62,11 +62,7 @@ export default async function CryptoPricesPage() {
 
       {/* 統一された更新機能カード */}
       <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-6 mb-8">
-        <div className="flex items-center justify-center mb-6">
-          <div className="bg-gradient-to-r from-blue-500 to-emerald-500 text-white px-6 py-2 rounded-full text-sm font-semibold">
-            🔄 データ更新コントロール
-          </div>
-        </div>
+        
         
         {/* フル更新セクション */}
         <div className="bg-gradient-to-r from-blue-50 to-blue-100 rounded-xl p-4 mb-4">
