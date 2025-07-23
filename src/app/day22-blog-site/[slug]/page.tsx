@@ -63,16 +63,26 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           {/* 記事コンテンツ */}
           <article className="bg-white rounded-lg shadow-sm p-8"> {/* 白背景, 角丸lg, 薄影, 内側余白8 */}
             <div 
-              className="prose prose-lg max-w-none 
-                         prose-headings:text-gray-900 
-                         prose-h1:text-3xl prose-h1:font-bold prose-h1:mb-6
-                         prose-h2:text-2xl prose-h2:font-semibold prose-h2:mb-4 prose-h2:mt-8
-                         prose-h3:text-xl prose-h3:font-semibold prose-h3:mb-3 prose-h3:mt-6
-                         prose-p:text-gray-700 prose-p:leading-relaxed prose-p:mb-4
-                         prose-code:bg-gray-100 prose-code:text-gray-800 prose-code:px-1 prose-code:rounded
-                         prose-pre:bg-gray-900 prose-pre:text-gray-100 prose-pre:rounded-lg prose-pre:overflow-x-auto
-                         prose-strong:text-gray-900 prose-strong:font-semibold
-                         prose-ul:my-4 prose-ol:my-4 prose-li:my-1" /* プロース(記事)スタイル適用 */
+              className="markdown-content max-w-none
+                         [&>h1]:text-3xl [&>h1]:font-bold [&>h1]:text-gray-900 [&>h1]:mb-6 [&>h1]:mt-8 [&>h1]:first:mt-0
+                         [&>h2]:text-2xl [&>h2]:font-semibold [&>h2]:text-gray-900 [&>h2]:mb-4 [&>h2]:mt-8 [&>h2]:border-b [&>h2]:border-gray-200 [&>h2]:pb-2
+                         [&>h3]:text-xl [&>h3]:font-semibold [&>h3]:text-gray-900 [&>h3]:mb-3 [&>h3]:mt-6
+                         [&>h4]:text-lg [&>h4]:font-semibold [&>h4]:text-gray-900 [&>h4]:mb-2 [&>h4]:mt-4
+                         [&>p]:text-gray-700 [&>p]:leading-relaxed [&>p]:mb-4 [&>p]:text-base
+                         [&>ul]:my-4 [&>ul]:pl-6 [&>ul]:space-y-2 [&>ul]:list-disc
+                         [&>ol]:my-4 [&>ol]:pl-6 [&>ol]:space-y-2 [&>ol]:list-decimal
+                         [&>li]:text-gray-700 [&>li]:leading-relaxed
+                         [&>blockquote]:border-l-4 [&>blockquote]:border-blue-500 [&>blockquote]:bg-blue-50 [&>blockquote]:p-4 [&>blockquote]:my-4 [&>blockquote]:italic [&>blockquote]:text-gray-700
+                         [&>code]:bg-gray-100 [&>code]:text-gray-800 [&>code]:px-2 [&>code]:py-1 [&>code]:rounded [&>code]:text-sm [&>code]:font-mono
+                         [&>pre]:bg-gray-900 [&>pre]:text-gray-100 [&>pre]:rounded-lg [&>pre]:p-4 [&>pre]:my-4 [&>pre]:overflow-x-auto [&>pre]:text-sm
+                         [&>pre>code]:bg-transparent [&>pre>code]:text-gray-100 [&>pre>code]:p-0
+                         [&>a]:text-blue-600 [&>a]:hover:text-blue-800 [&>a]:underline [&>a]:transition-colors
+                         [&>strong]:font-semibold [&>strong]:text-gray-900
+                         [&>em]:italic [&>em]:text-gray-700
+                         [&>hr]:border-gray-300 [&>hr]:my-8
+                         [&>table]:w-full [&>table]:border-collapse [&>table]:my-4
+                         [&>table_th]:border [&>table_th]:border-gray-300 [&>table_th]:bg-gray-50 [&>table_th]:p-2 [&>table_th]:text-left [&>table_th]:font-semibold
+                         [&>table_td]:border [&>table_td]:border-gray-300 [&>table_td]:p-2" /* マークダウンコンテンツのカスタムスタイリング */
               dangerouslySetInnerHTML={{ __html: post.content }}
             />
           </article>

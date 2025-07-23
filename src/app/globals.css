@@ -121,6 +121,53 @@
   }
 }
 
+/* マークダウンコンテンツのスタイリング */
+.markdown-content {
+  line-height: 1.7;
+}
+
+.markdown-content h1:first-child {
+  margin-top: 0 !important;
+}
+
+.markdown-content pre {
+  font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', 'Consolas', monospace;
+  line-height: 1.5;
+}
+
+.markdown-content code {
+  font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', 'Consolas', monospace;
+}
+
+/* コードブロック内のコードスタイルをリセット */
+.markdown-content pre code {
+  background: transparent !important;
+  color: inherit !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  font-size: inherit !important;
+}
+
+/* テーブルスタイリングの改善 */
+.markdown-content table {
+  border-spacing: 0;
+}
+
+.markdown-content table th,
+.markdown-content table td {
+  text-align: left;
+  vertical-align: top;
+}
+
+/* リストのネストスタイリング */
+.markdown-content ul ul,
+.markdown-content ol ol,
+.markdown-content ul ol,
+.markdown-content ol ul {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
 /* Header用カスタムアニメーション */
 @keyframes float {
   0%, 100% { 
