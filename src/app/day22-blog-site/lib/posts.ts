@@ -42,43 +42,43 @@ export function getAllPosts(): PostMeta[] {
 
   // 日付順にソート（新しい順）
   return allPostsData.sort((a, b) => {
-    if (a.date < b.date) {
-      return 1;
+    if (a.date < b.date) {/* 日付aがbより古い場合 */
+      return 1;// 1を返すとbがaより前に来る
     } else {
-      return -1;
+      return -1;// -1を返すとaがbより前に来る
     }
   });
 }
 
 // 特定の投稿の詳細データを取得
-export async function getPostData(id: string): Promise<PostData> {
-  const fullPath = path.join(postsDirectory, `${id}.md`);
-  const fileContents = fs.readFileSync(fullPath, 'utf8');
-  const matterResult = matter(fileContents);
+export async function getPostData(id: string): Promise<PostData> {//idは投稿のファイル名（ファイル名は投稿のidと同じ）
+  const fullPath = path.join(postsDirectory, `${id}.md`);//ファイルのパスを取得
+  const fileContents = fs.readFileSync(fullPath, 'utf8');//ファイルの内容を取得
+  const matterResult = matter(fileContents);//ファイルの内容をパース
 
   // MarkdownをHTMLに変換
-  const processedContent = await remark()
-    .use(html)
-    .process(matterResult.content);
-  const contentHtml = processedContent.toString();
+  const processedContent = await remark()//remarkを使ってMarkdownをパース
+    .use(html)//htmlを使ってHTMLに変換
+    .process(matterResult.content);//matterResult.contentをパース
+  const contentHtml = processedContent.toString();//processedContentを文字列に変換
 
-  return {
-    id,
-    title: matterResult.data.title || '',
-    date: matterResult.data.date || '',
-    excerpt: matterResult.data.excerpt || '',
-    content: contentHtml,
+  return {//PostData型のオブジェクトを返す
+    id,//idを返す
+    title: matterResult.data.title || '',//titleを返す
+    date: matterResult.data.date || '',//dateを返す
+    excerpt: matterResult.data.excerpt || '',//excerptを返す
+    content: contentHtml,//contentを返す
   };
 }
 
 // 投稿IDの一覧を取得（動的ルーティング用）
-export function getAllPostIds() {
-  const fileNames = fs.readdirSync(postsDirectory);
+export function getAllPostIds() {//投稿IDの一覧を取得
+  const fileNames = fs.readdirSync(postsDirectory);//ファイルの名前を取得
   return fileNames
-    .filter((name) => name.endsWith('.md'))
+    .filter((name) => name.endsWith('.md'))//ファイルの名前が.mdで終わるものを取得
     .map((fileName) => ({
       params: {
-        slug: fileName.replace(/\.md$/, ''),
+        slug: fileName.replace(/\.md$/, ''),//ファイルの名前から.mdを削除
       },
     }));
 } 
