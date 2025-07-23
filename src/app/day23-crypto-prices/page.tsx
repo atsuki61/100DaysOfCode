@@ -63,53 +63,42 @@ export default async function CryptoPricesPage() {
       {/* 統一された更新機能カード */}
       <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-6 mb-8">
         <div className="flex items-center justify-center mb-6">
-          <div className="bg-gradient-to-r from-blue-500 to-purple-500 text-white px-4 py-2 rounded-full text-sm font-semibold">
-            🔄 データ更新センター
+          <div className="bg-gradient-to-r from-blue-500 to-emerald-500 text-white px-6 py-2 rounded-full text-sm font-semibold">
+            🔄 データ更新コントロール
           </div>
         </div>
         
-        {/* メイン更新ボタンエリア */}
-        <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl p-4 mb-6">
+        {/* フル更新セクション */}
+        <div className="bg-gradient-to-r from-blue-50 to-blue-100 rounded-xl p-4 mb-4">
+          <div className="flex items-center mb-3">
+            <div className="bg-blue-500 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3 text-sm font-bold">
+              🔄
+            </div>
+            <div>
+              <div className="font-semibold text-blue-800 text-sm">フル更新 (SSR)</div>
+              <div className="text-blue-600 text-xs">ページ全体をリロードして確実な最新データを取得</div>
+            </div>
+          </div>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <RefreshButton />
             <LastUpdated />
           </div>
         </div>
-        
-        {/* 更新方式の説明 */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-          <div className="flex items-center bg-blue-50 rounded-lg p-3 border border-blue-200">
-            <div className="bg-blue-500 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3 text-sm font-bold">
-              🔄
-            </div>
-            <div>
-              <div className="font-semibold text-blue-800 text-sm">フル更新</div>
-              <div className="text-blue-600 text-xs">ページ全体をリロード</div>
-            </div>
-          </div>
-          
-          <div className="flex items-center bg-emerald-50 rounded-lg p-3 border border-emerald-200">
+
+        {/* 部分更新セクション */}
+        <div className="bg-gradient-to-r from-emerald-50 to-emerald-100 rounded-xl p-4">
+          <div className="flex items-center mb-3">
             <div className="bg-emerald-500 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3 text-sm font-bold">
               ⚡
             </div>
             <div>
-              <div className="font-semibold text-emerald-800 text-sm">部分更新</div>
-              <div className="text-emerald-600 text-xs">データのみを更新</div>
+              <div className="font-semibold text-emerald-800 text-sm">部分更新 (CSR)</div>
+              <div className="text-emerald-600 text-xs">ページをリロードせずにデータのみを更新</div>
             </div>
           </div>
-        </div>
-        
-        {/* 使い方のヒント */}
-        <div className="mt-4 bg-gray-50 rounded-lg p-3 text-center">
-          <p className="text-xs text-gray-600">
-            💡 <span className="font-semibold">フル更新</span>: 確実な最新データ取得 | 
-            <span className="font-semibold">部分更新</span>: 下のエリアで利用可能
-          </p>
+          <CryptoDataWrapper initialData={cryptoData} />
         </div>
       </div>
-
-      {/* 暗号通貨データエリア（部分更新機能付き） */}
-      <CryptoDataWrapper initialData={cryptoData} />
 
       {/* フッター情報 */}
       <div className="mt-12 bg-white rounded-xl shadow-lg p-6 text-center">
