@@ -12,10 +12,10 @@ export default function Day21Layout({
   return (
     <CartProvider>
       <div className="flex flex-col min-h-screen">
-        <Header title="100DaysOfCode" />
+        <Header title="Day 21: ショッピングカート" />
         <main className="flex-grow bg-gray-50 min-h-screen">
           <PageHeader
-            title="Day 21: ショッピングカート"
+            title="ショッピングカート"
             description="商品一覧からカートに追加・削除し、合計金額を表示するアプリです。"
           />
           {children}
