@@ -1,6 +1,7 @@
 import Header from '@/components/common/Header'
 import PageHeader from '@/components/common/PageHeader'
 import Footer from '@/components/common/Footer'
+import './styles.css'
 
 export default function Day23Layout({
   children,
