@@ -45,44 +45,36 @@ export default async function CryptoPricesPage() {
 
   return (
     <div className="container mx-auto px-4 max-w-6xl">
-      {/* ヘッダー情報と更新ボタン */}
+      {/* ヘッダー情報 */}
       <div className="text-center mb-8">
-        <div className="inline-flex items-center px-4 py-2 bg-green-100 text-green-800 rounded-full mb-6">
+        <div className="inline-flex items-center px-4 py-2 bg-green-100 text-green-800 rounded-full mb-4">
           <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
           データ取得成功 • {cryptoData.length}件の暗号通貨
         </div>
         
-        {/* 更新ボタンと最終更新時刻 */}
+        {/* 簡潔な説明 */}
+        <div className="text-sm text-gray-600 bg-blue-50 rounded-lg px-4 py-2 inline-block">
+          💡 SSR: ページアクセス時に最新データを自動取得
+        </div>
+      </div>
+
+      {/* 更新機能 */}
+      <div className="bg-white rounded-xl shadow-lg p-6 mb-8">
+        <h3 className="text-lg font-semibold text-gray-800 mb-4 text-center">🔄 データ更新</h3>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-4">
           <RefreshButton />
           <LastUpdated />
         </div>
-        
-        {/* 自動更新の説明 */}
-        <div className="text-sm text-gray-600 bg-blue-50 rounded-lg px-4 py-2 inline-block">
-          💡 SSR: ページアクセス時に最新データを自動取得 | 手動更新も可能
-        </div>
-      </div>
-
-      {/* 更新機能選択 */}
-      <div className="bg-white rounded-xl shadow-lg p-6 mb-8">
-        <h3 className="text-lg font-semibold text-gray-800 mb-4">🚀 更新方法を選択</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="bg-blue-50 rounded-lg p-4">
-            <h4 className="font-semibold text-blue-800 mb-2">🔄 フル更新（SSR）</h4>
-            <p className="text-sm text-blue-600 mb-3">ページ全体をリロードして最新データを取得</p>
-            <div className="flex flex-col gap-2">
-              <RefreshButton className="w-full justify-center" />
-              <LastUpdated />
-            </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-center text-sm">
+          <div className="bg-blue-50 rounded-lg p-3">
+            <span className="font-semibold text-blue-800">🔄 フル更新</span>
+            <p className="text-blue-600 text-xs mt-1">ページ全体をリロード</p>
           </div>
-          
-          <div className="bg-purple-50 rounded-lg p-4">
-            <h4 className="font-semibold text-purple-800 mb-2">⚡ 部分更新（Client）</h4>
-            <p className="text-sm text-purple-600 mb-3">ページをリロードせずにデータのみ更新</p>
-            <p className="text-xs text-purple-500">下のデータエリアで「部分更新」ボタンを使用</p>
+          <div className="bg-purple-50 rounded-lg p-3">
+            <span className="font-semibold text-purple-800">⚡ 部分更新</span>
+            <p className="text-purple-600 text-xs mt-1">データのみを更新</p>
           </div>
         </div>
       </div>
@@ -91,26 +83,18 @@ export default async function CryptoPricesPage() {
       <CryptoDataWrapper initialData={cryptoData} />
 
       {/* フッター情報 */}
-      <div className="mt-12 bg-white rounded-xl shadow-lg p-6">
-        <div className="text-center">
-          <h3 className="text-lg font-bold text-gray-800 mb-3">📊 データ情報</h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
-            <div className="bg-blue-50 rounded-lg p-4">
-              <div className="font-semibold text-blue-800">データ更新時刻</div>
-              <div className="text-blue-600">{new Date().toLocaleString('ja-JP')}</div>
-            </div>
-            <div className="bg-purple-50 rounded-lg p-4">
-              <div className="font-semibold text-purple-800">データ提供</div>
-              <div className="text-purple-600">CoinGecko API</div>
-            </div>
-            <div className="bg-green-50 rounded-lg p-4">
-              <div className="font-semibold text-green-800">更新間隔</div>
-              <div className="text-green-600">60秒キャッシュ</div>
-            </div>
-          </div>
-          <p className="text-gray-500 text-xs mt-4">
-            ※ SSR (Server-Side Rendering) により、最新のデータがサーバー側で取得されています
-          </p>
+      <div className="mt-12 bg-white rounded-xl shadow-lg p-6 text-center">
+        <h3 className="text-lg font-bold text-gray-800 mb-4">📊 データ情報</h3>
+        <div className="flex flex-wrap justify-center gap-4 text-sm">
+          <span className="bg-blue-50 text-blue-800 px-3 py-1 rounded-full">
+            📡 CoinGecko API
+          </span>
+          <span className="bg-green-50 text-green-800 px-3 py-1 rounded-full">
+            ⚡ 60秒キャッシュ
+          </span>
+          <span className="bg-purple-50 text-purple-800 px-3 py-1 rounded-full">
+            🔄 SSR対応
+          </span>
         </div>
       </div>
     </div>

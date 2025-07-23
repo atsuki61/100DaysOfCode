@@ -31,28 +31,30 @@ export default function CryptoDataWrapper({ initialData }: CryptoDataWrapperProp
   return (
     <div>
       {/* 部分更新コントロール */}
-      <div className="mb-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <div className="flex items-center gap-4">
-          <AdvancedRefreshButton 
-            onDataUpdate={handleDataUpdate}
-          />
-          
-          {/* 更新中のインジケーター */}
-          {isUpdating && (
-            <div className="flex items-center text-sm text-blue-600">
-              <svg className="animate-spin w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-              </svg>
-              データ更新中...
-            </div>
-          )}
-        </div>
+      <div className="mb-6 bg-gradient-to-r from-emerald-50 to-teal-50 rounded-xl p-4">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-4">
+            <AdvancedRefreshButton 
+              onDataUpdate={handleDataUpdate}
+            />
+            
+            {/* 更新中のインジケーター */}
+            {isUpdating && (
+              <div className="flex items-center text-sm text-blue-600">
+                <svg className="animate-spin w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                </svg>
+                データ更新中...
+              </div>
+            )}
+          </div>
 
-        {/* 更新統計 */}
-        <UpdateStats 
-          totalUpdates={updateCount}
-          lastPartialUpdate={lastPartialUpdate}
-        />
+          {/* 更新統計 */}
+          <UpdateStats 
+            totalUpdates={updateCount}
+            lastPartialUpdate={lastPartialUpdate}
+          />
+        </div>
       </div>
 
       {/* 暗号通貨カードグリッド（アニメーション付き） */}
@@ -76,19 +78,12 @@ export default function CryptoDataWrapper({ initialData }: CryptoDataWrapperProp
         ))}
       </div>
 
-      {/* データ比較情報 */}
+      {/* 更新履歴（簡潔版） */}
       {updateCount > 0 && (
-        <div className="mt-8 bg-gradient-to-r from-purple-50 to-blue-50 rounded-xl p-4">
-          <h3 className="text-lg font-semibold text-gray-800 mb-2">
-            🔄 更新履歴
-          </h3>
-          <div className="text-sm text-gray-600">
-            <p>✅ これまでに <span className="font-bold text-purple-600">{updateCount}回</span> の部分更新を実行</p>
-            {lastPartialUpdate && (
-              <p>⏰ 最終更新: {lastPartialUpdate.toLocaleString('ja-JP')}</p>
-            )}
-            <p>💡 ヒント: 部分更新はページをリロードせずに最新データを取得します</p>
-          </div>
+        <div className="mt-8 text-center bg-gradient-to-r from-purple-50 to-blue-50 rounded-xl p-4">
+          <p className="text-sm text-gray-600">
+            🎉 部分更新を <span className="font-bold text-purple-600">{updateCount}回</span> 実行しました！
+          </p>
         </div>
       )}
     </div>
