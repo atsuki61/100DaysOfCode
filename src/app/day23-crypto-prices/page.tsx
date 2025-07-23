@@ -1,7 +1,7 @@
 import { CryptoData, fetchPopularCryptos } from './utils/cryptoApi'
-import CryptoCard from './components/CryptoCard'
 import ErrorState from './components/ErrorState'
 import RefreshButton, { LastUpdated } from './components/RefreshButton'
+import CryptoDataWrapper from './components/CryptoDataWrapper'
 
 // App Router用のServer Component（SSR）
 export default async function CryptoPricesPage() {
@@ -66,12 +66,29 @@ export default async function CryptoPricesPage() {
         </div>
       </div>
 
-      {/* 暗号通貨カードグリッド */}
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {cryptoData.map((crypto, index) => (
-          <CryptoCard key={crypto.id} crypto={crypto} index={index} />
-        ))}
+      {/* 更新機能選択 */}
+      <div className="bg-white rounded-xl shadow-lg p-6 mb-8">
+        <h3 className="text-lg font-semibold text-gray-800 mb-4">🚀 更新方法を選択</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="bg-blue-50 rounded-lg p-4">
+            <h4 className="font-semibold text-blue-800 mb-2">🔄 フル更新（SSR）</h4>
+            <p className="text-sm text-blue-600 mb-3">ページ全体をリロードして最新データを取得</p>
+            <div className="flex flex-col gap-2">
+              <RefreshButton className="w-full justify-center" />
+              <LastUpdated />
+            </div>
+          </div>
+          
+          <div className="bg-purple-50 rounded-lg p-4">
+            <h4 className="font-semibold text-purple-800 mb-2">⚡ 部分更新（Client）</h4>
+            <p className="text-sm text-purple-600 mb-3">ページをリロードせずにデータのみ更新</p>
+            <p className="text-xs text-purple-500">下のデータエリアで「部分更新」ボタンを使用</p>
+          </div>
+        </div>
       </div>
+
+      {/* 暗号通貨データエリア（部分更新機能付き） */}
+      <CryptoDataWrapper initialData={cryptoData} />
 
       {/* フッター情報 */}
       <div className="mt-12 bg-white rounded-xl shadow-lg p-6">
