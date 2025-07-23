@@ -180,6 +180,14 @@ export default function HomePage() {
        description: 'Next.js App Routerを使用した静的ブログサイトです。Markdownファイルの読み込みとパース、動的ルーティング、静的サイト生成(SSG)を練習しました。',
        tags: ['React, Next.js, TypeScript, TailwindCSS, Markdown, SSG'],
      },
+     {
+       id: 'day23',
+       name: 'Day 23: 暗号通貨価格表示',
+       path: '/day23-crypto-prices',
+       imageUrl: '/images/day23-crypto-prices.png',
+       description: 'Next.js SSR (getServerSideProps)で暗号通貨の現在価格をリアルタイム表示するアプリです。CoinGecko API連携、環境変数管理、動的データフェッチ、エラーハンドリングを練習しました。',
+       tags: ['React, Next.js, TypeScript, TailwindCSS, SSR, API'],
+     },
     // ここに新しいアプリを追加していきます
   ];
 
