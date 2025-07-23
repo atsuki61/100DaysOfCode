@@ -13,7 +13,7 @@ export default function AdvancedRefreshButton({
   className = "" 
 }: AdvancedRefreshButtonProps) {
   const [isRefreshing, setIsRefreshing] = useState(false)
-  const [lastUpdate, setLastUpdate] = useState(new Date())
+  const [lastUpdate, setLastUpdate] = useState<Date | null>(null)
   const [error, setError] = useState<string | null>(null)
 
   const handleAdvancedRefresh = async () => {
@@ -84,7 +84,7 @@ export default function AdvancedRefreshButton({
           </div>
         ) : (
           <div className="text-gray-500">
-            🔄 最終部分更新: {lastUpdate.toLocaleTimeString('ja-JP')}
+            🔄 最終部分更新: {lastUpdate ? lastUpdate.toLocaleTimeString('ja-JP') : '未実行'}
           </div>
         )}
       </div>

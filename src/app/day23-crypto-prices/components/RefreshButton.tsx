@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 interface RefreshButtonProps {
   className?: string
@@ -66,23 +66,52 @@ export default function RefreshButton({ className = "" }: RefreshButtonProps) {
   )
 }
 
-// 最終更新時刻表示コンポーネント
+// 最終更新時刻表示コンポーネント（Client Component）
 export function LastUpdated() {
-  const now = new Date()
+  const [currentTime, setCurrentTime] = useState<string>('')
+  const [mounted, setMounted] = useState(false)
   
-  return (
-    <div className="flex items-center text-sm text-gray-500 bg-gray-50 rounded-lg px-3 py-2">
-      <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-      </svg>
-      最終更新: {now.toLocaleString('ja-JP', {
+  useEffect(() => {
+    // クライアント側でのみ時刻を設定（Hydration Error回避）
+    const updateTime = () => {
+      const now = new Date()
+      setCurrentTime(now.toLocaleString('ja-JP', {
         year: 'numeric',
         month: '2-digit',
         day: '2-digit',
         hour: '2-digit',
         minute: '2-digit',
         second: '2-digit'
-      })}
+      }))
+    }
+    
+    updateTime()
+    setMounted(true)
+    
+    // 1秒ごとに時刻を更新
+    const interval = setInterval(updateTime, 1000)
+    
+    return () => clearInterval(interval)
+  }, [])
+  
+  // マウント前は時刻を表示しない（Hydration Error回避）
+  if (!mounted) {
+    return (
+      <div className="flex items-center text-sm text-gray-500 bg-gray-50 rounded-lg px-3 py-2">
+        <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        最終更新: --
+      </div>
+    )
+  }
+  
+  return (
+    <div className="flex items-center text-sm text-gray-500 bg-gray-50 rounded-lg px-3 py-2">
+      <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+      最終更新: {currentTime}
     </div>
   )
 } 
