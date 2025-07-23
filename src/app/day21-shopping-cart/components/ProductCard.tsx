@@ -87,10 +87,6 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         >
           {product.image}
         </div>
-        {/* ホバー時のオーバーレイ */}
-        <div className={`absolute inset-0 bg-blue-600 bg-opacity-10 transition-opacity duration-300 ${
-          isHovered ? 'opacity-100' : 'opacity-0'
-        }`} aria-hidden="true" />
       </div>
       
       {/* 商品情報 */}
@@ -123,7 +119,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         </p>
         
         {/* 価格とボタンエリア */}
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between gap-4">
           <div className="flex flex-col">
             <span 
               id={`product-price-${product.id}`}
@@ -140,7 +136,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             disabled={isAdding || stockStatus === 'out'}
             aria-label={getButtonAriaLabel()}
             aria-describedby={stockStatus === 'out' ? `stock-status-${product.id}` : undefined}
-            className={`relative overflow-hidden font-semibold py-3 px-6 rounded-xl transition-all duration-300 flex items-center space-x-2 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
+            className={`relative overflow-hidden font-semibold py-2 px-4 rounded-lg transition-all duration-300 flex items-center space-x-2 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
               stockStatus === 'out'
                 ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
                 : isAdding
@@ -153,10 +149,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
               isAdding ? 'translate-x-0' : 'translate-x-full'
             }`} style={{ background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent)' }} aria-hidden="true" />
             
-            <span className="relative z-10" aria-hidden="true">
+            <span className="relative z-10 text-lg" aria-hidden="true">
               {stockStatus === 'out' ? '🚫' : isAdding ? '✅' : '🛒'}
             </span>
-            <span className="relative z-10 text-sm">
+            <span className="relative z-10 text-xs">
               {stockStatus === 'out' ? '在庫切れ' : isAdding ? '追加済み!' : 'カートに追加'}
             </span>
           </button>

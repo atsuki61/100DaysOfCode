@@ -63,18 +63,25 @@ const Cart: React.FC = () => {
     <div className="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden">
       {/* ヘッダー部分 */}
       <div className="bg-gradient-to-r from-blue-50 to-blue-100 p-6 border-b border-blue-200">
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <h2 className="text-2xl font-bold text-gray-900 flex items-center">
-            <span className="mr-3 p-2 bg-blue-500 text-white rounded-lg">🛒</span>
+            <span className="mr-3 p-2 bg-blue-500 text-white rounded-lg text-lg">🛒</span>
             ショッピングカート
           </h2>
-          <div className="flex items-center space-x-3">
-            <span className="bg-blue-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-sm">
-              {totalItems}個の商品
-            </span>
-            <span className="bg-white text-blue-700 px-4 py-2 rounded-full text-sm font-semibold shadow-sm border border-blue-200">
-              {formatPrice(totalWithTax)}
-            </span>
+          
+          {/* 統合されたサマリーカード */}
+          <div className="bg-white rounded-lg p-4 shadow-sm border border-blue-200 min-w-0">
+            <div className="flex items-center justify-between gap-4">
+              <div className="text-center">
+                <div className="text-lg font-bold text-blue-600">{totalItems}</div>
+                <div className="text-xs text-gray-600">個の商品</div>
+              </div>
+              <div className="w-px h-8 bg-gray-300"></div>
+              <div className="text-right">
+                <div className="text-lg font-bold text-gray-900">{formatPrice(totalWithTax)}</div>
+                <div className="text-xs text-gray-600">合計金額</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
