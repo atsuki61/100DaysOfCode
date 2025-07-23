@@ -1,15 +1,5 @@
 import { GetServerSideProps } from 'next'
-
-// 暗号通貨データの型定義
-interface CryptoData {
-  id: string
-  name: string
-  symbol: string
-  current_price: number
-  price_change_percentage_24h: number
-  market_cap: number
-  image: string
-}
+import { CryptoData, fetchPopularCryptos } from './utils/cryptoApi'
 
 interface CryptoPricesPageProps {
   cryptoData: CryptoData[]
@@ -93,12 +83,26 @@ export default function CryptoPricesPage({ cryptoData, error }: CryptoPricesPage
   )
 }
 
-// Next.js SSR実装 - この部分は次のステップで実装予定
-export const getServerSideProps: GetServerSideProps = async () => {
-  // TODO: CoinGecko APIから暗号通貨データを取得
-  return {
-    props: {
-      cryptoData: [], // 仮の空配列
-    },
+// Next.js SSR実装 - CoinGecko APIから暗号通貨データを取得
+export const getServerSideProps: GetServerSideProps<CryptoPricesPageProps> = async () => {
+  try {
+    // 人気暗号通貨のデータを取得
+    const cryptoData = await fetchPopularCryptos()
+    
+    return {
+      props: {
+        cryptoData,
+      },
+    }
+  } catch (error) {
+    console.error('暗号通貨データの取得に失敗しました:', error)
+    
+    // エラーが発生した場合は空配列とエラーメッセージを返す
+    return {
+      props: {
+        cryptoData: [],
+        error: 'データの取得に失敗しました。しばらく経ってから再試行してください。',
+      },
+    }
   }
 } 
