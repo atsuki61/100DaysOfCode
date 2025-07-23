@@ -2,23 +2,23 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getPostData, getAllPostIds } from '../lib/posts';
 
-interface BlogPostPageProps {
-  params: {
-    slug: string;
+interface BlogPostPageProps {//BlogPostPageProps型を定義
+  params: {//paramsはBlogPostPageProps型のオブジェクト
+    slug: string;//slugはstring型
   };
 }
 
 // 静的サイト生成用のパス一覧を生成
 export async function generateStaticParams() {
-  const paths = getAllPostIds();
-  return paths.map((path) => ({
-    slug: path.params.slug,
+  const paths = getAllPostIds();//投稿IDの一覧を取得
+  return paths.map((path) => ({//pathsをmapで処理
+    slug: path.params.slug,//path.params.slugを返す
   }));
 }
 
-export default async function BlogPostPage({ params }: BlogPostPageProps) {
+export default async function BlogPostPage({ params }: BlogPostPageProps) {//BlogPostPageProps型のオブジェクトを受け取る
   try {
-    const post = await getPostData(params.slug);
+    const post = await getPostData(params.slug);//params.slugをgetPostDataで取得
 
     return (
       <div className="container mx-auto px-4 py-8"> {/* 中央寄せコンテナ, 水平余白4, 垂直余白8 */}

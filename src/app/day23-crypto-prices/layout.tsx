@@ -10,10 +10,10 @@ export default function Day23Layout({
 }) {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50"> {/* 背景グラデーション */}
-      <Header title="暗号通貨価格表示" />
+      <Header title="day23: 暗号通貨価格サイト" />
       <PageHeader
         icon="₿"
-        title="暗号通貨価格表示"
+        title="暗号通貨価格サイト"
         description="Next.js SSRで暗号通貨の現在価格をリアルタイム取得・表示"
       />
       <main className="bg-gradient-to-br from-blue-50 to-purple-50 min-h-screen pt-8 pb-16"> {/* メイン背景統一 */}
