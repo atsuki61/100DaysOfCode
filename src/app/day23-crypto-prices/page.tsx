@@ -60,22 +60,51 @@ export default async function CryptoPricesPage() {
         </div>
       </div>
 
-      {/* 更新機能 */}
-      <div className="bg-white rounded-xl shadow-lg p-6 mb-8">
-        <h3 className="text-lg font-semibold text-gray-800 mb-4 text-center">🔄 データ更新</h3>
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-4">
-          <RefreshButton />
-          <LastUpdated />
+      {/* 統一された更新機能カード */}
+      <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-6 mb-8">
+        <div className="flex items-center justify-center mb-6">
+          <div className="bg-gradient-to-r from-blue-500 to-purple-500 text-white px-4 py-2 rounded-full text-sm font-semibold">
+            🔄 データ更新センター
+          </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-center text-sm">
-          <div className="bg-blue-50 rounded-lg p-3">
-            <span className="font-semibold text-blue-800">🔄 フル更新</span>
-            <p className="text-blue-600 text-xs mt-1">ページ全体をリロード</p>
+        
+        {/* メイン更新ボタンエリア */}
+        <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl p-4 mb-6">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <RefreshButton />
+            <LastUpdated />
           </div>
-          <div className="bg-purple-50 rounded-lg p-3">
-            <span className="font-semibold text-purple-800">⚡ 部分更新</span>
-            <p className="text-purple-600 text-xs mt-1">データのみを更新</p>
+        </div>
+        
+        {/* 更新方式の説明 */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <div className="flex items-center bg-blue-50 rounded-lg p-3 border border-blue-200">
+            <div className="bg-blue-500 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3 text-sm font-bold">
+              🔄
+            </div>
+            <div>
+              <div className="font-semibold text-blue-800 text-sm">フル更新</div>
+              <div className="text-blue-600 text-xs">ページ全体をリロード</div>
+            </div>
           </div>
+          
+          <div className="flex items-center bg-emerald-50 rounded-lg p-3 border border-emerald-200">
+            <div className="bg-emerald-500 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3 text-sm font-bold">
+              ⚡
+            </div>
+            <div>
+              <div className="font-semibold text-emerald-800 text-sm">部分更新</div>
+              <div className="text-emerald-600 text-xs">データのみを更新</div>
+            </div>
+          </div>
+        </div>
+        
+        {/* 使い方のヒント */}
+        <div className="mt-4 bg-gray-50 rounded-lg p-3 text-center">
+          <p className="text-xs text-gray-600">
+            💡 <span className="font-semibold">フル更新</span>: 確実な最新データ取得 | 
+            <span className="font-semibold">部分更新</span>: 下のエリアで利用可能
+          </p>
         </div>
       </div>
 

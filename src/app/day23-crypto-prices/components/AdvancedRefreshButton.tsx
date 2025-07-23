@@ -95,35 +95,32 @@ export default function AdvancedRefreshButton({
 // 更新統計コンポーネント
 export function UpdateStats({ 
   totalUpdates = 0, 
-  lastFullUpdate, 
   lastPartialUpdate 
 }: {
   totalUpdates?: number
-  lastFullUpdate?: Date
   lastPartialUpdate?: Date
 }) {
   return (
-    <div className="bg-gray-50 rounded-lg p-3 text-sm">
-      <h4 className="font-semibold text-gray-700 mb-2">📊 更新統計</h4>
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs">
-        <div>
-          <span className="text-gray-500">総更新回数:</span>
-          <span className="ml-1 font-bold text-blue-600">{totalUpdates}</span>
+    <div className="bg-white rounded-lg border border-gray-200 p-3 text-sm shadow-sm">
+      <div className="flex items-center mb-2">
+        <div className="bg-gradient-to-r from-gray-500 to-gray-600 text-white rounded-full w-6 h-6 flex items-center justify-center mr-2 text-xs">
+          📊
         </div>
-        {lastFullUpdate && (
-          <div>
-            <span className="text-gray-500">最終フル更新:</span>
-            <div className="text-green-600 font-medium">
-              {lastFullUpdate.toLocaleTimeString('ja-JP')}
-            </div>
-          </div>
-        )}
+        <h4 className="font-semibold text-gray-700 text-xs">更新統計</h4>
+      </div>
+      <div className="space-y-1 text-xs">
+        <div className="flex justify-between items-center">
+          <span className="text-gray-500">部分更新回数:</span>
+          <span className="font-bold text-emerald-600 bg-emerald-50 px-2 py-1 rounded-full">
+            {totalUpdates}回
+          </span>
+        </div>
         {lastPartialUpdate && (
-          <div>
-            <span className="text-gray-500">最終部分更新:</span>
-            <div className="text-purple-600 font-medium">
+          <div className="flex justify-between items-center">
+            <span className="text-gray-500">最終更新:</span>
+            <span className="text-emerald-600 font-medium">
               {lastPartialUpdate.toLocaleTimeString('ja-JP')}
-            </div>
+            </span>
           </div>
         )}
       </div>
