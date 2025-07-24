@@ -96,24 +96,39 @@ export default function PokemonPokedexPage() {
         </div>
 
         {/* 表示数選択 */}
-        <div className="flex justify-center items-center gap-4"> {/* フレックス横, 中央寄せ, アイテム中央, 間隔 */}
-          <label className="text-sm font-medium text-gray-600"> {/* 小文字, ミディアム太字, グレー */}
-            表示するポケモン数:
-          </label>
-          <select
-            value={pokemonCount}
-            onChange={(e) => {
-              const newCount = parseInt(e.target.value);
-              setPokemonCount(newCount);
-              // useEffectが自動的にデータを再取得します
-            }}
-            className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none" // パディング, ボーダー, 角丸, フォーカス時リング
-          >
-            <option value={50}>50匹（クイック）</option>
-            <option value={100}>100匹（バランス）</option>
-            <option value={151}>151匹（第一世代）</option>
-            <option value={251}>251匹（第二世代まで）</option>
-          </select>
+        <div className="flex flex-col items-center gap-2"> {/* フレックス縦, アイテム中央, 間隔 */}
+          <div className="flex items-center gap-4"> {/* フレックス横, アイテム中央, 間隔 */}
+            <label className="text-sm font-medium text-gray-600"> {/* 小文字, ミディアム太字, グレー */}
+              表示するポケモン数:
+            </label>
+            <select
+              value={pokemonCount}
+              onChange={(e) => {
+                const newCount = parseInt(e.target.value);
+                setPokemonCount(newCount);
+                // useEffectが自動的にデータを再取得します
+              }}
+              className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none" // パディング, ボーダー, 角丸, フォーカス時リング
+            >
+              <option value={50}>50匹（クイック）</option>
+              <option value={100}>100匹（バランス）</option>
+              <option value={151}>151匹（第一世代・カントー地方）</option>
+              <option value={251}>251匹（第二世代・ジョウト地方まで）</option>
+              <option value={386}>386匹（第三世代・ホウエン地方まで）</option>
+              <option value={493}>493匹（第四世代・シンオウ地方まで）</option>
+              <option value={649}>649匹（第五世代・イッシュ地方まで）</option>
+              <option value={721}>721匹（第六世代・カロス地方まで）</option>
+              <option value={809}>809匹（第七世代・アローラ地方まで）</option>
+              <option value={905}>905匹（第八世代・ガラル地方まで）</option>
+              <option value={1025}>1025匹（第九世代・パルデア地方まで）</option>
+            </select>
+          </div>
+          {/* 注意メッセージ */}
+          {pokemonCount > 500 && (
+            <p className="text-xs text-amber-600 text-center max-w-md"> {/* 小文字, 黄色, 中央寄せ, 最大幅 */}
+              ⚠️ {pokemonCount}匹の読み込みには時間がかかる場合があります
+            </p>
+          )}
         </div>
       </div>
 
