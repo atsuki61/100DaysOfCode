@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { TYPE_COLORS } from '../types';
+import { TYPE_COLORS, TYPE_NAMES_JA } from '../types';
 
 interface PokemonCardProps {
   id: number;
@@ -61,7 +61,7 @@ export default function PokemonCard({
               key={type}
               className={`px-2 py-1 rounded-full text-xs font-medium text-white ${TYPE_COLORS[type] || 'bg-gray-400'}`} // 横パディング2, 縦パディング1, 完全角丸, 小文字, ミディアム太字, 白文字
             >
-              {type.charAt(0).toUpperCase() + type.slice(1)}
+              {TYPE_NAMES_JA[type] || type.charAt(0).toUpperCase() + type.slice(1)}
             </span>
           ))}
         </div>

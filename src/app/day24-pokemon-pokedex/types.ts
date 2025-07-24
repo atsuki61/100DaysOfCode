@@ -105,4 +105,26 @@ export const TYPE_COLORS: Record<string, string> = {
   dark: 'bg-gray-800',
   steel: 'bg-gray-500',
   fairy: 'bg-pink-300',
+};
+
+// タイプの日本語名マッピング
+export const TYPE_NAMES_JA: Record<string, string> = {
+  normal: 'ノーマル',
+  fire: 'ほのお',
+  water: 'みず',
+  electric: 'でんき',
+  grass: 'くさ',
+  ice: 'こおり',
+  fighting: 'かくとう',
+  poison: 'どく',
+  ground: 'じめん',
+  flying: 'ひこう',
+  psychic: 'エスパー',
+  bug: 'むし',
+  rock: 'いわ',
+  ghost: 'ゴースト',
+  dragon: 'ドラゴン',
+  dark: 'あく',
+  steel: 'はがね',
+  fairy: 'フェアリー',
 }; 
