@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { FormattedPokemon } from '../types';
+import { FormattedPokemon, TYPE_COLORS } from '../types';
 
 interface PokemonDetailProps {
   pokemon: FormattedPokemon;
@@ -61,7 +61,7 @@ export default function PokemonDetail({ pokemon }: PokemonDetailProps) {
                 {pokemon.types.map((type) => (
                   <span
                     key={type}
-                    className="px-4 py-2 bg-white bg-opacity-20 rounded-full text-lg font-medium" // パディング, 半透明白背景, 完全角丸, 大文字, ミディアム太字
+                    className={`px-4 py-2 rounded-full text-lg font-medium text-white ${TYPE_COLORS[type] || 'bg-gray-400'}`} // パディング, タイプ別背景色, 完全角丸, 大文字, ミディアム太字, 白文字
                   >
                     {type.charAt(0).toUpperCase() + type.slice(1)}
                   </span>
