@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { PokemonListItem, FormattedPokemon } from './types';
 import { 
   getPokemonList, 
@@ -17,15 +17,16 @@ export default function PokemonPokedexPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
+  const [pokemonCount, setPokemonCount] = useState(151); // 表示するポケモン数
 
   // ポケモンデータを取得
-  const fetchPokemonData = async () => {
+  const fetchPokemonData = useCallback(async () => {
     try {
       setLoading(true);
       setError(null);
 
       // まずポケモンの一覧を取得
-      const list: PokemonListItem[] = await getPokemonList(50); // 最初は50匹に制限
+      const list: PokemonListItem[] = await getPokemonList(pokemonCount);
       
       // 各ポケモンの詳細データを並行取得
       const pokemonDetailsPromises = list.map(async (pokemon) => {
@@ -46,11 +47,11 @@ export default function PokemonPokedexPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [pokemonCount]); // pokemonCountが変更されたら関数を再作成
 
   useEffect(() => {
     fetchPokemonData();
-  }, []);
+  }, [fetchPokemonData]); // fetchPokemonData関数が変更されたら再取得
 
   // 検索フィルタリング
   const filteredPokemon = pokemonList.filter(pokemon =>
@@ -76,9 +77,10 @@ export default function PokemonPokedexPage() {
         </p>
       </div>
 
-      {/* 検索バー */}
-      <div className="max-w-md mx-auto mb-8"> {/* 最大幅制限, 中央寄せ, 下マージン */}
-        <div className="relative"> {/* 相対位置 */}
+      {/* 検索バーと表示数選択 */}
+      <div className="max-w-4xl mx-auto mb-8 space-y-4"> {/* 最大幅制限, 中央寄せ, 下マージン, 縦間隔 */}
+        {/* 検索バー */}
+        <div className="relative max-w-md mx-auto"> {/* 相対位置, 最大幅制限, 中央寄せ */}
           <input
             type="text"
             placeholder="ポケモンを検索... (名前、番号)"
@@ -91,6 +93,27 @@ export default function PokemonPokedexPage() {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
             </svg>
           </div>
+        </div>
+
+        {/* 表示数選択 */}
+        <div className="flex justify-center items-center gap-4"> {/* フレックス横, 中央寄せ, アイテム中央, 間隔 */}
+          <label className="text-sm font-medium text-gray-600"> {/* 小文字, ミディアム太字, グレー */}
+            表示するポケモン数:
+          </label>
+          <select
+            value={pokemonCount}
+            onChange={(e) => {
+              const newCount = parseInt(e.target.value);
+              setPokemonCount(newCount);
+              // useEffectが自動的にデータを再取得します
+            }}
+            className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none" // パディング, ボーダー, 角丸, フォーカス時リング
+          >
+            <option value={50}>50匹（クイック）</option>
+            <option value={100}>100匹（バランス）</option>
+            <option value={151}>151匹（第一世代）</option>
+            <option value={251}>251匹（第二世代まで）</option>
+          </select>
         </div>
       </div>
 
