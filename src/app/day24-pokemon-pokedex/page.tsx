@@ -1,12 +1,14 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import { PokemonListItem, FormattedPokemon } from './types';
+import { PokemonListItem, FormattedPokemon, GENERATION_DATA } from './types';
 import { 
   getPokemonList, 
   getPokemonDetails, 
   formatPokemonData, 
-  extractPokemonIdFromUrl 
+  extractPokemonIdFromUrl,
+  getPokemonListByGeneration,
+  getPokemonDetailsBatch
 } from './utils/pokemonApi';
 import PokemonCard from './components/PokemonCard';
 import LoadingSpinner from './components/LoadingSpinner';
@@ -17,7 +19,7 @@ export default function PokemonPokedexPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
-  const [pokemonCount, setPokemonCount] = useState(151); // 表示するポケモン数
+  const [selectedGeneration, setSelectedGeneration] = useState<string>('gen1'); // デフォルトで第一世代
 
   // ポケモンデータを取得
   const fetchPokemonData = useCallback(async () => {
@@ -25,20 +27,28 @@ export default function PokemonPokedexPage() {
       setLoading(true);
       setError(null);
 
-      // まずポケモンの一覧を取得
-      const list: PokemonListItem[] = await getPokemonList(pokemonCount);
-      
-      // 各ポケモンの詳細データを並行取得
-      const pokemonDetailsPromises = list.map(async (pokemon) => {
-        const id = extractPokemonIdFromUrl(pokemon.url);
-        const details = await getPokemonDetails(id);
-        return formatPokemonData(details);
-      });
+      const genData = GENERATION_DATA.find(gen => gen.id === selectedGeneration);
+      if (!genData) {
+        throw new Error('選択された世代データが見つかりません');
+      }
 
-      const formattedPokemon = await Promise.all(pokemonDetailsPromises);
-      
-      // IDでソート
-      formattedPokemon.sort((a, b) => a.id - b.id);
+      let formattedPokemon: FormattedPokemon[];
+
+      if (selectedGeneration === 'all') {
+        // 全世代の場合は従来の方法（制限付き）
+        const list: PokemonListItem[] = await getPokemonList(500); // 500匹に制限
+        const pokemonDetailsPromises = list.map(async (pokemon) => {
+          const id = extractPokemonIdFromUrl(pokemon.url);
+          const details = await getPokemonDetails(id);
+          return formatPokemonData(details);
+        });
+        formattedPokemon = await Promise.all(pokemonDetailsPromises);
+        formattedPokemon.sort((a, b) => a.id - b.id);
+      } else {
+        // 特定世代の場合は新しい方法
+        const list: PokemonListItem[] = await getPokemonListByGeneration(genData.startId, genData.endId);
+        formattedPokemon = await getPokemonDetailsBatch(list);
+      }
       
       setPokemonList(formattedPokemon);
     } catch (err) {
@@ -47,7 +57,7 @@ export default function PokemonPokedexPage() {
     } finally {
       setLoading(false);
     }
-  }, [pokemonCount]); // pokemonCountが変更されたら関数を再作成
+  }, [selectedGeneration]); // selectedGenerationが変更されたら関数を再作成
 
   useEffect(() => {
     fetchPokemonData();
@@ -95,38 +105,32 @@ export default function PokemonPokedexPage() {
           </div>
         </div>
 
-        {/* 表示数選択 */}
+        {/* 世代選択 */}
         <div className="flex flex-col items-center gap-2"> {/* フレックス縦, アイテム中央, 間隔 */}
           <div className="flex items-center gap-4"> {/* フレックス横, アイテム中央, 間隔 */}
             <label className="text-sm font-medium text-gray-600"> {/* 小文字, ミディアム太字, グレー */}
-              表示するポケモン数:
+              世代を選択:
             </label>
             <select
-              value={pokemonCount}
+              value={selectedGeneration}
               onChange={(e) => {
-                const newCount = parseInt(e.target.value);
-                setPokemonCount(newCount);
+                setSelectedGeneration(e.target.value);
                 // useEffectが自動的にデータを再取得します
               }}
               className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none" // パディング, ボーダー, 角丸, フォーカス時リング
             >
-              <option value={50}>50匹（クイック）</option>
-              <option value={100}>100匹（バランス）</option>
-              <option value={151}>151匹（第一世代・カントー地方）</option>
-              <option value={251}>251匹（第二世代・ジョウト地方まで）</option>
-              <option value={386}>386匹（第三世代・ホウエン地方まで）</option>
-              <option value={493}>493匹（第四世代・シンオウ地方まで）</option>
-              <option value={649}>649匹（第五世代・イッシュ地方まで）</option>
-              <option value={721}>721匹（第六世代・カロス地方まで）</option>
-              <option value={809}>809匹（第七世代・アローラ地方まで）</option>
-              <option value={905}>905匹（第八世代・ガラル地方まで）</option>
-              <option value={1025}>1025匹（第九世代・パルデア地方まで）</option>
+              {GENERATION_DATA.filter(gen => gen.id !== 'all').map(gen => (
+                <option key={gen.id} value={gen.id}>
+                  {gen.name} ({gen.region}) - {gen.count}匹
+                </option>
+              ))}
+              <option value="all">全世代 (500匹まで)</option>
             </select>
           </div>
           {/* 注意メッセージ */}
-          {pokemonCount > 500 && (
+          {selectedGeneration === 'all' && (
             <p className="text-xs text-amber-600 text-center max-w-md"> {/* 小文字, 黄色, 中央寄せ, 最大幅 */}
-              ⚠️ {pokemonCount}匹の読み込みには時間がかかる場合があります
+              ⚠️ 全世代表示は500匹までに制限されています
             </p>
           )}
         </div>

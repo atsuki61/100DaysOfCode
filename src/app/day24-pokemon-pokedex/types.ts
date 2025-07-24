@@ -127,4 +127,97 @@ export const TYPE_NAMES_JA: Record<string, string> = {
   dark: 'あく',
   steel: 'はがね',
   fairy: 'フェアリー',
-}; 
+};
+
+// 世代別ポケモン範囲データ
+export interface GenerationData {
+  id: string;
+  name: string;
+  region: string;
+  startId: number;
+  endId: number;
+  count: number;
+}
+
+export const GENERATION_DATA: GenerationData[] = [
+  {
+    id: 'all',
+    name: '全世代',
+    region: '全地方',
+    startId: 1,
+    endId: 1025,
+    count: 1025,
+  },
+  {
+    id: 'gen1',
+    name: '第一世代',
+    region: 'カントー地方',
+    startId: 1,
+    endId: 151,
+    count: 151,
+  },
+  {
+    id: 'gen2',
+    name: '第二世代',
+    region: 'ジョウト地方',
+    startId: 152,
+    endId: 251,
+    count: 100,
+  },
+  {
+    id: 'gen3',
+    name: '第三世代',
+    region: 'ホウエン地方',
+    startId: 252,
+    endId: 386,
+    count: 135,
+  },
+  {
+    id: 'gen4',
+    name: '第四世代',
+    region: 'シンオウ地方',
+    startId: 387,
+    endId: 493,
+    count: 107,
+  },
+  {
+    id: 'gen5',
+    name: '第五世代',
+    region: 'イッシュ地方',
+    startId: 494,
+    endId: 649,
+    count: 156,
+  },
+  {
+    id: 'gen6',
+    name: '第六世代',
+    region: 'カロス地方',
+    startId: 650,
+    endId: 721,
+    count: 72,
+  },
+  {
+    id: 'gen7',
+    name: '第七世代',
+    region: 'アローラ地方',
+    startId: 722,
+    endId: 809,
+    count: 88,
+  },
+  {
+    id: 'gen8',
+    name: '第八世代',
+    region: 'ガラル地方',
+    startId: 810,
+    endId: 905,
+    count: 96,
+  },
+  {
+    id: 'gen9',
+    name: '第九世代',
+    region: 'パルデア地方',
+    startId: 906,
+    endId: 1025,
+    count: 120,
+  },
+]; 

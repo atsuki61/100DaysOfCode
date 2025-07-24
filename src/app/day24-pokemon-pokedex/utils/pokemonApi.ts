@@ -24,6 +24,47 @@ export async function getPokemonList(limit: number = 150): Promise<PokemonListIt
   }
 }
 
+// 世代別ポケモン一覧を取得
+export async function getPokemonListByGeneration(startId: number, endId: number): Promise<PokemonListItem[]> {
+  try {
+    // 指定された範囲のポケモンIDからURLを生成
+    const pokemonList: PokemonListItem[] = [];
+    
+    for (let id = startId; id <= endId; id++) {
+      pokemonList.push({
+        name: `pokemon-${id}`, // 仮の名前（後で詳細取得時に正しい名前に置き換わる）
+        url: `${BASE_URL}/pokemon/${id}/`
+      });
+    }
+    
+    return pokemonList;
+  } catch (error) {
+    console.error('Error generating Pokemon list by generation:', error);
+    throw new Error('Failed to generate Pokemon list by generation');
+  }
+}
+
+// 複数のポケモンの詳細データを並行取得
+export async function getPokemonDetailsBatch(pokemonList: PokemonListItem[]): Promise<FormattedPokemon[]> {
+  try {
+    const pokemonDetailsPromises = pokemonList.map(async (pokemon) => {
+      const id = extractPokemonIdFromUrl(pokemon.url);
+      const details = await getPokemonDetails(id);
+      return formatPokemonData(details);
+    });
+
+    const formattedPokemon = await Promise.all(pokemonDetailsPromises);
+    
+    // IDでソート
+    formattedPokemon.sort((a, b) => a.id - b.id);
+    
+    return formattedPokemon;
+  } catch (error) {
+    console.error('Error fetching Pokemon details batch:', error);
+    throw new Error('Failed to fetch Pokemon details batch');
+  }
+}
+
 // 個別のポケモン詳細データを取得
 export async function getPokemonDetails(identifier: string | number): Promise<Pokemon> {
   try {
