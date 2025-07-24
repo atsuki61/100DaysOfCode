@@ -3,7 +3,7 @@
 import { useState, useEffect, use } from 'react';
 import { notFound } from 'next/navigation';
 import { FormattedPokemon } from '../types';
-import { getPokemonDetails, formatPokemonData } from '../utils/pokemonApi';
+import { getPokemonDetails, formatPokemonData, getPokemonSpecies } from '../utils/pokemonApi';
 import PokemonDetail from '../components/PokemonDetail';
 import LoadingSpinner from '../components/LoadingSpinner';
 import ErrorMessage from '../components/ErrorMessage';
@@ -30,7 +30,11 @@ export default function PokemonDetailPage({ params }: PokemonDetailPageProps) {
 
       // URLパラメータからポケモン名を取得してAPIで詳細情報を取得
       const pokemonData = await getPokemonDetails(resolvedParams.name);
-      const formattedData = formatPokemonData(pokemonData);
+      
+      // species APIから日本語名を取得
+      const speciesData = await getPokemonSpecies(pokemonData.id);
+      
+      const formattedData = formatPokemonData(pokemonData, speciesData);
       
       setPokemon(formattedData);
     } catch (err) {
