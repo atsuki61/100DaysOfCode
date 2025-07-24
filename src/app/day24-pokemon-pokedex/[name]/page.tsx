@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, use } from 'react';
 import { notFound } from 'next/navigation';
 import { FormattedPokemon } from '../types';
 import { getPokemonDetails, formatPokemonData } from '../utils/pokemonApi';
@@ -9,12 +9,15 @@ import LoadingSpinner from '../components/LoadingSpinner';
 import ErrorMessage from '../components/ErrorMessage';
 
 interface PokemonDetailPageProps {
-  params: {
+  params: Promise<{
     name: string;
-  };
+  }>;
 }
 
 export default function PokemonDetailPage({ params }: PokemonDetailPageProps) {
+  // Next.js 15での新しい仕様に対応: paramsをアンラップ
+  const resolvedParams = use(params);
+  
   const [pokemon, setPokemon] = useState<FormattedPokemon | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -26,7 +29,7 @@ export default function PokemonDetailPage({ params }: PokemonDetailPageProps) {
       setError(null);
 
       // URLパラメータからポケモン名を取得してAPIで詳細情報を取得
-      const pokemonData = await getPokemonDetails(params.name);
+      const pokemonData = await getPokemonDetails(resolvedParams.name);
       const formattedData = formatPokemonData(pokemonData);
       
       setPokemon(formattedData);
@@ -44,10 +47,10 @@ export default function PokemonDetailPage({ params }: PokemonDetailPageProps) {
   };
 
   useEffect(() => {
-    if (params.name) {
+    if (resolvedParams.name) {
       fetchPokemonDetail();
     }
-  }, [params.name]);
+  }, [resolvedParams.name]);
 
   // リトライ処理
   const handleRetry = () => {
