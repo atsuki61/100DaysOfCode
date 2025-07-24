@@ -2,7 +2,8 @@ import {
   Pokemon, 
   PokemonListResponse, 
   FormattedPokemon,
-  PokemonListItem 
+  PokemonListItem,
+  PokemonSpecies
 } from '../types';
 
 const BASE_URL = 'https://pokeapi.co/api/v2';
@@ -49,8 +50,14 @@ export async function getPokemonDetailsBatch(pokemonList: PokemonListItem[]): Pr
   try {
     const pokemonDetailsPromises = pokemonList.map(async (pokemon) => {
       const id = extractPokemonIdFromUrl(pokemon.url);
-      const details = await getPokemonDetails(id);
-      return formatPokemonData(details);
+      
+      // ポケモンの基本データとspeciesデータを並行取得
+      const [details, species] = await Promise.all([
+        getPokemonDetails(id),
+        getPokemonSpecies(id)
+      ]);
+      
+      return formatPokemonData(details, species);
     });
 
     const formattedPokemon = await Promise.all(pokemonDetailsPromises);
@@ -80,6 +87,36 @@ export async function getPokemonDetails(identifier: string | number): Promise<Po
     console.error(`Error fetching Pokemon details for ${identifier}:`, error);
     throw new Error(`Failed to fetch Pokemon details for ${identifier}`);
   }
+}
+
+// ポケモンspecies（種族）データを取得
+export async function getPokemonSpecies(id: number): Promise<PokemonSpecies> {
+  try {
+    const response = await fetch(`${BASE_URL}/pokemon-species/${id}`);
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    
+    const data: PokemonSpecies = await response.json();
+    return data;
+  } catch (error) {
+    console.error(`Error fetching Pokemon species ${id}:`, error);
+    throw new Error(`Failed to fetch Pokemon species ${id}`);
+  }
+}
+
+// 日本語名を取得（species APIから）
+export function extractJapaneseName(species: PokemonSpecies): string {
+  // 日本語名を探す（優先順位: ja-Hrkt > ja > 英語名）
+  const jaHrktName = species.names.find(nameObj => nameObj.language.name === 'ja-Hrkt');
+  if (jaHrktName) return jaHrktName.name;
+  
+  const jaName = species.names.find(nameObj => nameObj.language.name === 'ja');
+  if (jaName) return jaName.name;
+  
+  // 日本語名が見つからない場合は英語名を返す
+  return species.name;
 }
 
 // ポケモンの英語名から日本語名を取得する簡易変換
@@ -242,10 +279,13 @@ export function formatPokemonName(name: string): string {
   return nameMap[name] || name.charAt(0).toUpperCase() + name.slice(1);
 }
 
-// APIデータを表示用に整形
-export function formatPokemonData(pokemon: Pokemon): FormattedPokemon {
+// APIレスポンスを表示用データに変換
+export function formatPokemonData(pokemon: Pokemon, species?: PokemonSpecies): FormattedPokemon {
   const heightInMeters = (pokemon.height / 10).toFixed(1); // デシメートルをメートルに変換
   const weightInKg = (pokemon.weight / 10).toFixed(1); // ヘクトグラムをキログラムに変換
+  
+  // 日本語名を取得
+  const japaneseName = species ? extractJapaneseName(species) : formatPokemonName(pokemon.name);
   
   // ステータスを整形
   const stats = {
@@ -259,15 +299,15 @@ export function formatPokemonData(pokemon: Pokemon): FormattedPokemon {
   
   return {
     id: pokemon.id,
-    name: pokemon.name,
-    displayName: formatPokemonName(pokemon.name),
-    image: pokemon.sprites.other['official-artwork'].front_default || pokemon.sprites.front_default,
-    types: pokemon.types.map(type => type.type.name),
+    name: pokemon.name, // 英語名
+    displayName: japaneseName, // 日本語名
+    image: pokemon.sprites.other?.['official-artwork']?.front_default || pokemon.sprites.front_default || '',
+    types: pokemon.types.map(typeObj => typeObj.type.name),
     height: `${heightInMeters}m`,
     weight: `${weightInKg}kg`,
     baseExperience: pokemon.base_experience,
     stats,
-    abilities: pokemon.abilities.map(ability => ability.ability.name),
+    abilities: pokemon.abilities.map(ability => ability.ability.name)
   };
 }
 

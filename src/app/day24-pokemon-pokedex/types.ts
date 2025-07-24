@@ -50,6 +50,22 @@ export interface PokemonAbility {
   slot: number;
 }
 
+// PokéAPI species レスポンス用の型定義
+export interface PokemonSpeciesName {
+  language: {
+    name: string;
+    url: string;
+  };
+  name: string;
+}
+
+export interface PokemonSpecies {
+  id: number;
+  name: string;
+  names: PokemonSpeciesName[];
+  // 他のフィールドもありますが、必要な分だけ定義
+}
+
 // ポケモン一覧API用の軽量な型
 export interface PokemonListItem {
   name: string;

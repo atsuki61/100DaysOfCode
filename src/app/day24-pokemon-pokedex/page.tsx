@@ -8,7 +8,8 @@ import {
   formatPokemonData, 
   extractPokemonIdFromUrl,
   getPokemonListByGeneration,
-  getPokemonDetailsBatch
+  getPokemonDetailsBatch,
+  getPokemonSpecies
 } from './utils/pokemonApi';
 import PokemonCard from './components/PokemonCard';
 import LoadingSpinner from './components/LoadingSpinner';
@@ -40,7 +41,8 @@ export default function PokemonPokedexPage() {
         const pokemonDetailsPromises = list.map(async (pokemon) => {
           const id = extractPokemonIdFromUrl(pokemon.url);
           const details = await getPokemonDetails(id);
-          return formatPokemonData(details);
+          const species = await getPokemonSpecies(id);
+          return formatPokemonData(details, species);
         });
         formattedPokemon = await Promise.all(pokemonDetailsPromises);
         formattedPokemon.sort((a, b) => a.id - b.id);
@@ -77,16 +79,6 @@ export default function PokemonPokedexPage() {
 
   return (
     <div className="container mx-auto px-4 py-8"> {/* コンテナ, 中央寄せ, 横パディング, 縦パディング */}
-      {/* ヘッダー */}
-      <div className="text-center mb-8"> {/* テキスト中央, 下マージン */}
-        <h1 className="text-4xl font-bold text-gray-800 mb-4"> {/* 特大文字, 太字, 濃いグレー, 下マージン */}
-          ポケモン図鑑
-        </h1>
-        <p className="text-gray-600 text-lg"> {/* グレー文字, 大文字 */}
-          お気に入りのポケモンを見つけよう！
-        </p>
-      </div>
-
       {/* 検索バーと表示数選択 */}
       <div className="max-w-4xl mx-auto mb-8 space-y-4"> {/* 最大幅制限, 中央寄せ, 下マージン, 縦間隔 */}
         {/* 検索バー */}
