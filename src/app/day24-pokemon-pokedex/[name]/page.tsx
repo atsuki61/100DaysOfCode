@@ -9,18 +9,19 @@ import LoadingSpinner from '../components/LoadingSpinner';
 import ErrorMessage from '../components/ErrorMessage';
 
 interface PokemonDetailPageProps {
-  params: Promise<{
-    name: string;
-  }>;
+  params: Promise<{ 
+    name: string; // ポケモン名
+  }>; 
 }
 
 export default function PokemonDetailPage({ params }: PokemonDetailPageProps) {
   // Next.js 15での新しい仕様に対応: paramsをアンラップ
+    // params.name を使って、このポケモンの詳細データをAPIから取得します
   const resolvedParams = use(params);
   
-  const [pokemon, setPokemon] = useState<FormattedPokemon | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [pokemon, setPokemon] = useState<FormattedPokemon | null>(null); // ポケモンの詳細データ
+  const [loading, setLoading] = useState(true); // ローディング状態
+  const [error, setError] = useState<string | null>(null); // エラー状態
 
   // ポケモンの詳細データを取得
   const fetchPokemonDetail = async () => {

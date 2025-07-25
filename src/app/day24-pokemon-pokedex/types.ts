@@ -82,45 +82,45 @@ export interface PokemonListResponse {
 
 // 表示用に整形されたポケモン情報
 export interface FormattedPokemon {
-  id: number;
-  name: string;
+  id: number; // ポケモンID
+  name: string; // ポケモン名
   displayName: string; // 日本語名などの表示用名前
-  image: string;
-  types: string[];
+  image: string; // 画像URL
+  types: string[]; // タイプ
   height: string; // "1.7m" のような表示用
   weight: string; // "69.0kg" のような表示用
-  baseExperience: number;
+  baseExperience: number;// ベースエクスペリエンス
   stats: {
-    hp: number;
-    attack: number;
-    defense: number;
-    specialAttack: number;
-    specialDefense: number;
-    speed: number;
+    hp: number;// ヘルスポイント
+    attack: number;// 攻撃力
+    defense: number;// 防御力
+    specialAttack: number;// 特攻
+    specialDefense: number;// 特防
+    speed: number;// スピード
   };
-  abilities: string[];
+  abilities: string[];// 特性
 }
 
 // タイプ別の色分け用
 export const TYPE_COLORS: Record<string, string> = {
-  normal: 'bg-gray-400',
-  fire: 'bg-red-500',
-  water: 'bg-blue-500',
-  electric: 'bg-yellow-400',
-  grass: 'bg-green-500',
-  ice: 'bg-blue-200',
-  fighting: 'bg-red-700',
-  poison: 'bg-purple-500',
-  ground: 'bg-yellow-600',
-  flying: 'bg-indigo-400',
-  psychic: 'bg-pink-500',
-  bug: 'bg-green-400',
-  rock: 'bg-yellow-800',
-  ghost: 'bg-purple-700',
-  dragon: 'bg-indigo-700',
-  dark: 'bg-gray-800',
-  steel: 'bg-gray-500',
-  fairy: 'bg-pink-300',
+  normal: 'bg-gray-400',// ノーマル
+  fire: 'bg-red-500',// ほのお
+  water: 'bg-blue-500',// みず
+  electric: 'bg-yellow-400',// でんき
+  grass: 'bg-green-500',// くさ
+  ice: 'bg-blue-200',// こおり
+  fighting: 'bg-red-700',// かくとう
+  poison: 'bg-purple-500',// どく
+  ground: 'bg-yellow-600',// じめん
+  flying: 'bg-indigo-400',// ひこう
+  psychic: 'bg-pink-500',// エスパー
+  bug: 'bg-green-400',// むし
+  rock: 'bg-yellow-800',// いわ
+  ghost: 'bg-purple-700',// ゴースト
+  dragon: 'bg-indigo-700',// ドラゴン
+  dark: 'bg-gray-800',// あく
+  steel: 'bg-gray-500',// はがね
+  fairy: 'bg-pink-300',// フェアリー  
 };
 
 // タイプの日本語名マッピング
@@ -147,12 +147,12 @@ export const TYPE_NAMES_JA: Record<string, string> = {
 
 // 世代別ポケモン範囲データ
 export interface GenerationData {
-  id: string;
-  name: string;
-  region: string;
-  startId: number;
-  endId: number;
-  count: number;
+  id: string;// 世代ID
+  name: string;// 世代名
+  region: string;// 地域
+  startId: number;// 開始ID
+  endId: number;// 終了ID
+  count: number;// ポケモン数
 }
 
 export const GENERATION_DATA: GenerationData[] = [
