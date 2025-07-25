@@ -196,6 +196,14 @@ export default function HomePage() {
        description: 'Next.jsの動的ルーティングとPokéAPIを使用したポケモン図鑑アプリです。動的ルーティング、外部API連携、検索機能、レスポンシブデザイン、TypeScript型安全性を練習しました。',
        tags: ['React, Next.js, TypeScript, TailwindCSS, Dynamic Routing, API'],
      },
+     {
+       id: 'day25',
+       name: 'Day 25: 現在地マップ',
+       path: '/day25-current-location-map',
+       imageUrl: '/images/day25-current-location-map.png',
+       description: 'Geolocation APIと地図ライブラリを使って現在地を地図上に表示するアプリ',
+       tags: ['React', 'Next.js', 'TypeScript', 'TailwindCSS', 'Leaflet'],
+     },
      // ここに新しいアプリを追加していきます
   ];
 
