@@ -54,6 +54,9 @@ export function evaluatePasswordStrength(password: string): PasswordStrength {
   if (uniqueChars >= password.length * 0.8) score += 1; // 文字の多様性
   if (password.length >= 20) score += 1; // 非常に長いパスワード
   
+  // スコアを7点に制限
+  score = Math.min(score, 7);
+  
   // 強度ラベルと色を決定
   let label: string;
   let color: string;

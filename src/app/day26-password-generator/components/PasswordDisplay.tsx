@@ -66,6 +66,10 @@ export default function PasswordDisplay({ password }: PasswordDisplayProps) {
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 生成されたパスワード
               </label>
+            </div>
+          </div>
+          <div className="flex items-center gap-4">
+            <div className="flex-1">
               <div className="bg-white border border-gray-300 rounded-lg p-4 shadow-inner hover:shadow-md transition-shadow duration-300">
                 <input
                   type="text"
@@ -77,7 +81,7 @@ export default function PasswordDisplay({ password }: PasswordDisplayProps) {
                 />
               </div>
             </div>
-            <div className="ml-4">
+            <div className="flex-shrink-0">
               <button
                 onClick={handleCopy}
                 disabled={!password}
