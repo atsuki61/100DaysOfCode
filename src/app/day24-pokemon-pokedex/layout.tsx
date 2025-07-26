@@ -20,7 +20,7 @@ interface Day24LayoutProps {
 export default function Day24Layout({ children }: Day24LayoutProps) {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50"> {/* 最小高さ画面, グラデーション背景 */}
-      <Header title="ポケモン図鑑" />
+      <Header title="Day 24: ポケモン図鑑" />
       <PageHeader
         icon="🔍"
         title="ポケモン図鑑"
