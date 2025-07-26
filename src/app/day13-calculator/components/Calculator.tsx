@@ -76,6 +76,21 @@ export default function Calculator() {
     });
   }, [state.display]);
 
+  const calculate = useCallback((firstValue: number, secondValue: number, operation: Operation): number => {
+    switch (operation) {
+      case '+':
+        return firstValue + secondValue;
+      case '-':
+        return firstValue - secondValue;
+      case '*':
+        return firstValue * secondValue;
+      case '/':
+        return secondValue !== 0 ? firstValue / secondValue : firstValue;
+      default:
+        return secondValue;
+    }
+  }, []);
+
   const handleEquals = useCallback(() => {
     const inputValue = parseFloat(state.display);
 
@@ -93,7 +108,7 @@ export default function Calculator() {
       }
       return prevState;
     });
-  }, [state.display]);
+  }, [state.display, calculate]);
 
   const handleClear = useCallback(() => {
     setState(initialState);
@@ -122,21 +137,6 @@ export default function Calculator() {
       }
       return prevState;
     });
-  }, []);
-
-  const calculate = useCallback((firstValue: number, secondValue: number, operation: Operation): number => {
-    switch (operation) {
-      case '+':
-        return firstValue + secondValue;
-      case '-':
-        return firstValue - secondValue;
-      case '*':
-        return firstValue * secondValue;
-      case '/':
-        return secondValue !== 0 ? firstValue / secondValue : firstValue;
-      default:
-        return secondValue;
-    }
   }, []);
 
   const handleButtonClick = useCallback((value: string) => {

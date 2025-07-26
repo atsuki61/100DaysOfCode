@@ -1,6 +1,6 @@
 'use client';
 
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState, useCallback } from 'react';
 import { Theme, ThemeContextType } from '../types';
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
@@ -16,12 +16,12 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   };
 
   // テーマを解決（system の場合はシステムテーマを使用）
-  const resolveTheme = (currentTheme: Theme): 'light' | 'dark' => {
+  const resolveTheme = useCallback((currentTheme: Theme): 'light' | 'dark' => {
     if (currentTheme === 'system') {
       return getSystemTheme();
     }
     return currentTheme;
-  };
+  }, []);
 
   // テーマを設定してlocalStorageに保存
   const updateTheme = (newTheme: Theme) => {

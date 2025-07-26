@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, use } from 'react';
+import { useState, useEffect, use, useCallback } from 'react';
 import { notFound } from 'next/navigation';
 import { FormattedPokemon } from '../types';
 import { getPokemonDetails, formatPokemonData, getPokemonSpecies } from '../utils/pokemonApi';
@@ -24,7 +24,7 @@ export default function PokemonDetailPage({ params }: PokemonDetailPageProps) {
   const [error, setError] = useState<string | null>(null); // エラー状態
 
   // ポケモンの詳細データを取得
-  const fetchPokemonDetail = async () => {
+  const fetchPokemonDetail = useCallback(async () => {
     try {
       setLoading(true);
       setError(null);
@@ -49,13 +49,13 @@ export default function PokemonDetailPage({ params }: PokemonDetailPageProps) {
     } finally {
       setLoading(false);
     }
-  };
+  }, [resolvedParams.name]);
 
   useEffect(() => {
     if (resolvedParams.name) {
       fetchPokemonDetail();
     }
-  }, [resolvedParams.name]);
+  }, [resolvedParams.name, fetchPokemonDetail]);
 
   // リトライ処理
   const handleRetry = () => {

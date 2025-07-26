@@ -19,7 +19,7 @@
  */
 'use client';
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import PageHeader from '../../components/common/PageHeader';
 import { FlashCard, NavigationControls, LearningButtons, FilterControls } from './components';
 import { toeicWords } from './data/words';
@@ -67,26 +67,26 @@ export default function FlashcardPage() {
   };
 
   // === カード操作関数 ===
-  const handleCardClick = () => {
+  const handleCardClick = useCallback(() => {
     setIsRevealed(!isRevealed);
-  };
+  }, [isRevealed]);
 
-  const handlePrevious = () => {
+  const handlePrevious = useCallback(() => {
     if (currentIndex > 0) {
       setCurrentIndex(currentIndex - 1);
       setIsRevealed(false);
     }
-  };
+  }, [currentIndex]);
 
-  const handleNext = () => {
+  const handleNext = useCallback(() => {
     if (currentIndex < filteredWords.length - 1) {
       setCurrentIndex(currentIndex + 1);
       setIsRevealed(false);
     }
-  };
+  }, [currentIndex, filteredWords.length]);
 
   // === シャッフル機能 ===
-  const handleShuffle = () => {
+  const handleShuffle = useCallback(() => {
     const shuffledWords = [...words];
     for (let i = shuffledWords.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -95,18 +95,18 @@ export default function FlashcardPage() {
     setWords(shuffledWords);
     setCurrentIndex(0);
     setIsRevealed(false);
-  };
+  }, [words]);
 
   // === フィルターモード切り替え ===
-  const handleFilterChange = (mode: 'all' | 'studying') => {
+  const handleFilterChange = useCallback((mode: 'all' | 'studying') => {
     setFilterMode(mode);
-  };
+  }, []);
 
   // === 学習状態変更 ===
-  const handleStatusChange = (status: LearningStatus) => {
+  const handleStatusChange = useCallback((status: LearningStatus) => {
     const currentWord = filteredWords[currentIndex];
     updateWordStatus(currentWord.id, status);
-  };
+  }, [filteredWords, currentIndex]);
 
   // === キーボード操作 ===
   useEffect(() => {
@@ -149,7 +149,7 @@ export default function FlashcardPage() {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [currentIndex, filteredWords.length, isRevealed]);
+  }, [currentIndex, filteredWords.length, isRevealed, handleCardClick, handlePrevious, handleNext, handleShuffle, handleStatusChange]);
 
   // 表示する単語がない場合の処理
   if (filteredWords.length === 0) {

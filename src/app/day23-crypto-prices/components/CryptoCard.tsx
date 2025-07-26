@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { CryptoData } from '../utils/cryptoApi'
 
 interface CryptoCardProps {
@@ -37,9 +38,11 @@ export default function CryptoCard({ crypto, index }: CryptoCardProps) {
       {/* 暗号通貨ヘッダー情報 */}
       <div className="flex items-center mb-6">
         <div className="relative">
-          <img
+          <Image
             src={crypto.image}
             alt={crypto.name}
+            width={56}
+            height={56}
             className="w-14 h-14 rounded-full border-4 border-gray-100 shadow-md"
           />
           {/* グロー効果 */}

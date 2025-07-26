@@ -3,9 +3,9 @@ import { notFound } from 'next/navigation';
 import { getPostData, getAllPostIds } from '../lib/posts';
 
 interface BlogPostPageProps {//BlogPostPageProps型を定義
-  params: {//paramsはBlogPostPageProps型のオブジェクト
+  params: Promise<{//paramsはPromise型のオブジェクト
     slug: string;//slugはstring型
-  };
+  }>;
 }
 
 // 静的サイト生成用のパス一覧を生成
@@ -18,7 +18,8 @@ export async function generateStaticParams() {
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {//BlogPostPageProps型のオブジェクトを受け取る
   try {
-    const post = await getPostData(params.slug);//params.slugをgetPostDataで取得
+    const resolvedParams = await params;//paramsを解決
+    const post = await getPostData(resolvedParams.slug);//resolvedParams.slugをgetPostDataで取得
 
     return (
       <div className="container mx-auto px-4 py-8"> {/* 中央寄せコンテナ, 水平余白4, 垂直余白8 */}

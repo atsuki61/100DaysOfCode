@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { iTunesItem } from '../types';
 import { formatTrackTime, formatPrice } from '../utils/musicApi';
 
@@ -50,9 +51,11 @@ export default function MusicCard({ item, isPlaying, onPlay, onStop }: MusicCard
         {/* アートワーク画像 */}
         <div className="flex-shrink-0 w-20 h-20 bg-gray-200 rounded-lg overflow-hidden"> {/* 縮小なし, 幅20, 高さ20, グレー背景, 角丸, 溢れ隠し */}
           {getArtworkUrl() && !imageError ? (
-            <img
+            <Image
               src={getArtworkUrl()!}
               alt={`${item.trackName || item.collectionName || item.artistName} のアートワーク`}
+              width={80}
+              height={80}
               className="w-full h-full object-cover"
               onError={() => setImageError(true)}
             />
