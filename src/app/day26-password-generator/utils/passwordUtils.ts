@@ -49,6 +49,11 @@ export function evaluatePasswordStrength(password: string): PasswordStrength {
   if (/[0-9]/.test(password)) score += 1; // 数字
   if (/[^A-Za-z0-9]/.test(password)) score += 1; // 記号
   
+  // 複雑性による追加加点
+  const uniqueChars = new Set(password).size;
+  if (uniqueChars >= password.length * 0.8) score += 1; // 文字の多様性
+  if (password.length >= 20) score += 1; // 非常に長いパスワード
+  
   // 強度ラベルと色を決定
   let label: string;
   let color: string;
