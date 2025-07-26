@@ -66,13 +66,14 @@ export default function PasswordDisplay({ password }: PasswordDisplayProps) {
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 生成されたパスワード
               </label>
-              <div className="bg-white border border-gray-300 rounded-lg p-4 shadow-inner">
+              <div className="bg-white border border-gray-300 rounded-lg p-4 shadow-inner hover:shadow-md transition-shadow duration-300">
                 <input
                   type="text"
                   value={password}
                   readOnly
-                  className="w-full bg-transparent text-xl font-mono text-gray-800 outline-none text-center"
+                  className="w-full bg-transparent text-xl font-mono text-gray-800 outline-none text-center select-all cursor-pointer hover:bg-gray-50 transition-colors duration-200"
                   placeholder="パスワードがここに表示されます"
+                  onClick={(e) => (e.target as HTMLInputElement).select()}
                 />
               </div>
             </div>
