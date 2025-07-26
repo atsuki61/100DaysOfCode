@@ -32,13 +32,6 @@ export default function PasswordGeneratorPage() {
 
   return (
     <div className="max-w-4xl mx-auto p-6">
-      <div className="text-center mb-8">
-        <h1 className="text-3xl font-bold text-gray-800 mb-2">パスワードジェネレーター</h1>
-        <p className="text-gray-600">
-          安全で強力なパスワードを簡単に生成できます
-        </p>
-      </div>
-
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* 左側: パスワード表示 */}
         <div className="space-y-6">
