@@ -9,10 +9,10 @@ export default function PasswordGeneratorLayout({
 }) {
   return (
     <>
-      <Header title="100DaysOfCode" />
+      <Header title="Day 26: パスワードジェネレーター" />
       <PageHeader 
-        title="Day 26: パスワードジェネレーター" 
-        description="安全で強力なパスワードを簡単に生成できるアプリ"
+        title="🔓パスワードジェネレーター" 
+        description="安全で強力なパスワードを簡単に生成できるアプリです。"
       />
       <main className="bg-gray-50 min-h-screen">
         {children}
