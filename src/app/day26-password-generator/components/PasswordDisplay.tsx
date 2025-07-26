@@ -23,10 +23,26 @@ export default function PasswordDisplay({ password }: PasswordDisplayProps) {
 
   const handleCopy = async () => {
     if (password) {
-      const success = await copyToClipboard(password);
-      if (success) {
-        setCopied(true);
-        setTimeout(() => setCopied(false), 2000); // 2秒後にリセット
+      try {
+        const success = await copyToClipboard(password);
+        if (success) {
+          setCopied(true);
+          setTimeout(() => setCopied(false), 2000); // 2秒後にリセット
+        } else {
+          // フォールバック: 古いブラウザ向け
+          const textArea = document.createElement('textarea');
+          textArea.value = password;
+          document.body.appendChild(textArea);
+          textArea.select();
+          document.execCommand('copy');
+          document.body.removeChild(textArea);
+          setCopied(true);
+          setTimeout(() => setCopied(false), 2000);
+        }
+      } catch (error) {
+        console.error('コピーに失敗しました:', error);
+        // ユーザーにエラーを通知
+        alert('パスワードのコピーに失敗しました。手動でコピーしてください。');
       }
     }
   };
