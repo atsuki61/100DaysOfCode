@@ -204,6 +204,14 @@ export default function HomePage() {
        description: 'Geolocation APIと地図ライブラリを使って現在地を地図上に表示するアプリ',
        tags: ['React', 'Next.js', 'TypeScript', 'TailwindCSS', 'Leaflet'],
      },
+     {
+       id: 'day26',
+       name: 'Day 26: パスワードジェネレーター',
+       path: '/day26-password-generator',
+       imageUrl: '/images/day26-password-generator.png',
+       description: '指定した条件（長さ、文字種）でランダムなパスワードを生成し、クリップボードAPIによるコピー機能も含むアプリです。文字列操作と乱数、UIでのオプション選択を練習しました。',
+       tags: ['React', 'Next.js', 'TypeScript', 'TailwindCSS', 'Clipboard API'],
+     },
      // ここに新しいアプリを追加していきます
   ];
 
