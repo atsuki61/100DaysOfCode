@@ -21,6 +21,11 @@ export default function PasswordGeneratorPage() {
     setPassword(newPassword);
   };
 
+  // コンポーネントマウント時に初期パスワードを生成
+  React.useEffect(() => {
+    handleGeneratePassword();
+  }, []);
+
   const handleOptionsChange = (newOptions: PasswordOptionsType) => {
     setOptions(newOptions);
   };
