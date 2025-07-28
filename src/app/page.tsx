@@ -212,6 +212,14 @@ export default function HomePage() {
        description: '指定した条件（長さ、文字種）でランダムなパスワードを生成し、クリップボードAPIによるコピー機能も含むアプリです。文字列操作と乱数、UIでのオプション選択を練習しました。',
        tags: ['React', 'Next.js', 'TypeScript', 'TailwindCSS', 'Clipboard API'],
      },
+     {
+       id: 'day27',
+       name: 'Day 27: タイピング速度テスト',
+       path: '/day27-typing-speed-test',
+       imageUrl: '/images/day27-typing-speed-test.png',
+       description: '出された文章を入力してWPM(打鍵数/分)を計測するタイピング速度テストアプリです。キー入力イベント処理、useEffectによるタイマー計測、速度と正確性の計算、入力テキストと課題テキストの比較を練習しました。',
+       tags: ['React', 'Next.js', 'TypeScript', 'TailwindCSS', 'Real-time', 'Performance'],
+     },
      // ここに新しいアプリを追加していきます
   ];
 
