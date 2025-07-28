@@ -38,6 +38,7 @@ const Footer = ({ currentDay }: FooterProps) => {
       24: "/day24-pokemon-pokedex",
       25: "/day25-current-location-map", // Day 25のルートを追加
       26: "/day26-password-generator", // Day 26のルートを追加
+      27: "/day27-typing-speed-test", // Day 27のルートを追加
     };
     return dayRoutes[day] || `/day${day}`;
   };
