@@ -127,6 +127,16 @@ export const useTypingTest = () => {
     }
   }, [state.status, state.selectedText, state.startTime, state.userInput])
 
+  // テキスト選択
+  const selectText = useCallback((selectedText: TypingText) => {
+    setState({
+      ...initialState,
+      selectedText
+    })
+    setResult(null)
+    setElapsedTime(0)
+  }, [])
+
   // 現在の進捗率を計算
   const progress = state.selectedText 
     ? Math.round((state.userInput.length / state.selectedText.content.length) * 100)
@@ -149,6 +159,7 @@ export const useTypingTest = () => {
     startTest,
     handleInput,
     resetTest,
-    stopTest
+    stopTest,
+    selectText
   }
 } 

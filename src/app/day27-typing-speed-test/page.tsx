@@ -17,7 +17,8 @@ export default function TypingSpeedTestPage() {
     startTest,
     handleInput,
     resetTest,
-    stopTest
+    stopTest,
+    selectText
   } = useTypingTest()
 
   const handleStartTest = () => {
@@ -40,19 +41,7 @@ export default function TypingSpeedTestPage() {
       {/* 課題文章選択 */}
       <TextSelector
         selectedText={state.selectedText}
-        onSelectText={(text) => {
-          if (state.status === 'idle') {
-            // resetTest()を呼んでから新しいテキストを設定
-            resetTest()
-            // useTypingTestフックに直接テキスト設定機能がないため、startTestを使用
-            setTimeout(() => {
-              startTest(text)
-              // すぐにリセットして選択状態だけにする
-              resetTest()
-              // 状態を更新（実際の実装では、フックに選択機能を追加する必要があります）
-            }, 0)
-          }
-        }}
+        onSelectText={selectText}
         disabled={state.status === 'running'}
       />
 
