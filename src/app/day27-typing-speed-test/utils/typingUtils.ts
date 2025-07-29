@@ -1,4 +1,4 @@
-import { TypingResult, CharacterStatus } from '../types'
+import { TypingResult, CharacterStatus, KeyStroke, TypingError } from '../types'
 
 /**
  * WPM (Words Per Minute) を計算する
@@ -38,18 +38,22 @@ export const calculateAccuracy = (correctCharacters: number, totalCharacters: nu
 }
 
 /**
- * タイピング結果を計算する
+ * タイピング結果を計算する（レガシー版 - 簡易計算）
  * @param targetText 課題文章
  * @param userInput ユーザー入力
  * @param startTime 開始時間
  * @param endTime 終了時間
+ * @param keyStrokes キー入力履歴（オプション）
+ * @param errors エラー履歴（オプション）
  * @returns TypingResult
  */
 export const calculateTypingResult = (
   targetText: string,
   userInput: string,
   startTime: number,
-  endTime: number
+  endTime: number,
+  keyStrokes: KeyStroke[] = [],
+  errors: TypingError[] = []
 ): TypingResult => {
   const timeElapsed = (endTime - startTime) / 1000 // ミリ秒から秒に変換
   const totalCharacters = Math.min(userInput.length, targetText.length)
@@ -69,6 +73,12 @@ export const calculateTypingResult = (
   const cpm = calculateCPM(correctCharacters, timeElapsed)
   const accuracy = calculateAccuracy(correctCharacters, totalCharacters)
   
+  // 拡張プロパティの計算
+  const totalKeyStrokes = keyStrokes.length
+  const errorCount = errors.length
+  const averageSpeed = timeElapsed > 0 ? totalCharacters / timeElapsed : 0
+  const errorRate = totalKeyStrokes > 0 ? (errorCount / totalKeyStrokes) * 100 : 0
+  
   return {
     wpm,
     cpm,
@@ -76,7 +86,13 @@ export const calculateTypingResult = (
     timeElapsed,
     totalCharacters,
     correctCharacters,
-    incorrectCharacters
+    incorrectCharacters,
+    totalKeyStrokes,
+    errorCount,
+    keyStrokes,
+    errors,
+    averageSpeed,
+    errorRate
   }
 }
 
