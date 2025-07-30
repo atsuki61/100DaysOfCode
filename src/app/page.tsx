@@ -220,6 +220,14 @@ export default function HomePage() {
        description: '出された文章を入力してWPM(打鍵数/分)を計測するタイピング速度テストアプリです。キー入力イベント処理、useEffectによるタイマー計測、速度と正確性の計算、入力テキストと課題テキストの比較を練習しました。',
        tags: ['React', 'Next.js', 'TypeScript', 'TailwindCSS', 'Real-time', 'Performance'],
      },
+     {
+       id: 'day28',
+       name: 'Day 28: 画像ギャラリー',
+       path: '/day28-image-gallery',
+       imageUrl: '/images/day28-image-gallery.png',
+       description: '複数画像を一覧表示し、クリックで拡大表示できるモーダル付きギャラリーアプリです。グリッドレイアウト(Tailwind CSS Grid/Flexbox)、モーダルウィンドウの実装と状態管理、Next.jsのnext/imageコンポーネントによる画像最適化を練習しました。',
+       tags: ['React', 'Next.js', 'TypeScript', 'TailwindCSS', 'Image', 'Modal', 'Grid Layout'],
+     },
      // ここに新しいアプリを追加していきます
   ];
 
