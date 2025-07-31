@@ -22,17 +22,7 @@ export default function Day29Page() {
 
   return (
     <div className="container mx-auto px-4 py-8"> {/* コンテナ, 中央配置, 横パディング4, 縦パディング8 */}
-      {/* ヘッダー情報 */}
-      <div className="mb-8 text-center"> {/* 下マージン8, 中央配置 */}
-        <h1 className="text-3xl font-bold text-gray-900 mb-4"> {/* 3xl文字, ボールド, グレー900, 下マージン4 */}
-          📅 カレンダーアプリ
-        </h1>
-        <p className="text-gray-600 max-w-2xl mx-auto"> {/* グレー文字, 最大幅2xl, 中央配置 */}
-          日付をクリックするとその日のイベントが確認できます。
-          前月・次月ボタンで月を切り替えたり、今日ボタンで現在の月に戻ることができます。
-        </p>
-      </div>
-
+  
       {/* カレンダーヘッダー */}
       <CalendarHeader
         year={currentYear}
