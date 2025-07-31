@@ -6,7 +6,7 @@ interface CalendarCellProps {
 }
 
 export default function CalendarCell({ calendarDay, onClick }: CalendarCellProps) {
-  const { day, isCurrentMonth, isToday, isWeekend, events, date } = calendarDay
+  const { day, isCurrentMonth, isToday, events, date } = calendarDay
   const dayOfWeek = date.getDay()
   const isSunday = dayOfWeek === 0
   const isSaturday = dayOfWeek === 6

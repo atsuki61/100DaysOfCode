@@ -35,7 +35,6 @@ export default function EventModal({ isOpen, selectedDate, events, onClose }: Ev
     return null
   }
 
-  const dateString = formatDateToString(selectedDate)
   const dayOfWeek = ['日', '月', '火', '水', '木', '金', '土'][selectedDate.getDay()]
 
   return (
