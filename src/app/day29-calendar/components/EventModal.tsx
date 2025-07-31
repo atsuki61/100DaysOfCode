@@ -2,7 +2,6 @@
 
 import { useEffect } from 'react'
 import { CalendarEvent } from '../types'
-import { formatDateToString } from '../utils/calendarUtils'
 
 interface EventModalProps {
   isOpen: boolean
