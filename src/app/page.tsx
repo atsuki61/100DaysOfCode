@@ -228,6 +228,14 @@ export default function HomePage() {
        description: '複数画像を一覧表示し、クリックで拡大表示できるモーダル付きギャラリーアプリです。グリッドレイアウト(Tailwind CSS Grid/Flexbox)、モーダルウィンドウの実装と状態管理、Next.jsのnext/imageコンポーネントによる画像最適化を練習しました。',
        tags: ['React', 'Next.js', 'TypeScript', 'TailwindCSS', 'Image', 'Modal', 'Grid Layout'],
      },
+     {
+       id: 'day29',
+       name: 'Day 29: カレンダーアプリ',
+       path: '/day29-calendar',
+       imageUrl: '/images/day29-calendar.png',
+       description: '当月の日付をカレンダー形式で表示し、イベントの日を強調表示するカレンダーアプリです。Date APIの利用、二次元配列でのカレンダー生成、条件付きレンダリング、UIコンポーネントの設計を練習しました。',
+       tags: ['React', 'Next.js', 'TypeScript', 'TailwindCSS', 'Date API', 'Calendar', 'Event Management'],
+     },
      // ここに新しいアプリを追加していきます
   ];
 

@@ -40,6 +40,7 @@ const Footer = ({ currentDay }: FooterProps) => {
       26: "/day26-password-generator", // Day 26のルートを追加
       27: "/day27-typing-speed-test", // Day 27のルートを追加
       28: "/day28-image-gallery", // Day 28のルートを追加
+      29: "/day29-calendar", // Day 29のルートを追加
     };
     return dayRoutes[day] || `/day${day}`;
   };

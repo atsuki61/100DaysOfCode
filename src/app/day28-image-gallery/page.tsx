@@ -23,14 +23,7 @@ export default function Day28Page() {
   return (
     <div className="container mx-auto px-4 py-8"> {/* コンテナ, 中央配置, 横パディング4, 縦パディング8 */}
       {/* ヘッダー情報 */}
-      <div className="mb-8 text-center"> {/* 下マージン8, 中央配置 */}
-        <h1 className="text-3xl font-bold text-gray-900 mb-4"> {/* 3xl文字, ボールド, グレー900, 下マージン4 */}
-          アニメキャラクター ギャラリー
-        </h1>
-        <p className="text-gray-600 max-w-2xl mx-auto"> {/* グレー文字, 最大幅2xl, 中央配置 */}
-          お気に入りのアニメキャラクターの画像をお楽しみください。
-          画像をクリックすると拡大表示され、キーボードの矢印キーで前後の画像を見ることができます。
-        </p>
+     
         
         {/* 統計情報 */}
         <div className="mt-6 flex justify-center gap-8 text-sm text-gray-500"> {/* 上マージン6, フレックス中央, ギャップ8, 小文字, グレー文字 */}
@@ -38,7 +31,6 @@ export default function Day28Page() {
           <span>表示中: {filteredImages.length}枚</span>
           <span>カテゴリ数: {categories.length}個</span>
         </div>
-      </div>
 
       {/* カテゴリフィルター */}
       <CategoryFilter
