@@ -1,4 +1,5 @@
 import { CalendarDay } from '../types'
+import { getHolidayByDate } from '../data/holidays'
 
 interface CalendarCellProps {
   calendarDay: CalendarDay
@@ -10,6 +11,10 @@ export default function CalendarCell({ calendarDay, onClick }: CalendarCellProps
   const dayOfWeek = date.getDay()
   const isSunday = dayOfWeek === 0
   const isSaturday = dayOfWeek === 6
+  
+  // 祝日情報を取得
+  const dateString = date.toISOString().split('T')[0]
+  const holiday = getHolidayByDate(dateString)
 
   // セルのベーススタイル
   const baseClasses = "relative h-24 p-2 border-b border-r border-gray-200 cursor-pointer transition-all duration-200 z-10" // 相対位置, 高さ24, パディング2, ボーダー, カーソルポインタ, トランジション, z-index 10
@@ -17,20 +22,22 @@ export default function CalendarCell({ calendarDay, onClick }: CalendarCellProps
   // 当月でない日のスタイル
   const notCurrentMonthClasses = !isCurrentMonth 
     ? "bg-gray-50 text-gray-400" // グレー背景, グレー文字
-    : "bg-white hover:bg-gray-50" // 白背景, ホバー効果
+    : "bg-white hover:bg-gray-100" // 白背景, ホバー効果（より明るく）
 
   // 今日のスタイル
   const todayClasses = isToday 
     ? "bg-blue-50 border-blue-200" // 薄青背景, 青ボーダー
     : ""
 
-  // 週末のテキストカラー
+  // 週末と祝日のテキストカラー
   const weekendTextClasses = isCurrentMonth
-    ? isSunday 
-      ? "text-red-600" // 日曜日は赤
-      : isSaturday 
-        ? "text-blue-600" // 土曜日は青
-        : "text-gray-900" // 平日は黒
+    ? holiday
+      ? "text-red-600 font-bold" // 祝日は赤太字
+      : isSunday 
+        ? "text-red-600" // 日曜日は赤
+        : isSaturday 
+          ? "text-blue-600" // 土曜日は青
+          : "text-gray-800" // 平日は濃いグレー（より明るく）
     : ""
 
   return (
@@ -55,6 +62,13 @@ export default function CalendarCell({ calendarDay, onClick }: CalendarCellProps
           <div className="w-2 h-2 bg-blue-600 rounded-full" /> // 幅2, 高さ2, 青背景, 円形
         )}
       </div>
+
+      {/* 祝日表示 */}
+      {holiday && isCurrentMonth && (
+        <div className="text-xs text-red-600 font-medium truncate mb-1"> {/* 超小文字, 赤文字, ミディアム, 省略, 下マージン1 */}
+          {holiday.name}
+        </div>
+      )}
 
       {/* イベント */}
       <div className="space-y-1 relative z-10"> {/* 縦間隔1, 相対位置, z-index 10 */}

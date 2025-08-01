@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react'
 import { CalendarEvent } from '../types'
+import { getHolidayByDate } from '../data/holidays'
 
 interface EventModalProps {
   isOpen: boolean
@@ -35,9 +36,11 @@ export default function EventModal({ isOpen, selectedDate, events, onClose }: Ev
   }
 
   const dayOfWeek = ['日', '月', '火', '水', '木', '金', '土'][selectedDate.getDay()]
+  const dateString = selectedDate.toISOString().split('T')[0]
+  const holiday = getHolidayByDate(dateString)
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-20"> {/* 固定位置, 全画面, z-index50, フレックス中央, 黒背景20% */}
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-10"> {/* 固定位置, 全画面, z-index50, フレックス中央, 黒背景10% */}
       {/* 背景オーバーレイ */}
       <div
         className="absolute inset-0 cursor-pointer" // 絶対位置, 全体覆う, カーソルポインタ
@@ -52,9 +55,16 @@ export default function EventModal({ isOpen, selectedDate, events, onClose }: Ev
             <h2 className="text-lg font-semibold text-gray-900"> {/* 大文字, セミボールド, グレー900 */}
               {selectedDate.getFullYear()}年{selectedDate.getMonth() + 1}月{selectedDate.getDate()}日
             </h2>
-            <p className="text-sm text-gray-600"> {/* 小文字, グレー文字 */}
-              {dayOfWeek}曜日
-            </p>
+            <div className="flex items-center gap-2"> {/* フレックス, アイテム中央, ギャップ2 */}
+              <p className="text-sm text-gray-600"> {/* 小文字, グレー文字 */}
+                {dayOfWeek}曜日
+              </p>
+              {holiday && (
+                <span className="text-sm text-red-600 font-medium"> {/* 小文字, 赤文字, ミディアム */}
+                  {holiday.name}
+                </span>
+              )}
+            </div>
           </div>
           
           <button
