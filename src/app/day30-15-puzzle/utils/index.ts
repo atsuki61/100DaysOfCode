@@ -1,0 +1,1 @@
+export { shuffleArray, shufflePuzzle, isPuzzleSolved } from './shuffle'
