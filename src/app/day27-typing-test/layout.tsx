@@ -22,14 +22,10 @@ export default function Day27Layout({
 }) {
   return (
     <div className="min-h-screen bg-gray-50"> {/* 最小高さ画面, グレー50背景 */}
-      <Header title="Day 27: タイピング速度テスト" showPortfolioLink={true} />
-      
+      <Header title="Day 27: タイピング速度テスト" />
       <PageHeader
-        day={27}
         title="タイピング速度テスト"
         description="WPM（Words Per Minute）を計測してタイピング速度をチェック！"
-        keywords={['キー入力イベント', 'タイマー計測', '速度計算', '正確性評価', 'リアルタイム更新']}
-        bgColor="bg-gray-50"
       />
       
       <main className="bg-gray-50 min-h-screen"> {/* グレー50背景, 最小高さ画面 */}
