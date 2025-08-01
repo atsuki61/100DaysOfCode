@@ -12,7 +12,7 @@ export default function CalendarCell({ calendarDay, onClick }: CalendarCellProps
   const isSaturday = dayOfWeek === 6
 
   // セルのベーススタイル
-  const baseClasses = "relative h-24 p-2 border-b border-r border-gray-200 cursor-pointer transition-all duration-200" // 相対位置, 高さ24, パディング2, ボーダー, カーソルポインタ, トランジション
+  const baseClasses = "relative h-24 p-2 border-b border-r border-gray-200 cursor-pointer transition-all duration-200 z-10" // 相対位置, 高さ24, パディング2, ボーダー, カーソルポインタ, トランジション, z-index 10
 
   // 当月でない日のスタイル
   const notCurrentMonthClasses = !isCurrentMonth 
@@ -39,7 +39,7 @@ export default function CalendarCell({ calendarDay, onClick }: CalendarCellProps
       onClick={onClick}
     >
       {/* 日付 */}
-      <div className="flex items-center justify-between mb-1"> {/* フレックス, アイテム中央, 両端配置, 下マージン1 */}
+      <div className="flex items-center justify-between mb-1 relative z-10"> {/* フレックス, アイテム中央, 両端配置, 下マージン1, 相対位置, z-index 10 */}
         <span
           className={`text-sm font-medium ${ // 小文字, ミディアム
             isToday 
@@ -57,7 +57,7 @@ export default function CalendarCell({ calendarDay, onClick }: CalendarCellProps
       </div>
 
       {/* イベント */}
-      <div className="space-y-1"> {/* 縦間隔1 */}
+      <div className="space-y-1 relative z-10"> {/* 縦間隔1, 相対位置, z-index 10 */}
         {events.slice(0, 3).map((event) => (
           <div
             key={event.id}
@@ -80,7 +80,7 @@ export default function CalendarCell({ calendarDay, onClick }: CalendarCellProps
 
       {/* ホバー時のオーバーレイ - より軽い効果に変更 */}
       {isCurrentMonth && (
-        <div className="absolute inset-0 bg-gray-200 bg-opacity-0 hover:bg-opacity-30 transition-all duration-200 pointer-events-none" /> // 絶対位置, 全体覆う, 薄いグレー背景, 透明度0→30%, トランジション, ポインターイベント無効
+        <div className="absolute inset-0 bg-gray-200 bg-opacity-0 hover:bg-opacity-10 transition-all duration-200 pointer-events-none z-0" /> // 絶対位置, 全体覆う, 薄いグレー背景, 透明度0→10%, トランジション, ポインターイベント無効, z-index 0
       )}
     </div>
   )
