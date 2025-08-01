@@ -4,8 +4,7 @@
 export type PuzzleBoard = number[]
 
 // ゲームの状態
-export type GameStatus = 'idle' | 'playing' | 'completed'
-
+export type GameStatus = 'idle' | 'playing' | 'won' | 'completed'
 // タイルの移動方向
 export type Direction = 'up' | 'down' | 'left' | 'right'
 
