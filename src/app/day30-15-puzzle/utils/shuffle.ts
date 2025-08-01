@@ -24,8 +24,8 @@ export function shuffleArray<T>(array: T[]): T[] {
  * 解けない状態を避けるため、実際に可能な動きでシャッフルします
  */
 export function shufflePuzzle(board: PuzzleBoard, moves: number = 100): PuzzleBoard {
-  let currentBoard = [...board] //
-  let emptyIndex = currentBoard.indexOf(0)
+  const currentBoard = [...board] // 元の盤面をコピーして変更しないようにする
+  let emptyIndex = currentBoard.indexOf(0) // 空白タイルの位置を取得
   
   // 指定回数だけランダムな有効移動を実行
   for (let i = 0; i < moves; i++) {
