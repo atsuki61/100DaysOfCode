@@ -43,23 +43,26 @@ export default function Day30Page() {
     }
   }, [puzzleState.status, puzzleState.stats.startTime])
 
-  // シャッフル機能
-  const handleShuffle = () => {
-    const shuffledBoard = shufflePuzzle(puzzleState.board, 200) // 200回移動でシャッフル
-    const newEmptyIndex = shuffledBoard.indexOf(0)
-    
-    setPuzzleState({
-      board: shuffledBoard,
-      status: 'playing',
-      stats: {
-        moves: 0,
-        startTime: Date.now(),
-        endTime: null,
-        elapsedTime: 0,
-      },
-      emptyIndex: newEmptyIndex,
-    })
-  }
+// シャッフル機能（修正版）
+const handleShuffle = () => {
+  const shuffledBoard = shufflePuzzle(puzzleState.board, 200)
+  const newEmptyIndex = shuffledBoard.indexOf(0)
+  const now = Date.now() // 同じ時刻を使用
+  
+  setPuzzleState({
+    board: shuffledBoard,
+    status: 'playing',
+    stats: {
+      moves: 0,
+      startTime: now, // 同じ時刻を使用
+      endTime: null,
+      elapsedTime: 0,
+    },
+    emptyIndex: newEmptyIndex,
+  })
+  
+  setCurrentTime(now) // currentTimeも同時に更新
+}
 
   // タイルクリック処理
   const handleTileClick = (clickedIndex: number) => {
@@ -107,25 +110,27 @@ export default function Day30Page() {
   }
 
   // 経過時間の計算（リアルタイム表示用）
-  const getElapsedTime = () => {
-    if (puzzleState.stats.endTime) {
-      // ゲーム終了時は固定の経過時間を表示
-      return puzzleState.stats.elapsedTime
-    }
-    if (puzzleState.stats.startTime && puzzleState.status === 'playing') {
-      // ゲーム進行中はリアルタイムで計算
-      return currentTime - puzzleState.stats.startTime
-    }
-    return 0
+// 経過時間の計算（修正版）
+const getElapsedTime = () => {
+  if (puzzleState.stats.endTime) {
+    return puzzleState.stats.elapsedTime
   }
+  if (puzzleState.stats.startTime && puzzleState.status === 'playing') {
+    // 負の値を防ぐため Math.max を使用
+    return Math.max(0, currentTime - puzzleState.stats.startTime)
+  }
+  return 0
+}
 
-  // 時間を分:秒形式でフォーマット
-  const formatTime = (milliseconds: number) => {
-    const seconds = Math.floor(milliseconds / 1000)
-    const minutes = Math.floor(seconds / 60)
-    const remainingSeconds = seconds % 60
-    return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`
-  }
+// 時間フォーマット関数（修正版）
+const formatTime = (milliseconds: number) => {
+  // 負の値の場合は0として扱う
+  const positiveMs = Math.max(0, milliseconds)
+  const seconds = Math.floor(positiveMs / 1000)
+  const minutes = Math.floor(seconds / 60)
+  const remainingSeconds = seconds % 60
+  return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`
+}
 
   return (
     <div className="container mx-auto px-4 py-8"> {/* コンテナ, 水平中央, 横パディング4, 縦パディング8 */}
