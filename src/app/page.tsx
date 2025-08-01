@@ -236,6 +236,14 @@ export default function HomePage() {
        description: '当月の日付をカレンダー形式で表示し、イベントの日を強調表示するカレンダーアプリです。Date APIの利用、二次元配列でのカレンダー生成、条件付きレンダリング、UIコンポーネントの設計を練習しました。',
        tags: ['React', 'Next.js', 'TypeScript', 'TailwindCSS', 'Date API', 'Calendar', 'Event Management'],
      },
+     {
+       id: 'day30',
+       name: 'Day 30: 15パズルゲーム',
+       path: '/day30-15-puzzle',
+       imageUrl: '/images/day30-15-puzzle.png',
+       description: '数字タイルをスライドして正しい順序に並べる15パズルゲームです。タイルの移動、盤面の状態管理、ゲームの進行と終了、統計情報の表示を練習しました。',
+       tags: ['React', 'Next.js', 'TypeScript', 'TailwindCSS', 'Game Logic', 'State Management'],
+     },
      // ここに新しいアプリを追加していきます
   ];
 
