@@ -8,7 +8,7 @@ import {
   isTypingComplete, 
   calculateTimeElapsed 
 } from './utils/typingUtils';
-import { getRandomText, sampleTexts } from './utils/sampleTexts';
+import { getRandomText } from './utils/sampleTexts';
 import TextSelector from './components/TextSelector';
 import TextDisplay from './components/TextDisplay';
 import TypingInput from './components/TypingInput';
@@ -196,14 +196,6 @@ export default function TypingTestPage() {
   return (
     <div className="min-h-screen bg-gray-50 py-8"> {/* 最小高さ画面, グレー50背景, 縦パディング8 */}
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"> {/* 最大横幅6xl, 水平中央, 横パディング4(sm以上で6・lg以上で8) */}
-        
-        {/* ヘッダー */}
-        <div className="text-center mb-8"> {/* テキスト中央, 下マージン8 */}
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">⚡ タイピング速度テスト</h1> {/* 文字サイズ4xl, 太字, グレー900テキスト, 下マージン2 */}
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto"> {/* 文字サイズlg, グレー600テキスト, 最大横幅2xl, 水平中央 */}
-            WPM（Words Per Minute）を計測して、あなたのタイピング速度と正確性をチェックしましょう！
-          </p>
-        </div>
 
         <div className="space-y-8"> {/* 縦方向スペース8 */}
           

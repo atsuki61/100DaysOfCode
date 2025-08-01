@@ -24,7 +24,7 @@ export default function Day27Layout({
     <div className="min-h-screen bg-gray-50"> {/* 最小高さ画面, グレー50背景 */}
       <Header title="Day 27: タイピング速度テスト" />
       <PageHeader
-        title="タイピング速度テスト"
+        title="⚡タイピング速度テスト"
         description="WPM（Words Per Minute）を計測してタイピング速度をチェック！"
       />
       
