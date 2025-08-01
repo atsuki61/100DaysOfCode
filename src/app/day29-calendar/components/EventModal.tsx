@@ -37,7 +37,7 @@ export default function EventModal({ isOpen, selectedDate, events, onClose }: Ev
   const dayOfWeek = ['日', '月', '火', '水', '木', '金', '土'][selectedDate.getDay()]
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"> {/* 固定位置, 全画面, z-index50, フレックス中央, 黒背景50% */}
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-20"> {/* 固定位置, 全画面, z-index50, フレックス中央, 黒背景20% */}
       {/* 背景オーバーレイ */}
       <div
         className="absolute inset-0 cursor-pointer" // 絶対位置, 全体覆う, カーソルポインタ
