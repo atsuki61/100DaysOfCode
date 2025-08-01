@@ -78,9 +78,9 @@ export default function CalendarCell({ calendarDay, onClick }: CalendarCellProps
         )}
       </div>
 
-      {/* ホバー時のオーバーレイ */}
+      {/* ホバー時のオーバーレイ - より軽い効果に変更 */}
       {isCurrentMonth && (
-        <div className="absolute inset-0 bg-gray-900 bg-opacity-0 hover:bg-opacity-5 transition-all duration-200 pointer-events-none" /> // 絶対位置, 全体覆う, グレー背景, 透明度0→5%, トランジション, ポインターイベント無効
+        <div className="absolute inset-0 bg-gray-200 bg-opacity-0 hover:bg-opacity-30 transition-all duration-200 pointer-events-none" /> // 絶対位置, 全体覆う, 薄いグレー背景, 透明度0→30%, トランジション, ポインターイベント無効
       )}
     </div>
   )

@@ -22,7 +22,6 @@ export default function Day29Page() {
 
   return (
     <div className="container mx-auto px-4 py-8"> {/* コンテナ, 中央配置, 横パディング4, 縦パディング8 */}
-  
       {/* カレンダーヘッダー */}
       <CalendarHeader
         year={currentYear}
