@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { PuzzleState, GameStatus } from './types'
 import { shufflePuzzle, moveTile, isGameWon } from './utils'
 
@@ -22,6 +22,26 @@ const initialState: PuzzleState = {
 
 export default function Day30Page() {
   const [puzzleState, setPuzzleState] = useState<PuzzleState>(initialState)
+  const [currentTime, setCurrentTime] = useState<number>(Date.now()) // リアルタイム時間管理
+
+  // リアルタイムタイマー
+  useEffect(() => {
+    let intervalId: NodeJS.Timeout | null = null
+
+    // ゲームが進行中の場合のみタイマーを開始
+    if (puzzleState.status === 'playing' && puzzleState.stats.startTime) {
+      intervalId = setInterval(() => {
+        setCurrentTime(Date.now())
+      }, 1000) // 1秒ごとに更新
+    }
+
+    // クリーンアップ関数：コンポーネントのアンマウント時やステータス変更時にタイマーをクリア
+    return () => {
+      if (intervalId) {
+        clearInterval(intervalId)
+      }
+    }
+  }, [puzzleState.status, puzzleState.stats.startTime])
 
   // シャッフル機能
   const handleShuffle = () => {
@@ -69,7 +89,7 @@ export default function Day30Page() {
         status: newStatus,
         stats: {
           moves: newMoves,
-          startTime: puzzleState.stats.startTime,
+          startTime: puzzleState.stats.startTime || Date.now(), // 初回移動時にタイマー開始
           endTime: endTime,
           elapsedTime: endTime && puzzleState.stats.startTime 
             ? endTime - puzzleState.stats.startTime 
@@ -83,15 +103,18 @@ export default function Day30Page() {
   // リセット機能
   const handleReset = () => {
     setPuzzleState(initialState)
+    setCurrentTime(Date.now()) // 現在時刻もリセット
   }
 
   // 経過時間の計算（リアルタイム表示用）
   const getElapsedTime = () => {
     if (puzzleState.stats.endTime) {
+      // ゲーム終了時は固定の経過時間を表示
       return puzzleState.stats.elapsedTime
     }
     if (puzzleState.stats.startTime && puzzleState.status === 'playing') {
-      return Date.now() - puzzleState.stats.startTime
+      // ゲーム進行中はリアルタイムで計算
+      return currentTime - puzzleState.stats.startTime
     }
     return 0
   }
