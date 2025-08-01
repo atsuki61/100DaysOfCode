@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { PuzzleState, GameStatus } from './types'
+import { shufflePuzzle } from './utils'
 
 // 初期状態（解決済みの状態）
 const initialBoard = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 0]
@@ -20,8 +21,25 @@ const initialState: PuzzleState = {
 }
 
 export default function Day30Page() {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [puzzleState, setPuzzleState] = useState<PuzzleState>(initialState)
+
+  // シャッフル機能
+  const handleShuffle = () => {
+    const shuffledBoard = shufflePuzzle(puzzleState.board, 200) // 200回移動でシャッフル
+    const newEmptyIndex = shuffledBoard.indexOf(0)
+    
+    setPuzzleState({
+      board: shuffledBoard,
+      status: 'playing',
+      stats: {
+        moves: 0,
+        startTime: Date.now(),
+        endTime: null,
+        elapsedTime: 0,
+      },
+      emptyIndex: newEmptyIndex,
+    })
+  }
 
   return (
     <div className="container mx-auto px-4 py-8"> {/* コンテナ, 水平中央, 横パディング4, 縦パディング8 */}
@@ -42,7 +60,7 @@ export default function Day30Page() {
           </div>
         </div>
 
-        {/* パズル盤面（仮表示） */}
+        {/* パズル盤面 */}
         <div className="bg-white rounded-lg shadow-md p-4"> {/* 白背景, 角丸大, 影中, パディング4 */}
           <h2 className="text-lg font-semibold mb-4">🧩 パズル盤面</h2>
           
@@ -52,7 +70,7 @@ export default function Day30Page() {
               <div
                 key={index}
                 className={`
-                  aspect-square flex items-center justify-center text-lg font-bold rounded-md
+                  aspect-square flex items-center justify-center text-lg font-bold rounded-md transition-colors
                   ${value === 0 
                     ? 'bg-gray-200 text-gray-400' // 空白タイル: グレー背景, グレー文字
                     : 'bg-blue-500 text-white hover:bg-blue-600 cursor-pointer' // 数字タイル: 青背景, 白文字, ホバー時濃い青, カーソルポインター
@@ -65,11 +83,11 @@ export default function Day30Page() {
           </div>
         </div>
 
-        {/* 操作ボタン（仮） */}
+        {/* 操作ボタン */}
         <div className="mt-6 text-center"> {/* 上マージン6, 中央配置 */}
           <button 
-            className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-md" // 緑背景, ホバー時濃い緑, 白文字, 太字, 縦パディング2, 横パディング4, 角丸中
-            onClick={() => console.log('シャッフル機能（未実装）')}
+            className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-md transition-colors" // 緑背景, ホバー時濃い緑, 白文字, 太字, 縦パディング2, 横パディング4, 角丸中, 色変更トランジション
+            onClick={handleShuffle}
           >
             🔀 シャッフル
           </button>
