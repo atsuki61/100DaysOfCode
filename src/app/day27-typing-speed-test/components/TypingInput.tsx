@@ -36,7 +36,6 @@ export default function TypingInput({
   // キー押下時の処理
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     // Ctrl+A, Ctrl+V, Backspace, Delete などは制限しない
-    const allowedKeys = ['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Home', 'End'];
     const isCtrlKey = e.ctrlKey || e.metaKey;
     
     // コピペ防止（ただし全選択は許可）

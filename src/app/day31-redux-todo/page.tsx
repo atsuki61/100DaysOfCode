@@ -8,15 +8,7 @@ export default function Day31Page() {
   return (
     <Provider store={store}>
       <div className="max-w-4xl mx-auto p-6">
-        {/* ヘッダー */}
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            📝 Redux Toolkit ToDoアプリ
-          </h1>
-          <p className="text-gray-600">
-            Redux Toolkitを使用したグローバル状態管理のToDoアプリケーション
-          </p>
-        </div>
+
 
         {/* メインコンテンツ */}
         <div className="bg-white rounded-lg shadow-lg p-6">

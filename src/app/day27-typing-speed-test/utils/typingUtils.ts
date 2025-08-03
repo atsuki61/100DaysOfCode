@@ -1,4 +1,4 @@
-import { TypingStats, CharStatus, SampleText } from '../types';
+import { TypingStats, CharStatus } from '../types';
 
 /**
  * WPM（Words Per Minute）を計算
