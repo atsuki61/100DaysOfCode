@@ -16,7 +16,6 @@ export default function Day31Layout({ children }: { children: React.ReactNode })
         <PageHeader 
           title="📝 Redux Toolkit ToDoアプリ" 
           description="Redux Toolkitを用いてグローバルに状態管理するToDoリストアプリケーション"
-          day={31}
         />
         {children}
       </main>
