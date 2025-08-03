@@ -45,7 +45,7 @@ export default function TextSelector({
           <label className="text-sm font-medium text-gray-700">難易度:</label> {/* 文字サイズsm, 太字, グレー700テキスト */}
           <select 
             value={selectedDifficulty}
-            onChange={(e) => setSelectedDifficulty(e.target.value)}
+            onChange={(e) => setSelectedDifficulty(e.target.value as 'all' | 'easy' | 'medium' | 'hard')}
             disabled={disabled}
             className="px-3 py-1 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50" // 横パディング3, 縦パディング1, ボーダー, グレー300ボーダー, 角丸md, 文字サイズsm, フォーカス時アウトラインなし青500リング2, 無効時不透明度50
           >
