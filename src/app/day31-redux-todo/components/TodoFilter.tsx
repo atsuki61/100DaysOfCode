@@ -3,7 +3,7 @@
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState, AppDispatch } from '../store'
 import { setFilter } from '../store/todoSlice'
-import { TodoFilter } from '../types'
+import type { TodoFilter } from '../types'
 
 export default function TodoFilter() {
   const dispatch = useDispatch<AppDispatch>()
