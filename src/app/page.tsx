@@ -244,6 +244,14 @@ export default function HomePage() {
        description: '数字タイルをスライドして正しい順序に並べる15パズルゲームです。タイルの移動、盤面の状態管理、ゲームの進行と終了、統計情報の表示を練習しました。',
        tags: ['React', 'Next.js', 'TypeScript', 'TailwindCSS', 'Game Logic', 'State Management'],
      },
+     {
+       id: 'day31',
+       name: 'Day 31: Redux Toolkit ToDoアプリ',
+       path: '/day31-redux-todo',
+       imageUrl: '/images/day31-redux-todo.png',
+       description: 'Redux Toolkitを用いてグローバルに状態管理するToDoリストアプリです。createSlice、configureStore、useSelector、useDispatchを使用した状態管理を練習しました。',
+       tags: ['React', 'Next.js', 'TypeScript', 'TailwindCSS', 'Redux Toolkit', 'State Management'],
+     },
      // ここに新しいアプリを追加していきます
   ];
 
