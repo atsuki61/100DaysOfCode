@@ -43,6 +43,7 @@ const Footer = ({ currentDay }: FooterProps) => {
       29: "/day29-calendar", // Day 29のルートを追加
       30: "/day30-15-puzzle", // Day 30のルートを追加
       31: "/day31-redux-todo", // Day 31のルートを追加
+      32: "/day32-user-registration-form", // Day 32のルートを追加
     };
     return dayRoutes[day] || `/day${day}`;
   };

@@ -252,6 +252,14 @@ export default function HomePage() {
        description: 'Redux Toolkitを用いてグローバルに状態管理するToDoリストアプリです。createSlice、configureStore、useSelector、useDispatchを使用した状態管理を練習しました。',
        tags: ['React', 'Next.js', 'TypeScript', 'TailwindCSS', 'Redux Toolkit', 'State Management'],
      },
+     {
+       id: 'day32',
+       name: 'Day 32: ユーザー登録フォーム',
+       path: '/day32-user-registration-form',
+       imageUrl: '/images/day32-user-registration-form.png',
+       description: 'React Hook FormとYupを使用した高度なバリデーション機能付きのユーザー登録フォームです。リアルタイムで入力値の検証を行い、ユーザビリティを向上させています。',
+       tags: ['React', 'Next.js', 'TypeScript', 'TailwindCSS', 'React Hook Form', 'Yup'],
+     },
      // ここに新しいアプリを追加していきます
   ];
 
