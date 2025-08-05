@@ -27,7 +27,19 @@ const ImageCard = ({ image }: ImageCardProps) => {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 cursor-pointer"> {/* 背景白、角丸、影、オーバーフロー隠し、ホバー影、トランジション、カーソルポインタ */}
+    <div 
+      className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 cursor-pointer group" /* 背景白、角丸、影、オーバーフロー隠し、ホバー影、トランジション、カーソルポインタ、グループ */
+      onClick={handleImageClick}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          handleImageClick();
+        }
+      }}
+      tabIndex={0}
+      role="button"
+      aria-label={`${image.alt_description || 'Image'} by ${image.user.name}を拡大表示`}
+    >
       <div className="relative aspect-square"> {/* 相対位置、正方形アスペクト比 */}
         {isLoading && (
           <div className="absolute inset-0 bg-gray-200 animate-pulse flex items-center justify-center"> {/* 絶対位置、全体、グレー背景、パルスアニメーション、中央寄せ */}
@@ -47,10 +59,9 @@ const ImageCard = ({ image }: ImageCardProps) => {
             src={image.urls.small}
             alt={image.alt_description || 'Unsplash image'}
             fill
-            className="object-cover transition-transform duration-300 hover:scale-105" // オブジェクトカバー、トランジション、ホバー拡大
+            className="object-cover transition-transform duration-300 group-hover:scale-105" // オブジェクトカバー、トランジション、グループホバー拡大
             onLoad={handleImageLoad}
             onError={handleImageError}
-            onClick={handleImageClick}
           />
         )}
       </div>

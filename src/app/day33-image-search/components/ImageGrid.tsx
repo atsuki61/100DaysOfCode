@@ -63,7 +63,11 @@ const ImageGrid = ({ images, loading, hasMore, onLoadMore, error }: ImageGridPro
   return (
     <div>
       {/* 画像グリッド */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"> {/* グリッド、レスポンシブ列数、ギャップ */}
+      <div 
+        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" /* グリッド、レスポンシブ列数、ギャップ */
+        role="grid"
+        aria-label="検索結果の画像一覧"
+      >
         {images.map((image) => (
           <ImageCard key={image.id} image={image} />
         ))}
@@ -72,8 +76,8 @@ const ImageGrid = ({ images, loading, hasMore, onLoadMore, error }: ImageGridPro
       {/* 無限スクロール用のトリガー要素 */}
       <div ref={observerRef} className="h-20 flex items-center justify-center"> {/* 高さ、中央寄せ */}
         {loading && (
-          <div className="flex items-center gap-3 text-gray-600"> {/* フレックス、アイテム中央、ギャップ、グレーテキスト */}
-            <div className="w-6 h-6 border-2 border-gray-300 border-t-blue-500 rounded-full animate-spin"></div> {/* スピナー：幅高さ、ボーダー、青上ボーダー、回転アニメーション */}
+          <div className="flex items-center gap-3 text-gray-600" aria-live="polite"> {/* フレックス、アイテム中央、ギャップ、グレーテキスト、ライブリージョン */}
+            <div className="w-6 h-6 border-2 border-gray-300 border-t-blue-500 rounded-full animate-spin" aria-hidden="true"></div> {/* スピナー：幅高さ、ボーダー、青上ボーダー、回転アニメーション、支援技術から隠す */}
             <span>更に画像を読み込み中...</span>
           </div>
         )}

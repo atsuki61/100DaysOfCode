@@ -21,13 +21,19 @@ const SearchForm = ({ onSearch, loading }: SearchFormProps) => {
     <div className="bg-white rounded-lg shadow-md p-6 mb-8"> {/* 背景白、影付き、パディング、下マージン */}
       <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4"> {/* フレックス縦横、ギャップ */}
         <div className="flex-1"> {/* フレックス拡張 */}
+          <label htmlFor="search-input" className="sr-only">
+            画像検索キーワード
+          </label>
           <input
+            id="search-input"
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="検索キーワードを入力してください（例: nature, city, animals）"
             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" // 幅全体、パディング、ボーダー、角丸、フォーカス時青リング
             disabled={loading}
+            autoComplete="off"
+            aria-describedby="search-hint"
           />
         </div>
         <button
@@ -47,7 +53,7 @@ const SearchForm = ({ onSearch, loading }: SearchFormProps) => {
       </form>
 
       {/* 検索のヒント */}
-      <div className="mt-4 text-sm text-gray-600"> {/* 上マージン、小文字、グレーテキスト */}
+      <div id="search-hint" className="mt-4 text-sm text-gray-600"> {/* 上マージン、小文字、グレーテキスト */}
         <p><strong>検索のヒント:</strong> nature, city, animals, technology, food などのキーワードをお試しください</p>
       </div>
     </div>
