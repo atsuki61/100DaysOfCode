@@ -4,25 +4,43 @@ const UNSPLASH_API_URL = 'https://api.unsplash.com';
 
 // Unsplash Access Key (本来は環境変数から取得)
 // Demo用のアクセスキーを使用
-const ACCESS_KEY = 'YOUR_UNSPLASH_ACCESS_KEY';
+const ACCESS_KEY = process.env.NEXT_PUBLIC_UNSPLASH_ACCESS_KEY || 'YOUR_UNSPLASH_ACCESS_KEY';
+// 文字列から簡単なハッシュ値を生成
+const simpleHash = (str: string): number => {
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) {
+   const char = str.charCodeAt(i);
+    hash = ((hash << 5) - hash) + char;
+    hash = hash & hash; // 32bit整数に変換
+  }
+  return Math.abs(hash);
+};
 
 // 開発時用のモックデータ
-const createMockImage = (id: number, query: string) => ({
-  id: `mock-${id}`,
-  urls: {
-    regular: `https://picsum.photos/800/600?random=${id}`,
-    small: `https://picsum.photos/400/300?random=${id}`,
-    thumb: `https://picsum.photos/200/150?random=${id}`,
-    full: `https://picsum.photos/1200/800?random=${id}`
-  },
-  alt_description: `Beautiful ${query} image ${id}`,
-  user: {
-    name: `Photographer ${id}`,
-    username: `user${id}`
-  },
-  likes: Math.floor(Math.random() * 1000),
-  description: `This is a beautiful ${query} photograph from Unsplash`
-});
+const createMockImage = (id: number, query: string, index: number) => {
+  // クエリからシード値を生成
+  const queryHash = simpleHash(query.toLowerCase());
+  
+  // クエリとインデックスを組み合わせて一意のIDを生成
+  const uniqueId = queryHash + (index * 1000) + id;
+  
+  return {
+    id: `mock-${query}-${id}`,
+    urls: {
+      regular: `https://picsum.photos/800/600?random=${uniqueId}`,
+      small: `https://picsum.photos/400/300?random=${uniqueId}`,
+      thumb: `https://picsum.photos/200/150?random=${uniqueId}`,
+      full: `https://picsum.photos/1200/800?random=${uniqueId}`
+    },
+    alt_description: `Beautiful ${query} image ${id}`,
+    user: {
+      name: `${query.charAt(0).toUpperCase() + query.slice(1)} Photographer ${id}`,
+      username: `${query.toLowerCase()}_photographer_${id}`
+    },
+    likes: Math.floor(Math.random() * 1000) + 50,
+    description: `This is a beautiful ${query} photograph from Unsplash`
+  };
+};
 
 // 画像検索API呼び出し
 export const searchImages = async (
@@ -35,14 +53,19 @@ export const searchImages = async (
     // モックデータを返す（開発時用）
     await new Promise(resolve => setTimeout(resolve, 500)); // 遅延をシミュレート
     
-    const startId = (page - 1) * perPage;
+    const startIndex = (page - 1) * perPage;
     const mockImages = Array.from({ length: perPage }, (_, i) => 
-      createMockImage(startId + i + 1, query)
+      createMockImage(startIndex + i + 1, query, startIndex + i)
     );
 
+    // クエリに応じた総数を調整（異なるクエリで異なる総数）
+    const queryHash = simpleHash(query.toLowerCase());
+    const baseTotal = 50 + (queryHash % 150); // 50-200の範囲
+    const totalPages = Math.ceil(baseTotal / perPage);
+
     return {
-      total: 1000, // 総画像数（モック）
-      total_pages: 50, // 総ページ数（モック）
+      total: baseTotal,
+      total_pages: totalPages,
       results: mockImages
     };
   }
