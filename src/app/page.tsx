@@ -260,6 +260,14 @@ export default function HomePage() {
        description: 'React Hook FormとYupを使用した高度なバリデーション機能付きのユーザー登録フォームです。リアルタイムで入力値の検証を行い、ユーザビリティを向上させています。',
        tags: ['React', 'Next.js', 'TypeScript', 'TailwindCSS', 'React Hook Form', 'Yup'],
      },
+     {
+       id: 'day33',
+       name: 'Day 33: 画像検索アプリ（無限スクロール）',
+       path: '/day33-image-search',
+       imageUrl: '/images/day33-image-search.png',
+       description: 'キーワードで画像を検索し、スクロールで結果を追加読み込みできるアプリです。IntersectionObserver APIによる無限スクロール実装、APIクエリ処理、非同期処理の制御を練習しました。',
+       tags: ['React', 'Next.js', 'TypeScript', 'TailwindCSS', 'IntersectionObserver', 'API'],
+     },
      // ここに新しいアプリを追加していきます
   ];
 
