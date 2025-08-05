@@ -11,7 +11,7 @@ export default function Day32Layout({
     <div className="min-h-screen bg-gray-50">
       <Header title="Day 32: ユーザー登録フォーム" />
       <PageHeader 
-        title="Day 32: ユーザー登録フォーム" 
+        title="ユーザー登録フォーム" 
         description="React Hook Form + Yup による高度なバリデーション機能付きフォーム"
       />
       <main className="bg-gray-50 min-h-screen">
