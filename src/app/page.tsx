@@ -268,6 +268,14 @@ export default function HomePage() {
        description: 'キーワードで画像を検索し、スクロールで結果を追加読み込みできるアプリです。IntersectionObserver APIによる無限スクロール実装、APIクエリ処理、非同期処理の制御を練習しました。',
        tags: ['React', 'Next.js', 'TypeScript', 'TailwindCSS', 'IntersectionObserver', 'API'],
      },
+      {
+        id: 'day34',
+        name: 'Day 34: 英単語当てゲーム (ハングマン)',
+        path: '/day34-hangman',
+        imageUrl: '/images/day34-hangman.png',
+        description: '英単語を一文字ずつ推測するハングマンゲーム。文字列・配列操作、状態管理、条件付きレンダリング、SVG描画を練習しました。',
+        tags: ['React', 'Next.js', 'TypeScript', 'TailwindCSS', 'Game Logic'],
+      },
      // ここに新しいアプリを追加していきます
   ];
 

@@ -1,4 +1,4 @@
-// Unsplash API レスポンスの型定義
+              // Unsplash API レスポンスの型定義
 
 export interface UnsplashImage {
   id: string;
