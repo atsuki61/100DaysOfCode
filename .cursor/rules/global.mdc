@@ -149,7 +149,7 @@ alwaysApply: true
            <div className="min-h-screen bg-gray-50">
              <Header title="Day XX: プロジェクト名" />
              <PageHeader 
-               title="Day XX: プロジェクト名" 
+               title="(プロジェクトに合うような絵文字)プロジェクト名" 
                description="プロジェクトの説明"
              />
              <main className="bg-gray-50 min-h-screen">
@@ -195,6 +195,49 @@ alwaysApply: true
        ```
      - 説明は主要な効果に絞り、1行で簡潔にお願いします。全てのクラスを網羅する必要はありません。
 - **回答言語**: 日本語でお願いします。
+
+# コーディングスタイル指針（TypeScript）
+
+## any 禁止ポリシー
+- 原則として `any` の使用を禁止します。型安全性を損ね、バグの温床になるためです。
+- 例外（やむを得ない一時利用）の場合は、対象行に限定した無効化と理由コメントを必須とします。
+  - 例: `// eslint-disable-next-line @typescript-eslint/no-explicit-any -- ライブラリ型未整備のため暫定。Issue #123 で解消予定`
+
+## 代替指針（any の代わりに使うもの）
+- 値の型がまだ不明: `unknown`
+- 到達不能/ありえない分岐: `never`
+- 任意のオブジェクト: `Record<string, unknown>`
+- ジェネリクスの既定値: `T = unknown`
+
+## 例外・外部入力の扱い
+- 例外は `catch (e: unknown)` とし、利用前に型ガードで絞り込みます。
+  ```ts
+  try { /* ... */ }
+  catch (e: unknown) {
+    if (e instanceof Error) {
+      console.error(e.message);
+    } else {
+      console.error('Unknown error', e);
+    }
+  }
+  ```
+- 外部APIやサードパーティの入力は一旦 `unknown` とし、スキーマバリデーション（例: Zod）または型ガードで検証後に使用します。
+
+## レビュー観点チェックリスト
+- `any` を使っていないか？
+- `catch` が `unknown` で適切に型ガードされているか？
+- 外部入力に対し、検証（スキーマ or 型ガード）が行われているか？
+- ジェネリクスの既定値に `any` を使っていないか？
+
+## ESLint 設定（参考）
+プロジェクトでは `@typescript-eslint/no-explicit-any` を有効化します。必要に応じて以下設定を利用してください。
+```json
+{
+  "rules": {
+    "@typescript-eslint/no-explicit-any": ["error", { "fixToUnknown": true, "ignoreRestArgs": false }]
+  }
+}
+```
 
 ## 重要なプロジェクトファイル (常に意識してください)
 - プロジェクト全体のルートレイアウト: `src/app/layout.tsx`
