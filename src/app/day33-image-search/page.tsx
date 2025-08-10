@@ -27,10 +27,11 @@ async function searchUnsplash(query: string, page: number, perPage: number): Pro
     throw new Error('UNSPLASH_ACCESS_KEY_MISSING');
   }
   const res = await fetch(
-    `https://api.unsplash.com/search/photos?query=${encodeURIComponent(query)}&page=${page}&per_page=${perPage}`,
+    `https://api.unsplash.com/search/photos?query=${encodeURIComponent(query)}&page=${page}&per_page=${perPage}&lang=ja`,
     {
       headers: {
         Authorization: `Client-ID ${accessKey}`,
+        'Accept-Language': 'ja',
       },
     },
   );
@@ -44,8 +45,8 @@ export default function Day33Page() {
   const [totalPages, setTotalPages] = useState<number | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [keyword, setKeyword] = useState('nature');
-  const [input, setInput] = useState('nature');
+  const [keyword, setKeyword] = useState('風景');
+  const [input, setInput] = useState('風景');
   const sentinelRef = useRef<HTMLDivElement | null>(null);
 
   const canLoadMore = useMemo(() => {
