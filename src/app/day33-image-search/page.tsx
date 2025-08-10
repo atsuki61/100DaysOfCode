@@ -63,8 +63,8 @@ export default function Day33Page() {
       setPhotos((prev) => [...prev, ...data.results]);
       setTotalPages(data.total_pages);
       setPage((p) => p + 1);
-    } catch (e: any) {
-      if (e?.message === 'UNSPLASH_ACCESS_KEY_MISSING') {
+    } catch (e: unknown) {
+      if (e instanceof Error && e.message === 'UNSPLASH_ACCESS_KEY_MISSING') {
         setError('環境変数 NEXT_PUBLIC_UNSPLASH_ACCESS_KEY を設定してください。');
       } else {
         setError('データ取得に失敗しました。再度お試しください。');
