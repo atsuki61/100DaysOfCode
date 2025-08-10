@@ -139,8 +139,13 @@ export default function Day33Page() {
                 height={400}
                 className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" // 全幅/全高, トリミング, ホバー拡大
               />
-              <figcaption className="absolute bottom-0 left-0 right-0 bg-black/50 text-white text-xs sm:text-sm px-2 py-1 sm:px-3 sm:py-1.5"> {/* 下部帯, 半透明黒, 白文字, 小さめ, 余白 */}
-                {p.user.name}
+              <figcaption className="absolute bottom-0 left-0 right-0 bg-black/60 text-white px-2 py-1 sm:px-3 sm:py-2 space-y-0.5"> {/* 下部帯(やや濃い), 白文字, 余白, 縦間隔 */}
+                <div className="text-xs sm:text-sm truncate"> {/* 小さめ文字, 省略表示 */}
+                  {p.alt_description ?? p.description ?? '写真'}
+                </div>
+                <div className="text-[10px] sm:text-xs opacity-90"> {/* さらに小さめ, やや薄く */}
+                  撮影: {p.user.name}
+                </div>
               </figcaption>
             </figure>
           ))}
