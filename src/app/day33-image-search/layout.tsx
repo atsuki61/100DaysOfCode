@@ -8,11 +8,11 @@ export default function Day33Layout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="min-h-screen bg-gray-50"> {/* 画面全体の最小高さと背景色 */}
+    <div className="min-h-screen bg-gray-50"> {/* 画面全体の最小高さと薄いグレー背景 */}
       <Header title="Day 33: 画像検索アプリ（無限スクロール）" />
-      <PageHeader 
-        title="画像検索アプリ（無限スクロール）" 
-        description="Unsplash APIを使用した画像検索とIntersectionObserver APIによる無限スクロール機能"
+      <PageHeader
+        title="画像検索アプリ（無限スクロール）"
+        description="Picsum APIを利用し、著者名で簡易検索 + IntersectionObserver による無限スクロール"
       />
       <main className="bg-gray-50 min-h-screen"> {/* メインコンテンツ背景統一 */}
         {children}
@@ -21,3 +21,5 @@ export default function Day33Layout({
     </div>
   );
 }
+
+
