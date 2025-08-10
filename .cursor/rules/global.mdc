@@ -172,6 +172,8 @@ alwaysApply: true
 各プロジェクトでPageHeaderとメインコンテンツの背景色が分離しないよう、layout.tsxの`main`タグに背景色（例：`bg-gray-50 min-h-screen`）を設定し、page.tsxでは重複する背景色設定は避けてください。プロジェクトごとに異なる背景色を使用する場合は、layout.tsxで統一して管理してください。
 
 - **コミットメッセージ**: コードを変更した場合、会話の最後に日本語でコミットメッセージの提案を3つお願いします。可能な範囲で [Conventional Commits](mdc:https:/www.conventionalcommits.org) の形式（例: `feat: 新機能を追加`, `fix: バグを修正`, `docs: ドキュメントを更新`）を意識してください。
+ 
+ - **コミット運用**: 機能実装時は、なるべく細かい論理単位でコミットしてください。1コミット=1つの意図を原則とし、テスト/ビルドが通る状態を維持しつつ不要な変更を含めないでください。
 
 - **Tailwind CSS クラスの注釈**:
      - あなたがコードを生成する際、または私が既存のコードについて質問した際、JSX/TSXファイル内でTailwind CSSのクラスが指定されている `className` プロパティに対して、その主な効果を日本語で非常に簡潔なコメントとして追記してください。
@@ -228,16 +230,6 @@ alwaysApply: true
 - `catch` が `unknown` で適切に型ガードされているか？
 - 外部入力に対し、検証（スキーマ or 型ガード）が行われているか？
 - ジェネリクスの既定値に `any` を使っていないか？
-
-## ESLint 設定（参考）
-プロジェクトでは `@typescript-eslint/no-explicit-any` を有効化します。必要に応じて以下設定を利用してください。
-```json
-{
-  "rules": {
-    "@typescript-eslint/no-explicit-any": ["error", { "fixToUnknown": true, "ignoreRestArgs": false }]
-  }
-}
-```
 
 ## 重要なプロジェクトファイル (常に意識してください)
 - プロジェクト全体のルートレイアウト: `src/app/layout.tsx`
