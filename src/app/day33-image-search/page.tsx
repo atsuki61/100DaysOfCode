@@ -3,62 +3,83 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Image from 'next/image';
 
-type Photo = {
+type UnsplashPhoto = {
   id: string;
-  author: string;
+  alt_description: string | null;
+  description: string | null;
   width: number;
   height: number;
-  download_url: string;
+  urls: { small: string; regular: string; thumb: string };
+  user: { name: string };
 };
 
-const PAGE_SIZE = 18;
+type UnsplashSearchResponse = {
+  total: number;
+  total_pages: number;
+  results: UnsplashPhoto[];
+};
 
-async function fetchPhotos(page: number): Promise<Photo[]> {
-  const res = await fetch(`https://picsum.photos/v2/list?page=${page}&limit=${PAGE_SIZE}`);
+const PAGE_SIZE = 24;
+
+async function searchUnsplash(query: string, page: number, perPage: number): Promise<UnsplashSearchResponse> {
+  const accessKey = process.env.NEXT_PUBLIC_UNSPLASH_ACCESS_KEY;
+  if (!accessKey) {
+    throw new Error('UNSPLASH_ACCESS_KEY_MISSING');
+  }
+  const res = await fetch(
+    `https://api.unsplash.com/search/photos?query=${encodeURIComponent(query)}&page=${page}&per_page=${perPage}`,
+    {
+      headers: {
+        Authorization: `Client-ID ${accessKey}`,
+      },
+    },
+  );
   if (!res.ok) throw new Error('Failed to fetch');
   return res.json();
 }
 
 export default function Day33Page() {
-  const [photos, setPhotos] = useState<Photo[]>([]);
+  const [photos, setPhotos] = useState<UnsplashPhoto[]>([]);
   const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState<number | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [query, setQuery] = useState('');
+  const [keyword, setKeyword] = useState('nature');
+  const [input, setInput] = useState('nature');
   const sentinelRef = useRef<HTMLDivElement | null>(null);
-  const canLoadMore = useRef(true);
 
-  const filtered = useMemo(() => {
-    const q = query.trim().toLowerCase();
-    if (!q) return photos;
-    return photos.filter((p) => p.author.toLowerCase().includes(q));
-  }, [photos, query]);
+  const canLoadMore = useMemo(() => {
+    if (totalPages == null) return true;
+    return page <= totalPages;
+  }, [page, totalPages]);
 
   const load = useCallback(async () => {
-    if (loading || !canLoadMore.current) return;
+    if (loading || !keyword || !canLoadMore) return;
     setLoading(true);
     setError(null);
     try {
-      const data = await fetchPhotos(page);
-      if (data.length === 0) {
-        canLoadMore.current = false;
+      const data = await searchUnsplash(keyword, page, PAGE_SIZE);
+      setPhotos((prev) => [...prev, ...data.results]);
+      setTotalPages(data.total_pages);
+      setPage((p) => p + 1);
+    } catch (e: any) {
+      if (e?.message === 'UNSPLASH_ACCESS_KEY_MISSING') {
+        setError('環境変数 NEXT_PUBLIC_UNSPLASH_ACCESS_KEY を設定してください。');
       } else {
-        setPhotos((prev) => [...prev, ...data]);
-        setPage((p) => p + 1);
+        setError('データ取得に失敗しました。再度お試しください。');
       }
-    } catch (e) {
-      setError('データ取得に失敗しました。再度お試しください。');
     } finally {
       setLoading(false);
     }
-  }, [loading, page]);
+  }, [loading, keyword, page, canLoadMore]);
 
+  // 初回ロード
   useEffect(() => {
-    // 初回ロード
     load();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // 監視してロード
   useEffect(() => {
     if (!sentinelRef.current) return;
     const el = sentinelRef.current;
@@ -75,37 +96,50 @@ export default function Day33Page() {
     return () => observer.disconnect();
   }, [load]);
 
+  function onSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    const q = input.trim();
+    if (!q) return;
+    setPhotos([]);
+    setPage(1);
+    setTotalPages(null);
+    setKeyword(q);
+  }
+
   return (
     <div className="max-w-7xl mx-auto px-4 pb-28"> {/* 最大幅, 中央寄せ, 横余白, フッター分の下余白 */}
       <div className="bg-white rounded-xl shadow p-4 sm:p-6 mt-6"> {/* 白背景, 角丸, 影, パディング可変, 上余白 */}
-        <div className="flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between"> {/* 縦→横, 余白, アイテム中央, 両端寄せ */}
+        <form onSubmit={onSubmit} className="flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between"> {/* 縦→横, 余白, アイテム中央, 両端寄せ */}
           <input
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder="著者名でフィルタ"
-            className="w-full sm:w-80 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" // 幅可変, 余白, 枠線, 角丸, フォーカスリング
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            placeholder="キーワードで画像検索"
+            className="w-full sm:w-96 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" // 幅可変, 余白, 枠線, 角丸, フォーカスリング
           />
-          <div className="text-sm text-gray-500"> {/* 小さめ文字, 灰色 */}
-            {filtered.length} / {photos.length}
-          </div>
-        </div>
+          <button
+            type="submit"
+            className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors" // 横パディング, 縦パディング, 青背景, 白文字, 角丸, ホバー色
+          >
+            検索
+          </button>
+        </form>
 
         {error && (
           <p className="mt-4 text-sm text-red-600">{error}</p> // 上余白, 小さめ, 赤文字
         )}
 
         <div className="mt-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4"> {/* レスポンシブグリッド */}
-          {filtered.map((p) => (
+          {photos.map((p) => (
             <figure key={p.id} className="group relative overflow-hidden rounded-xl bg-gray-100"> {/* グループ, はみ出し隠し, 角丸, 灰背景 */}
               <Image
-                src={`https://picsum.photos/id/${p.id}/400/400`}
-                alt={p.author}
+                src={p.urls.small}
+                alt={p.alt_description ?? p.description ?? 'image'}
                 width={400}
                 height={400}
                 className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" // 全幅/全高, トリミング, ホバー拡大
               />
               <figcaption className="absolute bottom-0 left-0 right-0 bg-black/50 text-white text-xs sm:text-sm px-2 py-1 sm:px-3 sm:py-1.5"> {/* 下部帯, 半透明黒, 白文字, 小さめ, 余白 */}
-                {p.author}
+                {p.user.name}
               </figcaption>
             </figure>
           ))}
@@ -115,7 +149,7 @@ export default function Day33Page() {
 
         <div className="flex items-center justify-center mt-4"> {/* 中央寄せ */}
           {loading && <span className="text-sm text-gray-600">読み込み中…</span>} {/* 小さめ, 灰色 */}
-          {!loading && !canLoadMore.current && (
+          {!loading && totalPages !== null && page > totalPages && (
             <span className="text-sm text-gray-500">これ以上はありません</span> // 小さめ, 灰色
           )}
         </div>

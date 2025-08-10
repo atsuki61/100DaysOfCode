@@ -12,7 +12,7 @@ export default function Day33Layout({
       <Header title="Day 33: 画像検索アプリ（無限スクロール）" />
       <PageHeader
         title="画像検索アプリ（無限スクロール）"
-        description="Picsum APIを利用し、著者名で簡易検索 + IntersectionObserver による無限スクロール"
+        description="Unsplash APIによるキーワード検索 + IntersectionObserver を用いた無限スクロール（要 API キー設定）"
       />
       <main className="bg-gray-50 min-h-screen"> {/* メインコンテンツ背景統一 */}
         {children}
