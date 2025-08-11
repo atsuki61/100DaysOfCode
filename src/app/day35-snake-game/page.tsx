@@ -1,16 +1,15 @@
 'use client';
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-
-type Point = { x: number; y: number };
-type Direction = 'up' | 'down' | 'left' | 'right';
+import type { Point, Direction } from './types';
+import { Board, ControlPanel } from './components';
 
 const GRID_SIZE = 20; // 20x20 の盤面
 const INITIAL_SPEED_MS = 160; // ゲームループ間隔
 
 export default function SnakeGamePage() {
   const [snake, setSnake] = useState<Point[]>([{ x: 8, y: 10 }, { x: 9, y: 10 }, { x: 10, y: 10 }]);
-  const [direction, setDirection] = useState<Direction>('right');
+  const [, setDirection] = useState<Direction>('right'); // 入力の逆走防止に利用（値は参照しないため省略）
   const [food, setFood] = useState<Point>(() => generateFood([{ x: 8, y: 10 }, { x: 9, y: 10 }, { x: 10, y: 10 }]));
   const [isRunning, setIsRunning] = useState<boolean>(false);
   const [score, setScore] = useState<number>(0);
@@ -129,61 +128,14 @@ export default function SnakeGamePage() {
           <div className="flex-1">
             <Board grid={grid} snake={snake} food={food} />
           </div>
-          <div className="w-full md:w-72 space-y-4"> {/* 幅固定, 縦の間隔 */}
-            <div className="bg-gray-50 border rounded-lg p-4"> {/* 薄灰背景, 枠線, 角丸, 余白 */}
-              <p className="text-sm text-gray-600 mb-2">スコア</p> {/* 小文字, 灰色, 下余白 */}
-              <p className="text-3xl font-bold">{score}</p> {/* 大文字, 太字 */}
-            </div>
-            <div className="flex gap-3"> {/* 横並び, 余白 */}
-              <button
-                onClick={startGame}
-                className="px-4 py-2 rounded-md bg-blue-600 text-white hover:bg-blue-700 transition-colors"
-              >{/* 横パディング, 縦パディング, 角丸, 青背景, 白文字, ホバー色 */}
-                スタート/リスタート
-              </button>
-              <button
-                onClick={() => setIsRunning((r) => !r)}
-                className="px-4 py-2 rounded-md bg-gray-700 text-white hover:bg-gray-800 transition-colors"
-              >{/* 横パディング, 縦パディング, 角丸, 濃灰背景, 白文字, ホバー色 */}
-                {isRunning ? '一時停止' : '再開'}
-              </button>
-            </div>
-            <ul className="text-sm text-gray-600 list-disc pl-5 space-y-1"> {/* 小文字, 灰色, 箇条書き, 左パディング, 行間 */}
-              <li>矢印キー/WASDで操作</li>
-              <li>壁 or 自分に当たるとゲームオーバー</li>
-              <li>食べるほどスピードアップ</li>
-            </ul>
-          </div>
+          <ControlPanel
+            score={score}
+            isRunning={isRunning}
+            onStart={startGame}
+            onTogglePause={() => setIsRunning((r) => !r)}
+          />
         </div>
       </section>
-    </div>
-  );
-}
-
-function Board({ grid, snake, food }: { grid: Point[][]; snake: Point[]; food: Point }) {
-  const snakeSet = useMemo(() => new Set(snake.map((p) => `${p.x},${p.y}`)), [snake]);
-  const headKey = `${snake[snake.length - 1].x},${snake[snake.length - 1].y}`;
-
-  return (
-    <div className="inline-block bg-gray-200 p-2 rounded-lg"> {/* インラインブロック, 薄灰背景, 余白, 角丸 */}
-      <div className="grid" style={{ gridTemplateColumns: `repeat(${GRID_SIZE}, 1.5rem)` }}> {/* CSSグリッド, 列幅固定 */}
-        {grid.flat().map((cell) => {
-          const key = `${cell.x},${cell.y}`;
-          const isFood = cell.x === food.x && cell.y === food.y;
-          const isHead = key === headKey;
-          const isBody = !isHead && snakeSet.has(key);
-          return (
-            <div
-              key={key}
-              className={
-                `w-6 h-6 border border-white/40 ${
-                  isHead ? 'bg-green-600' : isBody ? 'bg-green-400' : isFood ? 'bg-red-500' : 'bg-gray-100'
-                }`
-              }
-            />
-          );
-        })}
-      </div>
     </div>
   );
 }
