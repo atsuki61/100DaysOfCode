@@ -284,6 +284,14 @@ export default function HomePage() {
         description: 'ヘビを操作してエサを食べるクラシックゲーム。キーボード入力、ゲームループ、当たり判定、状態管理を練習しました。',
         tags: ['React', 'Next.js', 'TypeScript', 'TailwindCSS', 'Game Loop'],
       },
+      {
+        id: 'day36',
+        name: 'Day 36: QRコード生成アプリ',
+        path: '/day36-qr-code',
+        imageUrl: '',
+        description: '入力テキストからQRコードを生成し、サイズや色を調整してPNGとしてダウンロードできます。',
+        tags: ['React', 'Next.js', 'TypeScript', 'TailwindCSS'],
+      },
      // ここに新しいアプリを追加していきます
   ];
 

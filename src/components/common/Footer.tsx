@@ -47,6 +47,7 @@ const Footer = ({ currentDay }: FooterProps) => {
       33: "/day33-image-search", // Day 33のルートを追加
       34: "/day34-hangman", // Day 34のルートを追加
       35: "/day35-snake-game", // Day 35のルートを追加
+      36: "/day36-qr-code", // Day 36のルートを追加
     };
     return dayRoutes[day] || `/day${day}`;
   };
