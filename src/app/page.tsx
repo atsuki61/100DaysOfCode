@@ -288,7 +288,7 @@ export default function HomePage() {
         id: 'day36',
         name: 'Day 36: QRコード生成アプリ',
         path: '/day36-qr-code',
-        imageUrl: 'public/images/day36-qr-code.png',
+        imageUrl: 'day36-qr-code.png',
         description: '入力テキストからQRコードを生成し、サイズや色を調整してPNGとしてダウンロードできます。',
         tags: ['React', 'Next.js', 'TypeScript', 'TailwindCSS'],
       },
