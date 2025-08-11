@@ -60,7 +60,18 @@ export default function Day33Page() {
     setError(null);
     try {
       const data = await searchUnsplash(keyword, page, PAGE_SIZE);
-      setPhotos((prev) => [...prev, ...data.results]);
+      // 重複排除して追加（idベース）
+      setPhotos((prev) => {
+        const existingIds = new Set(prev.map((ph) => ph.id));
+        const merged = [...prev];
+        for (const ph of data.results) {
+          if (!existingIds.has(ph.id)) {
+            merged.push(ph);
+            existingIds.add(ph.id);
+          }
+        }
+        return merged;
+      });
       setTotalPages(data.total_pages);
       setPage((p) => p + 1);
     } catch (e: unknown) {
