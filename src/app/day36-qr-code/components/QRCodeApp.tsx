@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from 'react';
 import { useQRCode } from '../hooks/useQRCode';
-import type { QRCodeOptions, ErrorCorrectionLevel } from '../types';
+import type { QRCodeOptions } from '../types';
 import OptionsForm from './OptionsForm';
 import QRCodePreview from './QRCodePreview';
 import DownloadButton from './DownloadButton';
