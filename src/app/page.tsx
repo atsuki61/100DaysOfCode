@@ -276,6 +276,14 @@ export default function HomePage() {
         description: '英単語を一文字ずつ推測するハングマンゲーム。文字列・配列操作、状態管理、条件付きレンダリング、SVG描画を練習しました。',
         tags: ['React', 'Next.js', 'TypeScript', 'TailwindCSS', 'Game Logic'],
       },
+      {
+        id: 'day35',
+        name: 'Day 35: スネークゲーム',
+        path: '/day35-snake-game',
+        imageUrl: '',
+        description: 'ヘビを操作してエサを食べるクラシックゲーム。キーボード入力、ゲームループ、当たり判定、状態管理を練習しました。',
+        tags: ['React', 'Next.js', 'TypeScript', 'TailwindCSS', 'Game Loop'],
+      },
      // ここに新しいアプリを追加していきます
   ];
 
