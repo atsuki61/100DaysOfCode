@@ -292,6 +292,14 @@ export default function HomePage() {
         description: '入力テキストからQRコードを生成し、サイズや色を調整してPNGとしてダウンロードできます。',
         tags: ['React', 'Next.js', 'TypeScript', 'TailwindCSS'],
       },
+      {
+        id: 'day37',
+        name: 'Day 37: カード番号バリデータ',
+        path: '/day37-card-validator',
+        imageUrl: '',
+        description: 'Luhnアルゴリズムでカード番号の妥当性をチェックし、ブランド検出と整形を行います。',
+        tags: ['React', 'Next.js', 'TypeScript', 'TailwindCSS', 'Algorithm'],
+      },
      // ここに新しいアプリを追加していきます
   ];
 
