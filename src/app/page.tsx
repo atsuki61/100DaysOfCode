@@ -300,6 +300,14 @@ export default function HomePage() {
         description: 'Luhnアルゴリズムでカード番号の妥当性をチェックし、ブランド検出と整形を行います。',
         tags: ['React', 'Next.js', 'TypeScript', 'TailwindCSS', 'Algorithm'],
       },
+      {
+        id: 'day38',
+        name: 'Day 38: お絵かきアプリ (簡易ペイント)',
+        path: '/day38-drawing-app',
+        imageUrl: '',
+        description: 'マウス/タッチで線を描画し、色・太さの変更やキャンバスのクリアができます。',
+        tags: ['React', 'Next.js', 'TypeScript', 'TailwindCSS', 'Canvas'],
+      },
      // ここに新しいアプリを追加していきます
   ];
 
