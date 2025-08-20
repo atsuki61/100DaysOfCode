@@ -1,24 +1,10 @@
 "use client"
 
 import { useEffect, useMemo, useState } from 'react'
-
-type WeatherData = {
-  city: string
-  tempCelsius: number
-  description: string
-}
-
-type QuoteData = {
-  author: string
-  quote: string
-}
-
-type NewsItem = {
-  title: string
-  url: string
-}
-
-//
+import { WeatherData, QuoteData, NewsItem } from './types'
+import { WeatherCard } from './WeatherCard'
+import { QuoteCard } from './QuoteCard'
+import { NewsCard } from './NewsCard'
 
 async function fetchWeatherMock(): Promise<WeatherData> {
   await new Promise((r) => setTimeout(r, 500))
@@ -87,52 +73,9 @@ export function Dashboard() {
       )}
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {/* 天気カード */}
-        <section className="rounded-lg border border-gray-200 p-5 bg-gradient-to-br from-blue-50 to-white">
-          <h2 className="text-lg font-semibold text-gray-800 mb-3">天気</h2>
-          {combined.weather ? (
-            <div className="flex items-baseline justify-between">
-              <div>
-                <div className="text-sm text-gray-500">{combined.weather.city}</div>
-                <div className="text-3xl font-bold text-blue-700 mt-1">{temperature}</div>
-              </div>
-              <div className="text-gray-600">{combined.weather.description}</div>
-            </div>
-          ) : (
-            <div className="text-gray-400">データなし</div>
-          )}
-        </section>
-
-        {/* 名言カード */}
-        <section className="rounded-lg border border-gray-200 p-5 bg-gradient-to-br from-amber-50 to-white">
-          <h2 className="text-lg font-semibold text-gray-800 mb-3">名言</h2>
-          {combined.quote ? (
-            <blockquote className="text-gray-700 italic">
-              “{combined.quote.quote}”
-              <footer className="mt-2 text-sm text-gray-500">— {combined.quote.author}</footer>
-            </blockquote>
-          ) : (
-            <div className="text-gray-400">データなし</div>
-          )}
-        </section>
-
-        {/* ニュースカード */}
-        <section className="rounded-lg border border-gray-200 p-5 bg-gradient-to-br from-emerald-50 to-white">
-          <h2 className="text-lg font-semibold text-gray-800 mb-3">ニュース</h2>
-          {combined.news ? (
-            <ul className="space-y-2 list-disc pl-5">
-              {combined.news.map((n, idx) => (
-                <li key={idx} className="text-gray-700">
-                  <a className="hover:underline" href={n.url} target="_blank" rel="noreferrer">
-                    {n.title}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <div className="text-gray-400">データなし</div>
-          )}
-        </section>
+        <WeatherCard data={combined.weather} />
+        <QuoteCard data={combined.quote} />
+        <NewsCard items={combined.news} />
       </div>
     </div>
   )
