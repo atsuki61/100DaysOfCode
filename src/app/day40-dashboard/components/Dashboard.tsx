@@ -5,6 +5,7 @@ import { WeatherData, QuoteData, NewsItem } from './types'
 import { WeatherCard } from './WeatherCard'
 import { QuoteCard } from './QuoteCard'
 import { NewsCard } from './NewsCard'
+import { fetchNews, fetchQuote, fetchWeather } from '../utils/api'
 
 async function fetchWeatherMock(): Promise<WeatherData> {
   await new Promise((r) => setTimeout(r, 500))
@@ -47,9 +48,9 @@ export function Dashboard() {
       setCombined((s) => ({ ...s, loading: true }))
       try {
         const [weather, quote, news] = await Promise.all([
-          fetchWeatherMock(),
-          fetchQuoteMock(),
-          fetchNewsMock(),
+          fetchWeather(),
+          fetchQuote(),
+          fetchNews(),
         ])
         if (!cancelled) setCombined({ weather, quote, news, loading: false })
       } catch (e) {
