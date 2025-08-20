@@ -41,24 +41,31 @@ export function Dashboard() {
     news: NewsItem[] | null
     loading: boolean
   }>({ weather: null, quote: null, news: null, loading: true })
+  const [error, setError] = useState<string | null>(null)
+
+  async function fetchAll(cancelledRef?: { current: boolean }) {
+    setCombined((s) => ({ ...s, loading: true }))
+    setError(null)
+    try {
+      const [weather, quote, news] = await Promise.all([
+        fetchWeather(),
+        fetchQuote(),
+        fetchNews(),
+      ])
+      if (!cancelledRef?.current) setCombined({ weather, quote, news, loading: false })
+    } catch (e: any) {
+      if (!cancelledRef?.current) {
+        setCombined({ weather: null, quote: null, news: null, loading: false })
+        setError(e?.message ?? 'データの取得に失敗しました')
+      }
+    }
+  }
 
   useEffect(() => {
-    let cancelled = false
-    ;(async () => {
-      setCombined((s) => ({ ...s, loading: true }))
-      try {
-        const [weather, quote, news] = await Promise.all([
-          fetchWeather(),
-          fetchQuote(),
-          fetchNews(),
-        ])
-        if (!cancelled) setCombined({ weather, quote, news, loading: false })
-      } catch (e) {
-        if (!cancelled) setCombined({ weather: null, quote: null, news: null, loading: false })
-      }
-    })()
+    const cancelledRef = { current: false }
+    fetchAll(cancelledRef)
     return () => {
-      cancelled = true
+      cancelledRef.current = true
     }
   }, [])
 
@@ -69,8 +76,26 @@ export function Dashboard() {
 
   return (
     <div className="space-y-6">
-      {combined.loading && (
-        <div className="text-center text-gray-500">読み込み中...</div>
+      <div className="flex items-center justify-between">
+        {combined.loading ? (
+          <div className="text-gray-500">読み込み中...</div>
+        ) : (
+          <div />
+        )}
+        <button
+          type="button"
+          onClick={() => fetchAll()}
+          className="inline-flex items-center rounded-md bg-gray-800 px-3 py-2 text-sm font-medium text-white hover:bg-gray-700 disabled:opacity-50"
+          disabled={combined.loading}
+        >
+          再読み込み
+        </button>
+      </div>
+
+      {error && (
+        <div className="rounded-md border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+          {error}
+        </div>
       )}
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
