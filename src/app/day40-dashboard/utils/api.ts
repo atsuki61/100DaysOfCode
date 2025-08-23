@@ -21,11 +21,10 @@ export async function fetchQuote(): Promise<QuoteData> {
 
 // ニュース: ひとまず固定（後で外部API差し替え）
 export async function fetchNews(): Promise<NewsItem[]> {
-  return [
-    { title: 'Next.js App Router 実践Tips', url: '#' },
-    { title: 'TypeScript 5.xのsatisfiesで型安全に', url: '#' },
-    { title: 'Go + WebSocketでリアルタイム入門', url: '#' },
-  ]
+  const res = await fetch('/api/news/top', { cache: 'no-store' })
+  if (!res.ok) throw new Error('ニュースの取得に失敗しました')
+  const json = (await res.json()) as { items: Array<{ title: string; url: string }> }
+  return json.items
 }
 
 
