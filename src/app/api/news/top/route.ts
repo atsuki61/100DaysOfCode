@@ -29,7 +29,7 @@ export async function GET() {
         url: typeof a?.url === 'string' ? a.url : '#',
       }))
     return NextResponse.json({ items })
-  } catch (e) {
+  } catch {
     return NextResponse.json({ error: 'Failed to fetch news' }, { status: 500 })
   }
 }
