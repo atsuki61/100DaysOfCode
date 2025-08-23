@@ -1,37 +1,13 @@
 "use client"
 
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { WeatherData, QuoteData, NewsItem } from './types'
 import { WeatherCard } from './WeatherCard'
 import { QuoteCard } from './QuoteCard'
 import { NewsCard } from './NewsCard'
 import { fetchNews, fetchQuote, fetchWeather } from '../utils/api'
 
-async function fetchWeatherMock(): Promise<WeatherData> {
-  await new Promise((r) => setTimeout(r, 500))
-  return {
-    city: 'Tokyo',
-    tempCelsius: 22,
-    description: 'Sunny',
-  }
-}
-
-async function fetchQuoteMock(): Promise<QuoteData> {
-  await new Promise((r) => setTimeout(r, 600))
-  return {
-    author: 'Albert Einstein',
-    quote: 'Life is like riding a bicycle. To keep your balance, you must keep moving.',
-  }
-}
-
-async function fetchNewsMock(): Promise<NewsItem[]> {
-  await new Promise((r) => setTimeout(r, 700))
-  return [
-    { title: 'Next.js 14.2 リリースノートまとめ', url: '#' },
-    { title: 'TypeScript 5.x 新機能ハイライト', url: '#' },
-    { title: 'Go 1.22 の変更点をざっくり', url: '#' },
-  ]
-}
+//
 
 export function Dashboard() {
   // モックAPIを Promise.all で同時取得（各カードは独立フェッチでもOK）
@@ -53,10 +29,11 @@ export function Dashboard() {
         fetchNews(),
       ])
       if (!cancelledRef?.current) setCombined({ weather, quote, news, loading: false })
-    } catch (e: any) {
+    } catch (e: unknown) {
       if (!cancelledRef?.current) {
         setCombined({ weather: null, quote: null, news: null, loading: false })
-        setError(e?.message ?? 'データの取得に失敗しました')
+        const message = e instanceof Error ? e.message : 'データの取得に失敗しました'
+        setError(message)
       }
     }
   }
@@ -68,11 +45,6 @@ export function Dashboard() {
       cancelledRef.current = true
     }
   }, [])
-
-  const temperature = useMemo(() => {
-    if (!combined.weather) return '-'
-    return `${combined.weather.tempCelsius.toFixed(1)}°C`
-  }, [combined.weather])
 
   return (
     <div className="space-y-6">
