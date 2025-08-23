@@ -1,25 +1,30 @@
 import { NewsItem, QuoteData, WeatherData } from '../components/types'
+import { fetchWeatherByCity } from '@/app/day11-weather/utils/weatherApi'
 
-// 実API差し替え前のモック実装
+// 天気: Day11の実APIを利用（都市はTokyo固定。将来UI化）
 export async function fetchWeather(): Promise<WeatherData> {
-  await new Promise((r) => setTimeout(r, 500))
-  return { city: 'Tokyo', tempCelsius: 22, description: 'Sunny' }
-}
-
-export async function fetchQuote(): Promise<QuoteData> {
-  await new Promise((r) => setTimeout(r, 600))
+  const data = await fetchWeatherByCity('Tokyo')
   return {
-    author: 'Albert Einstein',
-    quote: 'Life is like riding a bicycle. To keep your balance, you must keep moving.',
+    city: data.city,
+    tempCelsius: data.temperature,
+    description: data.description,
   }
 }
 
+// 名言: Day9の固定データをAPIルート化したものを叩く
+export async function fetchQuote(): Promise<QuoteData> {
+  const res = await fetch('/api/quotes/random', { cache: 'no-store' })
+  if (!res.ok) throw new Error('名言の取得に失敗しました')
+  const json = (await res.json()) as { quote: string; author: string }
+  return { quote: json.quote, author: json.author }
+}
+
+// ニュース: ひとまず固定（後で外部API差し替え）
 export async function fetchNews(): Promise<NewsItem[]> {
-  await new Promise((r) => setTimeout(r, 700))
   return [
-    { title: 'Next.js 14.2 リリースノートまとめ', url: '#' },
-    { title: 'TypeScript 5.x 新機能ハイライト', url: '#' },
-    { title: 'Go 1.22 の変更点をざっくり', url: '#' },
+    { title: 'Next.js App Router 実践Tips', url: '#' },
+    { title: 'TypeScript 5.xのsatisfiesで型安全に', url: '#' },
+    { title: 'Go + WebSocketでリアルタイム入門', url: '#' },
   ]
 }
 
