@@ -309,6 +309,14 @@ export default function HomePage() {
         tags: ['React', 'Next.js', 'TypeScript', 'TailwindCSS', 'Canvas'],
       },
       {
+        id: 'day40',
+        name: 'Day 40: ダッシュボード (複数API統合)',
+        path: '/day40-dashboard',
+        imageUrl: '/images/no-image.svg',
+        description: '天気・ニュース・名言を一画面に集約表示。Promise.allで並行取得、ローディング/エラー表示、カードレイアウト。',
+        tags: ['React', 'Next.js', 'TypeScript', 'TailwindCSS', 'API'],
+      },
+      {
         id: 'day39',
         name: 'Day 39: 音楽プレーヤー',
         path: '/day39-music-player',
