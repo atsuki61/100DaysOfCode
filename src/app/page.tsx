@@ -308,14 +308,7 @@ export default function HomePage() {
         description: 'マウス/タッチで線を描画し、色・太さの変更やキャンバスのクリアができます。',
         tags: ['React', 'Next.js', 'TypeScript', 'TailwindCSS', 'Canvas'],
       },
-      {
-        id: 'day40',
-        name: 'Day 40: ダッシュボード (複数API統合)',
-        path: '/day40-dashboard',
-        imageUrl: '/images/no-image.svg',
-        description: '天気・ニュース・名言を一画面に集約表示。Promise.allで並行取得、ローディング/エラー表示、カードレイアウト。',
-        tags: ['React', 'Next.js', 'TypeScript', 'TailwindCSS', 'API'],
-      },
+
       {
         id: 'day39',
         name: 'Day 39: 音楽プレーヤー',
@@ -323,6 +316,14 @@ export default function HomePage() {
         imageUrl: '/images/day39-music-player.png',
         description: '曲の再生/一時停止/スキップ、進捗表示とシークに対応したシンプルなプレーヤー。',
         tags: ['React', 'Next.js', 'TypeScript', 'TailwindCSS', 'Audio'],
+      },
+      {
+        id: 'day40',
+        name: 'Day 40: ダッシュボード (複数API統合)',
+        path: '/day40-dashboard',
+        imageUrl: '/images/day40-dashboard.png',
+        description: '天気・ニュース・名言を一画面に集約表示。Promise.allで並行取得、ローディング/エラー表示、カードレイアウト。',
+        tags: ['React', 'Next.js', 'TypeScript', 'TailwindCSS', 'API'],
       },
      // ここに新しいアプリを追加していきます
   ];
