@@ -16,15 +16,15 @@ export default function PasswordGeneratorPage() {
     includeSymbols: false
   });
 
-  const handleGeneratePassword = () => {
+  const handleGeneratePassword = React.useCallback(() => {
     const newPassword = generatePassword(options);
     setPassword(newPassword);
-  };
+  }, [options]);
 
   // コンポーネントマウント時に初期パスワードを生成
   React.useEffect(() => {
     handleGeneratePassword();
-  }, []);
+  }, [handleGeneratePassword]);
 
   const handleOptionsChange = (newOptions: PasswordOptionsType) => {
     setOptions(newOptions);

@@ -78,7 +78,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
         }
       };
     }
-  }, [theme]);
+  }, [theme, resolveTheme]);
 
   const value = {
     theme,

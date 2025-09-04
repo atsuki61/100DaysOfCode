@@ -64,7 +64,7 @@ export function Dashboard() {
 
   useEffect(() => {
     refreshAll()
-  }, [])
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps -- 初回のみ実行したいため
 
   const isLoading = state.weather.loading || state.quote.loading || state.news.loading
 

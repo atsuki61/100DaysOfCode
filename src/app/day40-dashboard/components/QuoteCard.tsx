@@ -24,7 +24,7 @@ export function QuoteCard({ data, error, onRetry }: Props) {
         </div>
       ) : data ? (
         <blockquote className="text-gray-700 italic">
-          <div className="text-lg leading-relaxed">"{data.quote}"</div>
+          <div className="text-lg leading-relaxed">&ldquo;{data.quote}&rdquo;</div>
           <footer className="mt-3 text-sm text-gray-500">— {data.author}</footer>
         </blockquote>
       ) : (
