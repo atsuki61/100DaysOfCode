@@ -325,6 +325,14 @@ export default function HomePage() {
         description: '天気・ニュース・名言を一画面に集約表示。Promise.allで並行取得、ローディング/エラー表示、カードレイアウト。',
         tags: ['React', 'Next.js', 'TypeScript', 'TailwindCSS', 'API'],
       },
+      {
+        id: 'day41',
+        name: 'Day 41: フォームビルダー',
+        path  : '/day41-form-builder',
+        imageUrl: '/images/day41-form-builder.png',
+        description: 'ドラッグ＆ドロップでフォームフィールドを追加・配置できるインタラクティブなフォームビルダー。',
+        tags: ['React', 'Next.js', 'TypeScript', 'TailwindCSS', 'Drag and Drop'],
+      }
      // ここに新しいアプリを追加していきます
   ];
 
