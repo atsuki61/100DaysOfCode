@@ -366,14 +366,14 @@ export default function HomePage() {
         quickJumpItems={apps.map((a) => ({ label: a.name, href: a.path }))}
       />
       
-      <div className="py-12 flex flex-col items-center"> {/* 縦方向パディング, Flexコンテナ, アイテム中央寄せ(垂直) */}
+      <div className="pt-24 sm:py-12 flex flex-col items-center"> {/* モバイルは固定ヘッダー分の余白を確保 */}
         <main className="w-full max-w-7xl px-4"> {/* 横幅いっぱい, 最大横幅7xl, 横方向パディング */}
           {filteredApps.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-5"> {/* グリッドレイアウト, 1列 (md以上で3列), ギャップ5 */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-5"> {/* モバイル2列、ギャップ調整 */}
               {filteredApps.map((app) => (
                 <div key={app.id} className="bg-card rounded-xl shadow-2xl overflow-hidden transition-all duration-300 ease-in-out hover:shadow-primary/50"> {/* カード背景色, 角丸xl, 影2xl, はみ出し非表示, 全プロパティにトランジション, ホバー時プライマリ色の影 */}
                   <Link href={app.path} className="block group"> {/* ブロック要素, グループ化 */}
-                    <div className="w-full h-56 bg-muted flex items-center justify-center overflow-hidden"> {/* 横幅いっぱい, 高さ56, ミューテッド背景色, Flexコンテナ, アイテム中央寄せ(垂直・水平), はみ出し非表示 */}
+                    <div className="w-full h-44 sm:h-56 bg-muted flex items-center justify-center overflow-hidden"> {/* モバイルは高さを少し低めに */}
                       {app.imageUrl ? (
                         <Image
                           src={app.imageUrl}
