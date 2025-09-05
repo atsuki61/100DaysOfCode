@@ -38,6 +38,21 @@ export default function Calculator() {
     });
   }, []);
 
+  const calculate = useCallback((firstValue: number, secondValue: number, operation: Operation): number => {
+    switch (operation) {
+      case '+':
+        return firstValue + secondValue;
+      case '-':
+        return firstValue - secondValue;
+      case '*':
+        return firstValue * secondValue;
+      case '/':
+        return secondValue !== 0 ? firstValue / secondValue : firstValue;
+      default:
+        return secondValue;
+    }
+  }, []);
+
   const handleOperator = useCallback((nextOperation: string) => {
     const inputValue = parseFloat(state.display);
 
@@ -74,22 +89,7 @@ export default function Calculator() {
         formula: `${formulaWithoutLastOp} ${nextOperation}`,
       };
     });
-  }, [state.display]);
-
-  const calculate = useCallback((firstValue: number, secondValue: number, operation: Operation): number => {
-    switch (operation) {
-      case '+':
-        return firstValue + secondValue;
-      case '-':
-        return firstValue - secondValue;
-      case '*':
-        return firstValue * secondValue;
-      case '/':
-        return secondValue !== 0 ? firstValue / secondValue : firstValue;
-      default:
-        return secondValue;
-    }
-  }, []);
+  }, [state.display, calculate]);
 
   const handleEquals = useCallback(() => {
     const inputValue = parseFloat(state.display);
