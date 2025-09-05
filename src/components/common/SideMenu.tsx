@@ -54,7 +54,7 @@ export default function SideMenu({ isOpen, onClose }: SideMenuProps) {
       {/* Panel */}
       <div
         ref={panelRef}
-        className={`absolute top-0 left-0 h-screen w-72 max-w-[80vw] bg-white dark:bg-gray-900 shadow-2xl border-r border-slate-200/60 dark:border-gray-700/60 transform transition-transform duration-300 ${
+        className={`absolute top-0 left-0 h-screen w-[18rem] sm:w-72 max-w-[90vw] bg-white dark:bg-gray-900 shadow-2xl border-r border-slate-200/60 dark:border-gray-700/60 transform transition-transform duration-300 ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
