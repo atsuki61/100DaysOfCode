@@ -348,7 +348,7 @@ export default function HomePage() {
     const filteredApps = useMemo(() => {
       if (!selectedTag) return apps;
       return apps.filter((app) => parseTags(app.tags as string[]).includes(selectedTag));
-    }, [apps, selectedTag]);
+    }, [selectedTag]);
 
     return (
       <>
@@ -413,10 +413,7 @@ export default function HomePage() {
       .filter((s) => s.length > 0);
   };
 
-  const filteredApps = useMemo(() => {
-    if (!selectedTag) return apps;
-    return apps.filter((app) => parseTags(app.tags as string[]).includes(selectedTag));
-  }, [apps, selectedTag]);
+  // filteredApps は SearchFilter 内で計算・描画されます
 
   return (
     <div className="min-h-screen bg-background text-foreground">
