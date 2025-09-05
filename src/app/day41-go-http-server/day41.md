@@ -73,3 +73,5 @@ func main() {
 2. Next.js を起動: `npm run dev`
 3. ブラウザで `http://localhost:3000/day41-go-http-server` を開く
 
+
+
