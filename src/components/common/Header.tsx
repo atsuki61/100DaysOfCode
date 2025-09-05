@@ -70,7 +70,7 @@ export default function Header({ title, showHomeLink = true, showPortfolioLink =
             </div>
           </div>
           
-          <div className="flex items-center gap-2">
+          <div className="hidden sm:flex items-center gap-2"> {/* sm以上で表示（モバイルはサイドメニュー経由で代替） */}
             <HeaderDropdown items={items} />
           </div>
         </div>
