@@ -48,12 +48,12 @@ export default function HeaderDropdown({ items }: HeaderDropdownProps) {
       </button>
 
       <div
-        className={`absolute right-0 mt-2 w-72 rounded-md bg-white dark:bg-gray-900 border border-slate-200/60 dark:border-gray-700/60 shadow-xl overflow-hidden transition-all ${
+        className={`absolute right-0 mt-2 w-72 max-w-[90vw] rounded-md bg-white dark:bg-gray-900 border border-slate-200/60 dark:border-gray-700/60 shadow-xl overflow-hidden transition-all ${
           open ? "opacity-100 translate-y-0" : "pointer-events-none opacity-0 -translate-y-1"
         }`}
         role="menu"
       >
-        <ul className="max-h-96 overflow-auto py-1">
+        <ul className="max-h-[70vh] overflow-auto py-1">
           {items.map((item) => (
             <li key={item.href} role="none">
               <Link
