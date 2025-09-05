@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import Image from 'next/image'; // Next.jsのImageコンポーネントをインポート
 import Header from '../components/common/Header'; // 共通ヘッダーをインポート
-import { useMemo } from 'react';
+import { Suspense, useMemo } from 'react';
 import { useSearchParams } from 'next/navigation';
 
 export default function HomePage() {
@@ -340,9 +340,71 @@ export default function HomePage() {
      // ここに新しいアプリを追加していきます
   ]), []);
 
-  const searchParams = useSearchParams();
-  const tagParam = searchParams.get('tag');
-  const selectedTag = tagParam && tagParam !== 'All' ? tagParam : null;
+  const SearchFilter = () => {
+    const searchParams = useSearchParams();
+    const tagParam = searchParams.get('tag');
+    const selectedTag = tagParam && tagParam !== 'All' ? tagParam : null;
+
+    const filteredApps = useMemo(() => {
+      if (!selectedTag) return apps;
+      return apps.filter((app) => parseTags(app.tags as string[]).includes(selectedTag));
+    }, [apps, selectedTag]);
+
+    return (
+      <>
+        {filteredApps.length > 0 ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-5"> {/* モバイル2列、ギャップ調整 */}
+            {filteredApps.map((app) => (
+              <div key={app.id} className="bg-card rounded-xl shadow-2xl overflow-hidden transition-all duration-300 ease-in-out hover:shadow-primary/50"> {/* カード背景色, 角丸xl, 影2xl, はみ出し非表示, 全プロパティにトランジション, ホバー時プライマリ色の影 */}
+                <Link href={app.path} className="block group"> {/* ブロック要素, グループ化 */}
+                  <div className="w-full h-44 sm:h-56 bg-muted flex items-center justify-center overflow-hidden"> {/* モバイルは高さを少し低めに */}
+                    {app.imageUrl ? (
+                      <Image
+                        src={app.imageUrl}
+                        alt={`${app.name} のプレビュー画像`}
+                        width={400}
+                        height={224}
+                        className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300" // アスペクト比維持して全体表示, 横幅いっぱい, 高さいっぱい, グループホバー時拡大, transformにトランジション */}
+                      />
+                    ) : (
+                      <div className="flex flex-col items-center justify-center text-muted-foreground"> {/* Flexコンテナ(縦), アイテム中央寄せ(垂直・水平), ミューテッド前景色 */}
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1"> {/* 高さ16, 横幅16, 下マージン2 */}
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                        <span className="text-lg font-semibold">No Image</span> {/* 文字サイズlg, 太字 */}
+                      </div>
+                    )}
+                  </div>
+                  <div className="p-6"> {/* 全方向パディング6 */}
+                    <h3 className="text-2xl font-semibold mb-2 text-primary group-hover:text-primary/80 transition-colors duration-200"> {/* 文字サイズ2xl, 太字, 下マージン2, プライマリテキスト色, グループホバー時プライマリ色(不透明度80%), 色にトランジション */}
+                      {app.name}
+                    </h3>
+                    <p className="text-muted-foreground mb-4 text-sm leading-relaxed h-16 overflow-hidden"> {/* ミューテッド前景色, 下マージン4, 文字サイズsm, 行間ゆったり, 高さ16, はみ出し非表示 */}
+                      {app.description}
+                    </p>
+                    <div className="flex flex-wrap gap-2 mb-4"> {/* Flexコンテナ, 折り返しあり, ギャップ2, 下マージン4 */}
+                      {parseTags(app.tags).map((tag) => (
+                        <span
+                          key={tag}
+                          className="px-3 py-1 bg-secondary text-secondary-foreground text-xs font-semibold rounded-full" // 横パディング3, 縦パディング1, セカンダリ背景色, セカンダリ前景色, 文字サイズxs, 太字, 角丸(円形) */}
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </Link>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <p className="text-center text-muted-foreground text-lg"> {/* 中央揃え, ミューテッド前景色, 文字サイズlg */}
+            該当するアプリが見つかりませんでした。フィルターを変更してみてください。
+          </p>
+        )}
+      </>
+    );
+  };
 
   const parseTags = (tags: string[]): string[] => {
     return tags
@@ -368,56 +430,9 @@ export default function HomePage() {
       
       <div className="pt-24 sm:py-12 flex flex-col items-center"> {/* モバイルは固定ヘッダー分の余白を確保 */}
         <main className="w-full max-w-7xl px-4"> {/* 横幅いっぱい, 最大横幅7xl, 横方向パディング */}
-          {filteredApps.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-5"> {/* モバイル2列、ギャップ調整 */}
-              {filteredApps.map((app) => (
-                <div key={app.id} className="bg-card rounded-xl shadow-2xl overflow-hidden transition-all duration-300 ease-in-out hover:shadow-primary/50"> {/* カード背景色, 角丸xl, 影2xl, はみ出し非表示, 全プロパティにトランジション, ホバー時プライマリ色の影 */}
-                  <Link href={app.path} className="block group"> {/* ブロック要素, グループ化 */}
-                    <div className="w-full h-44 sm:h-56 bg-muted flex items-center justify-center overflow-hidden"> {/* モバイルは高さを少し低めに */}
-                      {app.imageUrl ? (
-                        <Image
-                          src={app.imageUrl}
-                          alt={`${app.name} のプレビュー画像`}
-                          width={400}
-                          height={224}
-                          className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300" // アスペクト比維持して全体表示, 横幅いっぱい, 高さいっぱい, グループホバー時拡大, transformにトランジション */}
-                        />
-                      ) : (
-                        <div className="flex flex-col items-center justify-center text-muted-foreground"> {/* Flexコンテナ(縦), アイテム中央寄せ(垂直・水平), ミューテッド前景色 */}
-                          <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1"> {/* 高さ16, 横幅16, 下マージン2 */}
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                          </svg>
-                          <span className="text-lg font-semibold">No Image</span> {/* 文字サイズlg, 太字 */}
-                        </div>
-                      )}
-                    </div>
-                    <div className="p-6"> {/* 全方向パディング6 */}
-                      <h3 className="text-2xl font-semibold mb-2 text-primary group-hover:text-primary/80 transition-colors duration-200"> {/* 文字サイズ2xl, 太字, 下マージン2, プライマリテキスト色, グループホバー時プライマリ色(不透明度80%), 色にトランジション */}
-                        {app.name}
-                      </h3>
-                      <p className="text-muted-foreground mb-4 text-sm leading-relaxed h-16 overflow-hidden"> {/* ミューテッド前景色, 下マージン4, 文字サイズsm, 行間ゆったり, 高さ16, はみ出し非表示 */}
-                        {app.description}
-                      </p>
-                      <div className="flex flex-wrap gap-2 mb-4"> {/* Flexコンテナ, 折り返しあり, ギャップ2, 下マージン4 */}
-                        {parseTags(app.tags).map((tag) => (
-                          <span
-                            key={tag}
-                            className="px-3 py-1 bg-secondary text-secondary-foreground text-xs font-semibold rounded-full" // 横パディング3, 縦パディング1, セカンダリ背景色, セカンダリ前景色, 文字サイズxs, 太字, 角丸(円形) */}
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </Link>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <p className="text-center text-muted-foreground text-lg"> {/* 中央揃え, ミューテッド前景色, 文字サイズlg */}
-              該当するアプリが見つかりませんでした。フィルターを変更してみてください。
-            </p>
-          )}
+          <Suspense fallback={null}>
+            <SearchFilter />
+          </Suspense>
         </main>
         <footer className="mt-16 text-center text-muted-foreground"> {/* 上マージン16, 中央揃え, ミューテッド前景色 */}
           <p>&copy; 2025 100DaysOfCode</p>
