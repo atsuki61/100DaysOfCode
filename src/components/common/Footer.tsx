@@ -74,9 +74,9 @@ const Footer = ({ currentDay }: FooterProps) => {
             {prevDay && (
               <Link 
                 href={getDayPath(prevDay)}
-                className="inline-flex items-center gap-2 px-5 py-3 text-sm font-semibold text-gray-700 dark:text-gray-300 bg-gradient-to-br from-slate-50 to-slate-100 dark:from-gray-800 dark:to-gray-700 border border-black/8 dark:border-white/10 rounded-xl transition-all duration-300 hover:bg-gradient-to-br hover:from-blue-500 hover:to-purple-600 hover:text-white hover:-translate-y-0.5 hover:scale-105 hover:shadow-[0_8px_25px_rgba(59,130,246,0.25)] group relative overflow-hidden"
+                className="inline-flex items-center gap-1.5 sm:gap-2 px-3 py-2 sm:px-5 sm:py-3 text-sm font-semibold text-gray-700 dark:text-gray-300 bg-gradient-to-br from-slate-50 to-slate-100 dark:from-gray-800 dark:to-gray-700 border border-black/8 dark:border-white/10 rounded-xl transition-all duration-300 hover:bg-gradient-to-br hover:from-blue-500 hover:to-purple-600 hover:text-white hover:-translate-y-0.5 hover:scale-105 hover:shadow-[0_8px_25px_rgba(59,130,246,0.25)] group relative overflow-hidden"
               >
-                <div className="flex items-center justify-center w-5 h-5 rounded-md bg-white/20 dark:bg-black/20 transition-all duration-300 group-hover:bg-white/30 group-hover:scale-110">
+                <div className="flex items-center justify-center w-4 h-4 sm:w-5 sm:h-5 rounded-md bg-white/20 dark:bg-black/20 transition-all duration-300 group-hover:bg-white/30 group-hover:scale-110">
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                 </svg>
@@ -86,7 +86,7 @@ const Footer = ({ currentDay }: FooterProps) => {
             )}
           </div>
 
-          <div className="text-center flex-shrink-0 w-80">
+          <div className="text-center flex-shrink-0 w-64 sm:w-80">
             <div className="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-2 tracking-widest uppercase transition-colors">
               100 Days Of Code Projects
             </div>
@@ -112,10 +112,10 @@ const Footer = ({ currentDay }: FooterProps) => {
             {nextDay && (
               <Link 
                 href={getDayPath(nextDay)}
-                className="inline-flex items-center gap-2 px-5 py-3 text-sm font-semibold text-gray-700 dark:text-gray-300 bg-gradient-to-br from-slate-50 to-slate-100 dark:from-gray-800 dark:to-gray-700 border border-black/8 dark:border-white/10 rounded-xl transition-all duration-300 hover:bg-gradient-to-br hover:from-blue-500 hover:to-purple-600 hover:text-white hover:-translate-y-0.5 hover:scale-105 hover:shadow-[0_8px_25px_rgba(59,130,246,0.25)] group relative overflow-hidden"
+                className="inline-flex items-center gap-1.5 sm:gap-2 px-3 py-2 sm:px-5 sm:py-3 text-sm font-semibold text-gray-700 dark:text-gray-300 bg-gradient-to-br from-slate-50 to-slate-100 dark:from-gray-800 dark:to-gray-700 border border-black/8 dark:border-white/10 rounded-xl transition-all duration-300 hover:bg-gradient-to-br hover:from-blue-500 hover:to-purple-600 hover:text-white hover:-translate-y-0.5 hover:scale-105 hover:shadow-[0_8px_25px_rgba(59,130,246,0.25)] group relative overflow-hidden"
               >
                 <span className="font-semibold tracking-wide hidden sm:block">Day {nextDay}</span>
-                <div className="flex items-center justify-center w-5 h-5 rounded-md bg-white/20 dark:bg-black/20 transition-all duration-300 group-hover:bg-white/30 group-hover:scale-110">
+                <div className="flex items-center justify-center w-4 h-4 sm:w-5 sm:h-5 rounded-md bg-white/20 dark:bg-black/20 transition-all duration-300 group-hover:bg-white/30 group-hover:scale-110">
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
