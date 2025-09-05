@@ -1,17 +1,35 @@
 "use client";
 
-
+import { useState, useCallback } from 'react';
 import BackToHomeButton from '../BackToHomeButton';
 import PortfolioSiteButton from '../PortfolioSiteButton';
+import SideMenu from './SideMenu';
+import HeaderDropdown from './HeaderDropdown';
+import { dayRoutes } from './dayRoutes';
+import { dayLabels } from './dayLabels';
+
+type QuickJumpItem = { label: string; href: string };
 
 type HeaderProps = {
   title: string;
   showHomeLink?: boolean;
   showPortfolioLink?: boolean;
   className?: string;
+  quickJumpItems?: QuickJumpItem[];
 };
 
-export default function Header({ title, showHomeLink = true, showPortfolioLink = false }: HeaderProps) {
+export default function Header({ title, showHomeLink = true, showPortfolioLink = false, quickJumpItems }: HeaderProps) {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const openMenu = useCallback(() => setMenuOpen(true), []);
+  const closeMenu = useCallback(() => setMenuOpen(false), []);
+
+  const items = quickJumpItems && quickJumpItems.length > 0
+    ? quickJumpItems
+    : Object.keys(dayRoutes)
+        .map((k) => Number(k))
+        .sort((a, b) => a - b)
+        .map((day) => ({ label: dayLabels[day] ?? `Day ${day}`, href: dayRoutes[day] }));
+
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-white via-slate-50 to-white dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 backdrop-blur-xl border-b border-slate-200/50 dark:border-gray-700/50 shadow-[0_8px_32px_rgba(0,0,0,0.1)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)] transition-all duration-300 hover:shadow-[0_12px_40px_rgba(0,0,0,0.15)]">
       {/* Gradient shimmer line */}
@@ -19,7 +37,18 @@ export default function Header({ title, showHomeLink = true, showPortfolioLink =
       
       <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
-          <div className="flex items-center">
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              aria-label="Open menu"
+              onClick={openMenu}
+              className="p-2 rounded-md hover:bg-slate-100 dark:hover:bg-gray-800"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+              </svg>
+            </button>
+
             {showPortfolioLink ? (
               <PortfolioSiteButton />
             ) : showHomeLink ? (
@@ -41,16 +70,12 @@ export default function Header({ title, showHomeLink = true, showPortfolioLink =
             </div>
           </div>
           
-          <div className="flex items-center">
-            {/* Decorative element */}
-            <div className="hidden sm:flex items-center space-x-1">
-              <div className="w-2 h-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full animate-pulse animate-float shadow-lg shadow-blue-500/50 hover:animate-ping"></div>
-              <div className="w-1.5 h-1.5 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full animate-pulse animate-float-delay-1 shadow-lg shadow-purple-500/50 hover:animate-ping"></div>
-              <div className="w-1 h-1 bg-gradient-to-r from-pink-500 to-orange-500 rounded-full animate-pulse animate-float-delay-2 shadow-lg shadow-pink-500/50 hover:animate-ping"></div>
-            </div>
+          <div className="flex items-center gap-2">
+            <HeaderDropdown items={items} />
           </div>
         </div>
       </div>
+      <SideMenu isOpen={menuOpen} onClose={closeMenu} />
     </nav>
   );
 } 
