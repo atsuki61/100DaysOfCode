@@ -1,9 +1,13 @@
+"use client";
+
 import Link from 'next/link';
 import Image from 'next/image'; // Next.jsのImageコンポーネントをインポート
 import Header from '../components/common/Header'; // 共通ヘッダーをインポート
+import { useMemo } from 'react';
+import { useSearchParams } from 'next/navigation';
 
 export default function HomePage() {
-  const apps = [
+  const apps = useMemo(() => ([
     {
       id: 'day1',
       name: 'Day 1: カウンターアプリ',
@@ -327,25 +331,46 @@ export default function HomePage() {
       },
       {
         id: 'day41',
-        name: 'Day 41: フォームビルダー',
-        path  : '/day41-form-builder',
-        imageUrl: '/images/day41-form-builder.png',
-        description: 'ドラッグ＆ドロップでフォームフィールドを追加・配置できるインタラクティブなフォームビルダー。',
-        tags: ['React', 'Next.js', 'TypeScript', 'TailwindCSS', 'Drag and Drop'],
+        name: 'Day 41: Go HTTPサーバー (net/http)',
+        path  : '/day41-go-http-server',
+        imageUrl: '/images/no-image.svg',
+        description: 'Goのnet/httpで/helloを返すHTTPサーバーを立て、Next.jsページから接続して結果を表示します。',
+        tags: ['React', 'Next.js', 'TypeScript', 'TailwindCSS', 'Go'],
       }
      // ここに新しいアプリを追加していきます
-  ];
+  ]), []);
+
+  const searchParams = useSearchParams();
+  const tagParam = searchParams.get('tag');
+  const selectedTag = tagParam && tagParam !== 'All' ? tagParam : null;
+
+  const parseTags = (tags: string[]): string[] => {
+    return tags
+      .flatMap((t) => t.split(','))
+      .map((s) => s.trim())
+      .filter((s) => s.length > 0);
+  };
+
+  const filteredApps = useMemo(() => {
+    if (!selectedTag) return apps;
+    return apps.filter((app) => parseTags(app.tags as string[]).includes(selectedTag));
+  }, [apps, selectedTag]);
 
   return (
     <div className="min-h-screen bg-background text-foreground">
       {/* Header追加 */}
-      <Header title="100 Days Of Code Projects" showPortfolioLink={true} showHomeLink={false} />
+      <Header 
+        title="100 Days Of Code Projects" 
+        showPortfolioLink={true} 
+        showHomeLink={false}
+        quickJumpItems={apps.map((a) => ({ label: a.name, href: a.path }))}
+      />
       
       <div className="py-12 flex flex-col items-center"> {/* 縦方向パディング, Flexコンテナ, アイテム中央寄せ(垂直) */}
         <main className="w-full max-w-7xl px-4"> {/* 横幅いっぱい, 最大横幅7xl, 横方向パディング */}
-          {apps.length > 0 ? (
+          {filteredApps.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5"> {/* グリッドレイアウト, 1列 (md以上で3列), ギャップ5 */}
-              {apps.map((app) => (
+              {filteredApps.map((app) => (
                 <div key={app.id} className="bg-card rounded-xl shadow-2xl overflow-hidden transition-all duration-300 ease-in-out hover:shadow-primary/50"> {/* カード背景色, 角丸xl, 影2xl, はみ出し非表示, 全プロパティにトランジション, ホバー時プライマリ色の影 */}
                   <Link href={app.path} className="block group"> {/* ブロック要素, グループ化 */}
                     <div className="w-full h-56 bg-muted flex items-center justify-center overflow-hidden"> {/* 横幅いっぱい, 高さ56, ミューテッド背景色, Flexコンテナ, アイテム中央寄せ(垂直・水平), はみ出し非表示 */}
@@ -374,7 +399,7 @@ export default function HomePage() {
                         {app.description}
                       </p>
                       <div className="flex flex-wrap gap-2 mb-4"> {/* Flexコンテナ, 折り返しあり, ギャップ2, 下マージン4 */}
-                        {app.tags.map((tag) => (
+                        {parseTags(app.tags).map((tag) => (
                           <span
                             key={tag}
                             className="px-3 py-1 bg-secondary text-secondary-foreground text-xs font-semibold rounded-full" // 横パディング3, 縦パディング1, セカンダリ背景色, セカンダリ前景色, 文字サイズxs, 太字, 角丸(円形) */}
@@ -390,7 +415,7 @@ export default function HomePage() {
             </div>
           ) : (
             <p className="text-center text-muted-foreground text-lg"> {/* 中央揃え, ミューテッド前景色, 文字サイズlg */}
-              まだアプリはありません。最初のアプリを作成しましょう！
+              該当するアプリが見つかりませんでした。フィルターを変更してみてください。
             </p>
           )}
         </main>
