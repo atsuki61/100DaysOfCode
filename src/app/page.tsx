@@ -337,6 +337,15 @@ export default function HomePage() {
         description: 'Goのnet/httpで/helloを返すHTTPサーバーを立て、Next.jsページから接続して結果を表示します。',
         tags: ['React', 'Next.js', 'TypeScript', 'TailwindCSS', 'Go'],
       }
+      ,
+      {
+        id: 'day42',
+        name: 'Day 42: Go JSONレスポンス API',
+        path: '/day42-go-json-api',
+        imageUrl: '/images/no-image.svg',
+        description: 'GoのJSON APIを想定し、Next.jsのモックAPIを経由して配列データを取得・表示します。unknown入力の型ガード付き。',
+        tags: ['React', 'Next.js', 'TypeScript', 'TailwindCSS', 'Go'],
+      }
      // ここに新しいアプリを追加していきます
   ]), []);
 
