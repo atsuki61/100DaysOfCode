@@ -54,7 +54,7 @@ export default function SideMenu({ isOpen, onClose }: SideMenuProps) {
       {/* Panel */}
       <div
         ref={panelRef}
-        className={`absolute top-0 left-0 h-screen w-[18rem] sm:w-72 max-w-[90vw] bg-white dark:bg-gray-900 shadow-2xl border-r border-slate-200/60 dark:border-gray-700/60 transform transition-transform duration-300 ${
+        className={`absolute top-0 left-0 h-screen w-[18rem] sm:w-72 max-w-[90vw] bg-white dark:bg-gray-900 shadow-2xl border-r border-slate-200/60 dark:border-gray-700/60 transform transition-transform duration-300 will-change-transform ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
@@ -72,7 +72,7 @@ export default function SideMenu({ isOpen, onClose }: SideMenuProps) {
             </svg>
           </button>
         </div>
-        <div className="p-4 space-y-6 overflow-y-auto h-[calc(100vh-4rem)]">
+        <div className="p-4 space-y-6 overflow-y-auto h-[calc(100vh-4rem)] overscroll-none touch-pan-y">
           {/* Quick Links */}
           <div className="space-y-2 text-sm">
             <div className="text-xs font-semibold text-slate-500 uppercase tracking-wide">Quick Links</div>
