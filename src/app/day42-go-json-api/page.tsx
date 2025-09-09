@@ -27,7 +27,7 @@ export default function Day42Page() {
           "items" in json &&
           Array.isArray((json as Record<string, unknown>).items)
         ) {
-          const items = (json as { items: unknown[] }).items;
+          const { title, items } = json as { title: string; items: unknown[] };
           const validItems: Item[] = items.filter(
             (it: unknown): it is Item =>
               typeof it === "object" &&
@@ -37,7 +37,7 @@ export default function Day42Page() {
               "name" in it &&
               typeof (it as Record<string, unknown>).name === "string"
           );
-          setData({ title: (json as { title: string }).title, items: validItems });
+          setData({ title, items: validItems });
         } else {
           throw new Error("Unexpected response shape");
         }
