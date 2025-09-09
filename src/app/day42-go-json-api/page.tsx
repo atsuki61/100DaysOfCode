@@ -27,7 +27,7 @@ export default function Day42Page() {
           "items" in json &&
           Array.isArray((json as Record<string, unknown>).items)
         ) {
-          const items = (json as { items: unknown }).items;
+          const items = (json as { items: unknown[] }).items;
           const validItems: Item[] = items.filter(
             (it: unknown): it is Item =>
               typeof it === "object" &&
