@@ -333,7 +333,7 @@ export default function HomePage() {
         id: 'day41',
         name: 'Day 41: Go HTTPサーバー (net/http)',
         path  : '/day41-go-http-server',
-        imageUrl: '/images/no-image.svg',
+        imageUrl: '/images/day41-go-http-server.png',
         description: 'Goのnet/httpで/helloを返すHTTPサーバーを立て、Next.jsページから接続して結果を表示します。',
         tags: ['React', 'Next.js', 'TypeScript', 'TailwindCSS', 'Go'],
       }
@@ -342,7 +342,7 @@ export default function HomePage() {
         id: 'day42',
         name: 'Day 42: Go JSONレスポンス API',
         path: '/day42-go-json-api',
-        imageUrl: '/images/no-image.svg',
+        imageUrl: '/images/day42-go-json-api.png',
         description: 'GoのJSON APIを想定し、Next.jsのモックAPIを経由して配列データを取得・表示します。unknown入力の型ガード付き。',
         tags: ['React', 'Next.js', 'TypeScript', 'TailwindCSS', 'Go'],
       }
