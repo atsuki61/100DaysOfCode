@@ -355,6 +355,15 @@ export default function HomePage() {
         description: 'Ginで/helloを返すAPIを作り、Next.jsから取得。unknown→型ガードの練習。',
         tags: ['React', 'Next.js', 'TypeScript', 'TailwindCSS', 'Go'],
       }
+      ,
+      {
+        id: 'day44',
+        name: 'Day 44: Go パス/クエリパラメータ (Gin)',
+        path: '/day44-go-params',
+        imageUrl: '/images/day44-go-params.png',
+        description: '/users/:id と /search?q=keyword を Gin で実装し、Next.js から取得・型ガードで表示。',
+        tags: ['React', 'Next.js', 'TypeScript', 'TailwindCSS', 'Go'],
+      }
      // ここに新しいアプリを追加していきます
   ]), []);
 
