@@ -55,6 +55,7 @@ const Footer = ({ currentDay }: FooterProps) => {
       41: "/day41-go-http-server", // Day 41のルートを追加
       42: "/day42-go-json-api", // Day 42のルートを追加
       43: "/day43-go-gin-hello", // Day 43のルートを追加
+      44: "/day44-go-params", // Day 44のルートを追加
     };
     return dayRoutes[day] || `/day${day}`;
   };
