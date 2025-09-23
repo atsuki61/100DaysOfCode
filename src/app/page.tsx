@@ -346,6 +346,15 @@ export default function HomePage() {
         description: 'GoのJSON APIを想定し、Next.jsのモックAPIを経由して配列データを取得・表示します。unknown入力の型ガード付き。',
         tags: ['React', 'Next.js', 'TypeScript', 'TailwindCSS', 'Go'],
       }
+      ,
+      {
+        id: 'day43',
+        name: 'Day 43: Go Webフレームワーク (Gin) - Hello',
+        path: '/day43-go-gin-hello',
+        imageUrl: '/images/day43-go-gin-hello.png',
+        description: 'Ginで/helloを返すAPIを作り、Next.jsから取得。unknown→型ガードの練習。',
+        tags: ['React', 'Next.js', 'TypeScript', 'TailwindCSS', 'Go'],
+      }
      // ここに新しいアプリを追加していきます
   ]), []);
 
