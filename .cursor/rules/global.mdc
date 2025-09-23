@@ -210,6 +210,9 @@ alwaysApply: true
   
   - **ホームカードの画像運用（必須）**:
       - `apps`配列の各要素に`imageUrl`を必ず設定すること
+      - **命名規則**: `public/images/dayX-app-slug.png` を使用する（例: `public/images/day33-image-search.png`）
+      - **置換ルール**: 暫定で `'/images/no-image.svg'` を使用した場合でも、必ずコミット前に命名規則に沿ったPNG名へ置き換えること
+      - **禁止事項**: `apps[].imageUrl` に `'/images/no-image.svg'` を残置しないこと（レビュー指摘対象）
   
 - **背景色の統一**:
 各プロジェクトでPageHeaderとメインコンテンツの背景色が分離しないよう、layout.tsxの`main`タグに背景色（例：`bg-gray-50 min-h-screen`）を設定し、page.tsxでは重複する背景色設定は避けてください。プロジェクトごとに異なる背景色を使用する場合は、layout.tsxで統一して管理してください。
