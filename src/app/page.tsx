@@ -364,6 +364,15 @@ export default function HomePage() {
         description: '/users/:id と /search?q=keyword を Gin で実装し、Next.js から取得・型ガードで表示。',
         tags: ['React', 'Next.js', 'TypeScript', 'TailwindCSS', 'Go'],
       }
+      ,
+      {
+        id: 'day45',
+        name: 'Day 45: Go POST JSON (モックAPI)',
+        path: '/day45-go-post-json',
+        imageUrl: '/images/no-image.svg',
+        description: 'POSTでJSONを送り、サーバー側で演算してJSONを返す流れをNext.jsのAPIルートで模擬。',
+        tags: ['React', 'Next.js', 'TypeScript', 'TailwindCSS', 'API'],
+      }
      // ここに新しいアプリを追加していきます
   ]), []);
 
