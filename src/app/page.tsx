@@ -373,6 +373,15 @@ export default function HomePage() {
         description: 'POSTでJSONを送り、サーバー側で演算してJSONを返す流れをNext.jsのAPIルートで模擬。',
         tags: ['React', 'Next.js', 'TypeScript', 'TailwindCSS', 'API'],
       }
+      ,
+      {
+        id: 'day46',
+        name: 'Day 46: Go アニメ名言ジェネレーター API',
+        path: '/day46-go-anime-quotes',
+        imageUrl: '/images/day46-go-anime-quotes.png',
+        description: 'Goで名言APIを想定し、Next.jsモックAPIから取得して表示。unknown→型ガードで安全に処理。',
+        tags: ['React', 'Next.js', 'TypeScript', 'TailwindCSS', 'Go', 'API'],
+      }
      // ここに新しいアプリを追加していきます
   ]), []);
 

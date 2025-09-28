@@ -430,7 +430,7 @@ src/app/dayX-appName/
 src/app/day4-todo-list/
 ├── page.tsx          # メインページ
 ├── layout.tsx        # レイアウト
-├── day4.md          # 学習記録
+├── day4.md          # プロジェクトのコードの解説（詳細に）
 ├── types.ts         # Todo型定義
 └── components/      # アプリ専用コンポーネント
     ├── TodoForm.tsx
@@ -442,7 +442,7 @@ src/app/day4-todo-list/
 src/app/day6-stopwatch/
 ├── page.tsx          # メインページ
 ├── layout.tsx        # レイアウト
-├── day6.md          # 学習記録
+├── day6.md          # プロジェクトのコードの解説（詳細に）
 ├── components/      # アプリ専用コンポーネント
 │   ├── Stopwatch.tsx
 │   └── index.ts

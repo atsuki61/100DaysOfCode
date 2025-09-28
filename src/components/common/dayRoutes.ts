@@ -43,6 +43,8 @@ export const dayRoutes: Record<number, string> = {
   42: "/day42-go-json-api",
   43: "/day43-go-gin-hello",
   44: "/day44-go-params",
+  45: "/day45-go-post-json",
+  46: "/day46-go-anime-quotes",
 };
 
 export function getDayPath(day: number): string {
