@@ -382,6 +382,15 @@ export default function HomePage() {
         description: 'Goで名言APIを想定し、Next.jsモックAPIから取得して表示。unknown→型ガードで安全に処理。',
         tags: ['React', 'Next.js', 'TypeScript', 'TailwindCSS', 'Go', 'API'],
       }
+      ,
+      {
+        id: 'day47',
+        name: 'Day 47: オフラインメモ帳 (PWA)',
+        path: '/day47-offline-notes',
+        imageUrl: '/images/day47-offline-notes.png',
+        description: 'Service WorkerとManifestでオフライン対応したメモ帳。ローカル保存＆インストール対応。',
+        tags: ['React, Next.js, TypeScript, TailwindCSS', 'PWA', 'Service Worker'],
+      }
      // ここに新しいアプリを追加していきます
   ]), []);
 
