@@ -391,6 +391,15 @@ export default function HomePage() {
         description: 'Service WorkerとManifestでオフライン対応したメモ帳。ローカル保存＆インストール対応。',
         tags: ['React, Next.js, TypeScript, TailwindCSS', 'PWA', 'Service Worker'],
       }
+      ,
+      {
+        id: 'day48',
+        name: 'Day 48: 大量リスト表示 (仮想レンダリング)',
+        path: '/day48-virtual-list',
+        imageUrl: '/images/day48-virtual-list.png',
+        description: '数千件のデータを仮想レンダリングで高速表示。スクロールに応じて可視領域のみ描画します。',
+        tags: ['React', 'Next.js', 'TypeScript', 'TailwindCSS', 'Performance'],
+      }
      // ここに新しいアプリを追加していきます
   ]), []);
 
