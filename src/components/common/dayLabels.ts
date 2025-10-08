@@ -45,6 +45,8 @@ export const dayLabels: Record<number, string> = {
   44: 'Day 44: Go パス/クエリパラメータ (Gin)',
   45: 'Day 45: Go POST JSON (モックAPI)',
   46: 'Day 46: Go アニメ名言ジェネレーター API',
+  47: 'Day 47: オフラインメモ帳 (PWA)',
+  48: 'Day 48: 大量リスト表示 (仮想レンダリング)',
 };
 
 
