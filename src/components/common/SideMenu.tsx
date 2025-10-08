@@ -103,7 +103,7 @@ export default function SideMenu({ isOpen, onClose }: SideMenuProps) {
           <div className="space-y-2 text-sm">
             <div className="text-xs font-semibold text-slate-500 uppercase tracking-wide">Jump to Day</div>
             <div className="grid grid-cols-4 gap-2">
-              {Array.from({ length: 41 }, (_, i) => i + 1).map((d) => (
+              {Array.from({ length: 48 }, (_, i) => i + 1).map((d) => (
                 <Link
                   key={d}
                   href={getDayPath(d)}
