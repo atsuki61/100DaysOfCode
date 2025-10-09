@@ -47,6 +47,7 @@ export const dayLabels: Record<number, string> = {
   46: 'Day 46: Go アニメ名言ジェネレーター API',
   47: 'Day 47: オフラインメモ帳 (PWA)',
   48: 'Day 48: 大量リスト表示 (仮想レンダリング)',
+  49: 'Day 49: 多言語対応サイト (i18next)',
 };
 
 
