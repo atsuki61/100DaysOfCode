@@ -400,6 +400,15 @@ export default function HomePage() {
         description: '数千件のデータを仮想レンダリングで高速表示。スクロールに応じて可視領域のみ描画します。',
         tags: ['React', 'Next.js', 'TypeScript', 'TailwindCSS', 'Performance'],
       }
+      ,
+      {
+        id: 'day49',
+        name: 'Day 49: 多言語対応サイト (i18next)',
+        path: '/day49-i18n',
+        imageUrl: '/images/day49-i18n.png',
+        description: '日本語/英語で表示を切り替えられるWebサイト。翻訳ファイルの管理と言語切り替えUIを実装します。',
+        tags: ['React', 'Next.js', 'TypeScript', 'TailwindCSS', 'i18n'],
+      }
      // ここに新しいアプリを追加していきます
   ]), []);
 
