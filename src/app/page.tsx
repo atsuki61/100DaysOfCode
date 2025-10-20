@@ -409,6 +409,15 @@ export default function HomePage() {
         description: '日本語/英語で表示を切り替えられるWebサイト。翻訳ファイルの管理と言語切り替えUIを実装します。',
         tags: ['React', 'Next.js', 'TypeScript', 'TailwindCSS', 'i18n'],
       }
+      ,
+      {
+        id: 'day50',
+        name: 'Day 50: フロントエンドテスト入門',
+        path: '/day50-testing',
+        imageUrl: '/images/no-image.svg',
+        description: 'Jest + React Testing Library を使ったコンポーネントテストの基本。ユニットテスト、統合テスト、ユーザーイベントのテストを実践します。',
+        tags: ['React', 'Next.js', 'TypeScript', 'TailwindCSS', 'Jest', 'Testing'],
+      }
      // ここに新しいアプリを追加していきます
   ]), []);
 
