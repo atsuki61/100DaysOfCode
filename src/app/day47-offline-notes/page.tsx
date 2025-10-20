@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
-import BackToHomeButton from '../../components/BackToHomeButton';
 
 interface BeforeInstallPromptEvent extends Event {
   prompt: () => Promise<void>;
@@ -96,7 +95,6 @@ export default function Day47OfflineNotesPage() {
   return (
     <div className="w-full max-w-3xl mx-auto">
       <div className="flex justify-between items-center mb-2">
-        <BackToHomeButton />
         <div className="text-xs text-gray-600 dark:text-gray-300">
           {isOnline ? 'オンライン' : 'オフライン'}
         </div>
