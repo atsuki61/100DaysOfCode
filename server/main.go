@@ -4,6 +4,8 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
+
+	"100daysofcode/server/middleware"
 )
 
 type helloResponse struct {
@@ -23,9 +25,16 @@ func main() {
     mux := http.NewServeMux()
     mux.HandleFunc("/hello", helloHandler)
 
+    // ミドルウェアを適用
+    var handler http.Handler = mux
+    handler = middleware.LoggingMiddleware(handler)
+    handler = middleware.RecoveryMiddleware(handler)
+    handler = middleware.CORSMiddleware(handler)
+
     addr := ":8080"
-    log.Println("listening on", addr)
-    if err := http.ListenAndServe(addr, mux); err != nil {
+    log.Println("Server listening on", addr)
+    log.Println("Middleware enabled: Logging, Recovery, CORS")
+    if err := http.ListenAndServe(addr, handler); err != nil {
         log.Fatal(err)
     }
 }
