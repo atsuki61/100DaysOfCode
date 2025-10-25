@@ -417,6 +417,14 @@ export default function HomePage() {
         imageUrl: '/images/no-image.svg',
         description: 'Jest + React Testing Library を使ったコンポーネントテストの基本。ユニットテスト、統合テスト、ユーザーイベントのテストを実践します。',
         tags: ['React', 'Next.js', 'TypeScript', 'TailwindCSS', 'Jest', 'Testing'],
+      },
+      {
+        id: 'day51',
+        name: 'Day 51: メモ保存アプリ',
+        path: '/day51-memo-app',
+        imageUrl: '/images/no-image.svg',
+        description: 'Go + SQLite + GORMを使用したメモ保存アプリのバックエンド実装。RESTful APIによるCreate、Read（全件取得・個別取得）機能を実装しました。',
+        tags: ['React', 'Next.js', 'TypeScript', 'TailwindCSS', 'Go', 'SQLite', 'GORM'],
       }
      // ここに新しいアプリを追加していきます
   ]), []);
