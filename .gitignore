@@ -46,3 +46,18 @@ next-env.d.ts
 gemini.md
 
 docx/面接対策.md
+
+# Go
+*.exe
+*.dll
+*.so
+*.dylib
+/server/*.exe
+/server/*.dll
+/server/*.so
+/server/*.dylib
+
+# SQLite
+*.db
+*.sqlite
+*.sqlite3
