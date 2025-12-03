@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import BackToHomeButton from "@/components/BackToHomeButton";
 
 interface Memo {
   id: number;
@@ -111,7 +110,6 @@ export default function Day51MemoApp() {
     return (
       <div className="min-h-screen bg-gradient-to-br from-purple-50 to-indigo-100 p-8">
         <div className="max-w-6xl mx-auto">
-          <BackToHomeButton />
           <div className="text-center py-20">
             <div className="inline-block animate-spin rounded-full h-12 w-12 border-4 border-indigo-500 border-t-transparent"></div>
             <p className="mt-4 text-gray-600">サーバー接続を確認中...</p>
@@ -125,7 +123,6 @@ export default function Day51MemoApp() {
     return (
       <div className="min-h-screen bg-gradient-to-br from-purple-50 to-indigo-100 p-8">
         <div className="max-w-6xl mx-auto">
-          <BackToHomeButton />
           <div className="bg-white rounded-xl shadow-xl p-8 mt-8">
             <div className="text-center">
               <div className="text-6xl mb-4">⚠️</div>
@@ -158,7 +155,6 @@ export default function Day51MemoApp() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 to-indigo-100 p-8">
       <div className="max-w-6xl mx-auto">
-        <BackToHomeButton />
 
         <div className="bg-white rounded-xl shadow-xl p-8 mb-8">
           <div className="flex items-center justify-between mb-6">
