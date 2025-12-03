@@ -17,7 +17,10 @@ export default function Day46Page() {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch("/api/day46-quotes");
+      // キャッシュを無効化して毎回新しい名言を取得
+      const res = await fetch("/api/day46-quotes", {
+        cache: 'no-store',
+      });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const json = (await res.json()) as unknown;
 
@@ -54,10 +57,11 @@ export default function Day46Page() {
           <h2 className="text-xl font-semibold"> {/* 中見出し, 太字 */}
             ランダム名言
           </h2>
+          {/* ボタン基本, ホバー, 無効時半透明 */}
           <button
             onClick={fetchQuote}
             disabled={loading}
-            className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50" /* ボタン基本, ホバー, 無効時半透明 */
+            className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50"
           >
             {loading ? "取得中..." : "名言を取得"}
           </button>

@@ -1,5 +1,8 @@
 import { NextResponse } from 'next/server'
 
+// 動的レンダリングを強制（キャッシュを無効化）
+export const dynamic = 'force-dynamic'
+
 // アニメ名言の固定データ（day9と同じ60個）
 const animeQuotes = [
   // 鬼滅の刃
