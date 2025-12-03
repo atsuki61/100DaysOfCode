@@ -61,6 +61,9 @@ const Footer = ({ currentDay }: FooterProps) => {
       47: "/day47-offline-notes", // Day 47のルートを追加
       48: "/day48-virtual-list", // Day 48のルートを追加
       49: "/day49-i18n", // Day 49のルートを追加
+      50: "/day50-testing", // Day 50のルートを追加
+      51: "/day51-memo-app", // Day 51のルートを追加
+      52: "/day52-memo-display", // Day 52のルートを追加
     };
     return dayRoutes[day] || `/day${day}`;
   };

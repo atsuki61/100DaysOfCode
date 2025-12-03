@@ -425,6 +425,14 @@ export default function HomePage() {
         imageUrl: '/images/no-image.svg',
         description: 'Go + SQLite + GORMを使用したメモ保存アプリのバックエンド実装。RESTful APIによるCreate、Read（全件取得・個別取得）機能を実装しました。',
         tags: ['React', 'Next.js', 'TypeScript', 'TailwindCSS', 'Go', 'SQLite', 'GORM'],
+      },
+      {
+        id: 'day52',
+        name: 'Day 52: メモ表示アプリ',
+        path: '/day52-memo-display',
+        imageUrl: '/images/no-image.svg',
+        description: 'Day51で作成したGo APIをNext.jsフロントエンドから呼び出し、メモ一覧と詳細を表示するアプリです。外部APIへのデータフェッチング、状態管理、エラーハンドリングを学習しました。',
+        tags: ['React', 'Next.js', 'TypeScript', 'TailwindCSS', 'Go', 'API'],
       }
      // ここに新しいアプリを追加していきます
   ]), []);
